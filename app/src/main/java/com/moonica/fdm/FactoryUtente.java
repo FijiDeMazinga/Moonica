@@ -52,4 +52,12 @@ public class FactoryUtente {
     public ArrayList<Utente> getListaUtenti() {
         return listaUtenti;
     }
+
+    public Utente getUtente(String username, String password) {
+        for (Utente utente : listaUtenti)
+            if (username.equals(utente.getUsername()) && password.equals(utente.getPassword()))
+                return utente;
+            
+        return null;
+    }
 }
