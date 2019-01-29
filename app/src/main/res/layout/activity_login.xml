@@ -42,7 +42,8 @@
                     android:layout_height="wrap_content"
                     android:hint="Username"
                     android:layout_gravity="left"
-                    android:id="@+id/username"/>
+                    android:id="@+id/username"
+                    android:textColor="#0060AA"/>
             </android.support.design.widget.TextInputLayout>
 
             <Space
@@ -57,7 +58,8 @@
                     android:hint="Password"
                     android:inputType="textPassword"
                     android:layout_gravity="left"
-                    android:id="@+id/password"/>
+                    android:id="@+id/password"
+                    android:textColor="#0060AA"/>
             </android.support.design.widget.TextInputLayout>
 
             <Space
@@ -79,7 +81,8 @@
                 android:layout_gravity="end"
                 android:textAlignment="viewEnd"
                 android:textStyle="italic"
-                android:textColor="#F03D43"/>
+                android:textColor="#F03D43"
+                android:id="@+id/registrati"/>
         </LinearLayout>
     </ScrollView>
 
