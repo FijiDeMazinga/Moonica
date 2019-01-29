@@ -1,5 +1,7 @@
 package com.moonica.fdm;
 
+import java.util.ArrayList;
+
 public class Utente {
     private String nome;
     private String cognome;
@@ -7,7 +9,8 @@ public class Utente {
     private String email;
     private String password;
     private String facolta;
-    private String corso;
+    private String corsoStudi;
+    public ArrayList<String> corsi;
     private boolean isProfessor;
 
     public Utente() {
@@ -16,6 +19,9 @@ public class Utente {
         this.setUsername("");
         this.setEmail("");
         this.setPassword("");
+        this.setFacolta(null);
+        this.setCorsoStudi(null);
+        this.setCorsi(null);
         this.setProfessor(false);
     }
 
@@ -67,12 +73,20 @@ public class Utente {
         this.facolta = facolta;
     }
 
-    public String getCorso() {
-        return corso;
+    public String getCorsoStudi() {
+        return corsoStudi;
     }
 
-    public void setCorso(String corso) {
-        this.corso = corso;
+    public void setCorsoStudi(String corsoStudi) {
+        this.corsoStudi = corsoStudi;
+    }
+
+    public ArrayList<String> getCorsi() {
+        return corsi;
+    }
+
+    public void setCorsi(ArrayList<String> corsi) {
+        this.corsi = corsi;
     }
 
     public boolean isProfessor() {
