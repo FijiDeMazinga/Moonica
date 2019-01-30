@@ -7,10 +7,11 @@ public class CorsoDiStudi {
     private String Facolta;
     protected ArrayList<Corso> listaCorsi = new ArrayList<Corso>();
 
-    public CorsoDiStudi(String nome, ArrayList<Corso> listaCorsi){
-        this.setNome(nome);
-        this.listaCorsi = listaCorsi;
+    public CorsoDiStudi(){
+        this.setNome("");
+        this.setFacolta("");
     }
+
 
     public String getNome() {
         return nome;
