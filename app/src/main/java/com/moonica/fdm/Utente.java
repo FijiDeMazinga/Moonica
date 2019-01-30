@@ -13,7 +13,7 @@ public class Utente implements Serializable {
     private String password;
     private String facolta;
     private String corsoStudi;
-    public ArrayList<String> corsi;
+    private ArrayList<Corso> corsi;
     private boolean isProfessor;
 
     public Utente() {
@@ -84,11 +84,11 @@ public class Utente implements Serializable {
         this.corsoStudi = corsoStudi;
     }
 
-    public ArrayList<String> getCorsi() {
+    public ArrayList<Corso> getCorsi() {
         return corsi;
     }
 
-    public void setCorsi(ArrayList<String> corsi) {
+    public void setCorsi(ArrayList<Corso> corsi) {
         this.corsi = corsi;
     }
 
@@ -98,5 +98,18 @@ public class Utente implements Serializable {
 
     public void setProfessor(boolean professor) {
         isProfessor = professor;
+    }
+
+    public void aggiungiCorso(Corso corsoDaAggiungere) {
+        this.corsi.add(corsoDaAggiungere);
+    }
+
+    public void rimuoviCorso(Corso corsoDaRimuovere) {
+        for (Corso corso : this.corsi) {
+            if (corso.getNome().equals(corsoDaRimuovere.getNome())) {
+                this.corsi.remove(corso);
+                break;
+            }
+        }
     }
 }

@@ -15,8 +15,7 @@ public class FactoryUtente {
         utente1.setPassword("@delante");
         utente1.setFacolta("Ingegneria e Architettura");
         utente1.setCorsoStudi("Ingegneria Biomedica");
-        utente1.corsi.add("Biomateriali");
-        utente1.corsi.add("Analisi2");
+        utente1.aggiungiCorso(null);
         utente1.setProfessor(false);
 
         Utente utente2 = new Utente();
@@ -27,8 +26,7 @@ public class FactoryUtente {
         utente2.setPassword("hypergeo");
         utente2.setFacolta("Studi Umanistici");
         utente2.setCorsoStudi("Scienze e Tecniche Psicologiche");
-        utente2.corsi.add("Psicologia dell'Educazione");
-        utente2.corsi.add("Psicometria");
+        utente2.aggiungiCorso(null);
         utente2.setProfessor(false);
 
         Utente utente3 = new Utente();
@@ -39,7 +37,7 @@ public class FactoryUtente {
         utente3.setPassword("excalibur");
         utente3.setFacolta("Studi Umanistici");
         utente3.setCorsoStudi("Lettere");
-        utente3.corsi.add("Storia Medievale");
+        utente3.aggiungiCorso(null);
         utente3.setProfessor(true);
 
         listaUtenti.add(utente1);
