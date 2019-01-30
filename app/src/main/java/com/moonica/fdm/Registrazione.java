@@ -11,7 +11,8 @@ public class Registrazione extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrazione);
-        Log.d("prova", "prova");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Intent registrazione = getIntent();
     }
 }

@@ -12,6 +12,12 @@ public class Corso {
         this.nome = nome;
         this.sigla = sigla;
     }
+    public Corso(){
+        this.setNome("");
+        this.setSigla("");
+        this.setFacolta("");
+        this.setSezioni(null);
+    }
 
     public String getNome() {
         return nome;
