@@ -13,7 +13,7 @@ public class FactoryCorsoDiStudi {
 
     private ArrayList<CorsoDiStudi> listaCorsiStudi = new ArrayList<CorsoDiStudi>();
 
-    private FactoryCorsoDiStudi(){
+    public FactoryCorsoDiStudi(){
         CorsoDiStudi lettere = new CorsoDiStudi();
         lettere.setNome("Lettere");
         lettere.setFacolta("Studi Umanistici");
