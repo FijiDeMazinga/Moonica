@@ -1,8 +1,11 @@
 package com.moonica.fdm;
 
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Utente {
+public class Utente implements Serializable {
+
     private String nome;
     private String cognome;
     private String username;
