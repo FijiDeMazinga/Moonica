@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Corso {
     private String nome;
     private String sigla;
-    private String facolta;
+    private CorsoDiStudi facolta;
     private ArrayList<Sezione> sezioni = new ArrayList<Sezione>();
 
     public Corso(String nome, String sigla){
@@ -15,7 +15,6 @@ public class Corso {
     public Corso(){
         this.setNome("");
         this.setSigla("");
-        this.setFacolta("");
         this.setSezioni(null);
     }
 
@@ -35,19 +34,19 @@ public class Corso {
         this.sigla = sigla;
     }
 
-    public String getFacolta() {
-        return facolta;
-    }
-
-    public void setFacolta(String facolta) {
-        this.facolta = facolta;
-    }
-
     public ArrayList<Sezione> getSezioni() {
         return sezioni;
     }
 
     public void setSezioni(ArrayList<Sezione> sezioni) {
         this.sezioni = sezioni;
+    }
+
+    public CorsoDiStudi getFacolta() {
+        return facolta;
+    }
+
+    public void setFacolta(CorsoDiStudi facolta) {
+        this.facolta = facolta;
     }
 }
