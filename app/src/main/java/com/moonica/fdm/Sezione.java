@@ -36,4 +36,8 @@ public class Sezione {
     public void setContenuti(ArrayList<String> contenuti) {
         this.contenuti = contenuti;
     }
+
+    public void aggiungiContenuto() {
+
+    }
 }

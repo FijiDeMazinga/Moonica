@@ -50,4 +50,8 @@ public class Corso {
     public void setSezioni(ArrayList<Sezione> sezioni) {
         this.sezioni = sezioni;
     }
+
+    public void aggiungiSezione(Sezione nuovaSezione) {
+
+    }
 }

@@ -13,5 +13,6 @@ public class FactoryCorsi {
     private ArrayList<Corso> listaCorsi = new ArrayList<Corso>();
 
     private FactoryCorsi(){
+
     }
 }

@@ -12,7 +12,7 @@ public class Utente implements Serializable {
     private String email;
     private String password;
     private String facolta;
-    private String corsoStudi;
+    private CorsoDiStudi corsoStudi;
     private ArrayList<Corso> corsi;
     private boolean isProfessor;
 
@@ -76,11 +76,11 @@ public class Utente implements Serializable {
         this.facolta = facolta;
     }
 
-    public String getCorsoStudi() {
+    public CorsoDiStudi getCorsoStudi() {
         return corsoStudi;
     }
 
-    public void setCorsoStudi(String corsoStudi) {
+    public void setCorsoStudi(CorsoDiStudi corsoStudi) {
         this.corsoStudi = corsoStudi;
     }
 
