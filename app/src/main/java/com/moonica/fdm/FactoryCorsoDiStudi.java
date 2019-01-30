@@ -13,7 +13,7 @@ public class FactoryCorsoDiStudi {
 
     private ArrayList<CorsoDiStudi> listaCorsiStudi = new ArrayList<CorsoDiStudi>();
 
-    public FactoryCorsoDiStudi(){
+    private FactoryCorsoDiStudi(){
         CorsoDiStudi lettere = new CorsoDiStudi();
         lettere.setNome("Lettere");
         lettere.setFacolta("Studi Umanistici");
@@ -43,5 +43,18 @@ public class FactoryCorsoDiStudi {
         informatica.setNome("Informatica");
         informatica.setFacolta("Scienze");
         informatica.listaCorsi.add(null);
+
+        listaCorsiStudi.add(informatica);
+        listaCorsiStudi.add(ctf);
+        listaCorsiStudi.add(medicina);
+        listaCorsiStudi.add(ingBioMed);
+        listaCorsiStudi.add(lettere);
+        listaCorsiStudi.add(scienzePol);
+    }
+    public CorsoDiStudi cercaFacolta(String nome){
+        for(CorsoDiStudi facolta : listaCorsiStudi)
+            if(nome.matches(facolta.getNome()))
+                return facolta;
+        return null;
     }
 }
