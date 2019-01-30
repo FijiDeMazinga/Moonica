@@ -10,7 +10,6 @@ public class FactoryCorsi {
             singleton = new FactoryCorsi();
         return singleton;
     }
-    private ArrayList<Corso> listaCorsi = new ArrayList<Corso>();
 
     private ArrayList<Corso> corsiLettere = new ArrayList<Corso>();
     private ArrayList<Corso> corsiIng = new ArrayList<Corso>();
@@ -144,5 +143,25 @@ public class FactoryCorsi {
         corsiInf.add(pr2);
         corsiInf.add(so1);
         corsiInf.add(asd1);
+    }
+
+    ArrayList<Corso> listaCorsiFacolta(String nomeFacolta){
+        ArrayList<Corso> listaCorsi = new ArrayList<Corso>();
+
+        switch (nomeFacolta){
+            case "Informatica":
+                return corsiInf;
+            case "Chimica e Tecnologie Farmaceutiche":
+                return ctf;
+            case "Medicina e chirurgia":
+                return med;
+            case "Scienze Politiche":
+                return scienzePol;
+            case "Ingegeria Biomedica":
+                return corsiIng;
+            case "Lettere":
+                return corsiLettere;
+        }
+        return null;
     }
 }
