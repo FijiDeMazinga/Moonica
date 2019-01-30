@@ -5,84 +5,82 @@ import java.util.ArrayList;
 public class FactoryUtente {
     private static FactoryUtente instance;
     private ArrayList<Utente> listaUtenti = new ArrayList<>();
-    private FactoryCorsoDiStudi fcs = FactoryCorsoDiStudi.getInstance();
+    private FactoryCorsoDiStudi factoryCorsoDiStudi = FactoryCorsoDiStudi.getInstance();
+    private FactoryCorsi factoryCorsi = FactoryCorsi.getInstance();
 
     private FactoryUtente() {
-        Utente utente1 = new Utente();
-        utente1.setNome("Ines");
-        utente1.setCognome("Lopez");
-        utente1.setUsername("Ines");
-        utente1.setEmail("ilopez@unica.it");
-        utente1.setPassword("@delante");
-        utente1.setFacolta("Ingegneria e Architettura");
-        utente1.setCorsoStudi();  //Ingegneria Biomedica
-        utente1.aggiungiCorso(null);  //biomateriali
-        utente1.aggiungiCorso(null);  //
-        utente1.aggiungiCorso(null);  //
-        utente1.setProfessor(false);
+        Studente studente1 = new Studente();
+        studente1.setNome("Ines");
+        studente1.setCognome("Lopez");
+        studente1.setUsername("Ines");
+        studente1.setEmail("ilopez@unica.it");
+        studente1.setPassword("@delante");
+        studente1.setFacolta("Ingegneria e Architettura");
+        studente1.setCorsoStudi(factoryCorsoDiStudi.cercaFacolta("Ingegneria Biomedica"));  //Ingegneria Biomedica
+        studente1.aggiungiCorso(null);  //biomateriali
+        studente1.aggiungiCorso(null);  //
+        studente1.aggiungiCorso(null);  //
 
-        Utente utente2 = new Utente();
-        utente2.setNome("Marcello");
-        utente2.setCognome("Spiga");
-        utente2.setUsername("Spighetto");
-        utente2.setEmail("fspiga@unica.it");
-        utente2.setPassword("hypergeo");
-        utente2.setFacolta("Scienze Economiche Giuridiche e Politiche");
-        utente2.setCorsoStudi("Scienze Politiche");
-        utente2.aggiungiCorso(null);  //
-        utente2.aggiungiCorso(null);  //
-        utente2.aggiungiCorso(null);  //
-        utente2.setProfessor(false);
+        Studente studente2 = new Studente();
+        studente2.setNome("Marcello");
+        studente2.setCognome("Spiga");
+        studente2.setUsername("Spighetto");
+        studente2.setEmail("fspiga@unica.it");
+        studente2.setPassword("hypergeo");
+        studente2.setFacolta("Scienze Economiche, Giuridiche e Politiche");
+        studente2.setCorsoStudi(factoryCorsoDiStudi.cercaFacolta("Scienze Politiche"));
+        studente2.aggiungiCorso(null);  //
+        studente2.aggiungiCorso(null);  //
+        studente2.aggiungiCorso(null);  //
 
-        Utente utente3 = new Utente();
-        utente3.setNome("Carlo");
-        utente3.setCognome("Giganti");
-        utente3.setUsername("Gyganti");
-        utente3.setEmail("cgiganti@unica.it");
-        utente3.setPassword("excalibur");
-        utente3.setFacolta("Studi Umanistici");
-        utente3.setCorsoStudi("Lettere");
-        utente3.aggiungiCorso(null);  //storia medievale
-        utente3.setProfessor(true);
+        Studente studente3 = new Studente();
+        studente3.setNome("Francesco");
+        studente3.setCognome("Traccis");
+        studente3.setUsername("Cosino");
+        studente3.setEmail("ftraccis@gmail.com");
+        studente3.setPassword("spaghettialpesto");
+        studente3.setFacolta("Medicina e Chirurgia");
+        studente3.setCorsoStudi(factoryCorsoDiStudi.cercaFacolta("Medicina e Chirurgia"));
+        studente3.aggiungiCorso(null);  //
+        studente3.aggiungiCorso(null);  //
+        studente3.aggiungiCorso(null);  //
 
-        Utente utente4 = new Utente();
-        utente4.setNome("Francesco");
-        utente4.setCognome("Traccis");
-        utente4.setUsername("Cosino");
-        utente4.setEmail("ftraccis@gmail.com");
-        utente4.setPassword("spaghettialpesto");
-        utente4.setFacolta("Medicina e Chirurgia");
-        utente4.setCorsoStudi("Medicina e Chirurgia");
-        utente4.aggiungiCorso(null);  //
-        utente4.aggiungiCorso(null);  //
-        utente4.aggiungiCorso(null);  //
-        utente4.setProfessor(false);
+        Studente studente4 = new Studente();
+        studente4.setNome("Federica");
+        studente4.setCognome("Zanda");
+        studente4.setUsername("Federica");
+        studente4.setEmail("fzanda@outlook.com");
+        studente4.setPassword("commodore64");
+        studente4.setFacolta("Scienze");
+        studente4.setCorsoStudi(factoryCorsoDiStudi.cercaFacolta("Informatica"));
+        studente4.aggiungiCorso(null);
 
-        Utente utente5 = new Utente();
-        utente5.setNome("");
-        utente5.setCognome("");
-        utente5.setUsername("");
-        utente5.setEmail("");
-        utente5.setPassword("");
-        utente5.setFacolta("");
-        utente5.setCorsoStudi("");
-        utente5.aggiungiCorso(null);
-        utente5.setProfessor(false);
+        Professore professore1 = new Professore();
+        professore1.setNome("Carlo");
+        professore1.setCognome("Giganti");
+        professore1.setUsername("Gyganti");
+        professore1.setEmail("cgiganti@unica.it");
+        professore1.setPassword("excalibur");
+        professore1.setFacolta("Studi Umanistici");
+        professore1.setCorsoStudi(factoryCorsoDiStudi.cercaFacolta("Lettere"));
+        professore1.aggiungiCorsoGestito(null);  //storia medievale
 
-        Utente utente6 = new Utente();
-        utente6.setNome("");
-        utente6.setCognome("");
-        utente6.setUsername("");
-        utente6.setEmail("");
-        utente6.setPassword("");
-        utente6.setFacolta("");
-        utente6.setCorsoStudi("");
-        utente6.aggiungiCorso(null);
-        utente6.setProfessor(false);
+        Professore professore2 = new Professore();
+        professore2.setNome("Cristina");
+        professore2.setCognome("Tronci");
+        professore2.setUsername("Troncina");
+        professore2.setEmail("cronci@unica.it");
+        professore2.setPassword("beaker");
+        professore2.setFacolta("Biologia e Farmacia");
+        professore2.setCorsoStudi(factoryCorsoDiStudi.cercaFacolta("Chimica e Tecnologie Farmaceutiche"));
+        professore2.aggiungiCorsoGestito(null);
 
-        listaUtenti.add(utente1);
-        listaUtenti.add(utente2);
-        listaUtenti.add(utente3);
+        listaUtenti.add(studente1);
+        listaUtenti.add(studente2);
+        listaUtenti.add(studente3);
+        listaUtenti.add(studente4);
+        listaUtenti.add(professore1);
+        listaUtenti.add(professore2);
     }
 
     public static FactoryUtente getInstance() {

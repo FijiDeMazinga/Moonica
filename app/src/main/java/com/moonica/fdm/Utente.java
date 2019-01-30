@@ -6,15 +6,13 @@ import java.util.ArrayList;
 
 public class Utente implements Serializable {
 
-    private String nome;
-    private String cognome;
-    private String username;
-    private String email;
-    private String password;
-    private String facolta;
-    private CorsoDiStudi corsoStudi;
-    private ArrayList<Corso> corsi;
-    private boolean isProfessor;
+    protected String nome;
+    protected String cognome;
+    protected String username;
+    protected String email;
+    protected String password;
+    protected String facolta;
+    protected CorsoDiStudi corsoStudi;
 
     public Utente() {
         this.setNome("");
@@ -24,8 +22,6 @@ public class Utente implements Serializable {
         this.setPassword("");
         this.setFacolta(null);
         this.setCorsoStudi(null);
-        this.setCorsi(null);
-        this.setProfessor(false);
     }
 
     public String getNome() {
@@ -82,34 +78,5 @@ public class Utente implements Serializable {
 
     public void setCorsoStudi(CorsoDiStudi corsoStudi) {
         this.corsoStudi = corsoStudi;
-    }
-
-    public ArrayList<Corso> getCorsi() {
-        return corsi;
-    }
-
-    public void setCorsi(ArrayList<Corso> corsi) {
-        this.corsi = corsi;
-    }
-
-    public boolean isProfessor() {
-        return isProfessor;
-    }
-
-    public void setProfessor(boolean professor) {
-        isProfessor = professor;
-    }
-
-    public void aggiungiCorso(Corso corsoDaAggiungere) {
-        this.corsi.add(corsoDaAggiungere);
-    }
-
-    public void rimuoviCorso(Corso corsoDaRimuovere) {
-        for (Corso corso : this.corsi) {
-            if (corso.getNome().equals(corsoDaRimuovere.getNome())) {
-                this.corsi.remove(corso);
-                break;
-            }
-        }
     }
 }
