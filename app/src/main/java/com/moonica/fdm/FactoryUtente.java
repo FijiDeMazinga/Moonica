@@ -14,7 +14,9 @@ public class FactoryUtente {
         utente1.setEmail("ilopez@unica.it");
         utente1.setPassword("@delante");
         utente1.setFacolta("Ingegneria e Architettura");
-        utente1.setCorso("Ingegneria Biomedica");
+        utente1.setCorsoStudi("Ingegneria Biomedica");
+        utente1.corsi.add("Biomateriali");
+        utente1.corsi.add("Analisi2");
         utente1.setProfessor(false);
 
         Utente utente2 = new Utente();
@@ -24,7 +26,9 @@ public class FactoryUtente {
         utente2.setEmail("fspiga@unica.it");
         utente2.setPassword("hypergeo");
         utente2.setFacolta("Studi Umanistici");
-        utente2.setCorso("Scienze e Tecniche Psicologiche");
+        utente2.setCorsoStudi("Scienze e Tecniche Psicologiche");
+        utente2.corsi.add("Psicologia dell'Educazione");
+        utente2.corsi.add("Psicometria");
         utente2.setProfessor(false);
 
         Utente utente3 = new Utente();
@@ -34,7 +38,8 @@ public class FactoryUtente {
         utente3.setEmail("cgiganti@unica.it");
         utente3.setPassword("excalibur");
         utente3.setFacolta("Studi Umanistici");
-        utente3.setCorso("Lettere");
+        utente3.setCorsoStudi("Lettere");
+        utente3.corsi.add("Storia Medievale");
         utente3.setProfessor(true);
 
         listaUtenti.add(utente1);
@@ -57,7 +62,7 @@ public class FactoryUtente {
         for (Utente utente : listaUtenti)
             if (username.equals(utente.getUsername()) && password.equals(utente.getPassword()))
                 return utente;
-            
+
         return null;
     }
 }
