@@ -15,6 +15,7 @@ public class Corso {
     public Corso(){
         this.setNome("");
         this.setSigla("");
+        this.setFacolta("");
         this.setSezioni(null);
     }
 
@@ -46,7 +47,8 @@ public class Corso {
         return facolta;
     }
 
-    public void setFacolta(CorsoDiStudi facolta) {
-        this.facolta = facolta;
+    public void setFacolta(String facolta) {
+        FactoryCorsoDiStudi fc = FactoryCorsoDiStudi.getInstance();
+        this.facolta = fc.cercaFacolta("facolta");
     }
 }
