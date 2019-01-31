@@ -33,8 +33,8 @@ public class FactoryCorsi {
 
         Corso storiaMod1 = new Corso();
         storiaMod1.setFacolta("Lettere");
-        storiaMod1.setNome("Storia Moderna 1");
-        storiaMod1.setSigla("SM1");
+        storiaMod1.setNome("Storia Medievale");
+        storiaMod1.setSigla("SM");
         storiaMod1.setSezioni(null);
 
         corsiLettere.add(letGreca);
@@ -42,26 +42,33 @@ public class FactoryCorsi {
         corsiLettere.add(storiaRomana);
 
         Corso chimica = new Corso();
-        chimica.setFacolta("Ingegeria Biomedica");
+        chimica.setFacolta("Ingegneria Biomedica");
         chimica.setNome("Chimica");
-        chimica.setSigla("C");
+        chimica.setSigla("CH");
         chimica.setSezioni(null);
 
         Corso anatomia = new Corso();
-        anatomia.setFacolta("Ingegeria Biomedica");
+        anatomia.setFacolta("Ingegneria Biomedica");
         anatomia.setNome("Anatomia");
-        anatomia.setSigla("A");
+        anatomia.setSigla("AN");
         anatomia.setSezioni(null);
 
         Corso analisi1 = new Corso();
-        analisi1.setFacolta("Ingegeria Biomedica");
-        analisi1.setNome("Analisi1");
+        analisi1.setFacolta("Ingegneria Biomedica");
+        analisi1.setNome("Analisi 1");
         analisi1.setSigla("A1");
         analisi1.setSezioni(null);
+
+        Corso biomateriali = new Corso();
+        biomateriali.setFacolta("Ingegneria Biomedica");
+        biomateriali.setNome("Biomateriali");
+        biomateriali.setSigla("BM");
+        biomateriali.setSezioni(null);
 
         corsiIng.add(analisi1);
         corsiIng.add(anatomia);
         corsiIng.add(chimica);
+        corsiIng.add(biomateriali);
 
         Corso economiaPol = new Corso();
         economiaPol.setFacolta("Scienze Politiche");
@@ -81,7 +88,7 @@ public class FactoryCorsi {
         Corso fisio = new Corso();
         fisio.setFacolta("Medicina e chirurgia");
         fisio.setNome("Fisiologia");
-        fisio.setSigla("F");
+        fisio.setSigla("FIS");
         fisio.setSezioni(null);
 
         Corso anatPat = new Corso();
@@ -93,7 +100,7 @@ public class FactoryCorsi {
         Corso oncologia = new Corso();
         oncologia.setFacolta("Medicina e chirurgia");
         oncologia.setNome("Oncologia");
-        oncologia.setSigla("O");
+        oncologia.setSigla("ONC");
         oncologia.setSezioni(null);
 
         med.add(fisio);
