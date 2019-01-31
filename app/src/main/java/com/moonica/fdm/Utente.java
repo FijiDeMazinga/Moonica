@@ -76,7 +76,8 @@ public class Utente implements Serializable {
         return corsoStudi;
     }
 
-    public void setCorsoStudi(CorsoDiStudi corsoStudi) {
-        this.corsoStudi = corsoStudi;
+    public void setCorsoStudi(String cds) {
+        FactoryCorsoDiStudi factoryCorsoDiStudi = FactoryCorsoDiStudi.getInstance();
+        this.corsoStudi = factoryCorsoDiStudi.cercaFacolta(cds);
     }
 }
