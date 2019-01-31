@@ -1,8 +1,9 @@
 package com.moonica.fdm;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CorsoDiStudi {
+public class CorsoDiStudi implements Serializable {
     private String nome;
     private String Facolta;
     protected ArrayList<Corso> listaCorsi = new ArrayList<Corso>();

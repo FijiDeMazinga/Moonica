@@ -33,7 +33,7 @@ public class Home extends AppCompatActivity {
         welcome.setText("Benvenuto " + username + "!");
 
         l = findViewById(R.id.corsi);
-        lista = fc.listaCorsiFacolta(u.getFacolta());
+        lista = fc.listaCorsiFacolta(u.getCorsoStudi().getNome());
 
         for(Corso c : lista){
             Button b = new Button(this);

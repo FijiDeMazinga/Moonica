@@ -2,7 +2,6 @@ package com.moonica.fdm;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Utente implements Serializable {
 
@@ -78,6 +77,6 @@ public class Utente implements Serializable {
 
     public void setCorsoStudi(String cds) {
         FactoryCorsoDiStudi factoryCorsoDiStudi = FactoryCorsoDiStudi.getInstance();
-        this.corsoStudi = factoryCorsoDiStudi.cercaFacolta(cds);
+        this.corsoStudi = factoryCorsoDiStudi.cercaCDS(cds);
     }
 }

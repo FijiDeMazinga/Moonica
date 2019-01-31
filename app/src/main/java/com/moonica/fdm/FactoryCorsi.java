@@ -157,7 +157,7 @@ public class FactoryCorsi {
                 return med;
             case "Scienze Politiche":
                 return scienzePol;
-            case "Ingegeria Biomedica":
+            case "Ingegneria Biomedica":
                 return corsiIng;
             case "Lettere":
                 return corsiLettere;

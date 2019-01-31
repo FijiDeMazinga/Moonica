@@ -16,10 +16,7 @@ public class FactoryUtente {
         studente1.setEmail("ilopez@unica.it");
         studente1.setPassword("@delante");
         studente1.setFacolta("Ingegneria e Architettura");
-        studente1.setCorsoStudi("Ingegneria Biomedica");
-        studente1.aggiungiCorso(null);  //biomateriali
-        studente1.aggiungiCorso(null);  //
-        studente1.aggiungiCorso(null);  //
+        studente1.setCorsoStudi("Ingegneria Biomedica"); //
 
         Studente studente2 = new Studente();
         studente2.setNome("Marcello");
@@ -28,10 +25,7 @@ public class FactoryUtente {
         studente2.setEmail("fspiga@unica.it");
         studente2.setPassword("hypergeo");
         studente2.setFacolta("Scienze Economiche, Giuridiche e Politiche");
-        studente2.setCorsoStudi("Scienze Politiche");
-        studente2.aggiungiCorso(null);  //
-        studente2.aggiungiCorso(null);  //
-        studente2.aggiungiCorso(null);  //
+        studente2.setCorsoStudi("Scienze Politiche");  //
 
         Studente studente3 = new Studente();
         studente3.setNome("Francesco");
@@ -40,10 +34,7 @@ public class FactoryUtente {
         studente3.setEmail("ftraccis@gmail.com");
         studente3.setPassword("spaghettialpesto");
         studente3.setFacolta("Medicina e Chirurgia");
-        studente3.setCorsoStudi("Medicina e Chirurgia");
-        studente3.aggiungiCorso(null);  //
-        studente3.aggiungiCorso(null);  //
-        studente3.aggiungiCorso(null);  //
+        studente3.setCorsoStudi("Medicina e Chirurgia"); //
 
         Studente studente4 = new Studente();
         studente4.setNome("Federica");
@@ -53,7 +44,6 @@ public class FactoryUtente {
         studente4.setPassword("commodore64");
         studente4.setFacolta("Scienze");
         studente4.setCorsoStudi("Informatica");
-        studente4.aggiungiCorso(null);
 
         Professore professore1 = new Professore();
         professore1.setNome("Carlo");
@@ -62,8 +52,7 @@ public class FactoryUtente {
         professore1.setEmail("cgiganti@unica.it");
         professore1.setPassword("excalibur");
         professore1.setFacolta("Studi Umanistici");
-        professore1.setCorsoStudi("Lettere");
-        professore1.aggiungiCorsoGestito(null);  //storia medievale
+        professore1.setCorsoStudi("Lettere"); //storia medievale
 
         Professore professore2 = new Professore();
         professore2.setNome("Cristina");
@@ -73,7 +62,6 @@ public class FactoryUtente {
         professore2.setPassword("beaker");
         professore2.setFacolta("Biologia e Farmacia");
         professore2.setCorsoStudi("Chimica e Tecnologie Farmaceutiche");
-        professore2.aggiungiCorsoGestito(null);
 
         listaUtenti.add(studente1);
         listaUtenti.add(studente2);
@@ -94,7 +82,7 @@ public class FactoryUtente {
         return listaUtenti;
     }
 
-    public Utente getUtente(String username, String password) {
+    public Utente cercaUtente(String username, String password) {
         for (Utente utente : listaUtenti)
             if (username.equals(utente.getUsername()) && password.equals(utente.getPassword()))
                 return utente;

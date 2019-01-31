@@ -51,10 +51,12 @@ public class FactoryCorsoDiStudi {
         listaCorsiStudi.add(lettere);
         listaCorsiStudi.add(scienzePol);
     }
-    public CorsoDiStudi cercaFacolta(String nome){
-        for(CorsoDiStudi facolta : listaCorsiStudi)
-            if(nome.matches(facolta.getNome()))
-                return facolta;
+    public CorsoDiStudi cercaCDS(String nome){
+        if(nome == null)
+            return null;
+        for(CorsoDiStudi cds : listaCorsiStudi)
+            if(nome.equals(cds.getNome()))
+                return cds;
         return null;
     }
 }

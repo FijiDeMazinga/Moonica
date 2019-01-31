@@ -49,6 +49,6 @@ public class Corso {
 
     public void setFacolta(String facolta) {
         FactoryCorsoDiStudi fc = FactoryCorsoDiStudi.getInstance();
-        this.facolta = fc.cercaFacolta("facolta");
+        this.facolta = fc.cercaCDS(facolta);
     }
 }
