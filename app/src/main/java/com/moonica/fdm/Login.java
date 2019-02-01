@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class Login extends AppCompatActivity {
     EditText username, password;
     Button login;
-    TextView registrati;
+    TextView registrati, loginError;
     Utente u = new Utente();
 
     public static final String USER = "com.moonica.fdm";
@@ -26,6 +26,7 @@ public class Login extends AppCompatActivity {
         password = findViewById(R.id.password);
         registrati = (TextView) findViewById(R.id.registrati);
         login = findViewById(R.id.login);
+        loginError = findViewById(R.id.loginError);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,7 +36,8 @@ public class Login extends AppCompatActivity {
                     home.putExtra(USER, u);
                     startActivity(home);
                 }
-
+                else
+                    loginError.setVisibility(View.VISIBLE);
             }
         });
 

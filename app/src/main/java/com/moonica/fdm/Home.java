@@ -4,8 +4,10 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -18,7 +20,8 @@ import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
     TextView welcome;
-    Utente u;
+    Professore p;
+    Studente s;
     String username;
     LinearLayout l;
     ArrayList<Corso> lista = new ArrayList<Corso>();
@@ -34,14 +37,20 @@ public class Home extends AppCompatActivity {
         Intent i = getIntent();
 
         Serializable obj = i.getSerializableExtra(Login.USER);
+
+        if(obj instanceof Studente){
+            s = (Studente) obj;
+            username = s.getUsername();
+            lista = s.getCorsi();
+        }
+        else{
+            p = (Professore) obj;
+            username = p.getUsername();
+            lista = p.getCorsiGestiti();
+        }
         welcome = findViewById(R.id.welcome);
-
-        u = (Utente) obj;
-        username = u.getUsername();
         welcome.setText("Benvenuto " + username + "!");
-
         l = findViewById(R.id.corsi);
-        lista = fc.listaCorsiFacolta(u.getCorsoStudi().getNome());
 
         for(Corso c : lista){
             Button tv = new Button(this);

@@ -1,8 +1,9 @@
 package com.moonica.fdm;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Corso {
+public class Corso implements Serializable {
     private String nome;
     private String sigla;
     private CorsoDiStudi facolta;

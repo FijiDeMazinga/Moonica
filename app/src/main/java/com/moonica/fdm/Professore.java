@@ -1,15 +1,15 @@
 package com.moonica.fdm;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Professore extends Utente {
+public class Professore extends Utente  implements Serializable {
     private ArrayList<CorsoDiStudi> cdsDiInsegnamento;
-    private ArrayList<Corso> corsiGestiti;
+    private ArrayList<Corso> corsiGestiti = new ArrayList<Corso>();
 
     public Professore() {
         super();
         this.setCdsDiInsegnamento(null);
-        this.setCorsiGestiti(null);
     }
 
     public ArrayList<CorsoDiStudi> getCdsDiInsegnamento() {

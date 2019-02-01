@@ -64,6 +64,19 @@
 
             <Space
                 android:layout_width="match_parent"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Errore: username o password non corretti!"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="#eb0102"
+                android:visibility="gone"
+                android:id="@+id/loginError"/>
+
+            <Space
+                android:layout_width="match_parent"
                 android:layout_height="36dp" />
             <Button
                 android:layout_width="100dp"
