@@ -11,6 +11,7 @@ public class FactoryCorsi {
         return singleton;
     }
 
+    private ArrayList<Corso> tuttiCorsi = new ArrayList<Corso>();
     private ArrayList<Corso> corsiLettere = new ArrayList<Corso>();
     private ArrayList<Corso> corsiIng = new ArrayList<Corso>();
     private ArrayList<Corso> scienzePol = new ArrayList<Corso>();
@@ -31,15 +32,19 @@ public class FactoryCorsi {
         letGreca.setSigla("LG");
         letGreca.setSezioni(null);
 
-        Corso storiaMod1 = new Corso();
-        storiaMod1.setFacolta("Lettere");
-        storiaMod1.setNome("Storia Medievale");
-        storiaMod1.setSigla("SM");
-        storiaMod1.setSezioni(null);
+        Corso storiaMed = new Corso();
+        storiaMed.setFacolta("Lettere");
+        storiaMed.setNome("Storia Medievale");
+        storiaMed.setSigla("SM");
+        storiaMed.setSezioni(null);
 
         corsiLettere.add(letGreca);
-        corsiLettere.add(storiaMod1);
+        corsiLettere.add(storiaMed);
         corsiLettere.add(storiaRomana);
+
+        tuttiCorsi.add(letGreca);
+        tuttiCorsi.add(storiaMed);
+        tuttiCorsi.add(storiaRomana);
 
         Corso chimica = new Corso();
         chimica.setFacolta("Ingegneria Biomedica");
@@ -70,6 +75,11 @@ public class FactoryCorsi {
         corsiIng.add(chimica);
         corsiIng.add(biomateriali);
 
+        tuttiCorsi.add(analisi1);
+        tuttiCorsi.add(anatomia);
+        tuttiCorsi.add(chimica);
+        tuttiCorsi.add(biomateriali);
+
         Corso economiaPol = new Corso();
         economiaPol.setFacolta("Scienze Politiche");
         economiaPol.setNome("Economia Politica");
@@ -84,6 +94,9 @@ public class FactoryCorsi {
 
         scienzePol.add(economiaPol);
         scienzePol.add(dirPrivato);
+
+        tuttiCorsi.add(economiaPol);
+        tuttiCorsi.add(dirPrivato);
 
         Corso fisio = new Corso();
         fisio.setFacolta("Medicina e chirurgia");
@@ -107,6 +120,10 @@ public class FactoryCorsi {
         med.add(anatPat);
         med.add(oncologia);
 
+        tuttiCorsi.add(fisio);
+        tuttiCorsi.add(anatPat);
+        tuttiCorsi.add(oncologia);
+
         Corso chimicaOrg = new Corso();
         chimicaOrg.setFacolta("Chimica e Tecnologie Farmaceutiche");
         chimicaOrg.setNome("Chimica Organica");
@@ -114,6 +131,8 @@ public class FactoryCorsi {
         chimicaOrg.setSezioni(null);
 
         ctf.add(chimicaOrg);
+
+        tuttiCorsi.add(chimicaOrg);
 
         Corso pr1 = new Corso();
         pr1.setFacolta("Informatica");
@@ -150,6 +169,12 @@ public class FactoryCorsi {
         corsiInf.add(pr2);
         corsiInf.add(so1);
         corsiInf.add(asd1);
+
+        tuttiCorsi.add(ium);
+        tuttiCorsi.add(pr1);
+        tuttiCorsi.add(pr2);
+        tuttiCorsi.add(so1);
+        tuttiCorsi.add(asd1);
     }
 
     ArrayList<Corso> listaCorsiFacolta(String nomeFacolta){
@@ -169,6 +194,15 @@ public class FactoryCorsi {
             case "Lettere":
                 return corsiLettere;
         }
+        return null;
+    }
+
+    Corso cercaCorso(String nome){
+        if(nome == null)
+            return null;
+        for(Corso c : tuttiCorsi)
+            if(nome.equals(c.getNome()))
+                return c;
         return null;
     }
 }
