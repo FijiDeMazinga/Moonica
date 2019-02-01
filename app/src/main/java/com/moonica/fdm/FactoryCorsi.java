@@ -142,7 +142,7 @@ public class FactoryCorsi {
 
         Corso asd1 = new Corso();
         asd1.setFacolta("Informatica");
-        asd1.setNome("Algoritmi e strutture dati 1");
+        asd1.setNome("Algoritmi e Strutture Dati 1");
         asd1.setSigla("ASD1");
         asd1.setSezioni(null);
 

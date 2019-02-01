@@ -57,7 +57,10 @@ public class Home extends AppCompatActivity {
             Space s = new Space(this);
 
             s.setMinimumHeight(50);
-            tv.setText("[" + c.getSigla() + "] " + c.getNome());
+            if(c.getNome().length() <= 20)
+                tv.setText("[" + c.getSigla() + "] " + c.getNome());
+            else
+                tv.setText("[" + c.getSigla() + "] " + c.getNome().substring(0, 20) + "...");
             tv.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
             tv.setPadding(30,0,0,0);
             tv.setTextColor(0xffffffff);
