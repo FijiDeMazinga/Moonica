@@ -16,7 +16,10 @@ public class FactoryUtente {
         studente1.setEmail("ilopez@unica.it");
         studente1.setPassword("@delante");
         studente1.setFacolta("Ingegneria e Architettura");
-        studente1.setCorsoStudi("Ingegneria Biomedica"); //
+        studente1.setCorsoStudi("Ingegneria Biomedica");
+        studente1.aggiungiCorso(factoryCorsi.cercaCorso("Biomateriali"));
+        studente1.aggiungiCorso(factoryCorsi.cercaCorso("Anatomia"));
+        studente1.aggiungiCorso(factoryCorsi.cercaCorso("Chimica"));
 
         Studente studente2 = new Studente();
         studente2.setNome("Marcello");
@@ -25,7 +28,9 @@ public class FactoryUtente {
         studente2.setEmail("fspiga@unica.it");
         studente2.setPassword("hypergeo");
         studente2.setFacolta("Scienze Economiche, Giuridiche e Politiche");
-        studente2.setCorsoStudi("Scienze Politiche");  //
+        studente2.setCorsoStudi("Scienze Politiche");
+        studente2.aggiungiCorso(factoryCorsi.cercaCorso("Economia Politica"));
+        studente2.aggiungiCorso(factoryCorsi.cercaCorso("Diritto Privato"));
 
         Studente studente3 = new Studente();
         studente3.setNome("Francesco");
@@ -34,7 +39,10 @@ public class FactoryUtente {
         studente3.setEmail("ftraccis@gmail.com");
         studente3.setPassword("spaghettialpesto");
         studente3.setFacolta("Medicina e Chirurgia");
-        studente3.setCorsoStudi("Medicina e Chirurgia"); //
+        studente3.setCorsoStudi("Medicina e Chirurgia");
+        studente3.aggiungiCorso(factoryCorsi.cercaCorso("Fisiologia"));
+        studente3.aggiungiCorso(factoryCorsi.cercaCorso("Anatomia Patologica"));
+        studente3.aggiungiCorso(factoryCorsi.cercaCorso("Oncologia"));
 
         Studente studente4 = new Studente();
         studente4.setNome("Federica");
@@ -44,6 +52,10 @@ public class FactoryUtente {
         studente4.setPassword("commodore64");
         studente4.setFacolta("Scienze");
         studente4.setCorsoStudi("Informatica");
+        studente4.aggiungiCorso(factoryCorsi.cercaCorso("Algoritmi e Strutture Dati 1"));
+        studente4.aggiungiCorso(factoryCorsi.cercaCorso("Programmazione 2"));
+        studente4.aggiungiCorso(factoryCorsi.cercaCorso("Sistemi Operativi 1"));
+        studente4.aggiungiCorso(factoryCorsi.cercaCorso("Interazione Uomo-Macchina"));
 
         Professore professore1 = new Professore();
         professore1.setNome("Carlo");
@@ -53,6 +65,7 @@ public class FactoryUtente {
         professore1.setPassword("excalibur");
         professore1.setFacolta("Studi Umanistici");
         professore1.setCorsoStudi("Lettere"); //storia medievale
+        professore1.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Storia Medievale"));
 
         Professore professore2 = new Professore();
         professore2.setNome("Cristina");
@@ -62,6 +75,7 @@ public class FactoryUtente {
         professore2.setPassword("beaker");
         professore2.setFacolta("Biologia e Farmacia");
         professore2.setCorsoStudi("Chimica e Tecnologie Farmaceutiche");
+        professore2.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Chimica Organica"));
 
         listaUtenti.add(studente1);
         listaUtenti.add(studente2);

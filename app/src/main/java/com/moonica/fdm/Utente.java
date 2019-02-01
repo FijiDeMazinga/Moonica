@@ -5,13 +5,13 @@ import java.io.Serializable;
 
 public class Utente implements Serializable {
 
-    protected String nome;
-    protected String cognome;
-    protected String username;
-    protected String email;
-    protected String password;
-    protected String facolta;
-    protected CorsoDiStudi corsoStudi;
+    private String nome;
+    private String cognome;
+    private String username;
+    private String email;
+    private String password;
+    private String facolta;
+    CorsoDiStudi corsoStudi;
 
     public Utente() {
         this.setNome("");
