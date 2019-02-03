@@ -10,6 +10,7 @@
         <item name="colorControlActivated">#225599</item>
         <item name="colorControlHighlight">#225599</item>
         <item name="android:textColorHint">#225599</item>
+        <item name="android:windowBackground">@color/background</item>
     </style>
 
     <style name="ActionBarStyle" parent="@android:style/Widget.ActionBar">
