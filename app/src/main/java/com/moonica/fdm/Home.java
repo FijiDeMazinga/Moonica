@@ -63,7 +63,7 @@ public class Home extends AppCompatActivity {
             lista = p.getCorsiGestiti();
         }
         welcome = findViewById(R.id.welcome);
-        welcome.setText(benvenuto + username + "!");
+        welcome.setText(benvenuto.concat(username).concat("!"));
         l = findViewById(R.id.corsi);
 
         for(Corso c : lista){

@@ -40,7 +40,7 @@ public class FactoryUtente {
         studente1.setSesso(Gender.NON_SPECIFICATO);
         studente3.setUsername("Cosino");
         studente3.setEmail("ftraccis@gmail.com");
-        studente3.setPassword("spaghettialpesto");
+        studente3.setPassword("111");
         studente3.setFacolta("Medicina e Chirurgia");
         studente3.setCorsoStudi("Medicina e Chirurgia");
         studente3.aggiungiCorso(factoryCorsi.cercaCorso("Fisiologia"));
