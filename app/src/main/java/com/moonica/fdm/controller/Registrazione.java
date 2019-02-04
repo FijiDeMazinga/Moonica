@@ -37,7 +37,7 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         genders.add("Sesso");
         genders.add("Maschio");
         genders.add("Femmina");
-        genders.add("Non specificato");
+        genders.add("Altro");
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_layout, genders);
         dataAdapter.setDropDownViewResource(R.layout.spinner_dropdown);
