@@ -1,4 +1,4 @@
-package com.moonica.fdm;
+package com.moonica.fdm.model;
 
 
 import java.io.Serializable;

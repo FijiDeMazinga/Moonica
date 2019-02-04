@@ -1,4 +1,4 @@
-package com.moonica.fdm;
+package com.moonica.fdm.model;
 
 import java.util.Calendar;
 
@@ -15,7 +15,7 @@ public class ForumThread {
         this.setData(1900,1,1);
         this.setAutore("");
         this.setNumRisposte(0);
-        this.setCorso(null);
+        this.setCorso(null, null);
     }
 
     public String getTitolo() {
@@ -56,8 +56,8 @@ public class ForumThread {
         return corso;
     }
 
-    public void setCorso(String nomeCorso) {
+    public void setCorso(String codice, String nomeCorso) {
         FactoryCorsi fc = FactoryCorsi.getInstance();
-        this.corso = fc.cercaCorso(nomeCorso);
+        this.corso = fc.cercaCorso(codice,nomeCorso);
     }
 }

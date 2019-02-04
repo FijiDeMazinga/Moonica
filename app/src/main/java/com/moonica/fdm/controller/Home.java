@@ -1,19 +1,23 @@
-package com.moonica.fdm;
+package com.moonica.fdm.controller;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
+
+import com.moonica.fdm.R;
+import com.moonica.fdm.model.Corso;
+import com.moonica.fdm.model.FactoryCorsi;
+import com.moonica.fdm.model.Professore;
+import com.moonica.fdm.model.Studente;
+import com.moonica.fdm.model.Utente;
 
 import java.io.Serializable;
 import java.util.ArrayList;
