@@ -5,6 +5,7 @@ import java.util.Calendar;
 public class ForumThread {
 
     private String titolo;
+    private String testo;
     private Calendar data;
     private Utente autore;
     private int numRisposte;
@@ -12,6 +13,7 @@ public class ForumThread {
 
     public ForumThread(){
         this.setTitolo("");
+        this.setTesto("");
         this.setData(1900,1,1);
         this.setAutore("");
         this.setNumRisposte(0);
@@ -59,5 +61,13 @@ public class ForumThread {
     public void setCorso(String codice, String nomeCorso) {
         FactoryCorsi fc = FactoryCorsi.getInstance();
         this.corso = fc.cercaCorso(codice,nomeCorso);
+    }
+
+    public String getTesto() {
+        return testo;
+    }
+
+    public void setTesto(String testo) {
+        this.testo = testo;
     }
 }
