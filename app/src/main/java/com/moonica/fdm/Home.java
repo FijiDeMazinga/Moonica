@@ -20,9 +20,10 @@ import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
     TextView welcome;
+    Utente u;
     Professore p;
     Studente s;
-    String username;
+    String username, benvenuto;
     LinearLayout l;
     ArrayList<Corso> lista = new ArrayList<Corso>();
     FactoryCorsi fc = FactoryCorsi.getInstance();
@@ -38,6 +39,19 @@ public class Home extends AppCompatActivity {
 
         Serializable obj = i.getSerializableExtra(Login.USER);
 
+        u = (Utente) obj;
+        switch (u.getSesso()){
+            case FEMMINA:
+                benvenuto = "Benvenuta ";
+                break;
+            case MASCHIO:
+                benvenuto = "Benvenuto ";
+                break;
+            case NON_SPECIFICATO:
+                benvenuto = "Benvenut* ";
+                break;
+        }
+
         if(obj instanceof Studente){
             s = (Studente) obj;
             username = s.getUsername();
@@ -49,7 +63,7 @@ public class Home extends AppCompatActivity {
             lista = p.getCorsiGestiti();
         }
         welcome = findViewById(R.id.welcome);
-        welcome.setText("Benvenuto " + username + "!");
+        welcome.setText(benvenuto + username + "!");
         l = findViewById(R.id.corsi);
 
         for(Corso c : lista){

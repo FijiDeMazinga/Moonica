@@ -11,6 +11,7 @@ public class Utente implements Serializable {
     private String email;
     private String password;
     private String facolta;
+    private Gender sesso;
     CorsoDiStudi corsoStudi;
 
     public Utente() {
@@ -19,8 +20,6 @@ public class Utente implements Serializable {
         this.setUsername("");
         this.setEmail("");
         this.setPassword("");
-        this.setFacolta(null);
-        this.setCorsoStudi(null);
     }
 
     public String getNome() {
@@ -78,5 +77,13 @@ public class Utente implements Serializable {
     public void setCorsoStudi(String cds) {
         FactoryCorsoDiStudi factoryCorsoDiStudi = FactoryCorsoDiStudi.getInstance();
         this.corsoStudi = factoryCorsoDiStudi.cercaCDS(cds);
+    }
+
+    public Gender getSesso() {
+        return sesso;
+    }
+
+    public void setSesso(Gender sesso) {
+        this.sesso = sesso;
     }
 }
