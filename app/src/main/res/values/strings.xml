@@ -3,6 +3,7 @@
     <string name="title_activity_registrazione">Registrazione</string>
 
     <string name="genderPrompt">Sesso</string>
-
+    <string name="facoltaPrompt">Facolta</string>
+    <string name="corsoPrompt">CorsoDiStudi</string>
 
 </resources>

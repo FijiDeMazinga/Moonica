@@ -11,8 +11,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".controller.Forum" />
         <activity android:name=".controller.Home" />
-        <activity android:name=".controller.SceltaFacolta"></activity>
-        <activity android:name=".controller.Home" />
+        <activity
+            android:name=".controller.SceltaFacolta"
+            android:parentActivityName=".controller.Registrazione"/>
         <activity
             android:name=".controller.Registrazione"
             android:parentActivityName=".controller.Login" />
