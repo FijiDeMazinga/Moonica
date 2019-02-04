@@ -21,6 +21,10 @@ import java.util.List;
 public class Registrazione extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     EditText nome, cognome, username, password, mail;
+    Spinner gender;
+
+    public static final String USER = "com.moonica.fdm";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +43,19 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         dataAdapter.setDropDownViewResource(R.layout.spinner_dropdown);
         spinner.setAdapter(dataAdapter);
 
-        Studente nuovoS = new Studente();
+        final Studente nuovoS = new Studente();
+        nome = findViewById(R.id.nome);
+        nuovoS.setNome(nome.getText().toString());
+        cognome = findViewById(R.id.cognome);
+        nuovoS.setCognome(cognome.getText().toString());
+        username = findViewById(R.id.username);
+        nuovoS.setUsername(username.getText().toString());
+        password = findViewById(R.id.password);
+        nuovoS.setPassword(password.getText().toString());
+        mail = findViewById(R.id.mail);
+        nuovoS.setEmail(mail.getText().toString());
+        gender = findViewById(R.id.gender);
+        nuovoS.setSesso(gender.getSelectedItem().toString());
 
         Intent registrazione = getIntent();
         Button b = findViewById(R.id.continua);
@@ -48,7 +64,8 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
             @Override
             public void onClick(View v) {
                 Intent continua = new Intent(Registrazione.this, SceltaFacolta.class);
-
+                continua.putExtra(USER, nuovoS);
+                startActivity(continua);
             }
         });
     }

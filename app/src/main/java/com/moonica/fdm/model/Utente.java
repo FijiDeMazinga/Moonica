@@ -83,7 +83,17 @@ public class Utente implements Serializable {
         return sesso;
     }
 
-    public void setSesso(Gender sesso) {
-        this.sesso = sesso;
+    public void setSesso(String sesso) {
+        switch (sesso){
+            case "Maschio":
+                this.sesso = Gender.MASCHIO;
+                break;
+            case "Femmina":
+                this.sesso = Gender.FEMMINA;
+                break;
+            case "Non specificato":
+                this.sesso = Gender.NONSPECIFICATO;
+                break;
+        }
     }
 }
