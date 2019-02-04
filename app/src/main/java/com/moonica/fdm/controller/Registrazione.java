@@ -1,12 +1,14 @@
-package com.moonica.fdm;
+package com.moonica.fdm.controller;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.moonica.fdm.R;
+import com.moonica.fdm.model.Studente;
 
 public class Registrazione extends AppCompatActivity {
 

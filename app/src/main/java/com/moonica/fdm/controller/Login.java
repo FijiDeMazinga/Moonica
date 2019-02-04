@@ -1,4 +1,4 @@
-package com.moonica.fdm;
+package com.moonica.fdm.controller;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.moonica.fdm.R;
+import com.moonica.fdm.model.FactoryUtente;
+import com.moonica.fdm.model.Utente;
 
 public class Login extends AppCompatActivity {
     EditText username, password;
