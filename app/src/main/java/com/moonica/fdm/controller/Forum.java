@@ -8,14 +8,17 @@ import android.widget.Space;
 import android.widget.TextView;
 
 import com.moonica.fdm.R;
+import com.moonica.fdm.model.Corso;
 import com.moonica.fdm.model.ForumThread;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
 public class Forum extends AppCompatActivity {
 
     TextView titolo;
+    Corso c;
     ArrayList<ForumThread> listaForum = new ArrayList<>();
 
     @Override
@@ -25,8 +28,12 @@ public class Forum extends AppCompatActivity {
 
         Intent i = getIntent();
 
+        //Serializable obj = i.getSerializableExtra(Corso.cs);
+
+        //c = (Corso) obj;
+
         titolo.findViewById(R.id.forumWelcome);
-        //titolo.setText("Forum di " + ft.getCorso().getNome());
+        //titolo.setText("Forum di " + c.getCorso().getNome());
 
         for (ForumThread ft : listaForum){
             Button bt = new Button(this);
@@ -34,10 +41,10 @@ public class Forum extends AppCompatActivity {
 
             s.setMinimumHeight(50);
 
-            if(ft.getTitolo().length() <= 30)
+            if(ft.getTitolo().length() <= 20)
                 bt.setText(ft.getTitolo());
             else
-                bt.setText(ft.getTitolo().substring(0, 30) + "...");
+                bt.setText(ft.getTitolo().substring(0, 20) + "...");
 
         }
     }
