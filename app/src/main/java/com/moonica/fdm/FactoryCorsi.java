@@ -197,6 +197,10 @@ public class FactoryCorsi {
         return null;
     }
 
+
+    /*
+     * Ricerca di un corso mediante nome del corso
+     */
     Corso cercaCorso(String nome){
         if(nome == null)
             return null;
@@ -204,5 +208,18 @@ public class FactoryCorsi {
             if(nome.equals(c.getNome()))
                 return c;
         return null;
+    }
+
+    /*
+     * Ricerca di un corso mediante codice unico e nome del corso
+     */
+    Corso cercaCorso(String codice, String nome){
+        if (nome == null || codice == null)
+            return null;
+        for (Corso c : tuttiCorsi)
+            if(nome.equals(c.getNome()) && codice.equals(c.getSigla()))
+                return c;
+            return null;
+
     }
 }
