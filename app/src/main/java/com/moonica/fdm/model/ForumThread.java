@@ -48,8 +48,8 @@ public class ForumThread {
     }
 
     public void setAutore(String nickAutore) {
-        //funziona per la ricerca dell'autore
-        this.autore = autore;
+       FactoryUtente factoryUtente = FactoryUtente.getInstance();
+       this.autore = factoryUtente.cercaUtente(nickAutore);
     }
 
     public Corso getCorso() {
