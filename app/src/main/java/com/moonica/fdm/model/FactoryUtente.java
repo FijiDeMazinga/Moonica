@@ -15,7 +15,7 @@ public class FactoryUtente {
         studente1.setSesso(Gender.FEMMINA);
         studente1.setUsername("Ines");
         studente1.setEmail("ilopez@unica.it");
-        studente1.setPassword("@delante");
+        studente1.setPassword("111");
         studente1.setFacolta("Ingegneria e Architettura");
         studente1.setCorsoStudi("Ingegneria Biomedica");
         studente1.aggiungiCorso(factoryCorsi.cercaCorso("Biomateriali"));
@@ -25,7 +25,7 @@ public class FactoryUtente {
         Studente studente2 = new Studente();
         studente2.setNome("Marcello");
         studente2.setCognome("Spiga");
-        studente1.setSesso(Gender.MASCHIO);
+        studente2.setSesso(Gender.MASCHIO);
         studente2.setUsername("Spighetto");
         studente2.setEmail("fspiga@unica.it");
         studente2.setPassword("hypergeo");
@@ -37,7 +37,7 @@ public class FactoryUtente {
         Studente studente3 = new Studente();
         studente3.setNome("Francesco");
         studente3.setCognome("Traccis");
-        studente1.setSesso(Gender.NON_SPECIFICATO);
+        studente3.setSesso(Gender.NONSPECIFICATO);
         studente3.setUsername("Cosino");
         studente3.setEmail("ftraccis@gmail.com");
         studente3.setPassword("111");
@@ -50,7 +50,7 @@ public class FactoryUtente {
         Studente studente4 = new Studente();
         studente4.setNome("Federica");
         studente4.setCognome("Zanda");
-        studente1.setSesso(Gender.FEMMINA);
+        studente4.setSesso(Gender.FEMMINA);
         studente4.setUsername("Federica");
         studente4.setEmail("fzanda@outlook.com");
         studente4.setPassword("commodore64");
@@ -64,7 +64,7 @@ public class FactoryUtente {
         Professore professore1 = new Professore();
         professore1.setNome("Carlo");
         professore1.setCognome("Giganti");
-        studente1.setSesso(Gender.MASCHIO);
+        professore1.setSesso(Gender.MASCHIO);
         professore1.setUsername("Gyganti");
         professore1.setEmail("cgiganti@unica.it");
         professore1.setPassword("excalibur");
@@ -75,7 +75,7 @@ public class FactoryUtente {
         Professore professore2 = new Professore();
         professore2.setNome("Cristina");
         professore2.setCognome("Tronci");
-        studente1.setSesso(Gender.FEMMINA);
+        professore2.setSesso(Gender.FEMMINA);
         professore2.setUsername("Troncina");
         professore2.setEmail("cronci@unica.it");
         professore2.setPassword("beaker");

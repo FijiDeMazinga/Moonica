@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Moonica</string>
     <string name="title_activity_registrazione">Registrazione</string>
+
+    <string name="genderPrompt">Sesso</string>
+
+
 </resources>

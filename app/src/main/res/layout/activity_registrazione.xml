@@ -72,6 +72,15 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="30dp" />
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/gender"
+                android:prompt="@string/genderPrompt"
+                />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -95,6 +104,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Indirizzo e-mail"
                     android:layout_gravity="left"
+                    android:inputType="textEmailAddress"
                     android:id="@+id/mail"
                     android:textColor="#225599"/>
             </android.support.design.widget.TextInputLayout>

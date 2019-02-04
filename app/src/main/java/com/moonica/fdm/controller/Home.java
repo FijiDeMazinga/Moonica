@@ -51,7 +51,7 @@ public class Home extends AppCompatActivity {
             case MASCHIO:
                 benvenuto = "Benvenuto ";
                 break;
-            case NON_SPECIFICATO:
+            case NONSPECIFICATO:
                 benvenuto = "Benvenut* ";
                 break;
         }
