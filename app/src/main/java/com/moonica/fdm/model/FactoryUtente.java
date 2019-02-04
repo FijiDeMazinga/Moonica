@@ -109,4 +109,11 @@ public class FactoryUtente {
 
         return null;
     }
+
+    public Utente cercaUtente(String username){
+        for (Utente utente : listaUtenti)
+            if (username.equals(utente.getUsername()))
+                return utente;
+         return null;
+    }
 }

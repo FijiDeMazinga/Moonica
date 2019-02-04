@@ -21,6 +21,23 @@ public class FactoryForumThread {
         thread1.setNumRisposte(3);
         thread1.setCorso("DP", "Diritto Privato");
 
+        ForumThread thread2 = new ForumThread();
+        thread1.setTitolo("Richiesta spiegazione funzione della milza");
+        thread1.setData(2017, 6, 25);
+        thread1.setAutore("Ines");
+        thread1.setNumRisposte(5);
+        thread1.setCorso("AN", "Anatomia");
+    }
+
+    public ArrayList<ForumThread> cercaThreadCorso (Corso crs){
+
+        ArrayList<ForumThread> forumThreadCorso = new ArrayList<>();
+        if (crs == null)
+            return null;
+        for (ForumThread ft : listaForumThread)
+            if (ft.equals(crs))
+                forumThreadCorso.add(ft);
+        return forumThreadCorso;
 
     }
 }
