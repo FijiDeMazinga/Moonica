@@ -42,8 +42,32 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_layout, genders);
         dataAdapter.setDropDownViewResource(R.layout.spinner_dropdown);
         spinner.setAdapter(dataAdapter);
+        Intent registrazione = getIntent();
+        Button b = findViewById(R.id.continua);
 
-        final Studente nuovoS = new Studente();
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent continua = new Intent(Registrazione.this, SceltaFacolta.class);
+                Studente s = creaUtente();
+                continua.putExtra(USER, s);
+                startActivity(continua);
+            }
+        });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // On selecting a spinner item
+        String item = parent.getItemAtPosition(position).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+    public Studente creaUtente(){
+        Studente nuovoS = new Studente();
         nome = findViewById(R.id.nome);
         nuovoS.setNome(nome.getText().toString());
         cognome = findViewById(R.id.cognome);
@@ -56,29 +80,6 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         nuovoS.setEmail(mail.getText().toString());
         gender = findViewById(R.id.gender);
         nuovoS.setSesso(gender.getSelectedItem().toString());
-
-        Intent registrazione = getIntent();
-        Button b = findViewById(R.id.continua);
-
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent continua = new Intent(Registrazione.this, SceltaFacolta.class);
-                continua.putExtra(USER, nuovoS);
-                startActivity(continua);
-            }
-        });
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // On selecting a spinner item
-        String item = parent.getItemAtPosition(position).toString();
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
+        return nuovoS;
     }
 }

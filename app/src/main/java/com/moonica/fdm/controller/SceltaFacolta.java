@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import com.moonica.fdm.R;
@@ -17,6 +18,10 @@ import java.util.List;
 
 public class SceltaFacolta extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner facolta, corsoDiStudi;
+    public static final String USER = "com.moonica.fdm";
+    public static final String PARENT = "com.moonica.fdm";
+
+    Button b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +30,22 @@ public class SceltaFacolta extends AppCompatActivity implements AdapterView.OnIt
 
         Intent i = getIntent();
         Serializable obj = i.getSerializableExtra(Registrazione.USER);
-        Studente s = (Studente) obj;
+        final Studente s = (Studente) obj;
 
         facolta = findViewById(R.id.facolta);
-        facolta.setOnItemSelectedListener(this);
+        b = findViewById(R.id.sceltafacolta);
+        facolta.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String fac = (String) parent.getItemAtPosition(position);
+                populateCorso(fac);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         List<String> listaFacolta = new ArrayList<String>();
         listaFacolta.add("Facoltà");
         listaFacolta.add("Studi Umanistici");
@@ -42,9 +59,32 @@ public class SceltaFacolta extends AppCompatActivity implements AdapterView.OnIt
         dataAdapter.setDropDownViewResource(R.layout.spinner_dropdown);
         facolta.setAdapter(dataAdapter);
 
-        String facoltaScelta = facolta.getSelectedItem().toString();
         corsoDiStudi = findViewById(R.id.corso);
         corsoDiStudi.setOnItemSelectedListener(this);
+
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent r = new Intent(SceltaFacolta.this, Home.class);
+                r.putExtra(PARENT, "Reg");
+                r.putExtra(USER, aggiornaStudente(s));
+                startActivity(r);
+            }
+        });
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String item = parent.getItemAtPosition(position).toString();
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+    public void populateCorso(String facoltaScelta){
         List<String> listaCorsi = new ArrayList<String>();
         listaCorsi.add("Corso");
         switch (facoltaScelta){
@@ -82,17 +122,11 @@ public class SceltaFacolta extends AppCompatActivity implements AdapterView.OnIt
         ArrayAdapter<String> dataAdapterCorsi = new ArrayAdapter<String>(this, R.layout.spinner_layout, listaCorsi);
         dataAdapterCorsi.setDropDownViewResource(R.layout.spinner_dropdown);
         corsoDiStudi.setAdapter(dataAdapterCorsi);
-
     }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String item = parent.getItemAtPosition(position).toString();
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
+    public Studente aggiornaStudente(Studente s){
+        s.setAnnoCorso(1);
+        s.setFacolta(facolta.getSelectedItem().toString());
+        s.setCorsoStudi(corsoDiStudi.getSelectedItem().toString());
+        return s;
     }
 }

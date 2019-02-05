@@ -19,6 +19,7 @@ public class Login extends AppCompatActivity {
     Utente u = new Utente();
 
     public static final String USER = "com.moonica.fdm";
+    public static final String PARENT = "com.moonica.fdm";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class Login extends AppCompatActivity {
                 if(checkUser() && check()) {
                     Intent home = new Intent(Login.this, Home.class);
                     home.putExtra(USER, u);
+                    home.putExtra(PARENT, "login");
                     startActivity(home);
                 }
                 else

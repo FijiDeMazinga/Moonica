@@ -40,8 +40,9 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         setTitle("I tuoi corsi");
         Intent i = getIntent();
+        Serializable obj = null;
 
-        Serializable obj = i.getSerializableExtra(Login.USER);
+        obj= i.getSerializableExtra("com.moonica.fdm");
 
         u = (Utente) obj;
         switch (u.getSesso()){

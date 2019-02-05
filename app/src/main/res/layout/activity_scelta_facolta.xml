@@ -5,58 +5,81 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".controller.SceltaFacolta">
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="154dp"
+        tools:layout_editor_absoluteY="0dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
             android:paddingLeft="30dp"
             android:paddingRight="30dp">
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="50dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Registrazione"
-                    android:textSize="25dp"
-                    android:textColor="#225599"/>
+                    android:textColor="#225599"
+                    android:textSize="25dp" />
+
                 <Space
                     android:layout_width="100dp"
                     android:layout_height="wrap_content" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/logo"
-                    android:maxHeight="75dp"
-                    android:maxWidth="75dp"
                     android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"/>
+                    android:maxWidth="75dp"
+                    android:maxHeight="75dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/logo" />
             </LinearLayout>
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="50dp" />
+
             <Spinner
+                android:id="@+id/facolta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/facolta"
-                android:prompt="@string/facoltaPrompt"/>
+                android:prompt="@string/facoltaPrompt" />
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="30dp" />
+
             <Spinner
+                android:id="@+id/corso"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/corso"
-                android:prompt="@string/corsoPrompt"/>
+                android:prompt="@string/corsoPrompt" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="36dp" />
+
+            <Button
+                android:id="@+id/sceltafacolta"
+                style="@style/MyButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="REGISTRAZIONE" />
 
         </LinearLayout>
     </ScrollView>
