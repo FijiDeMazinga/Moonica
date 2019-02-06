@@ -1,17 +1,22 @@
 package com.moonica.fdm.controller;
 
 import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 
+import com.moonica.fdm.AggiungiFacolta;
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Corso;
 import com.moonica.fdm.model.FactoryCorsi;
@@ -31,6 +36,7 @@ public class Home extends AppCompatActivity {
     LinearLayout l;
     ArrayList<Corso> lista = new ArrayList<Corso>();
     FactoryCorsi fc = FactoryCorsi.getInstance();
+    Dialog scelta;
 
     @TargetApi(Build.VERSION_CODES.M)
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -41,6 +47,7 @@ public class Home extends AppCompatActivity {
         setTitle("I tuoi corsi");
         Intent i = getIntent();
         Serializable obj = null;
+        scelta = new Dialog(this);
 
         obj= i.getSerializableExtra("com.moonica.fdm");
 
@@ -89,5 +96,25 @@ public class Home extends AppCompatActivity {
             l.addView(tv);
             l.addView(s);
         }
+    }
+    public void ShowPopup(View v){
+        GridLayout gridLayout;
+        ArrayList<Corso> listaNuovi = new ArrayList<Corso>();
+        gridLayout = (GridLayout) scelta.findViewById(R.id.griglia);
+        FactoryCorsi fc = FactoryCorsi.getInstance();
+        listaNuovi = fc.listaCorsiFacolta(s.getCorsoStudi().getNome());
+
+        for(Corso c : listaNuovi){
+            Button b = new Button(this);
+            b.setText(c.getSigla());
+            b.setBackgroundColor(0xffeeeeee);
+            b.setTextColor(0xff225599);
+
+            gridLayout.addView(b);
+        }
+
+        scelta.setContentView(R.layout.activity_aggiungi_facolta);
+        scelta.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        scelta.show();
     }
 }

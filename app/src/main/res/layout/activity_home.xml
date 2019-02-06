@@ -33,8 +33,17 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:id="@+id/corsi">
-
             </LinearLayout>
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:src="@android:drawable/ic_menu_add"
+                android:id="@+id/plus"
+                android:background="@drawable/button_border"
+                android:tint="#225599"
+                android:onClick="ShowPopup"/>
+
+
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

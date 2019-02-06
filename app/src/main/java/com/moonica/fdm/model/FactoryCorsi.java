@@ -177,7 +177,7 @@ public class FactoryCorsi {
         tuttiCorsi.add(asd1);
     }
 
-    ArrayList<Corso> listaCorsiFacolta(String nomeFacolta){
+    public ArrayList<Corso> listaCorsiFacolta(String nomeFacolta){
         ArrayList<Corso> listaCorsi = new ArrayList<Corso>();
 
         switch (nomeFacolta){
