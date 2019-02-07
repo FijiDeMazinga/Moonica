@@ -9,6 +9,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -16,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 
-import com.moonica.fdm.AggiungiFacolta;
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Corso;
 import com.moonica.fdm.model.FactoryCorsi;
@@ -98,22 +98,22 @@ public class Home extends AppCompatActivity {
         }
     }
     public void ShowPopup(View v){
-        GridLayout gridLayout;
-        ArrayList<Corso> listaNuovi = new ArrayList<Corso>();
-        gridLayout = (GridLayout) scelta.findViewById(R.id.griglia);
+        LayoutInflater f = getLayoutInflater();
+        View view =  f.inflate(R.layout.activity_aggiungi_corso, null);
+        final GridLayout gridLayout = (GridLayout) view.findViewById(R.id.griglia);
+        ArrayList<Corso> listaNuovi = fc.listaCorsiFacolta(s.getCorsoStudi().getNome());
+        listaNuovi.removeAll(s.getCorsi());
         FactoryCorsi fc = FactoryCorsi.getInstance();
-        listaNuovi = fc.listaCorsiFacolta(s.getCorsoStudi().getNome());
 
         for(Corso c : listaNuovi){
-            Button b = new Button(this);
+            final Button b = new Button(this);
             b.setText(c.getSigla());
             b.setBackgroundColor(0xffeeeeee);
             b.setTextColor(0xff225599);
 
             gridLayout.addView(b);
         }
-
-        scelta.setContentView(R.layout.activity_aggiungi_facolta);
+        scelta.setContentView(view);
         scelta.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         scelta.show();
     }

@@ -4,13 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AggiungiFacolta">
-    <GridLayout
+    tools:context=".controller.AggiungiCorso">
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:columnCount="3"
-        android:id="@+id/griglia">
+        android:layout_height="match_parent">
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/griglia"
+            android:columnCount="3">
 
-    </GridLayout>
+        </GridLayout>
+    </ScrollView>
+
 
 </android.support.constraint.ConstraintLayout>

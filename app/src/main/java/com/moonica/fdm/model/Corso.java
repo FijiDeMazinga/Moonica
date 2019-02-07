@@ -52,4 +52,9 @@ public class Corso implements Serializable {
         FactoryCorsoDiStudi fc = FactoryCorsoDiStudi.getInstance();
         this.facolta = fc.cercaCDS(facolta);
     }
+    @Override
+    public boolean equals(Object object){
+        Corso altroCorso = (Corso) object;
+        return altroCorso.getNome().equals(this.getNome()) && altroCorso.getSigla().equals(this.getSigla());
+    }
 }
