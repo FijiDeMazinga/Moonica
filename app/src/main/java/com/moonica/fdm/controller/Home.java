@@ -12,11 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Space;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Corso;
@@ -104,30 +107,36 @@ public class Home extends AppCompatActivity {
         LayoutInflater f = getLayoutInflater();
         View view =  f.inflate(R.layout.activity_aggiungi_corso, null);
         final GridLayout gridLayout = (GridLayout) view.findViewById(R.id.griglia);
-        ArrayList<Corso> listaNuovi = fc.listaCorsiFacolta(s.getCorsoStudi().getNome());
-        listaNuovi.removeAll(s.getCorsi());
-        FactoryCorsi fc = FactoryCorsi.getInstance();
+        if(s.getCorsoStudi() != null) {
+            ArrayList<Corso> listaNuovi = fc.listaCorsiFacolta(s.getCorsoStudi().getNome());
+            listaNuovi.removeAll(s.getCorsi());
+            FactoryCorsi fc = FactoryCorsi.getInstance();
 
-        for(final Corso c : listaNuovi){
-            final Button b = new Button(this);
-            b.setText(c.getSigla());
-            b.setBackgroundColor(0xffeeeeee);
-            b.setTextColor(0xff225599);
-            b.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    FactoryCorsi fc = FactoryCorsi.getInstance();
-                    s.aggiungiCorso(fc.cercaCorso(c.getNome()));
-                    scelta.dismiss();
-                    finish();
-                    startActivity(getIntent());
-                }
-            });
-
-            gridLayout.addView(b);
+            for (final Corso c : listaNuovi) {
+                final Button b = new Button(this);
+                b.setText(c.getSigla());
+                b.setBackgroundColor(0xffeeeeee);
+                b.setTextColor(0xff225599);
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        FactoryCorsi fc = FactoryCorsi.getInstance();
+                        s.aggiungiCorso(fc.cercaCorso(c.getNome()));
+                        scelta.dismiss();
+                        finish();
+                        startActivity(getIntent());
+                    }
+                });
+                gridLayout.addView(b);
+            }
+            scelta.setContentView(view);
+            scelta.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            scelta.show();
         }
-        scelta.setContentView(view);
-        scelta.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        scelta.show();
+        else {
+            Toast t = Toast.makeText(this, "Non ci sono corsi disponibili per la tua facoltà", Toast.LENGTH_SHORT);
+
+            t.show();
+        }
     }
 }

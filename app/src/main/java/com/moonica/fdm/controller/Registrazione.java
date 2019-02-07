@@ -17,6 +17,7 @@ import com.moonica.fdm.model.Studente;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Registrazione extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -48,10 +49,13 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent continua = new Intent(Registrazione.this, SceltaFacolta.class);
-                Studente s = creaUtente();
-                continua.putExtra(USER, s);
-                startActivity(continua);
+                trovaView();
+                if(check()) {
+                    Intent continua = new Intent(Registrazione.this, SceltaFacolta.class);
+                    Studente s = creaUtente();
+                    continua.putExtra(USER, s);
+                    startActivity(continua);
+                }
             }
         });
     }
@@ -68,18 +72,71 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
     }
     public Studente creaUtente(){
         Studente nuovoS = new Studente();
-        nome = findViewById(R.id.nome);
         nuovoS.setNome(nome.getText().toString());
-        cognome = findViewById(R.id.cognome);
         nuovoS.setCognome(cognome.getText().toString());
-        username = findViewById(R.id.username);
         nuovoS.setUsername(username.getText().toString());
-        password = findViewById(R.id.password);
         nuovoS.setPassword(password.getText().toString());
-        mail = findViewById(R.id.mail);
         nuovoS.setEmail(mail.getText().toString());
-        gender = findViewById(R.id.gender);
         nuovoS.setSesso(gender.getSelectedItem().toString());
         return nuovoS;
+    }
+    public void trovaView(){
+        nome = findViewById(R.id.nome);
+        cognome = findViewById(R.id.cognome);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
+        mail = findViewById(R.id.mail);
+        gender = findViewById(R.id.gender);
+
+    }
+    public boolean check(){
+        int errors = 0;
+        if(username.getText() == null || username.getText().length() == 0){
+            username.setError("Inserire username");
+            errors++;
+        }
+        else  password.setError(null);
+        if(password.getText() == null || password.getText().length() == 0){
+            password.setError("Inserire password");
+            errors++;
+        }
+        else  password.setError(null);
+        if(nome.getText() == null || nome.getText().length() == 0){
+            nome.setError("Inserire nome");
+            errors++;
+        }
+        else  nome.setError(null);
+        if(cognome.getText() == null || cognome.getText().length() == 0){
+            cognome.setError("Inserire cognome");
+            errors++;
+        }
+        else  cognome.setError(null);
+        if(mail.getText() == null || mail.getText().length() == 0){
+            mail.setError("Inserire mail");
+            errors++;
+        }
+        else  mail.setError(null);
+        if(gender.getSelectedItem().toString().equals("Sesso")) {
+            SetError("Inserire sesso");
+            errors++;
+        }
+
+        if(errors == 0)
+            return true;
+        return false;
+    }
+    public void SetError(String errorMessage){
+        View view = gender.getSelectedView();
+
+        TextView t = (TextView) view;
+        TextView error = (TextView) findViewById(R.id.invisibleError);
+        if(errorMessage != null){
+            t.setError(errorMessage);
+            t.requestFocus();
+        }
+        else{
+            t.setError(null);
+            error.setError(null);
+        }
     }
 }

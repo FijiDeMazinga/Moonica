@@ -24,7 +24,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getSupportActionBar().hide();
+        getSupportActionBar().hide();//nasconde l'actionbar
 
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
@@ -32,19 +32,23 @@ public class Login extends AppCompatActivity {
         login = findViewById(R.id.login);
         loginError = findViewById(R.id.loginError);
 
+        //listener per il pulsante di login
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkUser() && check()) {
-                    Intent home = new Intent(Login.this, Home.class);
-                    home.putExtra(USER, u);
-                    startActivity(home);
+                if(check()) {
+                    if (checkUser()) {//controllo che l'utente esista e che nome utente e password siano inseriti
+                        Intent home = new Intent(Login.this, Home.class);
+                        home.putExtra(USER, u);//passo l'utente alla home
+                        startActivity(home);
+                    } else
+                        //se l'utente non esiste o i dati sono sbagliati viene reso visibile il messaggio di errore
+                        loginError.setVisibility(View.VISIBLE);
                 }
-                else
-                    loginError.setVisibility(View.VISIBLE);
             }
         });
 
+        //listener per il pulsante di registrazione
         registrati.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
