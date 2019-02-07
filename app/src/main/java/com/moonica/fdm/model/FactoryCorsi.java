@@ -201,7 +201,7 @@ public class FactoryCorsi {
     /*
      * Ricerca di un corso mediante nome del corso
      */
-    Corso cercaCorso(String nome){
+    public Corso cercaCorso(String nome){
         if(nome == null)
             return null;
         for(Corso c : tuttiCorsi)
@@ -213,7 +213,7 @@ public class FactoryCorsi {
     /*
      * Ricerca di un corso mediante codice unico e nome del corso
      */
-    Corso cercaCorso(String codice, String nome){
+    public Corso cercaCorso(String codice, String nome){
         if (nome == null || codice == null)
             return null;
         for (Corso c : tuttiCorsi)

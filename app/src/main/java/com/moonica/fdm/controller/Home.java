@@ -1,5 +1,6 @@
 package com.moonica.fdm.controller;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Intent;
@@ -97,6 +98,8 @@ public class Home extends AppCompatActivity {
             l.addView(s);
         }
     }
+    @SuppressLint("ResourceType")
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void ShowPopup(View v){
         LayoutInflater f = getLayoutInflater();
         View view =  f.inflate(R.layout.activity_aggiungi_corso, null);
@@ -105,11 +108,21 @@ public class Home extends AppCompatActivity {
         listaNuovi.removeAll(s.getCorsi());
         FactoryCorsi fc = FactoryCorsi.getInstance();
 
-        for(Corso c : listaNuovi){
+        for(final Corso c : listaNuovi){
             final Button b = new Button(this);
             b.setText(c.getSigla());
             b.setBackgroundColor(0xffeeeeee);
             b.setTextColor(0xff225599);
+            b.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FactoryCorsi fc = FactoryCorsi.getInstance();
+                    s.aggiungiCorso(fc.cercaCorso(c.getNome()));
+                    scelta.dismiss();
+                    finish();
+                    startActivity(getIntent());
+                }
+            });
 
             gridLayout.addView(b);
         }
