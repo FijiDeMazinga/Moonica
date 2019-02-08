@@ -57,6 +57,7 @@ public class Login extends AppCompatActivity {
             }
         });
     }
+    //funzione che stampa messaggi di errore se non vengono riempiti i campi
     public boolean check(){
         int errors = 0;
 
@@ -78,6 +79,7 @@ public class Login extends AppCompatActivity {
         return false;
     }
 
+    //funzione che controlla se esista un utente con username e password passati
     public boolean checkUser(){
         FactoryUtente uf = FactoryUtente.getInstance();
         String user, p;

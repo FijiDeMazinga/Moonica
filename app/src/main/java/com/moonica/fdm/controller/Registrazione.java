@@ -34,22 +34,29 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         Spinner spinner = findViewById(R.id.gender);
 
         spinner.setOnItemSelectedListener(this);
+
+        //lista di stringhe da aggiungere allo spinner
         List<String> genders = new ArrayList<String>();
         genders.add("Sesso");
         genders.add("Maschio");
         genders.add("Femmina");
         genders.add("Altro");
 
+        //adattatore dello spinner con la lista passata e lo stile scelto
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_layout, genders);
-        dataAdapter.setDropDownViewResource(R.layout.spinner_dropdown);
-        spinner.setAdapter(dataAdapter);
+        dataAdapter.setDropDownViewResource(R.layout.spinner_dropdown);//stile dropdown list
+        spinner.setAdapter(dataAdapter);//aggiunta dell'adapter allo spinner
+
         Intent registrazione = getIntent();
         Button b = findViewById(R.id.continua);
 
+        //dichiarazione di cosa accade premendo il pulsante
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                trovaView();
+                trovaView();//ricerca dei vari campi da compilare
+
+                //se i campi non sono buoni passo i dati all'activiy successiva
                 if(check()) {
                     Intent continua = new Intent(Registrazione.this, SceltaFacolta.class);
                     Studente s = creaUtente();
@@ -70,6 +77,8 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+    //creazione utente coi dati inseriti
     public Studente creaUtente(){
         Studente nuovoS = new Studente();
         nuovoS.setNome(nome.getText().toString());
@@ -80,6 +89,8 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         nuovoS.setSesso(gender.getSelectedItem().toString());
         return nuovoS;
     }
+
+    //funzione per cercare le view
     public void trovaView(){
         nome = findViewById(R.id.nome);
         cognome = findViewById(R.id.cognome);
@@ -89,6 +100,8 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         gender = findViewById(R.id.gender);
 
     }
+
+    //funzione per controllare che i campi non siano vuoti
     public boolean check(){
         int errors = 0;
         if(username.getText() == null || username.getText().length() == 0){
@@ -117,7 +130,7 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         }
         else  mail.setError(null);
         if(gender.getSelectedItem().toString().equals("Sesso")) {
-            SetError("Inserire sesso");
+            SetError("Inserire sesso", gender, (TextView) findViewById(R.id.invisibleError));
             errors++;
         }
 
@@ -125,8 +138,9 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
             return true;
         return false;
     }
-    public void SetError(String errorMessage){
-        View view = gender.getSelectedView();
+    //funzione che aggiunge un messaggio di errore allo spinner
+    public void SetError(String errorMessage, Spinner s, TextView textView){
+        View view = s.getSelectedView();
 
         TextView t = (TextView) view;
         TextView error = (TextView) findViewById(R.id.invisibleError);
@@ -136,7 +150,7 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         }
         else{
             t.setError(null);
-            error.setError(null);
+            textView.setError(null);
         }
     }
 }

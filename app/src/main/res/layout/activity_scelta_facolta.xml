@@ -59,6 +59,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:prompt="@string/facoltaPrompt" />
+            <TextView
+                android:id="@+id/invisibleErrorF"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_alignRight="@+id/facolta"
+                android:layout_alignBottom="@+id/facolta"
+                android:layout_marginTop="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="50dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                />
 
             <Space
                 android:layout_width="match_parent"
@@ -69,6 +81,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:prompt="@string/corsoPrompt" />
+            <TextView
+                android:id="@+id/invisibleErrorC"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_alignRight="@+id/corso"
+                android:layout_alignBottom="@+id/corso"
+                android:layout_marginTop="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="50dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                />
 
             <Space
                 android:layout_width="match_parent"

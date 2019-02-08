@@ -8,6 +8,7 @@ public class Corso implements Serializable {
     private String sigla;
     private CorsoDiStudi facolta;
     private ArrayList<Sezione> sezioni = new ArrayList<Sezione>();
+    private Professore professore;
 
     public Corso(String nome, String sigla){
         this.nome = nome;
@@ -56,5 +57,13 @@ public class Corso implements Serializable {
     public boolean equals(Object object){
         Corso altroCorso = (Corso) object;
         return altroCorso.getNome().equals(this.getNome()) && altroCorso.getSigla().equals(this.getSigla());
+    }
+
+    public Professore getProfessore() {
+        return professore;
+    }
+
+    public void setProfessore(Professore professore) {
+        this.professore = professore;
     }
 }
