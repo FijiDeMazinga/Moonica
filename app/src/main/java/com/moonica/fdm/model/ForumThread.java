@@ -1,12 +1,13 @@
 package com.moonica.fdm.model;
 
 import java.util.Calendar;
+import java.util.TimeZone;
 
 public class ForumThread {
 
     private String titolo;
     private String testo;
-    private Calendar data;
+    private Calendar data = Calendar.getInstance(TimeZone.getDefault());
     private Utente autore;
     private int numRisposte;
     private Corso corso;
@@ -14,7 +15,7 @@ public class ForumThread {
     public ForumThread(){
         this.setTitolo("");
         this.setTesto("");
-        this.setData(1900,1,1);
+        this.setData(1990,1,1);
         this.setAutore("");
         this.setNumRisposte(0);
         this.setCorso(null, null);
@@ -33,7 +34,7 @@ public class ForumThread {
     }
 
     public void setData(int y, int m, int d) {
-        this.data.set(y, m, d);
+        this.data.set(y,m,d);
     }
 
 
