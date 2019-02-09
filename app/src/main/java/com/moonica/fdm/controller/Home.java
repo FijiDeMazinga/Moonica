@@ -44,6 +44,9 @@ public class Home extends AppCompatActivity {
     FactoryCorsi fc = FactoryCorsi.getInstance();
     Dialog scelta;
 
+    public static final String CORSO = "com.moonica.fdm";
+
+
     @TargetApi(Build.VERSION_CODES.M)
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
@@ -91,7 +94,7 @@ public class Home extends AppCompatActivity {
         l = findViewById(R.id.corsi);//listview coi corsi
 
         //per ogni corso nella lista aggiungo un bottone dinamicamente
-        for(Corso c : lista){
+        for(final Corso c : lista){
             Button tv = new Button(this);
             Space s = new Space(this);
 
@@ -101,12 +104,21 @@ public class Home extends AppCompatActivity {
                 tv.setText("[" + c.getSigla() + "] " + c.getNome());
             else
                 tv.setText("[" + c.getSigla() + "] " + c.getNome().substring(0, 20) + "...");
-            //settagg parametri del bottone
+            //settaggio parametri del bottone
             tv.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
             tv.setPadding(30,0,0,0);
             tv.setTextColor(0xffffffff);
             tv.setBackgroundColor(0xff225599);
             tv.setTextSize(16);
+            //cosa succede quando apro un corso
+            tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent corso = new Intent(Home.this, Corsi.class);
+                    corso.putExtra(CORSO, c);
+                    startActivity(corso);
+                }
+            });
 
             //aggiunta alla listview di bottone e spazio
             l.addView(tv);
