@@ -6,9 +6,10 @@ public class FactoryUtente {
     private static FactoryUtente instance;
     private ArrayList<Utente> listaUtenti = new ArrayList<>();
     private FactoryCorsoDiStudi factoryCorsoDiStudi = FactoryCorsoDiStudi.getInstance();
-    private FactoryCorsi factoryCorsi = FactoryCorsi.getInstance();
 
     private FactoryUtente() {
+        FactoryCorsi factoryCorsi = FactoryCorsi.getInstance();
+
         Studente studente1 = new Studente();
         studente1.setNome("Ines");
         studente1.setCognome("Lopez");
