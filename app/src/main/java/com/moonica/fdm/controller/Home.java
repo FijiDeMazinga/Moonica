@@ -10,13 +10,17 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.Space;
 import android.widget.TextView;
@@ -47,6 +51,7 @@ public class Home extends AppCompatActivity {
     public static final String CORSO = "com.moonica.fdm";
 
 
+    @SuppressLint("ResourceType")
     @TargetApi(Build.VERSION_CODES.M)
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
@@ -95,10 +100,41 @@ public class Home extends AppCompatActivity {
 
         //per ogni corso nella lista aggiungo un bottone dinamicamente
         for(final Corso c : lista){
+            LinearLayout rl = new LinearLayout(this);
+            ImageButton ib = new ImageButton(this);
             Button tv = new Button(this);
-            Space s = new Space(this);
+            Space space = new Space(this);
+            final PopupMenu drop = new PopupMenu(getApplicationContext(), ib);
+            final Menu menu = drop.getMenu();
 
-            s.setMinimumHeight(50);
+            menu.add(0,0,0, "Elimina corso");
+
+            drop.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    switch (item.getItemId()){
+                        case 0:
+                            s.rimuoviCorso(c);
+                            finish();
+                            startActivity(getIntent());
+                            break;
+                    }
+                    return false;
+                }
+            });
+
+            space.setMinimumHeight(50);
+            rl.setBackgroundColor(0xff225599);
+            rl.setOrientation(LinearLayout.HORIZONTAL);
+            ib.setImageResource(R.drawable.ic_more_vert_black_24dp);
+            ib.setBackgroundColor(0xff225599);
+            ib.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    drop.show();
+                }
+            });
+
             //taglio del nome del corso in base alla lunghezza
             if(c.getNome().length() <= 20)
                 tv.setText("[" + c.getSigla() + "] " + c.getNome());
@@ -121,8 +157,10 @@ public class Home extends AppCompatActivity {
             });
 
             //aggiunta alla listview di bottone e spazio
-            l.addView(tv);
-            l.addView(s);
+            rl.addView(tv);
+            rl.addView(ib);
+            l.addView(rl);
+            l.addView(space);
         }
     }
     @SuppressLint("ResourceType")
