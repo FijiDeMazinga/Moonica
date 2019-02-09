@@ -23,10 +23,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nome corso"
-                android:id="@+id/nome_corso"
-                android:textSize="25dp"
-                android:textAlignment="center"
+                android:text="Nome Professore"
+                android:id="@+id/professore"
+                android:textSize="20dp"
+                android:gravity="right"
                 android:textColor="#225599"/>
             <Space
                 android:layout_width="wrap_content"

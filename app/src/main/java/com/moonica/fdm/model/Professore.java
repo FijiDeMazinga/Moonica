@@ -9,7 +9,6 @@ public class Professore extends Utente  implements Serializable {
 
     public Professore() {
         super();
-        this.setCdsDiInsegnamento(null);
     }
 
     public ArrayList<CorsoDiStudi> getCdsDiInsegnamento() {
