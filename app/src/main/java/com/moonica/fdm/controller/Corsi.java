@@ -42,20 +42,28 @@ public class Corsi extends AppCompatActivity {
         setTitle(c.getNome());
 
         professore = findViewById(R.id.professore);
-        professore.setText(c.getProfessore().getNome().concat(c.getProfessore().getCognome()));
+        if (c.getProfessore() == null)
+            professore.setText("John Doe");
+        else
+            professore.setText(c.getProfessore().getNome().concat(c.getProfessore().getCognome()));
 
         l = findViewById(R.id.sezioni);
 
+        Button buttonForum = new Button(this);
+        Space spaceForum = new Space(this);
+
+        spaceForum.setMinimumHeight(50);
+
         for (Sezione sezione : listaSezioni) {
-            Button button = new Button(this);
-            Space space = new Space(this);
+            Button buttonSezione = new Button(this);
+            Space spaceSezione = new Space(this);
 
-            space.setMinimumHeight(50);
-            button.setText(sezione.getNome());
-            button.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            spaceSezione.setMinimumHeight(50);
+            buttonSezione.setText(sezione.getNome());
+            buttonSezione.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
-            l.addView(button);
-            l.addView(space);
+            l.addView(buttonSezione);
+            l.addView(spaceSezione);
         }
     }
 }
