@@ -22,7 +22,6 @@ public class Utente implements Serializable {
         this.setPassword("");
     }
 
-    
     public String getNome() {
         return nome;
     }

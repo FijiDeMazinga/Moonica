@@ -7,10 +7,10 @@ public class Sezione {
     private String corso;
     private ArrayList<String> contenuti = new ArrayList<String>();
 
-    public Sezione(String nome, String corso, ArrayList<String> contenuti){
-        this.contenuti = contenuti;
+    public Sezione(/*String nome, String corso, ArrayList<String> contenuti*/){
+        /*this.contenuti = contenuti;
         this.corso = corso;
-        this.nome = nome;
+        this.nome = nome;*/
     }
 
     public String getNome() {
