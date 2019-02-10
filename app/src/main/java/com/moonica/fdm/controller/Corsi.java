@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Corso;
 import com.moonica.fdm.model.FactorySezioni;
+import com.moonica.fdm.model.ForumThread;
 import com.moonica.fdm.model.Sezione;
 
 import java.io.Serializable;
@@ -26,6 +27,8 @@ public class Corsi extends AppCompatActivity {
     LinearLayout l;
     ArrayList<Sezione> listaSezioni = new ArrayList<>();
     FactorySezioni factorySezioni = FactorySezioni.getInstance();
+
+    public static final String FORUM = "com.moonica.fdm";
 
     @TargetApi(Build.VERSION_CODES.M)
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -40,6 +43,7 @@ public class Corsi extends AppCompatActivity {
 
         c = (Corso) obj;
         setTitle(c.getNome());
+        listaSezioni = factorySezioni.getSezioniCorso(c.getNome());
 
         professore = findViewById(R.id.professore);
         if (c.getProfessore() == null)
@@ -53,14 +57,35 @@ public class Corsi extends AppCompatActivity {
         Space spaceForum = new Space(this);
 
         spaceForum.setMinimumHeight(50);
+        buttonForum.setText("Forum " + c.getSigla());
+        buttonForum.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+        buttonForum.setPadding(30, 0, 30, 0);
+        buttonForum.setTextColor(0xffffffff);
+        buttonForum.setBackgroundColor(0xff225599);
+        buttonForum.setTextSize(16);
+        buttonForum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent forum = new Intent(Corsi.this, Forum.class);
+                forum.putExtra(FORUM, c);
+                startActivity(forum);
+            }
+        });
 
-        for (Sezione sezione : listaSezioni) {
+        l.addView(buttonForum);
+        l.addView(spaceForum);
+
+        for (final Sezione sezione : listaSezioni) {
             Button buttonSezione = new Button(this);
             Space spaceSezione = new Space(this);
 
             spaceSezione.setMinimumHeight(50);
             buttonSezione.setText(sezione.getNome());
-            buttonSezione.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            buttonSezione.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+            buttonSezione.setPadding(30, 0, 30, 0);
+            buttonSezione.setTextColor(0xffffffff);
+            buttonSezione.setBackgroundColor(0xff225599);
+            buttonSezione.setTextSize(16);
 
             l.addView(buttonSezione);
             l.addView(spaceSezione);

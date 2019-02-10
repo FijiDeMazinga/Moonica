@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class FactorySezioni {
     private static FactorySezioni instance;
     private ArrayList<Sezione> listaSezioni = new ArrayList<>();
-    private ArrayList<Sezione> sezioniIUM = new ArrayList<>();
 
     private FactorySezioni() {
         Sezione infoIUM = new Sezione();
@@ -14,7 +13,6 @@ public class FactorySezioni {
         infoIUM.getContenuti().add("Descrizione del corso");
         infoIUM.getContenuti().add("Calendario delle lezioni");
         listaSezioni.add(infoIUM);
-        sezioniIUM.add(infoIUM);
 
         Sezione introIUM = new Sezione();
         introIUM.setNome("Introduzione");
@@ -22,7 +20,6 @@ public class FactorySezioni {
         introIUM.getContenuti().add("Presentazione del docente, regole del corso ecc.");
         introIUM.getContenuti().add("Slides.pdf");
         listaSezioni.add(introIUM);
-        sezioniIUM.add(introIUM);
 
         Sezione compIUM  = new Sezione();
         compIUM.setNome("Il computer");
@@ -30,7 +27,6 @@ public class FactorySezioni {
         compIUM.getContenuti().add("Breve storia dell'HCI e descrizione del computer dal punto di vista dell'interazione");
         compIUM.getContenuti().add("Slides.pdf");
         listaSezioni.add(compIUM);
-        sezioniIUM.add(compIUM);
     }
 
     public static FactorySezioni getInstance() {
@@ -44,8 +40,15 @@ public class FactorySezioni {
         return listaSezioni;
     }
 
-    public ArrayList<Sezione> getSezioniIUM() {
-        return sezioniIUM;
+    public ArrayList<Sezione> getSezioniCorso(String corso) {
+        ArrayList<Sezione> sezioniCorso = new ArrayList<>();
+
+        for (Sezione sezione : listaSezioni) {
+            if (sezione.getCorso().equals(corso))
+                sezioniCorso.add(sezione);
+        }
+
+        return sezioniCorso;
     }
 
     public Sezione cercaSezione(String nome) {
