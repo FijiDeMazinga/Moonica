@@ -3,6 +3,8 @@ package com.moonica.fdm.controller;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipDescription;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -10,6 +12,8 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.DragEvent;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -100,10 +104,12 @@ public class Home extends AppCompatActivity {
 
         //per ogni corso nella lista aggiungo un bottone dinamicamente
         for(final Corso c : lista){
-            LinearLayout rl = new LinearLayout(this);
+            final LinearLayout blocco = new LinearLayout(this);
+            final LinearLayout rl = new LinearLayout(this);
+            Space space = new Space(this);
             ImageButton ib = new ImageButton(this);
             Button tv = new Button(this);
-            Space space = new Space(this);
+
             final PopupMenu drop = new PopupMenu(getApplicationContext(), ib);
             final Menu menu = drop.getMenu();
 
@@ -123,9 +129,13 @@ public class Home extends AppCompatActivity {
                 }
             });
 
-            space.setMinimumHeight(50);
+            blocco.setOrientation(LinearLayout.VERTICAL);
+
             rl.setBackgroundColor(0xff225599);
             rl.setOrientation(LinearLayout.HORIZONTAL);
+
+            space.setMinimumHeight(50);
+
             ib.setImageResource(R.drawable.ic_more_vert_black_24dp);
             ib.setBackgroundColor(0xff225599);
             ib.setOnClickListener(new View.OnClickListener() {
@@ -134,6 +144,7 @@ public class Home extends AppCompatActivity {
                     drop.show();
                 }
             });
+
 
             //taglio del nome del corso in base alla lunghezza
             if(c.getNome().length() <= 20)
@@ -159,8 +170,10 @@ public class Home extends AppCompatActivity {
             //aggiunta alla listview di bottone e spazio
             rl.addView(tv);
             rl.addView(ib);
-            l.addView(rl);
-            l.addView(space);
+
+            blocco.addView(rl);
+            blocco.addView(space);
+            l.addView(blocco);
         }
     }
     @SuppressLint("ResourceType")
