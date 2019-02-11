@@ -6,10 +6,16 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Space;
 import android.widget.TextView;
 
@@ -21,6 +27,8 @@ import com.moonica.fdm.model.FactoryCorsi;
 import com.moonica.fdm.model.FactoryCorsoDiStudi;
 import com.moonica.fdm.model.FactoryForumThread;
 import com.moonica.fdm.model.ForumThread;
+
+import org.w3c.dom.Text;
 
 import java.io.Serializable;
 import java.time.Period;
@@ -36,6 +44,7 @@ public class Forum extends AppCompatActivity {
     TextView titolo;
     Corso c;
     LinearLayout l;
+    CardView cv;
     ArrayList<ForumThread> listaForum = new ArrayList<>();
     FactoryForumThread fft = FactoryForumThread.getInstance();
 
@@ -62,8 +71,57 @@ public class Forum extends AppCompatActivity {
         titolo = findViewById(R.id.forumWelcome);
         titolo.setText("Forum di " + c.getNome());
 
-        l = findViewById(R.id.threadButton);
 
+        l = findViewById(R.id.threadButton);
+        cv = findViewById(R.id.card_view);
+
+
+        /*
+         * Prove
+         */
+
+
+        for (ForumThread ft : listaForum) {
+
+            RelativeLayout rl = (RelativeLayout) findViewById(R.id.rv);
+
+            TextView autore = (TextView) findViewById(R.id.autore);
+            TextView titolo = (TextView) findViewById(R.id.titoloThread);
+            TextView numR = (TextView) findViewById(R.id.numRisposte);
+            TextView data = (TextView) findViewById(R.id.data);
+
+            Space s = new Space(this);
+
+            s.setMinimumHeight(50);
+
+            String dateFormat = getElapsedDaysText(ft.getData(), Calendar.getInstance());
+            data.setText(dateFormat);
+            autore.setText("di " + ft.getAutore().getNome() + " " + ft.getAutore().getCognome());
+            titolo.setText(ft.getTitolo());
+            numR.setText(ft.getNumRisposte() + " risposte");
+
+            if (autore.getParent() != null)
+                ((ViewGroup) autore.getParent()).removeView(autore);
+            rl.addView(autore);
+            if (titolo.getParent() != null)
+                ((ViewGroup) titolo.getParent()).removeView(titolo);
+            rl.addView(titolo);
+            if (numR.getParent() != null)
+                ((ViewGroup) numR.getParent()).removeView(numR);
+            rl.addView(numR);
+            if (data.getParent() != null)
+                ((ViewGroup) data.getParent()).removeView(data);
+            rl.addView(data);
+
+
+
+         //   l.addView(s);
+        }
+
+        /*
+         * Fine Prove
+         */
+/*
         for (final ForumThread ft : listaForum) {
             TextView autore;
             Button bt = new Button(this);
@@ -105,7 +163,7 @@ public class Forum extends AppCompatActivity {
             l.addView(s);
 
         }
-
+*/
     }
 
     public String getElapsedDaysText(Calendar c1, Calendar c2) {
