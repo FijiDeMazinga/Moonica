@@ -28,11 +28,13 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ForumThreadHolder>
 
     @Override
     public void onBindViewHolder(@NonNull ForumThreadHolder forumThreadHolder, int i) {
-        forumThreadHolder.autore.setText("da " + ftList.get(i).getAutore().getNome() +
-                " " + ftList.get(i).getAutore().getCognome());
-        forumThreadHolder.titolo.setText(ftList.get(i).getTitolo());
+        if (ftList.get(i).getTitolo().length() < 43)
+            forumThreadHolder.titolo.setText(ftList.get(i).getTitolo());
+        else
+            forumThreadHolder.titolo.setText(ftList.get(i).getTitolo().substring(0,42) + "...");
         forumThreadHolder.numR.setText(ftList.get(i).getNumRisposte() + " risposte");
-        forumThreadHolder.data.setText(getElapsedDaysText(ftList.get(i).getData(), Calendar.getInstance()));
+        forumThreadHolder.dataAutore.setText(getElapsedDaysText(ftList.get(i).getData(), Calendar.getInstance())
+        + " da " + ftList.get(i).getAutore().getNome() + " " + ftList.get(i).getAutore().getCognome());
     }
 
     @Override
@@ -48,19 +50,17 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ForumThreadHolder>
     public static class ForumThreadHolder extends RecyclerView.ViewHolder {
 
         CardView cv;
-        TextView autore;
         TextView titolo;
         TextView numR;
-        TextView data;
+        TextView dataAutore;
 
         public ForumThreadHolder(@NonNull View itemView) {
             super(itemView);
 
             cv = (CardView) itemView.findViewById(R.id.card_view);
-            autore = (TextView) itemView.findViewById(R.id.autore);
             titolo = (TextView) itemView.findViewById(R.id.titoloThread);
             numR = (TextView) itemView.findViewById(R.id.numRisposte);
-            data = (TextView) itemView.findViewById(R.id.data);
+            dataAutore = (TextView) itemView.findViewById(R.id.dataAutore);
         }
     }
 

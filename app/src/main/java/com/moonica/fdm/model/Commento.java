@@ -1,12 +1,13 @@
 package com.moonica.fdm.model;
 
 import java.util.Calendar;
+import java.util.TimeZone;
 
 public class Commento {
 
     private Utente autore;
     private String testo;
-    private Calendar data;
+    private Calendar data = Calendar.getInstance(TimeZone.getDefault());
     private ForumThread ft;
 
     public Commento(){

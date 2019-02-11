@@ -16,7 +16,8 @@ public class ForumThread implements Serializable {
     public ForumThread(){
         this.setTitolo("");
         this.setTesto("");
-        this.setData(1990,1,1);
+        this.setData(1990,1,1, 00, 00, 00);
+
         this.setAutore("");
         this.setNumRisposte(0);
         this.setCorso(null, null);
@@ -34,8 +35,8 @@ public class ForumThread implements Serializable {
         return data;
     }
 
-    public void setData(int y, int m, int d) {
-        this.data.set(y,m,d);
+    public void setData(int y, int m, int d, int h, int min, int s){
+        this.data.set(y, m, d, h, min, s);
     }
 
 
@@ -72,4 +73,5 @@ public class ForumThread implements Serializable {
     public void setTesto(String testo) {
         this.testo = testo;
     }
+
 }
