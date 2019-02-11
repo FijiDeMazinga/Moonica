@@ -35,9 +35,17 @@ public class FactoryForumThread {
         thread3.setNumRisposte(1);
         thread3.setCorso("IUM", "Interazione Uomo-Macchina");
 
+        ForumThread thread4 = new ForumThread();
+        thread4.setTitolo("Approfondimento lezione 12/03/2018");
+        thread4.setData(2018,3,15);
+        thread4.setAutore("Ines");
+        thread4.setNumRisposte(2);
+        thread4.setCorso("AN", "Anatomia");
+
         listaForumThread.add(thread1);
         listaForumThread.add(thread2);
         listaForumThread.add(thread3);
+        listaForumThread.add(thread4);
     }
 
     public ArrayList<ForumThread> cercaThreadCorso (Corso crs){

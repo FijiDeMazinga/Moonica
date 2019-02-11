@@ -45,19 +45,12 @@ public class Forum extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum);
 
-       //Intent i = getIntent();
+        Intent i = getIntent();
 
 
-        //Serializable obj = i.getSerializableExtra(Corso.cs);
+        Serializable obj = i.getSerializableExtra("com.moonica.fdm");
 
-
-        //Da togliere
-        c = FactoryCorsi.getInstance().cercaCorso("Diritto Privato");
-
-
-        //Fine togliere
-
-        //c = (Corso) obj;
+        c = (Corso) obj;
         /*
          * funzione per prendere i thread relativi ad uno specifico corso
          */
@@ -69,34 +62,35 @@ public class Forum extends AppCompatActivity {
         l = findViewById(R.id.threadButton);
 
         for (ForumThread ft : listaForum){
-            TextView autore;
-            Button bt = new Button(this);
-            Space s = new Space(this);
 
-            s.setMinimumHeight(50);
+                TextView autore;
+                Button bt = new Button(this);
+                Space s = new Space(this);
 
-            String[] date = ft.getData().getTime().toLocaleString().split(" ");
+                s.setMinimumHeight(50);
 
-            String prova = getElapsedDaysText(ft.getData(), Calendar.getInstance());
+                String dateFormat = getElapsedDaysText(ft.getData(), Calendar.getInstance());
 
-            if(ft.getTitolo().length() <= 20)
-                bt.setText("da " + ft.getAutore().getNome() + " " + ft.getAutore().getCognome() + "\n" +
-                        ft.getTitolo());
-            else
-                bt.setText("da " + ft.getAutore().getNome() + " " + ft.getAutore().getCognome() + "\n" +
-                        ft.getTitolo().substring(0, 20) + "..." + "\n" +
-                        ft.getNumRisposte() + " risposte" + "\n" +
-                        prova);
+                if (ft.getTitolo().length() <= 20)
+                    bt.setText("da " + ft.getAutore().getNome() + " " + ft.getAutore().getCognome() + "\n" +
+                            ft.getTitolo() + "..." + "\n" +
+                            ft.getNumRisposte() + " risposte" + "\n" +
+                            dateFormat);
+                else
+                    bt.setText("da " + ft.getAutore().getNome() + " " + ft.getAutore().getCognome() + "\n" +
+                            ft.getTitolo().substring(0, 20) + "..." + "\n" +
+                            ft.getNumRisposte() + " risposte" + "\n" +
+                            dateFormat);
 
-            bt.setMinHeight(600);
+                bt.setMinHeight(600);
 
-            bt.setTextColor(0xffffffff);
-            bt.setBackgroundColor(0xff225599);
-            bt.setTextSize(16);
+                bt.setTextColor(0xffffffff);
+                bt.setBackgroundColor(0xff225599);
+                bt.setTextSize(16);
 
 
-            l.addView(bt);
-            l.addView(s);
+                l.addView(bt);
+                l.addView(s);
 
         }
 
