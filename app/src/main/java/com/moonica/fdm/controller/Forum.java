@@ -27,6 +27,7 @@ import com.moonica.fdm.model.FactoryCorsi;
 import com.moonica.fdm.model.FactoryCorsoDiStudi;
 import com.moonica.fdm.model.FactoryForumThread;
 import com.moonica.fdm.model.ForumThread;
+import com.moonica.fdm.model.RVAdapter;
 
 import org.w3c.dom.Text;
 
@@ -45,6 +46,7 @@ public class Forum extends AppCompatActivity {
     Corso c;
     LinearLayout l;
     CardView cv;
+    RecyclerView rv;
     ArrayList<ForumThread> listaForum = new ArrayList<>();
     FactoryForumThread fft = FactoryForumThread.getInstance();
 
@@ -58,10 +60,7 @@ public class Forum extends AppCompatActivity {
         setContentView(R.layout.activity_forum);
 
         Intent i = getIntent();
-
-
         Serializable obj = i.getSerializableExtra("com.moonica.fdm");
-
         c = (Corso) obj;
         /*
          * funzione per prendere i thread relativi ad uno specifico corso
@@ -71,16 +70,24 @@ public class Forum extends AppCompatActivity {
         titolo = findViewById(R.id.forumWelcome);
         titolo.setText("Forum di " + c.getNome());
 
+        rv=(RecyclerView)findViewById(R.id.rv);
 
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        rv.setLayoutManager(llm);
+        rv.setHasFixedSize(true);
+
+        initializeAdapter();
+
+/*
         l = findViewById(R.id.threadButton);
-        cv = findViewById(R.id.card_view);
+        cv = findViewById(R.id.card_view);*/
 
 
         /*
          * Prove
          */
 
-
+/*
         for (ForumThread ft : listaForum) {
 
             RelativeLayout rl = (RelativeLayout) findViewById(R.id.rv);
@@ -102,21 +109,29 @@ public class Forum extends AppCompatActivity {
 
             if (autore.getParent() != null)
                 ((ViewGroup) autore.getParent()).removeView(autore);
+
+
             rl.addView(autore);
             if (titolo.getParent() != null)
                 ((ViewGroup) titolo.getParent()).removeView(titolo);
+
+
             rl.addView(titolo);
             if (numR.getParent() != null)
                 ((ViewGroup) numR.getParent()).removeView(numR);
+
+
             rl.addView(numR);
-            if (data.getParent() != null)
+ if (data.getParent() != null)
                 ((ViewGroup) data.getParent()).removeView(data);
+
             rl.addView(data);
+            if (l.getParent() != null)
+                ((ViewGroup)cv.getParent()).removeView(cv);
 
-
-
-         //   l.addView(s);
-        }
+            l.addView(cv);
+            l.addView(s);
+        }*/
 
         /*
          * Fine Prove
@@ -165,6 +180,7 @@ public class Forum extends AppCompatActivity {
         }
 */
     }
+/*
 
     public String getElapsedDaysText(Calendar c1, Calendar c2) {
         String elapsedDaysText = null;
@@ -196,4 +212,12 @@ public class Forum extends AppCompatActivity {
 
         return elapsedDaysText;
     }
+*/
+
+    private void initializeAdapter() {
+        RVAdapter adapter = new RVAdapter(listaForum);
+        rv.setAdapter(adapter);
+
+    }
 }
+
