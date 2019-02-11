@@ -6,11 +6,8 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Corso;
@@ -48,7 +45,7 @@ public class Forum extends AppCompatActivity {
          */
         listaForum = fft.cercaThreadCorso(c);
 
-        rv=(RecyclerView)findViewById(R.id.rv);
+        rv=(RecyclerView)findViewById(R.id.rv_forum);
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);

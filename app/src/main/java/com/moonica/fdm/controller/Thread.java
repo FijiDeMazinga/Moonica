@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class Thread extends AppCompatActivity {
 
     ForumThread ft;
-    TextView titolo;
+    TextView titolo, testo, data, autore;
     ArrayList<Commento> commentsList = new ArrayList<>();
     FactoryCommenti fc = FactoryCommenti.getInstance();
 
@@ -33,9 +33,14 @@ public class Thread extends AppCompatActivity {
 
         commentsList = fc.cercaListaCommenti(ft);
 
-        titolo = findViewById(R.id.threadTitle);
+        titolo = findViewById(R.id.titoloThread_main_post);
+        testo = findViewById(R.id.testoThread_main_post);
+        autore = findViewById(R.id.autore_thread);
 
         titolo.setText(ft.getTitolo());
+        testo.setText(ft.getTesto());
+        autore.setText(ft.getAutore().getNome() + " " + ft.getAutore().getCognome());
+
 
     }
 }

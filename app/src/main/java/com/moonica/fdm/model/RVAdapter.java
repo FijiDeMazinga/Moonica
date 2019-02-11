@@ -11,9 +11,6 @@ import android.widget.TextView;
 
 import com.moonica.fdm.R;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -28,7 +25,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ForumThreadHolder>
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ForumThreadHolder forumThreadHolder, int i) {
+    public void onBindViewHolder(@NonNull final ForumThreadHolder forumThreadHolder, final int i) {
         if (ftList.get(i).getTitolo().length() < 43)
             forumThreadHolder.titolo.setText(ftList.get(i).getTitolo());
         else
@@ -37,7 +34,15 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ForumThreadHolder>
         forumThreadHolder.dataAutore.setText(getElapsedDaysText(ftList.get(i).getData(), Calendar.getInstance())
         + " da " + ftList.get(i).getAutore().getNome() + " " + ftList.get(i).getAutore().getCognome());
 
-        ft = ftList.get(i);
+        forumThreadHolder.cv.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                //itemView.getContext().startActivity(new Intent(itemView.getContext(), com.moonica.fdm.controller.Thread.class));
+                    Intent thread = new Intent(forumThreadHolder.cv.getContext(), com.moonica.fdm.controller.Thread.class);
+                    thread.putExtra(THREAD, ftList.get(i));
+                    forumThreadHolder.cv.getContext().startActivity(thread);
+            }
+        });
     }
 
     @Override
@@ -56,31 +61,20 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ForumThreadHolder>
         TextView titolo;
         TextView numR;
         TextView dataAutore;
-        public static final String THREAD = "com.moonica.fdm";
 
 
         public ForumThreadHolder(@NonNull final View itemView) {
             super(itemView);
 
-            cv = (CardView) itemView.findViewById(R.id.card_view);
-            titolo = (TextView) itemView.findViewById(R.id.titoloThread);
+            cv = (CardView) itemView.findViewById(R.id.cardView_forum);
+            titolo = (TextView) itemView.findViewById(R.id.titoloThread_forum);
             numR = (TextView) itemView.findViewById(R.id.numRisposte);
-            dataAutore = (TextView) itemView.findViewById(R.id.dataAutore);
-
-            itemView.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View view) {
-                    //itemView.getContext().startActivity(new Intent(itemView.getContext(), com.moonica.fdm.controller.Thread.class));
-                    Intent thread = new Intent(itemView.getContext(), com.moonica.fdm.controller.Thread.class);
-                    thread.putExtra(THREAD, ft);
-                    itemView.getContext().startActivity(thread);
-                }
-            });
+            dataAutore = (TextView) itemView.findViewById(R.id.dataAutore_forum);
         }
     }
 
     ArrayList<ForumThread> ftList;
-    static ForumThread ft;
+    public static final String THREAD = "com.moonica.fdm";
 
     public RVAdapter(ArrayList<ForumThread> ftList){
         this.ftList = ftList;
