@@ -12,6 +12,8 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.Gravity;
@@ -34,6 +36,7 @@ import com.moonica.fdm.R;
 import com.moonica.fdm.model.Corso;
 import com.moonica.fdm.model.FactoryCorsi;
 import com.moonica.fdm.model.Gender;
+import com.moonica.fdm.model.HomeRVAAdapter;
 import com.moonica.fdm.model.Professore;
 import com.moonica.fdm.model.Studente;
 import com.moonica.fdm.model.Utente;
@@ -47,7 +50,8 @@ public class Home extends AppCompatActivity {
     Professore p;
     Studente s;
     String username, benvenuto;
-    LinearLayout l;
+    //LinearLayout l;
+    RecyclerView rv;
     ArrayList<Corso> lista = new ArrayList<Corso>();
     FactoryCorsi fc = FactoryCorsi.getInstance();
     Dialog scelta;
@@ -55,7 +59,7 @@ public class Home extends AppCompatActivity {
     public static final String CORSO = "com.moonica.fdm";
 
 
-    @SuppressLint("ResourceType")
+    @SuppressLint({"ResourceType", "WrongViewCast"})
     @TargetApi(Build.VERSION_CODES.M)
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
@@ -100,17 +104,26 @@ public class Home extends AppCompatActivity {
         welcome = findViewById(R.id.welcome);
         welcome.setText(benvenuto.concat(username).concat("!"));
 
-        l = findViewById(R.id.corsi);//listview coi corsi
+        LinearLayoutManager llm = new LinearLayoutManager(this);
 
-        //per ogni corso nella lista aggiungo un bottone dinamicamente
+        rv = findViewById(R.id.rvCorso);
+        rv.setLayoutManager(llm);
+        rv.setHasFixedSize(true);
+        HomeRVAAdapter hra = new HomeRVAAdapter(lista);
+        rv.setAdapter(hra);
+        //l = findViewById(R.id.corsi);//listview coi corsi
+
+
+
+        /*per ogni corso nella lista aggiungo un bottone dinamicamente
         for(final Corso c : lista){
             final LinearLayout blocco = new LinearLayout(this);
             final LinearLayout rl = new LinearLayout(this);
             Space space = new Space(this);
             ImageButton ib = new ImageButton(this);
-            Button tv = new Button(this);
+            Button tv = new Button(this);*/
 
-            final PopupMenu drop = new PopupMenu(getApplicationContext(), ib);
+            /*final PopupMenu drop = new PopupMenu(getApplicationContext(), ib);
             final Menu menu = drop.getMenu();
 
             menu.add(0,0,0, "Elimina corso");
@@ -146,17 +159,7 @@ public class Home extends AppCompatActivity {
             });
 
 
-            //taglio del nome del corso in base alla lunghezza
-            if(c.getNome().length() <= 20)
-                tv.setText("[" + c.getSigla() + "] " + c.getNome());
-            else
-                tv.setText("[" + c.getSigla() + "] " + c.getNome().substring(0, 20) + "...");
-            //settaggio parametri del bottone
-            tv.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-            tv.setPadding(30,0,0,0);
-            tv.setTextColor(0xffffffff);
-            tv.setBackgroundColor(0xff225599);
-            tv.setTextSize(16);
+
             //cosa succede quando apro un corso
             tv.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -173,8 +176,8 @@ public class Home extends AppCompatActivity {
 
             blocco.addView(rl);
             blocco.addView(space);
-            l.addView(blocco);
-        }
+            //l.addView(blocco);
+        }*/
     }
     @SuppressLint("ResourceType")
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -226,4 +229,5 @@ public class Home extends AppCompatActivity {
             t.show();
         }
     }
+
 }

@@ -28,12 +28,12 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="25dp" />
-            <LinearLayout
+            <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:id="@+id/corsi">
-            </LinearLayout>
+                android:id="@+id/rvCorso">
+            </android.support.v7.widget.RecyclerView>
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
