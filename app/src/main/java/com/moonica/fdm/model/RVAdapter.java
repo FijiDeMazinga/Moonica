@@ -11,9 +11,6 @@ import android.widget.TextView;
 
 import com.moonica.fdm.R;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -69,10 +66,10 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ForumThreadHolder>
         public ForumThreadHolder(@NonNull final View itemView) {
             super(itemView);
 
-            cv = (CardView) itemView.findViewById(R.id.card_view);
-            titolo = (TextView) itemView.findViewById(R.id.titoloThread);
+            cv = (CardView) itemView.findViewById(R.id.cardView_forum);
+            titolo = (TextView) itemView.findViewById(R.id.titoloThread_forum);
             numR = (TextView) itemView.findViewById(R.id.numRisposte);
-            dataAutore = (TextView) itemView.findViewById(R.id.dataAutore);
+            dataAutore = (TextView) itemView.findViewById(R.id.dataAutore_forum);
         }
     }
 
