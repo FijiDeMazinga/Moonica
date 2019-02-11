@@ -1,9 +1,10 @@
 package com.moonica.fdm.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-public class ForumThread {
+public class ForumThread implements Serializable {
 
     private String titolo;
     private String testo;
