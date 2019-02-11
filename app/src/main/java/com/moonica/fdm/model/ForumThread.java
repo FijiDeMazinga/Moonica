@@ -6,6 +6,7 @@ import java.util.TimeZone;
 
 public class ForumThread implements Serializable {
 
+    private int id;
     private String titolo;
     private String testo;
     private Calendar data = Calendar.getInstance(TimeZone.getDefault());
@@ -14,6 +15,7 @@ public class ForumThread implements Serializable {
     private Corso corso;
 
     public ForumThread(){
+        this.setId(-1);
         this.setTitolo("");
         this.setTesto("");
         this.setData(1990,1,1, 00, 00, 00);
@@ -74,4 +76,12 @@ public class ForumThread implements Serializable {
         this.testo = testo;
     }
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

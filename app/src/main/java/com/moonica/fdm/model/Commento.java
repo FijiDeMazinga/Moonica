@@ -14,7 +14,7 @@ public class Commento {
         this.setAutore("");
         this.setData(1990, 1,1);
         this.setTesto("");
-        this.setFt(null);
+        this.setFt(-1);
     }
 
     public Utente getAutore() {
@@ -46,7 +46,8 @@ public class Commento {
         return ft;
     }
 
-    public void setFt(ForumThread ft) {
-        this.ft = ft;
+    public void setFt(int id) {
+        FactoryForumThread factoryForumThreadt = FactoryForumThread.getInstance();
+        this.ft = factoryForumThreadt.cercaThread(id);
     }
 }

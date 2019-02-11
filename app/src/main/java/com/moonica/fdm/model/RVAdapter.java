@@ -1,5 +1,6 @@
 package com.moonica.fdm.model;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -35,6 +36,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ForumThreadHolder>
         forumThreadHolder.numR.setText(ftList.get(i).getNumRisposte() + " risposte");
         forumThreadHolder.dataAutore.setText(getElapsedDaysText(ftList.get(i).getData(), Calendar.getInstance())
         + " da " + ftList.get(i).getAutore().getNome() + " " + ftList.get(i).getAutore().getCognome());
+
+        ft = ftList.get(i);
     }
 
     @Override
@@ -53,18 +56,31 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ForumThreadHolder>
         TextView titolo;
         TextView numR;
         TextView dataAutore;
+        public static final String THREAD = "com.moonica.fdm";
 
-        public ForumThreadHolder(@NonNull View itemView) {
+
+        public ForumThreadHolder(@NonNull final View itemView) {
             super(itemView);
 
             cv = (CardView) itemView.findViewById(R.id.card_view);
             titolo = (TextView) itemView.findViewById(R.id.titoloThread);
             numR = (TextView) itemView.findViewById(R.id.numRisposte);
             dataAutore = (TextView) itemView.findViewById(R.id.dataAutore);
+
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    //itemView.getContext().startActivity(new Intent(itemView.getContext(), com.moonica.fdm.controller.Thread.class));
+                    Intent thread = new Intent(itemView.getContext(), com.moonica.fdm.controller.Thread.class);
+                    thread.putExtra(THREAD, ft);
+                    itemView.getContext().startActivity(thread);
+                }
+            });
         }
     }
 
     ArrayList<ForumThread> ftList;
+    static ForumThread ft;
 
     public RVAdapter(ArrayList<ForumThread> ftList){
         this.ftList = ftList;

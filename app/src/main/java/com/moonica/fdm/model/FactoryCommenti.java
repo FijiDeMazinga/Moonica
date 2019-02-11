@@ -20,12 +20,12 @@ public class FactoryCommenti {
         c1.setAutore("Cosino");
         c1.setData(2017, 2, 28);
         c1.setTesto("Questa è una risposta al tuo commento");
-        //c1.setFt();
+        c1.setFt(1);
 
         listaCommenti.add(c1);
     }
 
-    public ArrayList<Commento> creaListaCommenti(ForumThread ft){
+    public ArrayList<Commento> cercaListaCommenti(ForumThread ft){
 
         ArrayList<Commento> commentiThread = new ArrayList<>();
 

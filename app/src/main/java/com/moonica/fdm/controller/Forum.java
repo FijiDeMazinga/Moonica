@@ -25,12 +25,10 @@ import java.util.ArrayList;
 
 public class Forum extends AppCompatActivity {
     Corso c;
-    LinearLayout l;
     RecyclerView rv;
     ArrayList<ForumThread> listaForum = new ArrayList<>();
     FactoryForumThread fft = FactoryForumThread.getInstance();
 
-    public static final String THREAD = "com.moonica.fdm";
 
     @TargetApi(Build.VERSION_CODES.O)
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -39,15 +37,16 @@ public class Forum extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum);
 
+        //setTitle(c.getNome() + " / Forum");
+
         Intent i = getIntent();
         Serializable obj = i.getSerializableExtra("com.moonica.fdm");
         c = (Corso) obj;
+
         /*
          * funzione per prendere i thread relativi ad uno specifico corso
          */
         listaForum = fft.cercaThreadCorso(c);
-
-        setTitle(c.getNome() + " / Forum");
 
         rv=(RecyclerView)findViewById(R.id.rv);
 
