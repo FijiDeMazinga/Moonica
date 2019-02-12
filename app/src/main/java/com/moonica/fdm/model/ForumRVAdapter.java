@@ -1,15 +1,19 @@
 package com.moonica.fdm.model;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.moonica.fdm.R;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,13 +30,20 @@ public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumThr
 
     @Override
     public void onBindViewHolder(@NonNull final ForumThreadHolder forumThreadHolder, final int i) {
+
+        if (i%2 != 0) {
+            forumThreadHolder.cv.setCardBackgroundColor(Color.parseColor("#f5f5f5"));
+        }
+        else
+            forumThreadHolder.rv.setBackgroundColor(Color.parseColor("#1e4c89"));
         if (ftList.get(i).getTitolo().length() < 43)
             forumThreadHolder.titolo.setText(ftList.get(i).getTitolo());
         else
             forumThreadHolder.titolo.setText(ftList.get(i).getTitolo().substring(0,42) + "...");
         forumThreadHolder.numR.setText(ftList.get(i).getNumRisposte() + " risposte");
-        forumThreadHolder.dataAutore.setText(getElapsedDaysText(ftList.get(i).getData(), Calendar.getInstance())
-        + " da " + ftList.get(i).getAutore().getNome() + " " + ftList.get(i).getAutore().getCognome());
+        forumThreadHolder.data.setText(getElapsedDaysText(ftList.get(i).getData(), Calendar.getInstance()));
+        forumThreadHolder.autore.setText(" da " + ftList.get(i).getAutore().getNome() + " " + ftList.get(i).getAutore().getCognome());
+
 
         forumThreadHolder.cv.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -60,7 +71,9 @@ public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumThr
         CardView cv;
         TextView titolo;
         TextView numR;
-        TextView dataAutore;
+        TextView data;
+        TextView autore;
+        RelativeLayout rv;
 
 
         public ForumThreadHolder(@NonNull final View itemView) {
@@ -69,7 +82,10 @@ public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumThr
             cv = (CardView) itemView.findViewById(R.id.cardView_forum);
             titolo = (TextView) itemView.findViewById(R.id.titoloThread_forum);
             numR = (TextView) itemView.findViewById(R.id.numRisposte);
-            dataAutore = (TextView) itemView.findViewById(R.id.dataAutore_forum);
+            data = (TextView) itemView.findViewById(R.id.data_forum);
+            autore = (TextView)itemView.findViewById(R.id.autore_forum);
+
+            rv = (RelativeLayout)itemView.findViewById(R.id.forum_blue_color);
         }
     }
 

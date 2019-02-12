@@ -30,9 +30,9 @@ public class FactoryForumThread {
         ForumThread thread2 = new ForumThread();
         thread2.setId(1);
         thread2.setTitolo("Richiesta spiegazione funzione della milza");
-        thread2.setTesto("Hola, soy español y no he entendido nada sobre la lección inherente al bazo." +
-                "Pido aclaraciones.\n" +
-                "Saludos.");
+        thread2.setTesto("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in ipsum augue. Morbi quis dui sed libero viverra porttitor. Vivamus tempus est quam, vel laoreet erat elementum id. Vivamus ante sem, feugiat molestie libero ut, blandit luctus eros. Proin laoreet justo ut orci ornare, id ornare magna egestas. Etiam gravida mi id mattis ornare. Quisque elit urna, consequat ac dapibus et, euismod eget ante. Praesent porttitor maximus volutpat. Nunc facilisis diam ac purus tincidunt, ut feugiat libero porta. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut interdum diam urna. Integer pretium bibendum accumsan. Morbi vulputate pharetra metus, a malesuada orci laoreet nec. Pellentesque eleifend mattis sollicitudin.\n" +
+                "\n" +
+                "Quisque at faucibus ante, porttitor blandit nulla. Sed et sapien eget ex commodo bibendum vitae sit amet ante. Phasellus interdum est egestas erat sagittis venenatis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque rhoncus orci augue, sit amet aliquam mi varius quis. Etiam vulputate sapien quis dapibus tincidunt. Donec fermentum ultricies sapien a commodo. Sed vehicula feugiat ligula, ut posuere nisl mollis a. In cursus, justo iaculis pretium consectetur, sapien dui sagittis turpis, vel tempus leo ligula eget neque. Ut sit amet rhoncus velit, et sagittis ligula. Maecenas varius sodales diam sit amet maximus. Vivamus pellentesque lectus quis felis consequat porta. Donec non risus in lectus aliquet eleifend a et turpis.");
         thread2.setData(2017, 6, 25, 17, 54, 21);
         thread2.setAutore("Ines");
         thread2.setNumRisposte(5);
@@ -60,6 +60,12 @@ public class FactoryForumThread {
         listaForumThread.add(thread2);
         listaForumThread.add(thread3);
         listaForumThread.add(thread4);
+        listaForumThread.add(thread2);
+        listaForumThread.add(thread4);
+        listaForumThread.add(thread2);
+        listaForumThread.add(thread4);
+        listaForumThread.add(thread2);
+
     }
 
     public ArrayList<ForumThread> cercaThreadCorso (Corso crs){
