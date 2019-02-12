@@ -56,6 +56,7 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
     @Override
     public void onBindViewHolder(@NonNull final CorsoViewHolder corsoViewHolder, final int i) {
         corsoViewHolder.cv.setMinimumHeight(50);
+        corsoViewHolder.cv.setRadius(20.1f);
         if(lista.get(i).getNome().length() <= 20)
             corsoViewHolder.nomeCorso.setText("[" + lista.get(i).getSigla() + "] " + lista.get(i).getNome());
         else
