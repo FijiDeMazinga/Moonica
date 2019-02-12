@@ -3,12 +3,16 @@ package com.moonica.fdm.controller;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Commento;
 import com.moonica.fdm.model.FactoryCommenti;
 import com.moonica.fdm.model.ForumThread;
+import com.moonica.fdm.model.ForumRVAdapter;
+import com.moonica.fdm.model.ThreadRVAdapter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,6 +22,9 @@ public class Thread extends AppCompatActivity {
 
     ForumThread ft;
     TextView titolo, testo, data, autore;
+
+    RecyclerView rv;
+
     ArrayList<Commento> commentsList = new ArrayList<>();
     FactoryCommenti fc = FactoryCommenti.getInstance();
 
@@ -31,7 +38,13 @@ public class Thread extends AppCompatActivity {
 
         ft = (ForumThread) obj;
 
-        commentsList = fc.cercaListaCommenti(ft);
+        setTitle(ft.getCorso().getNome() + " / Thread");
+
+        commentsList = fc.cercaListaCommenti(ft.getId());
+
+        /*
+         * I dati del post principale del thread vengono caricati
+         */
 
         titolo = findViewById(R.id.titoloThread_main_post);
         testo = findViewById(R.id.testoThread_main_post);
@@ -40,9 +53,23 @@ public class Thread extends AppCompatActivity {
 
         titolo.setText(ft.getTitolo());
         testo.setText(ft.getTesto());
-        data.setText("prova");
+        data.setText(ft.getData().getTime().toGMTString());
         autore.setText(ft.getAutore().getNome() + " " + ft.getAutore().getCognome());
 
+        rv = (RecyclerView)findViewById(R.id.rv_thread);
+
+
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        rv.setLayoutManager(llm);
+        rv.setHasFixedSize(true);
+
+        initializeAdapter();
+
+    }
+
+    private void initializeAdapter() {
+        ThreadRVAdapter adapter = new ThreadRVAdapter(commentsList);
+        rv.setAdapter(adapter);
 
     }
 }

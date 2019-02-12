@@ -14,7 +14,7 @@ import com.moonica.fdm.R;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ForumThreadHolder> {
+public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumThreadHolder> {
 
     @NonNull
     @Override
@@ -76,7 +76,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ForumThreadHolder>
     ArrayList<ForumThread> ftList;
     public static final String THREAD = "com.moonica.fdm";
 
-    public RVAdapter(ArrayList<ForumThread> ftList){
+    public ForumRVAdapter(ArrayList<ForumThread> ftList){
         this.ftList = ftList;
     }
 

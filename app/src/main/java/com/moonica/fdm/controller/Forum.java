@@ -13,7 +13,7 @@ import com.moonica.fdm.R;
 import com.moonica.fdm.model.Corso;
 import com.moonica.fdm.model.FactoryForumThread;
 import com.moonica.fdm.model.ForumThread;
-import com.moonica.fdm.model.RVAdapter;
+import com.moonica.fdm.model.ForumRVAdapter;
 
 
 import java.io.Serializable;
@@ -34,11 +34,11 @@ public class Forum extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum);
 
-        //setTitle(c.getNome() + " / Forum");
-
         Intent i = getIntent();
         Serializable obj = i.getSerializableExtra("com.moonica.fdm");
         c = (Corso) obj;
+
+        setTitle(c.getNome() + " / Forum");
 
         /*
          * funzione per prendere i thread relativi ad uno specifico corso
@@ -55,7 +55,7 @@ public class Forum extends AppCompatActivity {
 
     }
     private void initializeAdapter() {
-        RVAdapter adapter = new RVAdapter(listaForum);
+        ForumRVAdapter adapter = new ForumRVAdapter(listaForum);
         rv.setAdapter(adapter);
 
     }

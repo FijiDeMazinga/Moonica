@@ -25,12 +25,12 @@ public class FactoryCommenti {
         listaCommenti.add(c1);
     }
 
-    public ArrayList<Commento> cercaListaCommenti(ForumThread ft){
+    public ArrayList<Commento> cercaListaCommenti(int id){
 
         ArrayList<Commento> commentiThread = new ArrayList<>();
 
         for (Commento c : listaCommenti){
-            if (c.getFt().equals(ft))
+            if (c.getFt().getId() == id)
                 commentiThread.add(c);
         }
 

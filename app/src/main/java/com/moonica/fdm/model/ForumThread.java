@@ -34,6 +34,8 @@ public class ForumThread implements Serializable {
     }
 
     public Calendar getData() {
+
+
         return data;
     }
 
