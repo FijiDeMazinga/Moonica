@@ -30,7 +30,29 @@ public class ThreadRVAdapter extends RecyclerView.Adapter<ThreadRVAdapter.ReplyH
     @Override
     public void onBindViewHolder(@NonNull ReplyHolder replyHolder, int i) {
 
-        replyHolder.nomeAutoreCommento.setText(cList.get(i).getAutore().getNome() + "\n" + cList.get(i).getAutore().getCognome());
+        String[] nome = cList.get(i).getAutore().getNome().split(" ");
+        String[] cognome = cList.get(i).getAutore().getCognome().split(" ");
+
+
+        StringBuilder piuNomi = new StringBuilder();
+        StringBuilder piuCognomi = new StringBuilder();
+
+        if (nome.length == 1 && cognome.length ==1)
+            replyHolder.nomeAutoreCommento.setText(nome[0] + "\n" + cognome[0]);
+        else if (nome.length > 1 || cognome.length >1){
+
+            for (int j=0; j < nome.length; j++) {
+                piuNomi.append(nome[j]);
+                piuNomi.append("\n");
+            }
+            for (int j=0; j<cognome.length; j++) {
+                piuCognomi.append(cognome[j]);
+                if (j < (cognome.length)-1)
+                    piuCognomi.append("\n");
+            }
+
+            replyHolder.nomeAutoreCommento.setText(piuNomi.toString() + piuCognomi.toString());
+        }
         replyHolder.testo.setText(cList.get(i).getTesto());
         replyHolder.data.setText(cList.get(i).getData().getTime().toGMTString());
     }

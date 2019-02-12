@@ -31,8 +31,22 @@ public class FactoryCommenti {
                 "perché non sono ancora brava nella vostra lingua");
         c2.setFt(1);
 
+        Commento c3 = new Commento();
+        c3.setAutore("SriLankas");
+        c3.setData(2017, 7, 30, 21, 12, 32);
+        c3.setTesto("Oh oh oh, felice di avervi aiutati ragazzi!");
+        c3.setFt(1);
+
+        Commento c4 = new Commento();
+        c4.setAutore("Ines");
+        c4.setData(2017, 7,30, 22, 10, 22);
+        c4.setTesto("Gracias a ti professor");
+        c4.setFt(1);
+
         listaCommenti.add(c1);
         listaCommenti.add(c2);
+        listaCommenti.add(c3);
+        listaCommenti.add(c4);
     }
 
     public ArrayList<Commento> cercaListaCommenti(int id){

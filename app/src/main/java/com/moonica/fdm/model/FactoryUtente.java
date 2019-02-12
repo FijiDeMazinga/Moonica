@@ -84,12 +84,24 @@ public class FactoryUtente {
         professore2.setCorsoStudi("Chimica e Tecnologie Farmaceutiche");
         professore2.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Chimica Organica"));
 
+        Professore professore3 = new Professore();
+        professore3.setNome("Gian Piero");
+        professore3.setCognome("Mosco");
+        professore3.setSesso("Maschio");
+        professore3.setUsername("SriLankas");
+        professore3.setEmail("nicolas@unica.it");
+        professore3.setPassword("Brasil3");
+        professore3.setFacolta("Ingegneria e Architettura");
+        professore3.setCorsoStudi("Ingegneria Biomedica");
+        professore3.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Anatomia"));
+
         listaUtenti.add(studente1);
         listaUtenti.add(studente2);
         listaUtenti.add(studente3);
         listaUtenti.add(studente4);
         listaUtenti.add(professore1);
         listaUtenti.add(professore2);
+        listaUtenti.add(professore3);
     }
 
     public static FactoryUtente getInstance() {
