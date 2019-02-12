@@ -1,6 +1,8 @@
 package com.moonica.fdm.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class FactoryCommenti {
 
@@ -18,11 +20,19 @@ public class FactoryCommenti {
 
         Commento c1 = new Commento();
         c1.setAutore("Cosino");
-        c1.setData(2017, 2, 28);
+        c1.setData(2017, 7, 28, 12, 24, 54);
         c1.setTesto("Questa è una risposta al tuo commento");
         c1.setFt(1);
 
+        Commento c2 = new Commento();
+        c2.setAutore("Ines");
+        c2.setData(2017, 7, 28, 14, 43, 2);
+        c2.setTesto("Grazie mille per la tua gentilezza, questo commento è stato tradotto con google translate" +
+                "perché non sono ancora brava nella vostra lingua");
+        c2.setFt(1);
+
         listaCommenti.add(c1);
+        listaCommenti.add(c2);
     }
 
     public ArrayList<Commento> cercaListaCommenti(int id){
@@ -33,6 +43,15 @@ public class FactoryCommenti {
             if (c.getFt().getId() == id)
                 commentiThread.add(c);
         }
+
+        Collections.sort(commentiThread, new Comparator<Commento>() {
+            @Override
+            public int compare(Commento o1, Commento o2) {
+                return o2.getData().getTime().compareTo(o1.getData().getTime());
+            }
+        });
+
+        Collections.reverse(commentiThread);
 
         return commentiThread;
     }

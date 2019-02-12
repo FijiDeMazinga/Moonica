@@ -12,7 +12,7 @@ public class Commento {
 
     public Commento(){
         this.setAutore("");
-        this.setData(1990, 1,1);
+        this.setData(1990, 1,1, 0, 0, 0);
         this.setTesto("");
         this.setFt(-1);
     }
@@ -38,8 +38,8 @@ public class Commento {
         return data;
     }
 
-    public void setData(int y, int m, int d) {
-        this.data.set(y, m, d);
+    public void setData(int y, int m, int d, int h, int min, int s) {
+        this.data.set(y, m, d, h, min, s);
     }
 
     public ForumThread getFt() {

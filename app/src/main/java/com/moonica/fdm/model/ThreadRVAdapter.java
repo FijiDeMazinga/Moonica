@@ -30,7 +30,7 @@ public class ThreadRVAdapter extends RecyclerView.Adapter<ThreadRVAdapter.ReplyH
     @Override
     public void onBindViewHolder(@NonNull ReplyHolder replyHolder, int i) {
 
-        //replyHolder.nomeAutoreCommento.setText(cList.get(i).getAutore().getNome());// + " " + cList.get(i).getAutore().getCognome());
+        replyHolder.nomeAutoreCommento.setText(cList.get(i).getAutore().getNome() + "\n" + cList.get(i).getAutore().getCognome());
         replyHolder.testo.setText(cList.get(i).getTesto());
         replyHolder.data.setText(cList.get(i).getData().getTime().toGMTString());
     }
@@ -54,7 +54,7 @@ public class ThreadRVAdapter extends RecyclerView.Adapter<ThreadRVAdapter.ReplyH
             super(itemView);
 
             cv = (CardView)itemView.findViewById(R.id.cardView_thread);
-            nomeAutoreCommento = (TextView)itemView.findViewById(R.id.autore_thread);
+            nomeAutoreCommento = (TextView)itemView.findViewById(R.id.nomeAutoreCommento);
             testo = (TextView)itemView.findViewById(R.id.testoRisposta);
             data = (TextView)itemView.findViewById(R.id.dataRisposta);
         }
