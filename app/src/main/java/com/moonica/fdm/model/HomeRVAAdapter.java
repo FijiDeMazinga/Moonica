@@ -1,5 +1,6 @@
 package com.moonica.fdm.model;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
@@ -35,10 +36,12 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
             ib = itemView.findViewById(R.id.ibCorso);
 
         }
-    }
 
+    }
+    Studente studente = new Studente();
     ArrayList<Corso> lista = new ArrayList<Corso>();
-    public HomeRVAAdapter(ArrayList<Corso> lista){
+    public HomeRVAAdapter(ArrayList<Corso> lista, Studente s){
+        this.studente = s;
         this.lista = lista;
     }
 
@@ -52,11 +55,12 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
 
     @Override
     public void onBindViewHolder(@NonNull final CorsoViewHolder corsoViewHolder, final int i) {
-
+        corsoViewHolder.cv.setMinimumHeight(50);
         if(lista.get(i).getNome().length() <= 20)
             corsoViewHolder.nomeCorso.setText("[" + lista.get(i).getSigla() + "] " + lista.get(i).getNome());
         else
             corsoViewHolder.nomeCorso.setText("[" + lista.get(i).getSigla() + "] " + lista.get(i).getNome().substring(0, 20) + "...");
+        corsoViewHolder.nomeCorso.setPadding(0, 25,0,0);
         corsoViewHolder.ib.setImageResource(R.drawable.ic_more_vert_black_24dp);
         corsoViewHolder.ib.setBackgroundColor(0xff225599);
         corsoViewHolder.ib.setOnClickListener(new View.OnClickListener() {
@@ -71,10 +75,12 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()){
                             case 0:
-                                /*s.rimuoviCorso(lista.get(i));
-                                finish();
-                                corsoViewHolder.itemView.getContext().startActivity(getIntent());
-                                break;*/
+                                studente.rimuoviCorso(lista.get(i));
+                                Context context = corsoViewHolder.itemView.getContext();
+                                Intent intent = ((Home)context).getIntent();
+                                ((Home)context).finish();
+                                ((Home)context).startActivity(intent);
+                                break;
                         }
                         return false;
                     }

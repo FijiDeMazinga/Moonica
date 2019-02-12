@@ -109,75 +109,8 @@ public class Home extends AppCompatActivity {
         rv = findViewById(R.id.rvCorso);
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
-        HomeRVAAdapter hra = new HomeRVAAdapter(lista);
+        HomeRVAAdapter hra = new HomeRVAAdapter(lista, s);
         rv.setAdapter(hra);
-        //l = findViewById(R.id.corsi);//listview coi corsi
-
-
-
-        /*per ogni corso nella lista aggiungo un bottone dinamicamente
-        for(final Corso c : lista){
-            final LinearLayout blocco = new LinearLayout(this);
-            final LinearLayout rl = new LinearLayout(this);
-            Space space = new Space(this);
-            ImageButton ib = new ImageButton(this);
-            Button tv = new Button(this);*/
-
-            /*final PopupMenu drop = new PopupMenu(getApplicationContext(), ib);
-            final Menu menu = drop.getMenu();
-
-            menu.add(0,0,0, "Elimina corso");
-
-            drop.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    switch (item.getItemId()){
-                        case 0:
-                            s.rimuoviCorso(c);
-                            finish();
-                            startActivity(getIntent());
-                            break;
-                    }
-                    return false;
-                }
-            });
-
-            blocco.setOrientation(LinearLayout.VERTICAL);
-
-            rl.setBackgroundColor(0xff225599);
-            rl.setOrientation(LinearLayout.HORIZONTAL);
-
-            space.setMinimumHeight(50);
-
-            ib.setImageResource(R.drawable.ic_more_vert_black_24dp);
-            ib.setBackgroundColor(0xff225599);
-            ib.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    drop.show();
-                }
-            });
-
-
-
-            //cosa succede quando apro un corso
-            tv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent corso = new Intent(Home.this, Corsi.class);
-                    corso.putExtra(CORSO, c);
-                    startActivity(corso);
-                }
-            });
-
-            //aggiunta alla listview di bottone e spazio
-            rl.addView(tv);
-            rl.addView(ib);
-
-            blocco.addView(rl);
-            blocco.addView(space);
-            //l.addView(blocco);
-        }*/
     }
     @SuppressLint("ResourceType")
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
