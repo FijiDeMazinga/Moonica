@@ -41,7 +41,8 @@
                 android:id="@+id/plus"
                 android:background="@drawable/button_border"
                 android:tint="#225599"
-                android:onClick="ShowPopup"/>
+                android:onClick="ShowPopup"
+                android:layout_marginTop="16dp"/>
 
 
         </LinearLayout>

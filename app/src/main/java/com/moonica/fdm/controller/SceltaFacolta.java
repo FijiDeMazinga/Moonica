@@ -73,11 +73,11 @@ public class SceltaFacolta extends AppCompatActivity implements AdapterView.OnIt
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(check()){//se i campi non sono vuoti richiamo l'activity successiva passando lo studente modificato
-                    Intent r = new Intent(SceltaFacolta.this, Home.class);
-                    r.putExtra(USER, aggiornaStudente(s));//aggiungo l'extra con lo studente modificato
-                    startActivity(r);
-                }
+            if(check()){//se i campi non sono vuoti richiamo l'activity successiva passando lo studente modificato
+                Intent r = new Intent(SceltaFacolta.this, Home.class);
+                r.putExtra(USER, aggiornaStudente(s));//aggiungo l'extra con lo studente modificato
+                startActivity(r);
+            }
             }
         });
     }
