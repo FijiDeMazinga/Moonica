@@ -35,10 +35,12 @@ public class Thread extends AppCompatActivity {
 
         titolo = findViewById(R.id.titoloThread_main_post);
         testo = findViewById(R.id.testoThread_main_post);
+        data = findViewById(R.id.data_thread);
         autore = findViewById(R.id.autore_thread);
 
         titolo.setText(ft.getTitolo());
         testo.setText(ft.getTesto());
+        data.setText("prova");
         autore.setText(ft.getAutore().getNome() + " " + ft.getAutore().getCognome());
 
 
