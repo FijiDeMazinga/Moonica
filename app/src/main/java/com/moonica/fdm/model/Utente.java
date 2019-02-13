@@ -4,6 +4,8 @@ package com.moonica.fdm.model;
 import android.media.Image;
 import android.widget.ImageView;
 
+import com.moonica.fdm.R;
+
 import java.io.Serializable;
 
 public class Utente implements Serializable {
@@ -15,7 +17,7 @@ public class Utente implements Serializable {
     private String password;
     private String facolta;
     private Gender sesso;
-    private ImageView avatar;
+    private int avatarId;
     CorsoDiStudi corsoStudi;
 
     public Utente() {
@@ -24,6 +26,9 @@ public class Utente implements Serializable {
         this.setUsername("");
         this.setEmail("");
         this.setPassword("");
+        this.setFacolta("");
+        this.setSesso("Non specificato");
+        this.setAvatar(R.drawable.placeholder_profile_3);
     }
 
     public String getNome() {
@@ -101,11 +106,11 @@ public class Utente implements Serializable {
         }
     }
 
-    public ImageView getAvatar() {
-        return avatar;
+    public int getAvatar() {
+        return avatarId;
     }
 
-    public void setAvatar(ImageView avatar) {
-        this.avatar = avatar;
+    public void setAvatar(int avatarId) {
+        this.avatarId = avatarId;
     }
 }
