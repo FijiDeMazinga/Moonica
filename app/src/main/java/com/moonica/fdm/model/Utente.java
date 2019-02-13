@@ -1,6 +1,9 @@
 package com.moonica.fdm.model;
 
 
+import android.media.Image;
+import android.widget.ImageView;
+
 import java.io.Serializable;
 
 public class Utente implements Serializable {
@@ -12,6 +15,7 @@ public class Utente implements Serializable {
     private String password;
     private String facolta;
     private Gender sesso;
+    private ImageView avatar;
     CorsoDiStudi corsoStudi;
 
     public Utente() {
@@ -95,5 +99,13 @@ public class Utente implements Serializable {
                 this.sesso = Gender.NONSPECIFICATO;
                 break;
         }
+    }
+
+    public ImageView getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(ImageView avatar) {
+        this.avatar = avatar;
     }
 }
