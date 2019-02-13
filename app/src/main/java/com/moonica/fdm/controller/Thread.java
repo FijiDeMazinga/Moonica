@@ -65,6 +65,8 @@ public class Thread extends AppCompatActivity {
 
         rv = (RecyclerView)findViewById(R.id.rv_thread);
 
+        rv.setFocusable(false);
+
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
