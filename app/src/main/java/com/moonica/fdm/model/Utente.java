@@ -28,7 +28,7 @@ public class Utente implements Serializable {
         this.setPassword("");
         this.setFacolta("");
         this.setSesso("Non specificato");
-        this.setAvatar(R.drawable.placeholder_profile_3);
+        this.setAvatar(R.drawable.placeholder);
     }
 
     public String getNome() {
