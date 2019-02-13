@@ -91,7 +91,7 @@ public class FactoryUtente {
         professore2.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Chimica Organica"));
 
         Professore professore3 = new Professore();
-        professore3.setNome("Gian Piero");
+        professore3.setNome("Gian Carlo");
         professore3.setCognome("Mosco");
         professore3.setSesso("Maschio");
         professore3.setUsername("SriLankas");

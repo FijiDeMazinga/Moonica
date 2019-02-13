@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -56,8 +57,9 @@ public class ThreadRVAdapter extends RecyclerView.Adapter<ThreadRVAdapter.ReplyH
             replyHolder.nomeAutoreCommento.setText(piuNomi.toString() + piuCognomi.toString());
         }
         replyHolder.testo.setText(cList.get(i).getTesto());
-        replyHolder.data.setText(cList.get(i).getData().getTime().toGMTString());
+        replyHolder.data.setText(cList.get(i).getData().getTime().toGMTString().substring(0, cList.get(i).getData().getTime().toGMTString().lastIndexOf(" ")));
         replyHolder.avatar.setImageResource(cList.get(i).getAutore().getAvatar());
+
     }
 
     @Override

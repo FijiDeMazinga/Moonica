@@ -6,15 +6,16 @@
     android:layout_marginBottom="12dp">
 
     <RelativeLayout
+        android:id="@+id/threadReply"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary">
 
         <RelativeLayout
-            android:id="@+id/userDetail"
+            android:id="@+id/userDetail_thread"
             android:layout_width="85dp"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
+            android:paddingVertical="5dp"
             android:gravity="center"
             android:paddingHorizontal="10dp">
 
@@ -31,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/avatarUser_thread"
                 android:layout_centerHorizontal="true"
+                android:gravity="center"
                 android:layout_marginVertical="3dp"
                 android:textColor="#FFFFFF"
                 android:textSize="12dp" />
@@ -38,16 +40,20 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/textDetail_thread"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/userDetail"
-            android:background="#FFFFFF">
+            android:layout_toRightOf="@+id/userDetail_thread"
+            android:background="#FFFFFF"
+            android:paddingVertical="18dp"
+            >
 
             <TextView
                 android:id="@+id/testoRisposta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp" />
+                android:paddingHorizontal="10dp"
+                />
 
             <TextView
                 android:id="@+id/dataRisposta"
@@ -55,7 +61,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/testoRisposta"
                 android:layout_alignParentRight="true"
-                android:padding="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="25dp"
                 android:textSize="12dp" />
         </RelativeLayout>
 
