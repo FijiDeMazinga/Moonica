@@ -16,6 +16,8 @@ import org.w3c.dom.Text;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ThreadRVAdapter extends RecyclerView.Adapter<ThreadRVAdapter.ReplyHolder> {
 
 
@@ -55,6 +57,7 @@ public class ThreadRVAdapter extends RecyclerView.Adapter<ThreadRVAdapter.ReplyH
         }
         replyHolder.testo.setText(cList.get(i).getTesto());
         replyHolder.data.setText(cList.get(i).getData().getTime().toGMTString());
+        replyHolder.avatar.setImageResource(cList.get(i).getAutore().getAvatar());
     }
 
     @Override
@@ -71,6 +74,7 @@ public class ThreadRVAdapter extends RecyclerView.Adapter<ThreadRVAdapter.ReplyH
 
         CardView cv;
         TextView nomeAutoreCommento, testo, data;
+        CircleImageView avatar;
 
         public ReplyHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,6 +83,7 @@ public class ThreadRVAdapter extends RecyclerView.Adapter<ThreadRVAdapter.ReplyH
             nomeAutoreCommento = (TextView)itemView.findViewById(R.id.nomeAutoreCommento);
             testo = (TextView)itemView.findViewById(R.id.testoRisposta);
             data = (TextView)itemView.findViewById(R.id.dataRisposta);
+            avatar = (CircleImageView)itemView.findViewById(R.id.avatarUser_thread);
         }
 
     }
