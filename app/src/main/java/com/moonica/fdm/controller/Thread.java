@@ -1,18 +1,22 @@
 package com.moonica.fdm.controller;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -35,6 +39,7 @@ import java.util.Calendar;
 
 public class Thread extends AppCompatActivity {
 
+    NestedScrollView ns;
     CardView cv;
     ForumThread ft;
     TextView titolo, testo, data, autore;
@@ -45,17 +50,30 @@ public class Thread extends AppCompatActivity {
     ArrayList<Commento> commentsList = new ArrayList<>();
     FactoryCommenti fc = FactoryCommenti.getInstance();
 
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thread);
 
+        /*
+         * Viene impostato il tasto per tornare alla activity precedente
+         */
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        /*
+         * Vengono presi i dati inviati dall'activity precedente
+         */
         Intent i = getIntent();
         Serializable obj = i.getSerializableExtra("com.moonica.fdm");
 
         ft = (ForumThread) obj;
 
+        /*
+         * Viene impostato il nome della pagina
+         */
         setTitle(ft.getCorso().getNome() + " / Thread");
 
         commentsList = fc.cercaListaCommenti(ft.getId());
@@ -63,7 +81,7 @@ public class Thread extends AppCompatActivity {
         /*
          * I dati del post principale del thread vengono caricati
          */
-
+        ns = findViewById(R.id.scrollView_thread);
         cv = findViewById(R.id.cardView_main_post);
         titolo = findViewById(R.id.titoloThread_main_post);
         testo = findViewById(R.id.testoThread_main_post);
@@ -95,6 +113,19 @@ public class Thread extends AppCompatActivity {
             }
         });
 
+
+        ns.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                /*if (ns.getChildAt(0).getBottom() == (ns.getHeight() + ns.getScrollY())){
+                    fab.setAlpha(0.25f);
+                    fab.setImageResource(R.drawable.plus);
+                }
+                if (ns.getChildAt(0).getBottom() != (ns.getHeight() + ns.getScrollY())){
+                    fab.setAlpha(1);
+                }*/
+            }
+        });
 
 
         /*cv.setOnScrollChangeListener(new View.OnScrollChangeListener() {
@@ -134,7 +165,17 @@ public class Thread extends AppCompatActivity {
                         newReply.setData(Calendar.getInstance());
                         newReply.setAutore(factoryUtente.cercaUtente("Ines"));
 
+                        FactoryCommenti factoryCommenti = FactoryCommenti.getInstance();
+
+                        factoryCommenti.aggiungiCommentoLista(newReply);
                         commentsList.add(newReply);
+
+                        /*
+                         * Quando aggiungo un commento al thread, devo aggiornare anche
+                         * il thread stesso per numero di risposte. Forse anche
+                         * aggiornare la data.
+                         */
+
 
                     }
                 })
@@ -142,6 +183,16 @@ public class Thread extends AppCompatActivity {
                 .create();
         dialog.show();
 
+    }
+
+
+    /*
+     * L'ovveride chiude l'activity presente in cima allo stack
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return true;
     }
 }
 
