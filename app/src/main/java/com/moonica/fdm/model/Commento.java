@@ -26,6 +26,10 @@ public class Commento {
         this.autore = factoryUtente.cercaUtente(nickAutore);
     }
 
+    public void setAutore(Utente u){
+        this.autore = u;
+    }
+
     public String getTesto() {
         return testo;
     }
@@ -40,6 +44,10 @@ public class Commento {
 
     public void setData(int y, int m, int d, int h, int min, int s) {
         this.data.set(y, m, d, h, min, s);
+    }
+
+    public void setData(Calendar c){
+        this.data = c;
     }
 
     public ForumThread getFt() {
