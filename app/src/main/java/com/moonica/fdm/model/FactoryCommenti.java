@@ -11,15 +11,15 @@ public class FactoryCommenti {
 
     private static FactoryCommenti singleton;
 
-    public static FactoryCommenti getInstance(){
-        if(singleton == null)
+    public static FactoryCommenti getInstance() {
+        if (singleton == null)
             singleton = new FactoryCommenti();
         return singleton;
     }
 
     private ArrayList<Commento> listaCommenti = new ArrayList<>();
 
-    private FactoryCommenti(){
+    private FactoryCommenti() {
 
         Commento c1 = new Commento();
         c1.setAutore("Cosino");
@@ -42,7 +42,7 @@ public class FactoryCommenti {
 
         Commento c4 = new Commento();
         c4.setAutore("Ines");
-        c4.setData(2017, 7,30, 22, 10, 22);
+        c4.setData(2017, 7, 30, 22, 10, 22);
         c4.setTesto("Gracias a ti professor");
         c4.setFt(1);
 
@@ -68,11 +68,11 @@ public class FactoryCommenti {
         listaCommenti.add(c6);
     }
 
-    public ArrayList<Commento> cercaListaCommenti(int id){
+    public ArrayList<Commento> cercaListaCommenti(int id) {
 
         ArrayList<Commento> commentiThread = new ArrayList<>();
 
-        for (Commento c : listaCommenti){
+        for (Commento c : listaCommenti) {
             if (c.getFt().getId() == id)
                 commentiThread.add(c);
         }
@@ -89,8 +89,21 @@ public class FactoryCommenti {
         return commentiThread;
     }
 
-    public ArrayList<Commento> aggiungiCommentoLista (Commento c){
+    public ArrayList<Commento> aggiungiCommentoLista(Commento c) {
         this.listaCommenti.add(c);
         return listaCommenti;
     }
+
+
+    public int numRisposteThread(int id) {
+
+        int numRisposte = 0;
+
+        for (Commento c : listaCommenti)
+            if (c.getFt().equals(id))
+                numRisposte++;
+        return numRisposte;
+    }
+
+
 }

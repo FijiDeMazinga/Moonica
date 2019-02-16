@@ -1,6 +1,7 @@
 package com.moonica.fdm.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
 
@@ -50,6 +51,10 @@ public class ForumThread implements Serializable {
 
     public void setNumRisposte(int numRisposte) {
         this.numRisposte = numRisposte;
+    }
+
+    public void setNumRisposte(FactoryCommenti factoryCommenti){
+        this.numRisposte = factoryCommenti.numRisposteThread(this.getId())+1;
     }
 
     public Utente getAutore() {

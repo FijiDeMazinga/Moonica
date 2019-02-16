@@ -1,5 +1,7 @@
 package com.moonica.fdm.model;
 
+import com.moonica.fdm.controller.Forum;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -96,5 +98,8 @@ public class FactoryForumThread {
             return null;
 
     }
-
+    public void aggiungiNumRisposte (int id){
+        ForumThread ft = cercaThread(id);
+        ft.setNumRisposte((ft.getNumRisposte())+1);
+    }
 }

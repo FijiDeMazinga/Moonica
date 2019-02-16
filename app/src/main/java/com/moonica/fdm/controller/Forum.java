@@ -76,6 +76,8 @@ public class Forum extends AppCompatActivity {
         ForumRVAdapter adapter = new ForumRVAdapter(listaForum);
         rv.setAdapter(adapter);
 
+
+
     }
 
     /*
@@ -83,12 +85,15 @@ public class Forum extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+
+        int id = item.getItemId();
+
+        switch (id) {
             /*
              * Per qualche motivo alla presione del tasto viene comunque eseguita il default.
              * Controllare.
              */
-            case R.menu.newthread:
+            case R.id.action_newThread:
                 Intent newThread = new Intent(Forum.this, NewThread.class);
                 newThread.putExtra(NEWTHREAD, c);
                 startActivity(newThread);
@@ -97,6 +102,13 @@ public class Forum extends AppCompatActivity {
                 finish();
         }
         return true;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        initializeAdapter();
     }
 }
 

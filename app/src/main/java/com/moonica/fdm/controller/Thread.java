@@ -17,6 +17,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -24,6 +26,7 @@ import android.widget.TextView;
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Commento;
 import com.moonica.fdm.model.FactoryCommenti;
+import com.moonica.fdm.model.FactoryForumThread;
 import com.moonica.fdm.model.FactoryUtente;
 import com.moonica.fdm.model.ForumThread;
 import com.moonica.fdm.model.ForumRVAdapter;
@@ -147,6 +150,7 @@ public class Thread extends AppCompatActivity {
 
         final EditText reply = new EditText(c);
 
+
         AlertDialog dialog = new AlertDialog.Builder(c)
                 .setTitle("Risposta")
                 .setMessage("Aggiungi una risposta")
@@ -166,14 +170,18 @@ public class Thread extends AppCompatActivity {
                         newReply.setAutore(factoryUtente.cercaUtente("Ines"));
 
                         FactoryCommenti factoryCommenti = FactoryCommenti.getInstance();
+                        FactoryForumThread factoryForumThread = FactoryForumThread.getInstance();
 
+                        factoryForumThread.aggiungiNumRisposte(ft.getId());
+                        ft.setNumRisposte(factoryCommenti);
                         factoryCommenti.aggiungiCommentoLista(newReply);
                         commentsList.add(newReply);
 
+                        ns.fullScroll(View.FOCUS_DOWN);
+
                         /*
                          * Quando aggiungo un commento al thread, devo aggiornare anche
-                         * il thread stesso per numero di risposte. Forse anche
-                         * aggiornare la data.
+                         * il thread stesso per numero di risposte.
                          */
 
 
@@ -181,6 +189,13 @@ public class Thread extends AppCompatActivity {
                 })
                 .setNegativeButton("Annulla", null)
                 .create();
+
+        /*
+         * Viene mostrata la tastiera per rispondere al thread
+         */
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+
         dialog.show();
 
     }
