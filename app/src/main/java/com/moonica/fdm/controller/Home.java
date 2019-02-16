@@ -3,8 +3,6 @@ package com.moonica.fdm.controller;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Dialog;
-import android.content.ClipData;
-import android.content.ClipDescription;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -14,29 +12,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.DragEvent;
-import android.view.Gravity;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.PopupMenu;
-import android.widget.RelativeLayout;
-import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Corso;
 import com.moonica.fdm.model.FactoryCorsi;
-import com.moonica.fdm.model.Gender;
 import com.moonica.fdm.model.HomeRVAAdapter;
+import com.moonica.fdm.model.ItemMoveCallback;
 import com.moonica.fdm.model.Professore;
 import com.moonica.fdm.model.Studente;
 import com.moonica.fdm.model.Utente;
@@ -57,7 +46,6 @@ public class Home extends AppCompatActivity {
     Dialog scelta;
 
     public static final String CORSO = "com.moonica.fdm";
-
 
     @SuppressLint({"ResourceType", "WrongViewCast"})
     @TargetApi(Build.VERSION_CODES.M)
@@ -106,10 +94,17 @@ public class Home extends AppCompatActivity {
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
 
+
         rv = findViewById(R.id.rvCorso);
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
+
         HomeRVAAdapter hra = new HomeRVAAdapter(lista, s);
+
+        ItemTouchHelper.Callback callback = new ItemMoveCallback(hra);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(rv);
+
         rv.setAdapter(hra);
     }
     @SuppressLint("ResourceType")

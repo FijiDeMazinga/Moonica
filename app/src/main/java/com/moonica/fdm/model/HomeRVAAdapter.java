@@ -2,6 +2,7 @@ package com.moonica.fdm.model;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
@@ -19,10 +20,36 @@ import com.moonica.fdm.controller.Corsi;
 import com.moonica.fdm.controller.Home;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static com.moonica.fdm.controller.Home.CORSO;
 
-public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoViewHolder> {
+public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoViewHolder> implements ItemMoveCallback.ItemTouchHelperContract{
+
+    ArrayList<Corso> lista = new ArrayList<Corso>();
+
+    public void onRowMoved(int fromPosition, int toPosition) {
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(lista, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(lista, i, i - 1);
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition);
+    }
+
+    @Override
+    public void onRowSelected(CorsoViewHolder myViewHolder) {
+
+    }
+
+    @Override
+    public void onRowClear(CorsoViewHolder myViewHolder) {
+
+    }
 
     public static class CorsoViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
@@ -39,7 +66,6 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
 
     }
     Studente studente = new Studente();
-    ArrayList<Corso> lista = new ArrayList<Corso>();
     public HomeRVAAdapter(ArrayList<Corso> lista, Studente s){
         this.studente = s;
         this.lista = lista;
