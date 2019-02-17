@@ -58,7 +58,7 @@ public class FactoryUtente {
         studente4.setSesso("Femmina");
         studente4.setUsername("Federica");
         studente4.setEmail("fzanda@outlook.com");
-        studente4.setPassword("commodore64");
+        studente4.setPassword("111");
         studente4.setFacolta("Scienze");
         studente4.setCorsoStudi("Informatica");
         studente4.aggiungiCorso(factoryCorsi.cercaCorso("Algoritmi e Strutture Dati 1"));

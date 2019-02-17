@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Sezione {
     private String titolo;
-    private String sottoTitolo;
+    //private String sottoTitolo;
     private String corso;
     private ArrayList<Contenuto> listaContenuti = new ArrayList<Contenuto>();
 
@@ -22,13 +22,13 @@ public class Sezione {
         this.titolo = nome;
     }
 
-    public String getSottoTitolo() {
+    /*public String getSottoTitolo() {
         return sottoTitolo;
-    }
+    }*/
 
-    public void setSottoTitolo(String sottoTitolo) {
+   /* public void setSottoTitolo(String sottoTitolo) {
         this.sottoTitolo = sottoTitolo;
-    }
+    }*/
 
     public String getCorso() {
         return corso;

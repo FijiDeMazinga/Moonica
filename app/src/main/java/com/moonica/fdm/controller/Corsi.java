@@ -71,9 +71,9 @@ public class Corsi extends AppCompatActivity {
         buttonForum.setText("Forum " + c.getSigla());
         buttonForum.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
         buttonForum.setPadding(30, 0, 30, 0);
-        buttonForum.setBackgroundResource(R.drawable.button_test);
+        //buttonForum.setBackgroundResource(R.drawable.button_test);
         buttonForum.setTextColor(0xffffffff);
-        //buttonForum.setBackgroundColor(0xff225599);
+        buttonForum.setBackgroundColor(0xff225599);
         buttonForum.setTextSize(16);
         buttonForum.setOnClickListener(new View.OnClickListener() {
             @Override

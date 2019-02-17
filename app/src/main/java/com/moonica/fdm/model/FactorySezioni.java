@@ -11,7 +11,7 @@ public class FactorySezioni {
     private FactorySezioni() {
         Sezione infoIUM = new Sezione();
         infoIUM.setTitolo("Interazione Uomo-Macchina");
-        infoIUM.setSottoTitolo("Informazioni generali sul corso");
+        //infoIUM.setSottoTitolo("Informazioni generali sul corso");
         infoIUM.setCorso("Interazione Uomo-Macchina");
         infoIUM.getContenuti().add(new Contenuto(R.drawable.icon_text,"Descrizione del corso"));
         infoIUM.getContenuti().add(new Contenuto(R.drawable.icon_pdf,"Calendario delle lezioni"));
@@ -19,14 +19,14 @@ public class FactorySezioni {
 
         Sezione introIUM = new Sezione();
         introIUM.setTitolo("Introduzione");
-        introIUM.setSottoTitolo("Presentazione del docente, regole del corso ecc.");
+        //introIUM.setSottoTitolo("Presentazione del docente, regole del corso ecc.");
         introIUM.setCorso("Interazione Uomo-Macchina");
         introIUM.getContenuti().add(new Contenuto(R.drawable.icon_pdf,"Slides.pdf"));
         listaSezioni.add(introIUM);
 
         Sezione compIUM  = new Sezione();
         compIUM.setTitolo("Il computer");
-        compIUM.setSottoTitolo("Breve storia dell'HCI e descrizione del computer dal punto di vista dell'interazione");
+        //compIUM.setSottoTitolo("Breve storia dell'HCI e descrizione del computer dal punto di vista dell'interazione");
         compIUM.setCorso("Interazione Uomo-Macchina");
         compIUM.getContenuti().add(new Contenuto(R.drawable.icon_pdf,"Slides.pdf"));
         listaSezioni.add(compIUM);

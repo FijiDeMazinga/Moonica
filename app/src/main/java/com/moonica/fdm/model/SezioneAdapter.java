@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneViewHolder> {
-    ArrayList<Sezione> lista = new ArrayList<>();
+    ArrayList<Sezione> lista = new ArrayList<Sezione>();
 
     public static class SezioneViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
@@ -27,8 +27,8 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
 
         public SezioneViewHolder (@NonNull final View itemView) {
             super(itemView);
-            cv.findViewById(R.id.card_view_sezioni);
-            titoloSezione.findViewById(R.id.titolo_sezione);
+            cv = itemView.findViewById(R.id.card_view_sezioni);
+            titoloSezione = itemView.findViewById(R.id.titolo_sezione);
         }
     }
 
@@ -39,9 +39,9 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
 
         public ContenutoViewHolder (@NonNull final View itemView) {
             super(itemView);
-            cv.findViewById(R.id.card_view_contenuti);
-            icona.findViewById(R.id.icona_contenuto);
-            testo.findViewById(R.id.testo_contenuto);
+            cv = itemView.findViewById(R.id.card_view_contenuti);
+            icona = itemView.findViewById(R.id.icona_contenuto);
+            testo = itemView.findViewById(R.id.testo_contenuto);
         }
     }
 
