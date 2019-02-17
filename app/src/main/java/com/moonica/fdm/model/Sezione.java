@@ -1,24 +1,33 @@
 package com.moonica.fdm.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Sezione {
-    private String nome;
+    private String titolo;
+    private String sottoTitolo;
     private String corso;
-    private ArrayList<String> contenuti = new ArrayList<String>();
+    private ArrayList<Contenuto> listaContenuti = new ArrayList<Contenuto>();
 
-    public Sezione(/*String nome, String corso, ArrayList<String> contenuti*/){
-        /*this.contenuti = contenuti;
-        this.corso = corso;
-        this.nome = nome;*/
+    public Sezione(){
+        //this.titolo = titolo;
+        //this.listaContenuti = listaContenuti;
     }
 
-    public String getNome() {
-        return nome;
+    public String getTitolo() {
+        return titolo;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setTitolo(String nome) {
+        this.titolo = nome;
+    }
+
+    public String getSottoTitolo() {
+        return sottoTitolo;
+    }
+
+    public void setSottoTitolo(String sottoTitolo) {
+        this.sottoTitolo = sottoTitolo;
     }
 
     public String getCorso() {
@@ -29,12 +38,12 @@ public class Sezione {
         this.corso = corso;
     }
 
-    public ArrayList<String> getContenuti() {
-        return contenuti;
+    public ArrayList<Contenuto> getContenuti() {
+        return listaContenuti;
     }
 
-    public void setContenuti(ArrayList<String> contenuti) {
-        this.contenuti = contenuti;
+    public void setContenuti(ArrayList<Contenuto> contenuti) {
+        this.listaContenuti = contenuti;
     }
 
     public void aggiungiContenuto() {

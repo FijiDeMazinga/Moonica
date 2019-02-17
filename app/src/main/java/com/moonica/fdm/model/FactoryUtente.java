@@ -1,7 +1,5 @@
 package com.moonica.fdm.model;
 
-import android.widget.ImageView;
-
 import com.moonica.fdm.R;
 
 import java.util.ArrayList;
@@ -23,7 +21,7 @@ public class FactoryUtente {
         studente1.setPassword("111");
         studente1.setFacolta("Ingegneria e Architettura");
         studente1.setCorsoStudi("Ingegneria Biomedica");
-        studente1.setAvatar(R.drawable.ines);
+        studente1.setAvatar(R.drawable.avatar_ines);
         studente1.aggiungiCorso(factoryCorsi.cercaCorso("Biomateriali"));
         studente1.aggiungiCorso(factoryCorsi.cercaCorso("Anatomia"));
         studente1.aggiungiCorso(factoryCorsi.cercaCorso("Chimica"));
@@ -49,7 +47,7 @@ public class FactoryUtente {
         studente3.setPassword("111");
         studente3.setFacolta("Medicina e Chirurgia");
         studente3.setCorsoStudi("Medicina e Chirurgia");
-        studente3.setAvatar(R.drawable.cosino);
+        studente3.setAvatar(R.drawable.avatar_cosino);
         studente3.aggiungiCorso(factoryCorsi.cercaCorso("Fisiologia"));
         studente3.aggiungiCorso(factoryCorsi.cercaCorso("Anatomia Patologica"));
         studente3.aggiungiCorso(factoryCorsi.cercaCorso("Oncologia"));
@@ -99,7 +97,7 @@ public class FactoryUtente {
         professore3.setPassword("Brasil3");
         professore3.setFacolta("Ingegneria e Architettura");
         professore3.setCorsoStudi("Ingegneria Biomedica");
-        professore3.setAvatar(R.drawable.prof3);
+        professore3.setAvatar(R.drawable.avatar_prof3);
         professore3.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Anatomia"));
 
         listaUtenti.add(studente1);

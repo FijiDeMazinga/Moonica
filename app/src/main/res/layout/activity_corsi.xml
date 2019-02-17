@@ -31,12 +31,12 @@
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="25dp" />
-            <LinearLayout
+            <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:id="@+id/sezioni">
-            </LinearLayout>
+                android:id="@+id/rvSezione">
+            </android.support.v7.widget.RecyclerView>
         </LinearLayout>
     </ScrollView>
 

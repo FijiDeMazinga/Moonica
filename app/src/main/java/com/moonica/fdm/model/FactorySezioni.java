@@ -1,5 +1,7 @@
 package com.moonica.fdm.model;
 
+import com.moonica.fdm.R;
+
 import java.util.ArrayList;
 
 public class FactorySezioni {
@@ -8,24 +10,25 @@ public class FactorySezioni {
 
     private FactorySezioni() {
         Sezione infoIUM = new Sezione();
-        infoIUM.setNome("Interazione Uomo-Macchina");
+        infoIUM.setTitolo("Interazione Uomo-Macchina");
+        infoIUM.setSottoTitolo("Informazioni generali sul corso");
         infoIUM.setCorso("Interazione Uomo-Macchina");
-        infoIUM.getContenuti().add("Descrizione del corso");
-        infoIUM.getContenuti().add("Calendario delle lezioni");
+        infoIUM.getContenuti().add(new Contenuto(R.drawable.icon_text,"Descrizione del corso"));
+        infoIUM.getContenuti().add(new Contenuto(R.drawable.icon_pdf,"Calendario delle lezioni"));
         listaSezioni.add(infoIUM);
 
         Sezione introIUM = new Sezione();
-        introIUM.setNome("Introduzione");
+        introIUM.setTitolo("Introduzione");
+        introIUM.setSottoTitolo("Presentazione del docente, regole del corso ecc.");
         introIUM.setCorso("Interazione Uomo-Macchina");
-        introIUM.getContenuti().add("Presentazione del docente, regole del corso ecc.");
-        introIUM.getContenuti().add("Slides.pdf");
+        introIUM.getContenuti().add(new Contenuto(R.drawable.icon_pdf,"Slides.pdf"));
         listaSezioni.add(introIUM);
 
         Sezione compIUM  = new Sezione();
-        compIUM.setNome("Il computer");
+        compIUM.setTitolo("Il computer");
+        compIUM.setSottoTitolo("Breve storia dell'HCI e descrizione del computer dal punto di vista dell'interazione");
         compIUM.setCorso("Interazione Uomo-Macchina");
-        compIUM.getContenuti().add("Breve storia dell'HCI e descrizione del computer dal punto di vista dell'interazione");
-        compIUM.getContenuti().add("Slides.pdf");
+        compIUM.getContenuti().add(new Contenuto(R.drawable.icon_pdf,"Slides.pdf"));
         listaSezioni.add(compIUM);
     }
 
@@ -53,7 +56,7 @@ public class FactorySezioni {
 
     public Sezione cercaSezione(String nome) {
         for (Sezione sezione : listaSezioni)
-            if (sezione.getNome().equals(nome))
+            if (sezione.getTitolo().equals(nome))
                 return sezione;
 
         return null;
