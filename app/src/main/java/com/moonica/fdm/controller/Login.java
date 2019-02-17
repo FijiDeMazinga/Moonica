@@ -1,9 +1,12 @@
 package com.moonica.fdm.controller;
 
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,6 +20,7 @@ public class Login extends AppCompatActivity {
     Button login;
     TextView registrati, loginError;
     Utente u = new Utente();
+    TextInputLayout user, pass;
 
     public static final String USER = "com.moonica.fdm";
 
@@ -31,6 +35,8 @@ public class Login extends AppCompatActivity {
         registrati = (TextView) findViewById(R.id.registrati);
         login = findViewById(R.id.login);
         loginError = findViewById(R.id.loginError);
+        user = findViewById(R.id.textUser);
+        pass = findViewById(R.id.textPass);
 
         //listener per il pulsante di login
         login.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +54,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
+
         //listener per il pulsante di registrazione
         registrati.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,15 +67,18 @@ public class Login extends AppCompatActivity {
     //funzione che stampa messaggi di errore se non vengono riempiti i campi
     public boolean check(){
         int errors = 0;
+        Animation animation = AnimationUtils.loadAnimation(getBaseContext(), R.anim.shake_error);
 
         if(username.getText() == null || username.getText().length() == 0){
             username.setError("Inserire username");
+            user.startAnimation(animation);
             errors++;
         }
         else
             username.setError(null);
         if(password.getText() == null || password.getText().length() == 0){
             password.setError("Inserire password");
+            pass.startAnimation(animation);
             errors++;
         }
         else

@@ -21,11 +21,8 @@ public class ItemMoveCallback extends ItemTouchHelper.Callback {
         return false;
     }
 
-
-
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-
     }
 
     @Override
@@ -35,8 +32,7 @@ public class ItemMoveCallback extends ItemTouchHelper.Callback {
     }
 
     @Override
-    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
-                          RecyclerView.ViewHolder target) {
+    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target){
         mAdapter.onRowMoved(viewHolder.getAdapterPosition(), target.getAdapterPosition());
         return true;
     }

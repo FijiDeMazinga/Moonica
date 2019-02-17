@@ -164,12 +164,54 @@ public class FactoryCorsi {
         ium.setSigla("IUM");
         ium.setSezioni(null);
 
+        Corso dm = new Corso();
+        dm.setFacolta("Informatica");
+        dm.setNome("Dati e Modelli");
+        dm.setSigla("DM");
+
+        Corso vgd = new Corso();
+        vgd.setFacolta("Informatica");
+        vgd.setNome("Videogame Design");
+        vgd.setSigla("VGD");
+
+        Corso fms = new Corso();
+        fms.setFacolta("Informatica");
+        fms.setNome("Fisica e Metodo Scientifico");
+        fms.setSigla("FMS");
+
+        Corso md = new Corso();
+        md.setFacolta("Informatica");
+        md.setNome("Matematica Discreta");
+        md.setSigla("MD");
+
+        Corso alf = new Corso();
+        alf.setFacolta("Informatica");
+        alf.setNome("Automi e Linguaggi Formali");
+        alf.setSigla("ALF");
+
+        Corso edi = new Corso();
+        edi.setFacolta("Informatica");
+        edi.setNome("Elementi di Economia e Diritto per Informatici");
+        edi.setSigla("EDI");
+
+        corsiInf.add(edi);
+        corsiInf.add(alf);
+        corsiInf.add(md);
+        corsiInf.add(vgd);
+        corsiInf.add(fms);
         corsiInf.add(ium);
         corsiInf.add(pr1);
         corsiInf.add(pr2);
         corsiInf.add(so1);
         corsiInf.add(asd1);
+        corsiInf.add(dm);
 
+        tuttiCorsi.add(edi);
+        tuttiCorsi.add(alf);
+        tuttiCorsi.add(md);
+        tuttiCorsi.add(fms);
+        tuttiCorsi.add(vgd);
+        tuttiCorsi.add(dm);
         tuttiCorsi.add(ium);
         tuttiCorsi.add(pr1);
         tuttiCorsi.add(pr2);

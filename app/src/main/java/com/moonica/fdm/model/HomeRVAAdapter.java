@@ -61,9 +61,7 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
             cv = itemView.findViewById(R.id.card_view_corsi);
             nomeCorso = itemView.findViewById(R.id.nomeCorso);
             ib = itemView.findViewById(R.id.ibCorso);
-
         }
-
     }
     Studente studente = new Studente();
     public HomeRVAAdapter(ArrayList<Corso> lista, Studente s){
@@ -95,7 +93,7 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
             public void onClick(View v) {
                 PopupMenu popupMenu =  new PopupMenu(corsoViewHolder.itemView.getContext(), corsoViewHolder.ib);
                 Menu menu = popupMenu.getMenu();
-                menu.add(0,0,0, "Elimina corso");
+                menu.add(0,0,0, "Disiscriviti dal corso");
 
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
@@ -118,7 +116,7 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
         corsoViewHolder.cv.setCardBackgroundColor(0xff225599);
         corsoViewHolder.nomeCorso.setTextColor(0xffffffff);
         corsoViewHolder.nomeCorso.setTextSize(18);
-        corsoViewHolder.nomeCorso.setOnClickListener(new View.OnClickListener() {
+        corsoViewHolder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(corsoViewHolder.itemView.getContext(), Corsi.class);
