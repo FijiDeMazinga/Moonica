@@ -1,6 +1,5 @@
 package com.moonica.fdm.controller;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,13 +13,14 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.moonica.fdm.R;
@@ -29,12 +29,8 @@ import com.moonica.fdm.model.FactoryCommenti;
 import com.moonica.fdm.model.FactoryForumThread;
 import com.moonica.fdm.model.FactoryUtente;
 import com.moonica.fdm.model.ForumThread;
-import com.moonica.fdm.model.ForumRVAdapter;
 import com.moonica.fdm.model.ThreadRVAdapter;
 
-import org.w3c.dom.Comment;
-
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -54,6 +50,9 @@ public class Thread extends AppCompatActivity {
     FactoryCommenti fc = FactoryCommenti.getInstance();
 
 
+    int IMAGE_PICKER_SELECT = 0;
+
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +68,7 @@ public class Thread extends AppCompatActivity {
         /*
          * Vengono presi i dati inviati dall'activity precedente
          */
-        Intent i = getIntent();
+        final Intent i = getIntent();
         Serializable obj = i.getSerializableExtra("com.moonica.fdm");
 
         ft = (ForumThread) obj;
@@ -138,6 +137,37 @@ public class Thread extends AppCompatActivity {
             }
         });*/
 
+
+        if (ns != null){
+
+            ns.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+                @Override
+                public void onScrollChanged() {
+                    if (ns.getChildAt(0).getBottom()
+                        <= (ns.getHeight() + ns.getScrollY())){
+                        fab.setAlpha(0.25f);
+                    }
+                    if (ns.getChildAt(0).getBottom()
+                    > (ns.getHeight() + ns.getScrollY())){
+                        fab.setAlpha(0.99f);
+                    }
+                }
+            });
+
+
+            /*ns.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+                @Override
+                public void onScrollChange(NestedScrollView nestedScrollView, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+
+                    if (scrollY == (nestedScrollView.getMeasuredHeight() - nestedScrollView.getChildAt(0).getMeasuredHeight())){
+                        finish();
+                    }
+                }
+            })*/;
+        }
+
+
+
     }
 
     private void initializeAdapter() {
@@ -149,6 +179,7 @@ public class Thread extends AppCompatActivity {
     private void addReply(Context c) {
 
         final EditText reply = new EditText(c);
+        final Button buttonPick = new Button(c);
 
 
         AlertDialog dialog = new AlertDialog.Builder(c)
@@ -193,8 +224,22 @@ public class Thread extends AppCompatActivity {
         /*
          * Viene mostrata la tastiera per rispondere al thread
          */
+
+
+
         dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+
+
+
+        /*dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+
+            }
+        });*/
+
+
 
         dialog.show();
 
@@ -209,6 +254,7 @@ public class Thread extends AppCompatActivity {
         finish();
         return true;
     }
+
 }
 
 
