@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -143,13 +145,16 @@ public class SceltaFacolta extends AppCompatActivity implements AdapterView.OnIt
     }
     //funzione che controlla che i campi siano riempiti
     public boolean check(){
+        Animation animation = AnimationUtils.loadAnimation(getBaseContext(), R.anim.shake_error);
         int errors = 0;
         if(facolta.getSelectedItem().toString().equals("Facoltà")) {
             SetError("Inserire facoltà", facolta, (TextView) findViewById(R.id.invisibleErrorF));
+            facolta.startAnimation(animation);
             errors++;
         }
         if(corsoDiStudi.getSelectedItem().toString().equals("Corso")) {
             SetError("Inserire corso di studi", corsoDiStudi, (TextView) findViewById(R.id.invisibleErrorC));
+            corsoDiStudi.startAnimation(animation);
             errors++;
         }
         if(errors == 0)

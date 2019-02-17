@@ -1,9 +1,12 @@
 package com.moonica.fdm.controller;
 
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,6 +26,7 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
 
     EditText nome, cognome, username, password, mail;
     Spinner gender;
+    TextInputLayout rNome, rCognome, rUser, rPass, rMail;
 
     public static final String USER = "com.moonica.fdm";
 
@@ -99,38 +103,50 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         mail = findViewById(R.id.mail);
         gender = findViewById(R.id.gender);
 
+        rNome = findViewById(R.id.rNome);
+        rCognome = findViewById(R.id.rCognome);
+        rUser = findViewById(R.id.rUser);
+        rMail = findViewById(R.id.rMail);
+        rPass = findViewById(R.id.rPass);
     }
 
     //funzione per controllare che i campi non siano vuoti
     public boolean check(){
+        Animation animation = AnimationUtils.loadAnimation(getBaseContext(), R.anim.shake_error);
         int errors = 0;
         if(username.getText() == null || username.getText().length() == 0){
             username.setError("Inserire username");
+            rUser.startAnimation(animation);
             errors++;
         }
         else  password.setError(null);
         if(password.getText() == null || password.getText().length() == 0){
             password.setError("Inserire password");
+            rPass.startAnimation(animation);
             errors++;
         }
         else  password.setError(null);
         if(nome.getText() == null || nome.getText().length() == 0){
             nome.setError("Inserire nome");
+            rNome.startAnimation(animation);
             errors++;
         }
         else  nome.setError(null);
         if(cognome.getText() == null || cognome.getText().length() == 0){
             cognome.setError("Inserire cognome");
+            rCognome.startAnimation(animation);
             errors++;
         }
         else  cognome.setError(null);
         if(mail.getText() == null || mail.getText().length() == 0){
             mail.setError("Inserire mail");
+            rMail.startAnimation(animation);
             errors++;
         }
         else  mail.setError(null);
         if(gender.getSelectedItem().toString().equals("Sesso")) {
             SetError("Inserire sesso", gender, (TextView) findViewById(R.id.invisibleError));
+            gender.startAnimation(animation);
             errors++;
         }
 

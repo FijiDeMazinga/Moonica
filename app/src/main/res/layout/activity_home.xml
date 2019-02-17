@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".controller.Home">
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -24,7 +24,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/welcome"
                 android:textSize="25dp"
-                android:textColor="#225599"/>
+                android:textColor="#225599"
+                android:textStyle="bold"/>
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="25dp" />
@@ -43,8 +44,9 @@
                 android:tint="#225599"
                 android:onClick="ShowPopup"
                 android:layout_marginTop="16dp"/>
-
-
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
         </LinearLayout>
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 </android.support.constraint.ConstraintLayout>

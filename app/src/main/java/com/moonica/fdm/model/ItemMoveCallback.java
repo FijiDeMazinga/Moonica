@@ -21,11 +21,8 @@ public class ItemMoveCallback extends ItemTouchHelper.Callback {
         return false;
     }
 
-
-
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-
     }
 
     @Override
@@ -35,31 +32,24 @@ public class ItemMoveCallback extends ItemTouchHelper.Callback {
     }
 
     @Override
-    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
-                          RecyclerView.ViewHolder target) {
+    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target){
         mAdapter.onRowMoved(viewHolder.getAdapterPosition(), target.getAdapterPosition());
         return true;
     }
 
     @Override
-    public void onSelectedChanged(RecyclerView.ViewHolder viewHolder,
-                                  int actionState) {
-
-
+    public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
         if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
             if (viewHolder instanceof HomeRVAAdapter.CorsoViewHolder) {
-                HomeRVAAdapter.CorsoViewHolder myViewHolder=
-                        (HomeRVAAdapter.CorsoViewHolder) viewHolder;
+                HomeRVAAdapter.CorsoViewHolder myViewHolder = (HomeRVAAdapter.CorsoViewHolder) viewHolder;
                 mAdapter.onRowSelected(myViewHolder);
             }
-
         }
 
         super.onSelectedChanged(viewHolder, actionState);
     }
     @Override
-    public void clearView(RecyclerView recyclerView,
-                          RecyclerView.ViewHolder viewHolder) {
+    public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         super.clearView(recyclerView, viewHolder);
 
         if (viewHolder instanceof HomeRVAAdapter.CorsoViewHolder) {
