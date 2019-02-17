@@ -122,7 +122,12 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(corsoViewHolder.itemView.getContext(), Corsi.class);
-                intent.putExtra(CORSO, lista.get(i));
+                FactoryCorsi fc = FactoryCorsi.getInstance();
+                String name = corsoViewHolder.nomeCorso.getText().toString();
+                name = name.substring(name.lastIndexOf("] ") + 1);
+                name = name.substring(1);
+                Corso corso = fc.cercaCorso(name);
+                intent.putExtra(CORSO, corso);
                 corsoViewHolder.itemView.getContext().startActivity(intent);
             }
         });
@@ -132,6 +137,7 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
     public int getItemCount() {
         return lista.size();
     }
+
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
