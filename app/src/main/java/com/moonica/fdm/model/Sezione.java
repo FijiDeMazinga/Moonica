@@ -10,8 +10,8 @@ public class Sezione {
     private ArrayList<Contenuto> listaContenuti = new ArrayList<Contenuto>();
 
     public Sezione(){
-        //this.titolo = titolo;
-        //this.listaContenuti = listaContenuti;
+        this.titolo = ("");
+        this.listaContenuti = getContenuti();
     }
 
     public String getTitolo() {

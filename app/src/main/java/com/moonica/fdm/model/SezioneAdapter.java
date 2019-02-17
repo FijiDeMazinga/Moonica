@@ -1,5 +1,6 @@
 package com.moonica.fdm.model;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
@@ -11,15 +12,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.moonica.fdm.R;
+import com.moonica.fdm.controller.Forum;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.moonica.fdm.controller.Corsi.FORUM;
+
 public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneViewHolder> {
     ArrayList<Sezione> lista = new ArrayList<Sezione>();
+    FactoryCorsi factoryCorsi = FactoryCorsi.getInstance();
+
+    public static class ForumViewHolder extends RecyclerView.ViewHolder {
+        CardView cv;
+        TextView titoloForum;
+
+        public ForumViewHolder (@NonNull final View itemView) {
+            super(itemView);
+            cv = itemView.findViewById(R.id.card_view_sezioni);
+            titoloForum = itemView.findViewById(R.id.titolo_sezione);
+        }
+    }
 
     public static class SezioneViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
@@ -46,7 +64,7 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
     }
 
     public SezioneAdapter(ArrayList<Sezione> lista){
-        this.lista =  lista;
+        this.lista = lista;
     }
 
     @Override
@@ -66,10 +84,23 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
         sezioneViewHolder.cv.setMinimumHeight(50);
         sezioneViewHolder.cv.setRadius(20.1f);
         sezioneViewHolder.titoloSezione.setText(lista.get(i).getTitolo());
-        sezioneViewHolder.titoloSezione.setPadding(0, 25, 0, 0);
+        sezioneViewHolder.titoloSezione.setPadding(0, 25, 0, 25);
         sezioneViewHolder.cv.setBackgroundColor(0xff225599);
         sezioneViewHolder.titoloSezione.setTextColor(0xffffffff);
         sezioneViewHolder.titoloSezione.setTextSize(18);
+        if (i == 0) {
+            sezioneViewHolder.cv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent2 = new Intent(sezioneViewHolder.itemView.getContext(), Forum.class);
+                    intent2.putExtra(FORUM, factoryCorsi.cercaCorso(lista.get(i).getCorso()));
+                    sezioneViewHolder.itemView.getContext().startActivity(intent2);
+                }
+            });
+        }
+        else {
+            //qua ci dovrebbe andare la vista ad espansione
+        }
     }
 
     @Override

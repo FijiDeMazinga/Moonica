@@ -31,6 +31,28 @@
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="25dp" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/forumCardView"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="10dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tastoForum"
+                    android:background="#ff225599">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
+                        android:id="@+id/testoForum"
+                        android:text="Forum"
+                        android:textSize="16dp"/>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
