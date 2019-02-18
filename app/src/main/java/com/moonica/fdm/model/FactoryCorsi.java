@@ -225,19 +225,25 @@ public class FactoryCorsi {
 
         switch (nomeFacolta){
             case "Informatica":
-                return corsiInf;
+                listaCorsi.addAll(corsiInf);
+                break;
             case "Chimica e Tecnologie Farmaceutiche":
-                return ctf;
+                listaCorsi.addAll(ctf);
+                break;
             case "Medicina e chirurgia":
-                return med;
+                listaCorsi.addAll(med);
+                break;
             case "Scienze Politiche":
-                return scienzePol;
+                listaCorsi.addAll(scienzePol);
+                break;
             case "Ingegneria Biomedica":
-                return corsiIng;
+                listaCorsi.addAll(corsiIng);
+                break;
             case "Lettere":
-                return corsiLettere;
+                listaCorsi.addAll(corsiLettere);
+                break;
         }
-        return null;
+        return listaCorsi;
     }
 
 

@@ -66,4 +66,5 @@ public class Corso implements Serializable {
     public void setProfessore(Professore professore) {
         this.professore = professore;
     }
+
 }

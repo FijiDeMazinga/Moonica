@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,7 +44,6 @@ public class Home extends AppCompatActivity {
     Professore p;
     Studente s;
     String username, benvenuto;
-    //LinearLayout l;
     RecyclerView rv;
     ArrayList<Corso> lista = new ArrayList<Corso>();
     FactoryCorsi fc = FactoryCorsi.getInstance();
@@ -120,12 +120,14 @@ public class Home extends AppCompatActivity {
         View view =  f.inflate(R.layout.activity_aggiungi_corso, null);//richiama l'activity_aggiungi_corso
 
         //dichiarazione gridlayout(da sistemare graficamente)
-        final GridLayout gridLayout = (GridLayout) view.findViewById(R.id.griglia);
+        final LinearLayout gridLayout = (LinearLayout) view.findViewById(R.id.griglia);
 
         //se il corso di studi dell'utente esiste
         if(s.getCorsoStudi() != null) {
             //prendo i corsi della facoltà a cui è iscritto l'utente
-            ArrayList<Corso> listaNuovi = fc.listaCorsiFacolta(s.getCorsoStudi().getNome());
+
+            ArrayList<Corso> listaNuovi = new ArrayList<Corso>();
+            listaNuovi = fc.listaCorsiFacolta(s.getCorsoStudi().getNome());
             //rimuovo quelli a cui è già iscritto
             listaNuovi.removeAll(s.getCorsi());
             FactoryCorsi fc = FactoryCorsi.getInstance();
@@ -134,7 +136,6 @@ public class Home extends AppCompatActivity {
             aggiungi = new TextView(this);
             aggiungi.setText("Aggiungi un corso");
             aggiungi.setTextColor(0xff225599);
-            aggiungi.setBackgroundColor(0xffeeeeee);
             aggiungi.setGravity(Gravity.CENTER_HORIZONTAL);
             aggiungi.setMinWidth(900);
             gridLayout.addView(aggiungi);
@@ -145,10 +146,10 @@ public class Home extends AppCompatActivity {
                 final Button b = new Button(this);
                 //settaggio parametri bottone
                 b.setText(c.getNome());
-                b.setBackgroundColor(0xffeeeeee);
+                b.setBackgroundColor(0xff225599);
                 b.setGravity(Gravity.CENTER_HORIZONTAL);
                 b.setMinimumWidth(900);
-                b.setTextColor(0xff225599);
+                b.setTextColor(0xffeeeeee);
                 //dichiarazione di cosa succede cliccando il bottone
                 b.setOnClickListener(new View.OnClickListener() {
                     @Override

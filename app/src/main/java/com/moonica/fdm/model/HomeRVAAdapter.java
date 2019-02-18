@@ -90,10 +90,6 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
             corsoViewHolder.nomeCorso.setText("[" + lista.get(i).getSigla() + "] " + lista.get(i).getNome());
         else
             corsoViewHolder.nomeCorso.setText("[" + lista.get(i).getSigla() + "] " + lista.get(i).getNome().substring(0, 20) + "...");
-        if(lista.get(i).getNome().length() <= 20)
-            corsoViewHolder.nomeCorso.setText("[" + lista.get(i).getSigla() + "] " + lista.get(i).getNome());
-        else
-            corsoViewHolder.nomeCorso.setText("[" + lista.get(i).getSigla() + "] " + lista.get(i).getNome().substring(0, 20) + "...");
         corsoViewHolder.nomeCorso.setPadding(0, 25,0,0);
         corsoViewHolder.ib.setImageResource(R.drawable.ic_more_vert_black_24dp);
         corsoViewHolder.ib.setBackgroundColor(0xff225599);
@@ -132,9 +128,6 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
 
                 FactoryCorsi fc = FactoryCorsi.getInstance();
                 String name = corsoViewHolder.nomeCorso.getText().toString();
-                name = name.substring(name.lastIndexOf("] ") + 1);
-                name = name.substring(1);
-                Corso corso = fc.cercaCorso(name);
 
                 name = name.substring(name.indexOf("[") + 1);
                 name = name.substring(0, name.indexOf("]"));

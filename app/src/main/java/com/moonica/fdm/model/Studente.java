@@ -38,8 +38,8 @@ public class Studente extends Utente implements Serializable {
 
     public void rimuoviCorso (Corso corsoDaRimuovere) {
         for (Corso corso : corsi) {
-            if (corso.getNome().equals(corsoDaRimuovere.getNome())) {
-                this.corsi.remove(corso);
+            if (corso.equals(corsoDaRimuovere)) {
+                corsi.remove(corso);
                 break;
             }
         }
