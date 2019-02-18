@@ -1,28 +1,18 @@
 package com.moonica.fdm.model;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.transition.TransitionManager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.moonica.fdm.R;
-import com.moonica.fdm.controller.Forum;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
-
-import static com.moonica.fdm.controller.Corsi.FORUM;
 
 public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneViewHolder> {
     int position;
@@ -33,17 +23,18 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
     public static class SezioneViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
         TextView titoloSezione;
-        CardView figlio;
+        LinearLayout llFiglio;
 
         public SezioneViewHolder (@NonNull final View itemView) {
             super(itemView);
             cv = itemView.findViewById(R.id.card_view_sezioni);
             titoloSezione = itemView.findViewById(R.id.titolo_sezione);
-            //figlio = new ContenutoViewHolder()
+            llFiglio = itemView.findViewById(R.id.llContenuto);
         }
     }
 
-    public static class ContenutoViewHolder extends RecyclerView.ViewHolder {
+    /*
+    public static class ContenutoViewHolder extends View {
         CardView cv;
         ImageView icona;
         TextView testo;
@@ -54,7 +45,7 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
             icona = itemView.findViewById(R.id.icona_contenuto);
             testo = itemView.findViewById(R.id.testo_contenuto);
         }
-    }
+    }*/
 
     public SezioneAdapter(ArrayList<Sezione> lista, Utente utente){
         this.lista = lista;
@@ -63,7 +54,10 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
     @Override
     public SezioneViewHolder onCreateViewHolder(ViewGroup group, int i){
         View v = LayoutInflater.from(group.getContext()).inflate(R.layout.activity_item_sezione, group, false);
+        //View child = LayoutInflater.from(group.getContext()).inflate(R.layout.activity_item_contenuto, group, false);
         SezioneViewHolder svh = new SezioneViewHolder(v);
+        //ContenutoViewHolder cvh = new ContenutoViewHolder(child);
+        //svh.figlio = cvh;
         /*int intMaxNoOfChild = 0;
         for (int index = 0; index < lista.size(); index++) {
             int intMaxSizeTemp = lista.get(index).getContenuti().size();
@@ -74,19 +68,31 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
 
     //aggiungere onCreateViewHolder per ContenutoViewHolder
 
+
     @Override
     public void onBindViewHolder(@NonNull final SezioneViewHolder sezioneViewHolder, final int i){
         sezioneViewHolder.cv.setMinimumHeight(50);
-        sezioneViewHolder.cv.setRadius(20.f);
+        sezioneViewHolder.cv.setRadius(20.1f);
         sezioneViewHolder.titoloSezione.setText(lista.get(i).getTitolo());
         sezioneViewHolder.titoloSezione.setPadding(0, 25, 0, 25);
-        sezioneViewHolder.cv.setBackgroundColor(0xff225599);
+        sezioneViewHolder.cv.setCardBackgroundColor(0xff225599);
         sezioneViewHolder.titoloSezione.setTextColor(0xffffffff);
         sezioneViewHolder.titoloSezione.setTextSize(18);
+        for (int j=0 ; j<lista.get(i).getContenuti().size(); j++) {
+            ImageView icona = new ImageView(OttieniContesto.getAppContext());
+            icona.setImageResource(lista.get(i).getContenuti().get(j).getIdIcona());
+            TextView testo = new TextView(OttieniContesto.getAppContext());
+            testo.setText(lista.get(i).getContenuti().get(j).getTesto());
+            icona.setLayoutParams(new LinearLayout.LayoutParams(100, 100));
+            testo.setTextColor(0xffffffff);
+            testo.setTextSize(18);
+            sezioneViewHolder.llFiglio.addView(icona);
+            sezioneViewHolder.llFiglio.addView(testo);
+        }
 
         /*
         final boolean isExpanded = position == mExpandedPosition;
-        sezioneViewHolder.details.setVisibility(isExpanded?View.VISIBLE:View.GONE);
+        //sezioneViewHolder.figlio.setVisibility(isExpanded?View.VISIBLE:View.GONE);
         sezioneViewHolder.itemView.setActivated(isExpanded);
         sezioneViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

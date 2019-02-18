@@ -14,5 +14,13 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="16dp"
             android:id="@+id/titolo_sezione"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/llContenuto">
+        </LinearLayout>
+
     </RelativeLayout>
 </android.support.v7.widget.CardView>
