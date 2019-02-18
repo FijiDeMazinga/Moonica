@@ -31,27 +31,26 @@ public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumThr
     @Override
     public void onBindViewHolder(@NonNull final ForumThreadHolder forumThreadHolder, final int i) {
 
-        if (i%2 != 0) {
+        if (i % 2 != 0) {
             forumThreadHolder.cv.setCardBackgroundColor(Color.parseColor("#f5f5f5"));
-        }
-        else
+        } else
             forumThreadHolder.rv.setBackgroundColor(Color.parseColor("#1e4c89"));
         if (ftList.get(i).getTitolo().length() < 43)
             forumThreadHolder.titolo.setText(ftList.get(i).getTitolo());
         else
-            forumThreadHolder.titolo.setText(ftList.get(i).getTitolo().substring(0,42) + "...");
+            forumThreadHolder.titolo.setText(ftList.get(i).getTitolo().substring(0, 42) + "...");
         forumThreadHolder.numR.setText(ftList.get(i).getNumRisposte() + " risposte");
         forumThreadHolder.data.setText(getElapsedDaysText(ftList.get(i).getData(), Calendar.getInstance()));
         forumThreadHolder.autore.setText(" da " + ftList.get(i).getAutore().getNome() + " " + ftList.get(i).getAutore().getCognome());
 
 
-        forumThreadHolder.cv.setOnClickListener(new View.OnClickListener(){
+        forumThreadHolder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //itemView.getContext().startActivity(new Intent(itemView.getContext(), com.moonica.fdm.controller.Thread.class));
-                    Intent thread = new Intent(forumThreadHolder.cv.getContext(), com.moonica.fdm.controller.Thread.class);
-                    thread.putExtra(THREAD, ftList.get(i));
-                    forumThreadHolder.cv.getContext().startActivity(thread);
+                Intent thread = new Intent(forumThreadHolder.cv.getContext(), com.moonica.fdm.controller.Thread.class);
+                thread.putExtra(THREAD, ftList.get(i));
+                forumThreadHolder.cv.getContext().startActivity(thread);
             }
         });
     }
@@ -66,7 +65,7 @@ public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumThr
         super.onAttachedToRecyclerView(recyclerView);
     }
 
-    public static class ForumThreadHolder extends RecyclerView.ViewHolder {
+    static class ForumThreadHolder extends RecyclerView.ViewHolder {
 
         CardView cv;
         TextView titolo;
@@ -76,27 +75,27 @@ public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumThr
         RelativeLayout rv;
 
 
-        public ForumThreadHolder(@NonNull final View itemView) {
+        ForumThreadHolder(@NonNull final View itemView) {
             super(itemView);
 
             cv = (CardView) itemView.findViewById(R.id.cardView_forum);
             titolo = (TextView) itemView.findViewById(R.id.titoloThread_forum);
             numR = (TextView) itemView.findViewById(R.id.numRisposte);
             data = (TextView) itemView.findViewById(R.id.data_forum);
-            autore = (TextView)itemView.findViewById(R.id.autore_forum);
+            autore = (TextView) itemView.findViewById(R.id.autore_forum);
 
-            rv = (RelativeLayout)itemView.findViewById(R.id.forum_blue_color);
+            rv = (RelativeLayout) itemView.findViewById(R.id.forum_blue_color);
         }
     }
 
-    ArrayList<ForumThread> ftList;
-    public static final String THREAD = "com.moonica.fdm";
+    private ArrayList<ForumThread> ftList;
+    private static final String THREAD = "com.moonica.fdm";
 
-    public ForumRVAdapter(ArrayList<ForumThread> ftList){
+    public ForumRVAdapter(ArrayList<ForumThread> ftList) {
         this.ftList = ftList;
     }
 
-    public String getElapsedDaysText(Calendar c1, Calendar c2) {
+    private String getElapsedDaysText(Calendar c1, Calendar c2) {
         String elapsedDaysText = null;
 
         long milliSeconds1 = c1.getTimeInMillis();
@@ -109,7 +108,7 @@ public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumThr
             elapsedDaysText = periodSeconds * 60 + " minuti fa";
         else if (elapsedDays < 1 && periodSeconds < 7200)
             elapsedDaysText = (periodSeconds * 3600) + " ora fa";
-        else if (elapsedDays < 1 && periodSeconds >= 7200)
+        else if (elapsedDays < 1)
             elapsedDaysText = (periodSeconds * 3600) + " ore fa";
         else if (elapsedDays < 2)
             elapsedDaysText = elapsedDays + " giorno fa";

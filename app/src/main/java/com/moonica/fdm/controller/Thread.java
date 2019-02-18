@@ -3,6 +3,7 @@ package com.moonica.fdm.controller;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +14,9 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.MenuItem;
@@ -21,6 +25,7 @@ import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.moonica.fdm.R;
@@ -107,25 +112,14 @@ public class Thread extends AppCompatActivity {
 
         initializeAdapter();
 
+
+        /*
+         * Il FAB viene reso cliccabile
+         */
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addReply(Thread.this);
-
-            }
-        });
-
-
-        ns.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-            @Override
-            public void onScrollChanged() {
-                /*if (ns.getChildAt(0).getBottom() == (ns.getHeight() + ns.getScrollY())){
-                    fab.setAlpha(0.25f);
-                    fab.setImageResource(R.drawable.plus);
-                }
-                if (ns.getChildAt(0).getBottom() != (ns.getHeight() + ns.getScrollY())){
-                    fab.setAlpha(1);
-                }*/
             }
         });
 
@@ -138,34 +132,28 @@ public class Thread extends AppCompatActivity {
         });*/
 
 
-        if (ns != null){
+        /*
+         * Se la fine della NestedScrollView coincide alla fine dello schermo, il FAB viene reso trasparente
+         * altrmenti viene reso senza nessuna trasparenza
+         */
 
+        if (ns != null) {
             ns.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
                 @Override
                 public void onScrollChanged() {
                     if (ns.getChildAt(0).getBottom()
-                        <= (ns.getHeight() + ns.getScrollY())){
+                            <= (ns.getHeight() + ns.getScrollY())) {
                         fab.setAlpha(0.25f);
                     }
                     if (ns.getChildAt(0).getBottom()
-                    > (ns.getHeight() + ns.getScrollY())){
+                            > (ns.getHeight() + ns.getScrollY())) {
                         fab.setAlpha(0.99f);
                     }
                 }
             });
 
 
-            /*ns.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-                @Override
-                public void onScrollChange(NestedScrollView nestedScrollView, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-
-                    if (scrollY == (nestedScrollView.getMeasuredHeight() - nestedScrollView.getChildAt(0).getMeasuredHeight())){
-                        finish();
-                    }
-                }
-            })*/;
         }
-
 
 
     }
@@ -182,10 +170,10 @@ public class Thread extends AppCompatActivity {
         final Button buttonPick = new Button(c);
 
 
-        AlertDialog dialog = new AlertDialog.Builder(c)
+        final AlertDialog dialog = new AlertDialog.Builder(c)
                 .setTitle("Risposta")
                 .setMessage("Aggiungi una risposta")
-                .setView(reply)
+                //.setView(reply)
                 .setPositiveButton("Rispondi", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -226,10 +214,51 @@ public class Thread extends AppCompatActivity {
          */
 
 
-
         dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
 
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        reply.setLayoutParams(lp);
+        dialog.setView(reply);
+        final AlertDialog dialog1 = dialog;
+        dialog.show();
+
+        ((AlertDialog) dialog1).getButton(AlertDialog.BUTTON_POSITIVE)
+                .setEnabled(false);
+
+        reply.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before,
+                                      int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Check if edittext is empty
+                if (TextUtils.isEmpty(s)) {
+                    // Disable ok button
+                    ((AlertDialog) dialog1).getButton(
+                            AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+                    ((AlertDialog) dialog1).getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.GRAY);
+
+                } else {
+                    // Something into edit text. Enable the button.
+                    ((AlertDialog) dialog1).getButton(
+                            AlertDialog.BUTTON_POSITIVE).setEnabled(true);
+                    ((AlertDialog) dialog1).getButton(
+                            AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLUE);
+
+                }
+
+            }
+        });
 
 
         /*dialog.setOnShowListener(new DialogInterface.OnShowListener() {
@@ -238,7 +267,6 @@ public class Thread extends AppCompatActivity {
 
             }
         });*/
-
 
 
         dialog.show();
