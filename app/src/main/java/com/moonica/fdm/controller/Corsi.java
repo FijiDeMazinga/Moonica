@@ -60,31 +60,10 @@ public class Corsi extends AppCompatActivity {
         else
             professore.setText(c.getProfessore().getNome().concat(c.getProfessore().getCognome()));
 
-
         rv = findViewById(R.id.rvSezione);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
-
-        Button buttonForum = new Button(this);
-        Space spaceForum = new Space(this);
-
-        spaceForum.setMinimumHeight(50);
-        buttonForum.setText("Forum " + c.getSigla());
-        buttonForum.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-        buttonForum.setPadding(30, 0, 30, 0);
-        //buttonForum.setBackgroundResource(R.drawable.button_test);
-        buttonForum.setTextColor(0xffffffff);
-        buttonForum.setBackgroundColor(0xff225599);
-        buttonForum.setTextSize(16);
-        buttonForum.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent forum = new Intent(Corsi.this, Forum.class);
-                forum.putExtra(FORUM, c);
-                startActivity(forum);
-            }
-        });
 
         //l.addView(buttonForum);
         //l.addView(spaceForum);
@@ -95,6 +74,7 @@ public class Corsi extends AppCompatActivity {
         testoForum = findViewById(R.id.testoForum);
 
         cv.setMinimumHeight(50);
+        cv.setRadius(20);
         testoForum.setText("Forum " + c.getSigla());
         testoForum.setTextSize(18);
         testoForum.setPadding(40, 25, 0, 25);
@@ -109,21 +89,5 @@ public class Corsi extends AppCompatActivity {
 
         SezioneAdapter sezioneAdapter = new SezioneAdapter(listaSezioni);
         rv.setAdapter(sezioneAdapter);
-
-        for (final Sezione sezione : listaSezioni) {
-            Button buttonSezione = new Button(this);
-            Space spaceSezione = new Space(this);
-
-            spaceSezione.setMinimumHeight(50);
-            buttonSezione.setText(sezione.getTitolo());
-            buttonSezione.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-            buttonSezione.setPadding(30, 0, 30, 0);
-            buttonSezione.setTextColor(0xffffffff);
-            buttonSezione.setBackgroundColor(0xff225599);
-            buttonSezione.setTextSize(16);
-
-            //l.addView(buttonSezione);
-            //l.addView(spaceSezione);
-        }
     }
 }

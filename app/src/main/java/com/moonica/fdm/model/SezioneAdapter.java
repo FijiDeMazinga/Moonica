@@ -25,28 +25,21 @@ import java.util.List;
 import static com.moonica.fdm.controller.Corsi.FORUM;
 
 public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneViewHolder> {
+    int position;
+    int mExpandedPosition = -1;
+
     ArrayList<Sezione> lista = new ArrayList<Sezione>();
-    FactoryCorsi factoryCorsi = FactoryCorsi.getInstance();
-
-    public static class ForumViewHolder extends RecyclerView.ViewHolder {
-        CardView cv;
-        TextView titoloForum;
-
-        public ForumViewHolder (@NonNull final View itemView) {
-            super(itemView);
-            cv = itemView.findViewById(R.id.card_view_sezioni);
-            titoloForum = itemView.findViewById(R.id.titolo_sezione);
-        }
-    }
 
     public static class SezioneViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
         TextView titoloSezione;
+        CardView figlio;
 
         public SezioneViewHolder (@NonNull final View itemView) {
             super(itemView);
             cv = itemView.findViewById(R.id.card_view_sezioni);
             titoloSezione = itemView.findViewById(R.id.titolo_sezione);
+            //figlio = new ContenutoViewHolder()
         }
     }
 
@@ -79,28 +72,29 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
         return svh;
     }
 
+    //aggiungere onCreateViewHolder per ContenutoViewHolder
+
     @Override
     public void onBindViewHolder(@NonNull final SezioneViewHolder sezioneViewHolder, final int i){
         sezioneViewHolder.cv.setMinimumHeight(50);
-        sezioneViewHolder.cv.setRadius(20.1f);
+        sezioneViewHolder.cv.setRadius(20.f);
         sezioneViewHolder.titoloSezione.setText(lista.get(i).getTitolo());
         sezioneViewHolder.titoloSezione.setPadding(0, 25, 0, 25);
         sezioneViewHolder.cv.setBackgroundColor(0xff225599);
         sezioneViewHolder.titoloSezione.setTextColor(0xffffffff);
         sezioneViewHolder.titoloSezione.setTextSize(18);
-        if (i == 0) {
-            sezioneViewHolder.cv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent2 = new Intent(sezioneViewHolder.itemView.getContext(), Forum.class);
-                    intent2.putExtra(FORUM, factoryCorsi.cercaCorso(lista.get(i).getCorso()));
-                    sezioneViewHolder.itemView.getContext().startActivity(intent2);
-                }
-            });
-        }
-        else {
-            //qua ci dovrebbe andare la vista ad espansione
-        }
+
+        /*
+        final boolean isExpanded = position == mExpandedPosition;
+        sezioneViewHolder.details.setVisibility(isExpanded?View.VISIBLE:View.GONE);
+        sezioneViewHolder.itemView.setActivated(isExpanded);
+        sezioneViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mExpandedPosition = isExpanded ? -1 : position;
+                notifyItemChanged(position);
+            }
+        });*/
     }
 
     @Override
