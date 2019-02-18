@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.moonica.fdm.R;
+import com.moonica.fdm.model.FactoryUtente;
 import com.moonica.fdm.model.Studente;
 
 import java.util.ArrayList;
@@ -64,6 +65,8 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
                 if(check()) {
                     Intent continua = new Intent(Registrazione.this, SceltaFacolta.class);
                     Studente s = creaUtente();
+                    FactoryUtente factoryUtente = FactoryUtente.getInstance();
+                    factoryUtente.aggiungiUtente(s);
                     continua.putExtra(USER, s);
                     startActivity(continua);
                 }

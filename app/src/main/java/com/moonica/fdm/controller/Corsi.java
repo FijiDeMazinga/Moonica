@@ -24,6 +24,7 @@ import com.moonica.fdm.model.ForumThread;
 import com.moonica.fdm.model.ItemMoveCallback;
 import com.moonica.fdm.model.Sezione;
 import com.moonica.fdm.model.SezioneAdapter;
+import com.moonica.fdm.model.Utente;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -32,12 +33,14 @@ public class Corsi extends AppCompatActivity {
     TextView professore, testoForum;
     CardView cv;
     Corso c;
+    Utente utente;
     //LinearLayout l;
     RecyclerView rv;
     ArrayList<Sezione> listaSezioni = new ArrayList<>();
     FactorySezioni factorySezioni = FactorySezioni.getInstance();
 
     public static final String FORUM = "com.moonica.fdm";
+    static final String UTENTE  = "utente";
 
     @TargetApi(Build.VERSION_CODES.M)
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -47,10 +50,15 @@ public class Corsi extends AppCompatActivity {
         setContentView(R.layout.activity_corsi);
         Intent i = getIntent();
         Serializable obj = null;
+        Serializable objUtente = null;
 
         obj = i.getSerializableExtra("com.moonica.fdm");
+        objUtente = i.getSerializableExtra("utente");
+
 
         c = (Corso) obj;
+        utente = (Utente) objUtente;
+
         setTitle(c.getNome());
         listaSezioni = factorySezioni.getSezioniCorso(c.getNome());
 
@@ -83,11 +91,12 @@ public class Corsi extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Corsi.this, Forum.class);
                 i.putExtra(FORUM, c);
+                i.putExtra(UTENTE, utente);
                 startActivity(i);
             }
         });
 
-        SezioneAdapter sezioneAdapter = new SezioneAdapter(listaSezioni);
+        SezioneAdapter sezioneAdapter = new SezioneAdapter(listaSezioni, utente);
         rv.setAdapter(sezioneAdapter);
     }
 }
