@@ -81,10 +81,10 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
     public void onBindViewHolder(@NonNull final CorsoViewHolder corsoViewHolder, final int i) {
         corsoViewHolder.cv.setMinimumHeight(50);
         corsoViewHolder.cv.setRadius(20.1f);
-        if(lista.get(i).getNome().length() <= 20)
+        //if(lista.get(i).getNome().length() <= 20)
             corsoViewHolder.nomeCorso.setText("[" + lista.get(i).getSigla() + "] " + lista.get(i).getNome());
-        else
-            corsoViewHolder.nomeCorso.setText("[" + lista.get(i).getSigla() + "] " + lista.get(i).getNome().substring(0, 20) + "...");
+        //else
+            //corsoViewHolder.nomeCorso.setText("[" + lista.get(i).getSigla() + "] " + lista.get(i).getNome().substring(0, 20) + "...");
         corsoViewHolder.nomeCorso.setPadding(0, 25,0,0);
         corsoViewHolder.ib.setImageResource(R.drawable.ic_more_vert_black_24dp);
         corsoViewHolder.ib.setBackgroundColor(0xff225599);
