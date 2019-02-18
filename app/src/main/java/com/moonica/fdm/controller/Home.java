@@ -13,11 +13,13 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
+import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +36,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
+    TextView aggiungi;
+    Space spazio;
     TextView welcome;
     Utente u;
     Professore p;
@@ -125,13 +129,25 @@ public class Home extends AppCompatActivity {
             //rimuovo quelli a cui è già iscritto
             listaNuovi.removeAll(s.getCorsi());
             FactoryCorsi fc = FactoryCorsi.getInstance();
+            spazio = new Space(this);
+            spazio.setMinimumHeight(50);
+            aggiungi = new TextView(this);
+            aggiungi.setText("Aggiungi un corso");
+            aggiungi.setTextColor(0xff225599);
+            aggiungi.setBackgroundColor(0xffeeeeee);
+            aggiungi.setGravity(Gravity.CENTER_HORIZONTAL);
+            aggiungi.setMinWidth(900);
+            gridLayout.addView(aggiungi);
+            gridLayout.addView(spazio);
 
             //per ogni corso aggiungo un bottone
             for (final Corso c : listaNuovi) {
                 final Button b = new Button(this);
                 //settaggio parametri bottone
-                b.setText(c.getSigla());
+                b.setText(c.getNome());
                 b.setBackgroundColor(0xffeeeeee);
+                b.setGravity(Gravity.CENTER_HORIZONTAL);
+                b.setMinimumWidth(900);
                 b.setTextColor(0xff225599);
                 //dichiarazione di cosa succede cliccando il bottone
                 b.setOnClickListener(new View.OnClickListener() {

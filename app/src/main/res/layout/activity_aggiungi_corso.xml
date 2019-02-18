@@ -13,7 +13,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:id="@+id/griglia"
-            android:columnCount="3">
+            android:columnCount="3"
+            android:background="#eeeeee">
 
         </GridLayout>
     </ScrollView>

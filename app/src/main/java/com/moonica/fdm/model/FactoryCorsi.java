@@ -252,6 +252,14 @@ public class FactoryCorsi {
                 return c;
         return null;
     }
+    public Corso cercaCorsoSigla(String sigla){
+        if(sigla == null)
+            return null;
+        for(Corso c : tuttiCorsi)
+            if(sigla.equals(c.getSigla()))
+                return c;
+        return null;
+    }
 
     /*
      * Ricerca di un corso mediante codice unico e nome del corso

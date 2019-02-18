@@ -3,6 +3,7 @@ package com.moonica.fdm.controller;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.WindowManager;
 
 import com.moonica.fdm.R;
 
@@ -18,11 +19,10 @@ public class NewThread extends AppCompatActivity {
          */
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
     }
 
     /*
-     * L'ovveride chiude l'activity presente in cima allo stack
+     * L'override chiude l'activity presente in cima allo stack
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -6,4 +6,100 @@
     android:layout_height="match_parent"
     tools:context=".controller.NewThread">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/vibraT">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Titolo"
+                    android:layout_gravity="left"
+                    android:id="@+id/titoloNewT"
+                    android:textColor="#225599"/>
+            </android.support.design.widget.TextInputLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/vibraTesto">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="90dp"
+                    android:gravity="bottom"
+                    android:paddingBottom="20dp"
+                    android:hint="Descrizione"
+                    android:id="@+id/testoNewT"
+                    android:textColor="#225599"/>
+            </android.support.design.widget.TextInputLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:text="Allegati caricati: " />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/allegatiCaricati"
+                android:visibility="invisible">
+            </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Inserisci allegato"
+                    android:textColor="#225599"
+                    android:textSize="18dp"
+                    android:layout_gravity="center_vertical"/>
+                <Space
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent" />
+
+                <ImageButton
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/caricaAllegato"
+                    android:src="@drawable/ic_file_upload_black_24dp"
+                    android:backgroundTint="#225599"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/invia"
+                style="@style/MyButtonStyle"
+                android:text="INVIA"/>
+        </LinearLayout>
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>
