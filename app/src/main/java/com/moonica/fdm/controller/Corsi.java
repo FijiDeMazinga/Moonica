@@ -11,6 +11,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -48,6 +49,9 @@ public class Corsi extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_corsi);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Intent i = getIntent();
         Serializable obj = null;
         Serializable objUtente = null;
@@ -98,5 +102,14 @@ public class Corsi extends AppCompatActivity {
 
         SezioneAdapter sezioneAdapter = new SezioneAdapter(listaSezioni, utente);
         rv.setAdapter(sezioneAdapter);
+    }
+
+    /*
+     * L'ovveride chiude l'activity presente in cima allo stack
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return true;
     }
 }
