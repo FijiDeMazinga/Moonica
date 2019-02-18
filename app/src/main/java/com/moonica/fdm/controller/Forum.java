@@ -22,6 +22,7 @@ import com.moonica.fdm.model.FactoryForumThread;
 import com.moonica.fdm.model.ForumThread;
 import com.moonica.fdm.model.ForumRVAdapter;
 import com.moonica.fdm.model.LinearLayoutPagerManager;
+import com.moonica.fdm.model.Utente;
 
 
 import java.io.Serializable;
@@ -42,6 +43,7 @@ public class Forum extends AppCompatActivity {
 
     ScrollView ns;
     Corso c;
+    static Utente utente;
     RecyclerView rv;
     ArrayList<ForumThread> listaForum = new ArrayList<>();
     FactoryForumThread fft = FactoryForumThread.getInstance();
@@ -65,7 +67,9 @@ public class Forum extends AppCompatActivity {
 
         Intent i = getIntent();
         Serializable obj = i.getSerializableExtra("com.moonica.fdm");
+        Serializable studObj = i.getSerializableExtra("utente");
         c = (Corso) obj;
+        utente = (Utente) studObj;
 
         setTitle(c.getNome() + " / Forum");
 
@@ -86,7 +90,7 @@ public class Forum extends AppCompatActivity {
 
 
 
-        initializeAdapter();
+        initializeAdapter(utente);
 
         /*
          * Prova paging
@@ -105,10 +109,11 @@ public class Forum extends AppCompatActivity {
         return true;
     }
 
-    private void initializeAdapter() {
-        ForumRVAdapter adapter = new ForumRVAdapter(listaForum);
+    private void initializeAdapter(Utente u) {
+        ForumRVAdapter adapter = new ForumRVAdapter(listaForum, u);
         rv.setAdapter(adapter);
     }
+
 
 
     /*
@@ -139,7 +144,7 @@ public class Forum extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
-        initializeAdapter();
+        initializeAdapter(utente);
     }
 
     public void pagingView(){

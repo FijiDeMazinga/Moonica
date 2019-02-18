@@ -99,7 +99,7 @@ public class Home extends AppCompatActivity {
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
 
-        HomeRVAAdapter hra = new HomeRVAAdapter(lista, s);
+        HomeRVAAdapter hra = new HomeRVAAdapter(lista, s, u);
 
         ItemTouchHelper.Callback callback = new ItemMoveCallback(hra);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);

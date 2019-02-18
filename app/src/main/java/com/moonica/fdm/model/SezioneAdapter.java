@@ -56,7 +56,7 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
         }
     }
 
-    public SezioneAdapter(ArrayList<Sezione> lista){
+    public SezioneAdapter(ArrayList<Sezione> lista, Utente utente){
         this.lista = lista;
     }
 

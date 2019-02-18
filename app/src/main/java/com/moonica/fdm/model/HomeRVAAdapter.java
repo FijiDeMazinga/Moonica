@@ -3,6 +3,7 @@ package com.moonica.fdm.model;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
@@ -27,6 +28,8 @@ import static com.moonica.fdm.controller.Home.CORSO;
 public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoViewHolder> implements ItemMoveCallback.ItemTouchHelperContract{
 
     ArrayList<Corso> lista = new ArrayList<Corso>();
+    static String UTENTE = "utente";
+
 
     public void onRowMoved(int fromPosition, int toPosition) {
         if (fromPosition < toPosition) {
@@ -64,9 +67,11 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
         }
     }
     Studente studente = new Studente();
-    public HomeRVAAdapter(ArrayList<Corso> lista, Studente s){
+    Utente utente = new Utente();
+    public HomeRVAAdapter(ArrayList<Corso> lista, Studente s, Utente u){
         this.studente = s;
         this.lista = lista;
+        this.utente = u;
     }
 
     @NonNull
@@ -82,9 +87,9 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
         corsoViewHolder.cv.setMinimumHeight(50);
         corsoViewHolder.cv.setRadius(20.1f);
         //if(lista.get(i).getNome().length() <= 20)
-            corsoViewHolder.nomeCorso.setText("[" + lista.get(i).getSigla() + "] " + lista.get(i).getNome());
+        corsoViewHolder.nomeCorso.setText("[" + lista.get(i).getSigla() + "] " + lista.get(i).getNome());
         //else
-            //corsoViewHolder.nomeCorso.setText("[" + lista.get(i).getSigla() + "] " + lista.get(i).getNome().substring(0, 20) + "...");
+        //corsoViewHolder.nomeCorso.setText("[" + lista.get(i).getSigla() + "] " + lista.get(i).getNome().substring(0, 20) + "...");
         corsoViewHolder.nomeCorso.setPadding(0, 25,0,0);
         corsoViewHolder.ib.setImageResource(R.drawable.ic_more_vert_black_24dp);
         corsoViewHolder.ib.setBackgroundColor(0xff225599);
@@ -120,12 +125,15 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(corsoViewHolder.itemView.getContext(), Corsi.class);
+
                 FactoryCorsi fc = FactoryCorsi.getInstance();
                 String name = corsoViewHolder.nomeCorso.getText().toString();
                 name = name.substring(name.lastIndexOf("] ") + 1);
                 name = name.substring(1);
                 Corso corso = fc.cercaCorso(name);
+
                 intent.putExtra(CORSO, corso);
+                intent.putExtra(UTENTE, utente);
                 corsoViewHolder.itemView.getContext().startActivity(intent);
             }
         });

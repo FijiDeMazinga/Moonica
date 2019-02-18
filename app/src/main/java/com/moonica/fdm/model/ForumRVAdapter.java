@@ -50,6 +50,7 @@ public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumThr
                 //itemView.getContext().startActivity(new Intent(itemView.getContext(), com.moonica.fdm.controller.Thread.class));
                 Intent thread = new Intent(forumThreadHolder.cv.getContext(), com.moonica.fdm.controller.Thread.class);
                 thread.putExtra(THREAD, ftList.get(i));
+                thread.putExtra("utente", utente);
                 forumThreadHolder.cv.getContext().startActivity(thread);
             }
         });
@@ -89,10 +90,12 @@ public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumThr
     }
 
     private ArrayList<ForumThread> ftList;
+    private Utente utente;
     private static final String THREAD = "com.moonica.fdm";
 
-    public ForumRVAdapter(ArrayList<ForumThread> ftList) {
+    public ForumRVAdapter(ArrayList<ForumThread> ftList, Utente utente) {
         this.ftList = ftList;
+        this.utente = utente;
     }
 
     private String getElapsedDaysText(Calendar c1, Calendar c2) {

@@ -35,6 +35,7 @@ import com.moonica.fdm.model.FactoryForumThread;
 import com.moonica.fdm.model.FactoryUtente;
 import com.moonica.fdm.model.ForumThread;
 import com.moonica.fdm.model.ThreadRVAdapter;
+import com.moonica.fdm.model.Utente;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class Thread extends AppCompatActivity {
     NestedScrollView ns;
     CardView cv;
     ForumThread ft;
+    static Utente utente;
     TextView titolo, testo, data, autore;
     FloatingActionButton fab;
 
@@ -75,8 +77,10 @@ public class Thread extends AppCompatActivity {
          */
         final Intent i = getIntent();
         Serializable obj = i.getSerializableExtra("com.moonica.fdm");
+        Serializable studObj  = i.getSerializableExtra("utente");
 
         ft = (ForumThread) obj;
+        utente = (Utente) studObj;
 
         /*
          * Viene impostato il nome della pagina
@@ -155,7 +159,6 @@ public class Thread extends AppCompatActivity {
 
         }
 
-
     }
 
     private void initializeAdapter() {
@@ -186,7 +189,7 @@ public class Thread extends AppCompatActivity {
                         newReply.setFt(ft.getId());
                         newReply.setTesto(task);
                         newReply.setData(Calendar.getInstance());
-                        newReply.setAutore(factoryUtente.cercaUtente("Ines"));
+                        newReply.setAutore(factoryUtente.cercaUtente(utente.getUsername()));
 
                         FactoryCommenti factoryCommenti = FactoryCommenti.getInstance();
                         FactoryForumThread factoryForumThread = FactoryForumThread.getInstance();
@@ -253,7 +256,7 @@ public class Thread extends AppCompatActivity {
                     ((AlertDialog) dialog1).getButton(
                             AlertDialog.BUTTON_POSITIVE).setEnabled(true);
                     ((AlertDialog) dialog1).getButton(
-                            AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLUE);
+                            AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.colorPrimary));
 
                 }
 

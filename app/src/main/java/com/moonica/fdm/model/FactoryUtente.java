@@ -134,4 +134,9 @@ public class FactoryUtente {
                 return utente;
          return null;
     }
+
+    public ArrayList<Utente> aggiungiUtente (Utente u){
+        this.listaUtenti.add(u);
+        return listaUtenti;
+    }
 }
