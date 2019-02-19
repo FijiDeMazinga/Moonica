@@ -110,6 +110,7 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
                                 Intent intent = ((Home)context).getIntent();
                                 ((Home)context).finish();
                                 ((Home)context).startActivity(intent);
+                                ((Home)context).overridePendingTransition(0,0);
                                 break;
                         }
                         return false;

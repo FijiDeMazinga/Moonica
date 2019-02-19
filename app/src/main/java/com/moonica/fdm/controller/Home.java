@@ -160,6 +160,7 @@ public class Home extends AppCompatActivity {
                         //viene refreshata l'activity home
                         finish();
                         startActivity(getIntent());
+                        overridePendingTransition(0,0);
                     }
                 });
                 gridLayout.addView(b);//aggiunta dei bottoni al layout
