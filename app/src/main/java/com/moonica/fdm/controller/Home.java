@@ -23,7 +23,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
@@ -53,10 +52,6 @@ public class Home extends AppCompatActivity {
     FactoryCorsi fc = FactoryCorsi.getInstance();
     Dialog scelta;
 
-    //menu
-    private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle actionBarDrawerToggle;
-    private NavigationView navigationView;
 
     public static final String CORSO = "com.moonica.fdm";
 
@@ -71,26 +66,6 @@ public class Home extends AppCompatActivity {
         Intent i = getIntent();
         Serializable obj;
         scelta = new Dialog(this);//inizializzazione Dialog per il pop-up
-
-        //navMenu
-        drawerLayout = (DrawerLayout) findViewById(R.id.activityHome);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-
-        navigationView = (NavigationView) findViewById(R.id.nv);
-        CircleImageView avatar = new CircleImageView(this);
-        TextView nomeUtente = new TextView(this);
-        View header = navigationView.getHeaderView(0);
-        avatar = header.findViewById(R.id.avatar);
-        nomeUtente = header.findViewById(R.id.nomeUtente);
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                return false;
-            }
-        });
 
         //prelievo attributo tramite l'intent
         obj= i.getSerializableExtra("com.moonica.fdm");
@@ -122,9 +97,7 @@ public class Home extends AppCompatActivity {
             plus.setVisibility(View.INVISIBLE);//se l'utente è un professore rimuovo il pulsante per aggiungere i corsi
         }
 
-        avatar.setImageResource(u.getAvatar());
-        nomeUtente.setText(u.getUsername());
-
+        setNavBar();
         //settaggio del messaggio di benvenuto
         welcome = findViewById(R.id.welcome);
         welcome.setText(benvenuto.concat(username).concat("!"));
@@ -208,4 +181,33 @@ public class Home extends AppCompatActivity {
             t.show();
         }
     }
+    public void setNavBar(){
+        //menu
+        DrawerLayout drawerLayout;
+        ActionBarDrawerToggle actionBarDrawerToggle;
+        NavigationView navigationView;
+        //navMenu
+        drawerLayout = (DrawerLayout) findViewById(R.id.activityHome);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        navigationView = (NavigationView) findViewById(R.id.nv);
+        CircleImageView avatar = new CircleImageView(this);
+        TextView nomeUtente = new TextView(this);
+        View header = navigationView.getHeaderView(0);
+        avatar = header.findViewById(R.id.avatar);
+        nomeUtente = header.findViewById(R.id.nomeUtente);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                return false;
+            }
+        });
+        avatar.setImageResource(u.getAvatar());
+        nomeUtente.setText(u.getUsername());
+    }
 }
+
+
