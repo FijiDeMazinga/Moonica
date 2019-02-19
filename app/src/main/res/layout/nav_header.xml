@@ -4,19 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#225599">
+    android:background="#225599"
+    android:id="@+id/rv_nav"
+    android:padding="5dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_height="75dp"
-        android:layout_width="match_parent"
+        android:layout_width="75dp"
         app:civ_border_color="#ffffff"
         app:civ_border_width="1dp"
-        android:id="@+id/avatar"/>
+        android:id="@+id/avatar"
+        />
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#eeeeee"
         android:id="@+id/nomeUtente"
-        android:visibility="invisible"/>
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@+id/avatar"/>
 
 </RelativeLayout>
