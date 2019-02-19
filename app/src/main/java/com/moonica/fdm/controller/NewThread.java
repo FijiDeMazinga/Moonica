@@ -17,13 +17,16 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.moonica.fdm.R;
+import com.moonica.fdm.model.Commento;
 import com.moonica.fdm.model.Corso;
+import com.moonica.fdm.model.FactoryCommenti;
 import com.moonica.fdm.model.FactoryForumThread;
 import com.moonica.fdm.model.FactoryUtente;
 import com.moonica.fdm.model.ForumThread;
 import com.moonica.fdm.model.Utente;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class NewThread extends AppCompatActivity {
@@ -56,14 +59,34 @@ public class NewThread extends AppCompatActivity {
 
         Serializable obj = i.getSerializableExtra("com.moonica.fdm");
         Serializable studObj = i.getSerializableExtra("utente");
-
         utente = (Utente) studObj;
+
+
+
+
+        /*
+         *
+         */
+
+        Bundle extras = i.getExtras();
+        /*if (extras != null) {
+            if (extras.getString("newThread") != null) {
+                String codice = extras.getString("newThread");
+            }
+            if (extras.getString("longReply") != null) {
+                String codice = extras.getString("longReply");
+            }
+        }*/
+
+
+
+
         testo = (EditText) findViewById(R.id.testoNewT);
         uploadFile = (ImageButton) findViewById(R.id.caricaAllegato);
         invio = (Button) findViewById(R.id.inviaNT);
 
 
-        if (i.getSerializableExtra("newThread").equals("nuovo thread")){
+        if (extras.getString("newThread") != null /*&& extras.getString("newThread").equals("nuovo thread")*/){
 
             titolo = (EditText) findViewById(R.id.titoloNewT);
 
@@ -102,21 +125,45 @@ public class NewThread extends AppCompatActivity {
             });
 
         }
-        else if (i.getSerializableExtra("reply").equals("risposta")){
+        else if (extras.getString("longReply") != null /*&& extras.getString("longReply").equals("risposta")*/){
 
             titoloReply = (TextView) findViewById(R.id.titoloNewT);
 
             ft = (ForumThread) obj;
-            titolo.setFocusable(false);
-            titolo.setClickable(true);
-            titolo.setTextColor(Color.GRAY);
+            titoloReply.setText("Re:" + ft.getTitolo());
+            titoloReply.setHintTextColor(Color.GRAY);
+            titoloReply.setFocusable(false);
+            titoloReply.setClickable(true);
+            titoloReply.setTextColor(Color.GRAY);
 
 
             invio.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (checkTesto()){
+                        String textString = String.valueOf(testo.getText());
 
+                        Commento commento = new Commento();
+
+                        commento.setFt(ft.getId());
+                        commento.setAutore(utente);
+                        commento.setTesto(textString);
+                        commento.setData(Calendar.getInstance());
+
+                        FactoryCommenti factoryCommenti = FactoryCommenti.getInstance();
+                        FactoryForumThread factoryForumThread = FactoryForumThread.getInstance();
+
+                        factoryForumThread.aggiungiNumRisposte(ft.getId());
+                        ft.setNumRisposte(factoryCommenti);
+                        factoryCommenti.aggiungiCommentoLista(commento);
+
+                        ArrayList<Commento> arrayList = new ArrayList<>();
+                        arrayList.addAll(factoryCommenti.cercaListaCommenti(ft.getId()));
+
+                        Intent intent = new Intent();
+                        intent.putExtra("nuovo commento", ft);
+                        setResult(Activity.RESULT_OK, intent);
+                        finish();
                     }
                 }
             });

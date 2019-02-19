@@ -25,6 +25,8 @@ import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -37,9 +39,13 @@ import com.moonica.fdm.model.ForumThread;
 import com.moonica.fdm.model.ThreadRVAdapter;
 import com.moonica.fdm.model.Utente;
 
+import org.w3c.dom.Comment;
+
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 
 
 public class Thread extends AppCompatActivity {
@@ -49,6 +55,7 @@ public class Thread extends AppCompatActivity {
     ForumThread ft;
     static Utente utente;
     TextView titolo, testo, data, autore;
+    ImageButton reply;
     FloatingActionButton fab;
 
     RecyclerView rv;
@@ -57,7 +64,7 @@ public class Thread extends AppCompatActivity {
     FactoryCommenti fc = FactoryCommenti.getInstance();
 
 
-    int IMAGE_PICKER_SELECT = 0;
+    public static final String NEWTHREAD = "com.moonica.fdm";
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -98,12 +105,23 @@ public class Thread extends AppCompatActivity {
         testo = findViewById(R.id.testoThread_main_post);
         data = findViewById(R.id.data_thread);
         autore = findViewById(R.id.autore_thread);
+        reply = findViewById(R.id.rispostaThreadCard);
         fab = findViewById(R.id.fab_thread);
 
         titolo.setText(ft.getTitolo());
         testo.setText(ft.getTesto());
         data.setText(ft.getData().getTime().toGMTString());
         autore.setText(ft.getAutore().getNome() + " " + ft.getAutore().getCognome());
+        reply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent longReply = new Intent(Thread.this, NewThread.class);
+                longReply.putExtra("longReply", "risposta");
+                longReply.putExtra(NEWTHREAD, ft);
+                longReply.putExtra("utente", utente);
+                startActivityForResult(longReply,1 );
+            }
+        });
 
         rv = (RecyclerView) findViewById(R.id.rv_thread);
 
@@ -126,14 +144,6 @@ public class Thread extends AppCompatActivity {
                 addReply(Thread.this);
             }
         });
-
-
-        /*cv.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-
-            }
-        });*/
 
 
         /*
@@ -264,6 +274,27 @@ public class Thread extends AppCompatActivity {
         });
 
         dialog.show();
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK) {
+                Serializable strEditText = data.getSerializableExtra("nuovo commento");
+
+                ForumThread ft = new ForumThread();
+
+                ft = (ForumThread) strEditText;
+
+                FactoryCommenti commenti = FactoryCommenti.getInstance();
+
+                Commento nuovoCommento = commenti.cercaListaCommenti(ft.getId()).get(commenti.cercaListaCommenti(ft.getId()).size()-1);
+                commentsList.add(nuovoCommento);
+                ft.setNumRisposte(commenti);
+
+                ns.fullScroll(View.FOCUS_DOWN);
+            }
+        }
     }
 
 
