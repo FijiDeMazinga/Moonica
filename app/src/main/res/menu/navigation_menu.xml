@@ -2,7 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:title="PROVA"/>
+        android:title="Home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:id="@+id/homeNav"/>
     <item
-        android:title="PROVA"/>
+        android:title="Valutazioni"
+        android:icon="@drawable/ic_check_black_24dp"/>
+    <item
+        android:title="Messaggi"
+        android:icon="@drawable/ic_mail_black_24dp"/>
+    <item
+        android:title="Calendario"
+        android:icon="@drawable/ic_date_range_black_24dp"/>
+    <item
+        android:title="Impostazioni"
+        android:icon="@drawable/ic_settings_black_24dp"/>
 </menu>

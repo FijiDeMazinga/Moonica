@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -106,10 +107,12 @@ public class Home extends AppCompatActivity {
             ImageButton plus = (ImageButton) findViewById(R.id.plus);
             plus.setVisibility(View.INVISIBLE);//se l'utente è un professore rimuovo il pulsante per aggiungere i corsi
         }
-
-
-        setNavBar();
-
+        //creazione navbar
+        Intent intent = new Intent(Home.this, Home.class);
+        setNavBar(intent);
+        //funzione logout
+        Intent intentL = new Intent(Home.this, Login.class);
+        logOut(intentL);
 
         //settaggio del messaggio di benvenuto
         welcome = findViewById(R.id.welcome);
@@ -211,7 +214,8 @@ public class Home extends AppCompatActivity {
         return true;
     }
 
-    public void setNavBar(){
+
+    public void setNavBar(final Intent intent){
         //menu
         ActionBarDrawerToggle actionBarDrawerToggle;
         NavigationView navigationView;
@@ -231,15 +235,29 @@ public class Home extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                return false;
+                switch (menuItem.getItemId()) {
+                    case R.id.homeNav:
+                        intent.putExtra("com.moonica.fdm", u);
+                        startActivity(intent);
+                        overridePendingTransition(0,0);
+                        break;
+                }
+                return true;
             }
         });
         avatar.setImageResource(u.getAvatar());
-        nomeUtente.setText(u.getUsername());
+        nomeUtente.setText(u.getNome() + " " + u.getCognome());
 
+    }
 
-
-
+    public void logOut(final Intent intent){
+        RelativeLayout relativeLayout = findViewById(R.id.buttonLogOut);
+        relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent);
+            }
+        });
     }
 }
 
