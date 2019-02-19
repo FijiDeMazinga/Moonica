@@ -2,6 +2,7 @@ package com.moonica.fdm.controller;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -53,6 +54,9 @@ public class Home extends AppCompatActivity {
     Dialog scelta;
 
 
+    DrawerLayout drawerLayout;
+
+
     public static final String CORSO = "com.moonica.fdm";
 
     @SuppressLint({"ResourceType", "WrongViewCast"})
@@ -62,6 +66,12 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         setTitle("I tuoi corsi");//titolo che comparirà nell'actionbar
         Intent i = getIntent();
         Serializable obj;
@@ -97,7 +107,10 @@ public class Home extends AppCompatActivity {
             plus.setVisibility(View.INVISIBLE);//se l'utente è un professore rimuovo il pulsante per aggiungere i corsi
         }
 
+
         setNavBar();
+
+
         //settaggio del messaggio di benvenuto
         welcome = findViewById(R.id.welcome);
         welcome.setText(benvenuto.concat(username).concat("!"));
@@ -181,9 +194,25 @@ public class Home extends AppCompatActivity {
             t.show();
         }
     }
+
+
+    /*
+     * L'ovveride chiude l'activity presente in cima allo stack
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        switch (id) {
+            default:
+                drawerLayout.closeDrawer(Gravity.LEFT);
+        }
+        return true;
+    }
+
     public void setNavBar(){
         //menu
-        DrawerLayout drawerLayout;
         ActionBarDrawerToggle actionBarDrawerToggle;
         NavigationView navigationView;
         //navMenu
@@ -207,6 +236,10 @@ public class Home extends AppCompatActivity {
         });
         avatar.setImageResource(u.getAvatar());
         nomeUtente.setText(u.getUsername());
+
+
+
+
     }
 }
 
