@@ -6,4 +6,6 @@
     <string name="facoltaPrompt">Facolta</string>
     <string name="corsoPrompt">CorsoDiStudi</string>
 
+    <string name="Open">Open</string>
+    <string name="Close">Close</string>
 </resources>

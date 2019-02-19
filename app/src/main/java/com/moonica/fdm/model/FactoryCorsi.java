@@ -245,8 +245,6 @@ public class FactoryCorsi {
         }
         return listaCorsi;
     }
-
-
     /*
      * Ricerca di un corso mediante nome del corso
      */

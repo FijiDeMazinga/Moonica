@@ -15,6 +15,15 @@
             android:id="@+id/griglia"
             android:columnCount="3"
             android:background="#eeeeee">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Aggiungi un corso"
+            android:textColor="#225599"
+            android:minWidth="900dp"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:textStyle="bold"/>
 
         </LinearLayout>
     </ScrollView>

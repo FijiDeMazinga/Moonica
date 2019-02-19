@@ -7,7 +7,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,15 +19,15 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Corso;
 import com.moonica.fdm.model.FactoryCorsi;
@@ -36,18 +40,23 @@ import com.moonica.fdm.model.Utente;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class Home extends AppCompatActivity {
-    TextView aggiungi;
-    Space spazio;
     TextView welcome;
     Utente u;
     Professore p;
     Studente s;
     String username, benvenuto;
     RecyclerView rv;
-    ArrayList<Corso> lista = new ArrayList<Corso>();
+    ArrayList<Corso> lista = new ArrayList<>();
     FactoryCorsi fc = FactoryCorsi.getInstance();
     Dialog scelta;
+
+    //menu
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
+    private NavigationView navigationView;
 
     public static final String CORSO = "com.moonica.fdm";
 
@@ -60,8 +69,28 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         setTitle("I tuoi corsi");//titolo che comparirà nell'actionbar
         Intent i = getIntent();
-        Serializable obj = null;
+        Serializable obj;
         scelta = new Dialog(this);//inizializzazione Dialog per il pop-up
+
+        //navMenu
+        drawerLayout = (DrawerLayout) findViewById(R.id.activityHome);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        navigationView = (NavigationView) findViewById(R.id.nv);
+        CircleImageView avatar = new CircleImageView(this);
+        TextView nomeUtente = new TextView(this);
+        View header = navigationView.getHeaderView(0);
+        avatar = header.findViewById(R.id.avatar);
+        nomeUtente = header.findViewById(R.id.nomeUtente);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                return false;
+            }
+        });
 
         //prelievo attributo tramite l'intent
         obj= i.getSerializableExtra("com.moonica.fdm");
@@ -92,6 +121,10 @@ public class Home extends AppCompatActivity {
             ImageButton plus = (ImageButton) findViewById(R.id.plus);
             plus.setVisibility(View.INVISIBLE);//se l'utente è un professore rimuovo il pulsante per aggiungere i corsi
         }
+
+        avatar.setImageResource(u.getAvatar());
+        nomeUtente.setText(u.getUsername());
+
         //settaggio del messaggio di benvenuto
         welcome = findViewById(R.id.welcome);
         welcome.setText(benvenuto.concat(username).concat("!"));
@@ -130,44 +163,44 @@ public class Home extends AppCompatActivity {
             listaNuovi = fc.listaCorsiFacolta(s.getCorsoStudi().getNome());
             //rimuovo quelli a cui è già iscritto
             listaNuovi.removeAll(s.getCorsi());
-            FactoryCorsi fc = FactoryCorsi.getInstance();
-            spazio = new Space(this);
-            spazio.setMinimumHeight(50);
-            aggiungi = new TextView(this);
-            aggiungi.setText("Aggiungi un corso");
-            aggiungi.setTextColor(0xff225599);
-            aggiungi.setGravity(Gravity.CENTER_HORIZONTAL);
-            aggiungi.setMinWidth(900);
-            gridLayout.addView(aggiungi);
-            gridLayout.addView(spazio);
+            if(listaNuovi.size() > 0) {
+                FactoryCorsi fc = FactoryCorsi.getInstance();
 
-            //per ogni corso aggiungo un bottone
-            for (final Corso c : listaNuovi) {
-                final Button b = new Button(this);
-                //settaggio parametri bottone
-                b.setText(c.getNome());
-                b.setBackgroundColor(0xff225599);
-                b.setGravity(Gravity.CENTER_HORIZONTAL);
-                b.setMinimumWidth(900);
-                b.setTextColor(0xffeeeeee);
-                //dichiarazione di cosa succede cliccando il bottone
-                b.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        FactoryCorsi fc = FactoryCorsi.getInstance();
-                        s.aggiungiCorso(fc.cercaCorso(c.getNome()));//viene aggiunto il corso corrispondente
-                        scelta.dismiss();//viene chiuso il pop-up
-                        //viene refreshata l'activity home
-                        finish();
-                        startActivity(getIntent());
-                        overridePendingTransition(0,0);
-                    }
-                });
-                gridLayout.addView(b);//aggiunta dei bottoni al layout
+                //per ogni corso aggiungo un bottone
+                for (final Corso c : listaNuovi) {
+                    final Button b = new Button(this);
+                    Space space = new Space(this);
+                    space.setMinimumHeight(5);
+                    //settaggio parametri bottone
+                    b.setText(c.getNome());
+                    b.setBackgroundColor(0xff225599);
+                    b.setGravity(Gravity.CENTER_HORIZONTAL);
+                    b.setMinimumWidth(900);
+                    b.setTextColor(0xffeeeeee);
+                    //dichiarazione di cosa succede cliccando il bottone
+                    b.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            FactoryCorsi fc = FactoryCorsi.getInstance();
+                            s.aggiungiCorso(fc.cercaCorso(c.getNome()));//viene aggiunto il corso corrispondente
+                            scelta.dismiss();//viene chiuso il pop-up
+                            //viene refreshata l'activity home
+                            finish();
+                            startActivity(getIntent());
+                            overridePendingTransition(0, 0);
+                        }
+                    });
+                    gridLayout.addView(space);
+                    gridLayout.addView(b);//aggiunta dei bottoni al layout
+                }
+                scelta.setContentView(view);//setting della view da visualizzare col pop-up
+                scelta.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                scelta.show();//lancio del pop-up
             }
-            scelta.setContentView(view);//setting della view da visualizzare col pop-up
-            scelta.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            scelta.show();//lancio del pop-up
+            else{
+                Toast t = Toast.makeText(this, "Non ci sono altri corsi disponibili", Toast.LENGTH_SHORT);
+                t.show();
+            }
         }
         //se il corso di studi non esiste visualizzo un messaggio di errore tramite Toast
         else {

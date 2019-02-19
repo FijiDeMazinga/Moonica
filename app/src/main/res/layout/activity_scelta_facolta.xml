@@ -20,33 +20,16 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="10dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Registrazione"
-                    android:textColor="#225599"
-                    android:textSize="25dp" />
-
-                <Space
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:maxWidth="75dp"
-                    android:maxHeight="75dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/logo" />
-            </LinearLayout>
+                android:adjustViewBounds="true"
+                android:maxWidth="75dp"
+                android:maxHeight="75dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/logo" />
 
             <Space
                 android:layout_width="match_parent"
@@ -89,13 +72,10 @@
                 android:paddingTop="0dp"
                 android:paddingRight="50dp"
                 android:focusable="true"
-                android:focusableInTouchMode="true"
-                />
-
+                android:focusableInTouchMode="true"/>
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="36dp" />
-
             <Button
                 android:id="@+id/sceltafacolta"
                 style="@style/MyButtonStyle"

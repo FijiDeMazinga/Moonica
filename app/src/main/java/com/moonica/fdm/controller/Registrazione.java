@@ -37,6 +37,7 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         setContentView(R.layout.activity_registrazione);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Spinner spinner = findViewById(R.id.gender);
+        setTitle("Registrazione");
 
         spinner.setOnItemSelectedListener(this);
 
