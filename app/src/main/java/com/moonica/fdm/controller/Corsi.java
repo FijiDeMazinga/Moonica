@@ -59,7 +59,6 @@ public class Corsi extends AppCompatActivity {
         obj = i.getSerializableExtra("com.moonica.fdm");
         objUtente = i.getSerializableExtra("utente");
 
-
         c = (Corso) obj;
         utente = (Utente) objUtente;
 
