@@ -127,7 +127,9 @@ public class Forum extends AppCompatActivity {
         switch (id) {
             case R.id.action_newThread:
                 Intent newThread = new Intent(Forum.this, NewThread.class);
+                newThread.putExtra("newThread", "nuovo thread");
                 newThread.putExtra(NEWTHREAD, c);
+                newThread.putExtra("utente", utente);
                 startActivity(newThread);
                 break;
             default:

@@ -102,4 +102,17 @@ public class FactoryForumThread {
         ForumThread ft = cercaThread(id);
         ft.setNumRisposte((ft.getNumRisposte())+1);
     }
+
+    public int ultimoId(){
+        ArrayList<ForumThread> forumThreads = new ArrayList<>();
+        forumThreads.addAll(listaForumThread);
+
+        int id = forumThreads.get(listaForumThread.size()-1).getId()+1;
+
+        return id;
+    }
+
+    public void aggiungiNuovoThread (ForumThread ft){
+        this.listaForumThread.add(ft);
+    }
 }

@@ -77,7 +77,7 @@ public class Thread extends AppCompatActivity {
          */
         final Intent i = getIntent();
         Serializable obj = i.getSerializableExtra("com.moonica.fdm");
-        Serializable studObj  = i.getSerializableExtra("utente");
+        Serializable studObj = i.getSerializableExtra("utente");
 
         ft = (ForumThread) obj;
         utente = (Utente) studObj;
@@ -263,17 +263,7 @@ public class Thread extends AppCompatActivity {
             }
         });
 
-
-        /*dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialog) {
-
-            }
-        });*/
-
-
         dialog.show();
-
     }
 
 
@@ -283,8 +273,15 @@ public class Thread extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         finish();
+        Intent intent = new Intent(Thread.this, Forum.class);
+        intent.putExtra("com.moonica.fdm", ft.getCorso());
+        intent.putExtra("utente", utente);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         return true;
     }
+
 
 }
 

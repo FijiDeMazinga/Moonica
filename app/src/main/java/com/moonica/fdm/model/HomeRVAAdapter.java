@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.moonica.fdm.R;
 import com.moonica.fdm.controller.Corsi;
+import com.moonica.fdm.controller.Forum;
 import com.moonica.fdm.controller.Home;
 
 import java.util.ArrayList;

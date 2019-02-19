@@ -96,7 +96,7 @@
             <Button
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/invia"
+                android:id="@+id/inviaNT"
                 style="@style/MyButtonStyle"
                 android:text="INVIA"/>
         </LinearLayout>

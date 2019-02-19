@@ -44,6 +44,10 @@ public class ForumThread implements Serializable {
         this.data.set(y, m, d, h, min, s);
     }
 
+    public void setData(Calendar c){
+        this.data = c;
+    }
+
 
     public int getNumRisposte() {
         return numRisposte;
@@ -64,6 +68,10 @@ public class ForumThread implements Serializable {
     public void setAutore(String nickAutore) {
        FactoryUtente factoryUtente = FactoryUtente.getInstance();
        this.autore = factoryUtente.cercaUtente(nickAutore);
+    }
+
+    public void setAutore(Utente u){
+        this.autore = u;
     }
 
     public Corso getCorso() {

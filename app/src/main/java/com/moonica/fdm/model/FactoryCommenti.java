@@ -89,9 +89,8 @@ public class FactoryCommenti {
         return commentiThread;
     }
 
-    public ArrayList<Commento> aggiungiCommentoLista(Commento c) {
+    public void aggiungiCommentoLista(Commento c) {
         this.listaCommenti.add(c);
-        return listaCommenti;
     }
 
 

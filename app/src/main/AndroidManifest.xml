@@ -11,7 +11,8 @@
         android:name="com.moonica.fdm.model.OttieniContesto"
         android:theme="@style/AppTheme">
         <activity android:name=".controller.NewThread"/>
-        <activity android:name=".controller.Thread" />
+        <activity android:name=".controller.Thread"
+            android:parentActivityName=".controller.Forum"/>
         <activity android:name=".controller.Corsi" />
         <activity android:name=".controller.AggiungiCorso" />
         <activity android:name=".controller.Forum" />
