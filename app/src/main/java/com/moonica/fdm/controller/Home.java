@@ -54,10 +54,7 @@ public class Home extends AppCompatActivity {
     ArrayList<Corso> lista = new ArrayList<>();
     FactoryCorsi fc = FactoryCorsi.getInstance();
     Dialog scelta;
-
-
     DrawerLayout drawerLayout;
-
 
     public static final String CORSO = "com.moonica.fdm";
 
