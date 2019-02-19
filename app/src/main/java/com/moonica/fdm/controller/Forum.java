@@ -71,6 +71,7 @@ public class Forum extends AppCompatActivity {
         ns = (ScrollView)findViewById(R.id.sv_forum);
         rv = (RecyclerView) findViewById(R.id.rv_forum);
 
+
         /*
          * Inizializzazione dell'adapter
          */

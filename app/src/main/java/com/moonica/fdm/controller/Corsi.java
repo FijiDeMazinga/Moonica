@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Space;
 import android.widget.TextView;
 
@@ -35,6 +36,7 @@ public class Corsi extends AppCompatActivity {
     CardView cv;
     Corso c;
     Utente utente;
+    ScrollView sv;
     //LinearLayout l;
     RecyclerView rv;
     ArrayList<Sezione> listaSezioni = new ArrayList<>();
@@ -71,7 +73,9 @@ public class Corsi extends AppCompatActivity {
         else
             professore.setText(c.getProfessore().getNome().concat(c.getProfessore().getCognome()));
 
+        sv = findViewById(R.id.sv_corsi);
         rv = findViewById(R.id.rvSezione);
+        rv.setFocusable(false);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);

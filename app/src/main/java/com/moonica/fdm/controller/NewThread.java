@@ -3,6 +3,7 @@ package com.moonica.fdm.controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -178,7 +179,8 @@ public class NewThread extends AppCompatActivity {
 
         if(titolo.getText() == null || titolo.getText().length() == 0){
             titolo.setError("Inserire un titolo");
-            titolo.startAnimation(animation);
+            TextInputLayout til = findViewById(R.id.vibraTitolo);
+            til.startAnimation(animation);
             errors++;
             hideKeyboard(this);
         }
@@ -196,7 +198,8 @@ public class NewThread extends AppCompatActivity {
 
         if(testo.getText() == null || testo.getText().length() == 0){
             testo.setError("Inserire una risposta");
-            testo.startAnimation(animation);
+            TextInputLayout til = findViewById(R.id.vibraTitolo);
+            til.startAnimation(animation);
             errors++;
             hideKeyboard(this);
         }

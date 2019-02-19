@@ -11,6 +11,7 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -209,7 +210,12 @@ public class Home extends AppCompatActivity {
 
         switch (id) {
             default:
-                drawerLayout.closeDrawer(Gravity.LEFT);
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(Gravity.LEFT);
+                }
+                else {
+                    drawerLayout.openDrawer(Gravity.LEFT);
+                }
         }
         return true;
     }
