@@ -20,9 +20,6 @@ import com.moonica.fdm.R;
 import java.util.ArrayList;
 
 public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneViewHolder> {
-    int position;
-    int mExpandedPosition = -1;
-
     ArrayList<Sezione> lista = new ArrayList<Sezione>();
 
     public static class SezioneViewHolder extends RecyclerView.ViewHolder {
@@ -38,20 +35,6 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
         }
     }
 
-    /*
-    public static class ContenutoViewHolder extends View {
-        CardView cv;
-        ImageView icona;
-        TextView testo;
-
-        public ContenutoViewHolder (@NonNull final View itemView) {
-            super(itemView);
-            cv = itemView.findViewById(R.id.card_view_contenuti);
-            icona = itemView.findViewById(R.id.icona_contenuto);
-            testo = itemView.findViewById(R.id.testo_contenuto);
-        }
-    }*/
-
     public SezioneAdapter(ArrayList<Sezione> lista, Utente utente){
         this.lista = lista;
     }
@@ -59,20 +42,9 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
     @Override
     public SezioneViewHolder onCreateViewHolder(ViewGroup group, int i){
         View v = LayoutInflater.from(group.getContext()).inflate(R.layout.activity_item_sezione, group, false);
-        //View child = LayoutInflater.from(group.getContext()).inflate(R.layout.activity_item_contenuto, group, false);
         SezioneViewHolder svh = new SezioneViewHolder(v);
-        //ContenutoViewHolder cvh = new ContenutoViewHolder(child);
-        //svh.figlio = cvh;
-        /*int intMaxNoOfChild = 0;
-        for (int index = 0; index < lista.size(); index++) {
-            int intMaxSizeTemp = lista.get(index).getContenuti().size();
-            if (intMaxSizeTemp > intMaxNoOfChild) intMaxNoOfChild = intMaxSizeTemp;
-        }*/
         return svh;
     }
-
-    //aggiungere onCreateViewHolder per ContenutoViewHolder
-
 
     @Override
     public void onBindViewHolder(@NonNull final SezioneViewHolder sezioneViewHolder, final int i){
@@ -109,19 +81,19 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
             horizontal.addView(icona);
             horizontal.addView(testo);
             horizontal.addView(space);
-            horizontal.setPadding(80, 20, 0, 0 );
+            horizontal.setPadding(80, 20, 0, 10 );
             sezioneViewHolder.vistaContenuti.addView(horizontal);
-            sezioneViewHolder.vistaContenuti.setPadding(0,0,0,20);
+            sezioneViewHolder.vistaContenuti.setPadding(0,10,0,20);
+            sezioneViewHolder.vistaContenuti.setVisibility(View.GONE);
         }
 
-        final boolean isExpanded = position == mExpandedPosition;
-        sezioneViewHolder.vistaContenuti.setVisibility(isExpanded?View.VISIBLE:View.GONE);
-        sezioneViewHolder.itemView.setActivated(isExpanded);
-        sezioneViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        sezioneViewHolder.titoloSezione.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mExpandedPosition = isExpanded ? -1 : position;
-                notifyItemChanged(position);
+                if (sezioneViewHolder.vistaContenuti.getVisibility() == View.GONE)
+                    sezioneViewHolder.vistaContenuti.setVisibility(View.VISIBLE);
+                else
+                    sezioneViewHolder.vistaContenuti.setVisibility(View.GONE);
             }
         });
     }
@@ -131,34 +103,3 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
         return lista.size();
     }
 }
-
-/*
-public class SezioneAdapter extends ExpandableRecyclerViewAdapter<SezioneViewHolder, ContenutoViewHolder> {
-    public SezioneAdapter(List<? extends ExpandableGroup> groups) {
-        super(groups);
-    }
-
-    @Override
-    public SezioneViewHolder onCreateGroupViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_item_sezione, parent, false);
-        return new SezioneViewHolder(view);
-    }
-
-    @Override
-    public ContenutoViewHolder onCreateChildViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_item_contenuto, parent, false);
-        return new ContenutoViewHolder(view);
-    }
-
-    @Override
-    public void onBindChildViewHolder(ContenutoViewHolder holder, int flatPosition, ExpandableGroup group, int childIndex) {
-        final Contenuto contenuto = ((Contenuto) group).getItems().get(childIndex);
-        holder.setTesto(group);
-    }
-
-    @Override
-    public void onBindGroupViewHolder(SezioneViewHolder holder, int flatPosition, ExpandableGroup group) {
-        holder.setTitolo(group);
-    }
-}
-*/
