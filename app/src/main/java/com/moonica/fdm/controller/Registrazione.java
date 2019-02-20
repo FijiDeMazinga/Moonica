@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import static com.moonica.fdm.controller.NewThread.hideKeyboard;
+
 public class Registrazione extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     EditText nome, cognome, username, password, mail;
@@ -134,12 +136,14 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
             nome.setError("Inserire nome");
             rNome.startAnimation(animation);
             errors++;
+            hideKeyboard(this);
         }
         else  nome.setError(null);
         if(cognome.getText() == null || cognome.getText().length() == 0){
             cognome.setError("Inserire cognome");
             rCognome.startAnimation(animation);
             errors++;
+            hideKeyboard(this);
         }
         else  cognome.setError(null);
         if(mail.getText() == null || mail.getText().length() == 0){
@@ -152,6 +156,7 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
             SetError("Inserire sesso", gender, (TextView) findViewById(R.id.invisibleError));
             gender.startAnimation(animation);
             errors++;
+            hideKeyboard(this);
         }
 
         if(errors == 0)

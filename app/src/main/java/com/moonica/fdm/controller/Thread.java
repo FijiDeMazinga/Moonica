@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
@@ -63,7 +64,7 @@ public class Thread extends AppCompatActivity {
     CardView cv;
     ForumThread ft;
     static Utente utente;
-    TextView titolo, testo, data, autore;
+    TextView titolo, testo, data, autore, noReply;
     ImageButton reply;
     FloatingActionButton fab;
 
@@ -115,6 +116,7 @@ public class Thread extends AppCompatActivity {
         testo = findViewById(R.id.testoThread_main_post);
         data = findViewById(R.id.data_thread);
         autore = findViewById(R.id.autore_thread);
+        noReply = findViewById(R.id.noReply);
         reply = findViewById(R.id.rispostaThreadCard);
         fab = findViewById(R.id.fab_thread);
 
@@ -135,6 +137,13 @@ public class Thread extends AppCompatActivity {
 
         rv = (RecyclerView) findViewById(R.id.rv_thread);
 
+        if (ft.getNumRisposte() == 0){
+            noReply.setVisibility(View.VISIBLE);
+        }
+        else{
+            noReply.setVisibility(View.GONE);
+        }
+
         rv.setFocusable(false);
 
 
@@ -143,6 +152,7 @@ public class Thread extends AppCompatActivity {
         rv.setHasFixedSize(true);
 
         initializeAdapter();
+
 
 
         /*
@@ -165,12 +175,16 @@ public class Thread extends AppCompatActivity {
             ns.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
                 @Override
                 public void onScrollChanged() {
+
+                    Rect rectRv = new Rect(rv.getLeft(), rv.getTop(), rv.getRight(), rv.getBottom());
+                    Rect rectFab = new Rect(fab.getLeft(), fab.getTop(), fab.getRight(), fab.getBottom());
+
                     if (ns.getChildAt(0).getBottom()
-                            <= (ns.getHeight() + ns.getScrollY())) {
+                            <= (ns.getHeight() + ns.getScrollY()) && rectFab.intersect(rectRv)) {
                         fab.setAlpha(0.25f);
                     }
                     if (ns.getChildAt(0).getBottom()
-                            > (ns.getHeight() + ns.getScrollY())) {
+                            > (ns.getHeight() + ns.getScrollY()) || !rectFab.intersect(rectRv)) {
                         fab.setAlpha(0.99f);
                     }
                 }
@@ -209,6 +223,10 @@ public class Thread extends AppCompatActivity {
                         String task = String.valueOf(reply.getText());
 
                         Commento newReply = new Commento();
+
+                        if (ft.getNumRisposte() == 0) {
+                            noReply.setVisibility(View.GONE);
+                        }
 
                         FactoryUtente factoryUtente = FactoryUtente.getInstance();
 

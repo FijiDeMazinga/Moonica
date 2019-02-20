@@ -1,9 +1,7 @@
 package com.moonica.fdm.model;
 
-import com.moonica.fdm.controller.Forum;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -107,9 +105,15 @@ public class FactoryForumThread {
         ArrayList<ForumThread> forumThreads = new ArrayList<>();
         forumThreads.addAll(listaForumThread);
 
-        int id = forumThreads.get(listaForumThread.size()-1).getId()+1;
 
-        return id;
+        Collections.sort(forumThreads, new Comparator<ForumThread>() {
+            @Override
+            public int compare(ForumThread o1, ForumThread o2) {
+                return o2.getId() - o1.getId();
+            }
+        });
+
+        return forumThreads.get(0).getId()+1;
     }
 
     public void aggiungiNuovoThread (ForumThread ft){

@@ -80,17 +80,6 @@ public class NewThread extends AppCompatActivity {
          */
 
         Bundle extras = i.getExtras();
-        /*if (extras != null) {
-            if (extras.getString("newThread") != null) {
-                String codice = extras.getString("newThread");
-            }
-            if (extras.getString("longReply") != null) {
-                String codice = extras.getString("longReply");
-            }
-        }*/
-
-
-
 
         testo = (EditText) findViewById(R.id.testoNewT);
         uploadFile = (ImageButton) findViewById(R.id.caricaAllegato);

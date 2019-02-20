@@ -85,6 +85,17 @@
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 
+
+            <TextView
+                android:id="@+id/noReply"
+                android:text="Non ci sono risposte"
+                android:textColor="#A9A9A9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"/>
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_thread"
                 android:layout_width="match_parent"

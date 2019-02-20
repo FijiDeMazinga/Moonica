@@ -15,6 +15,8 @@ import com.moonica.fdm.R;
 import com.moonica.fdm.model.FactoryUtente;
 import com.moonica.fdm.model.Utente;
 
+import static com.moonica.fdm.controller.NewThread.hideKeyboard;
+
 public class Login extends AppCompatActivity {
     EditText username, password;
     Button login;
@@ -87,6 +89,9 @@ public class Login extends AppCompatActivity {
         if(errors == 0) {
             return true;
         }
+
+
+        hideKeyboard(this);
         return false;
     }
 
