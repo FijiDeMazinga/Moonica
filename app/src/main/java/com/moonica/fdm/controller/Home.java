@@ -67,7 +67,6 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
