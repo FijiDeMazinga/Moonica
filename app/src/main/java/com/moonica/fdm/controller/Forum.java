@@ -31,15 +31,6 @@ import java.util.ArrayList;
 
 public class Forum extends AppCompatActivity {
 
-    /*
-     *prova
-     */
-
-    LinearLayout ll;
-
-    /*
-     * fine prova
-     */
 
     ScrollView ns;
     Corso c;
@@ -47,7 +38,6 @@ public class Forum extends AppCompatActivity {
     RecyclerView rv;
     ArrayList<ForumThread> listaForum = new ArrayList<>();
     FactoryForumThread fft = FactoryForumThread.getInstance();
-    int itemsperpage = 5;
 
 
     public static final String NEWTHREAD = "com.moonica.fdm";
@@ -80,6 +70,7 @@ public class Forum extends AppCompatActivity {
 
         ns = (ScrollView)findViewById(R.id.sv_forum);
         rv = (RecyclerView) findViewById(R.id.rv_forum);
+
 
         /*
          * Inizializzazione dell'adapter

@@ -29,6 +29,7 @@ public class SceltaFacolta extends AppCompatActivity implements AdapterView.OnIt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scelta_facolta);
+        setTitle("Scelta facoltà");
 
         Intent i = getIntent();
         //ricevo lo studente dalla activity precedente

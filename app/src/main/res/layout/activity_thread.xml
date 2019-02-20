@@ -59,6 +59,16 @@
                         android:layout_below="@+id/data_thread"
                         android:background="@color/colorPrimary">
 
+                        <ImageButton
+                            android:id="@+id/rispostaThreadCard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_reply_24dp"
+                            android:padding="8dp"
+                            android:layout_marginLeft="4dp"
+                            android:background="@color/colorPrimary"
+                            />
+
                         <TextView
                             android:id="@+id/autore_thread"
                             android:layout_width="wrap_content"
