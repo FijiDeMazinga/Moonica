@@ -10,13 +10,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/rvItemSezione">
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="16dp"
-            android:id="@+id/titolo_sezione"/>
+            android:orientation="horizontal"
+            android:id="@+id/attivatore">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="16dp"
+                android:id="@+id/titolo_sezione"/>
 
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/freccia"
+                android:src="@drawable/ic_keyboard_arrow_down_white_24dp"
+                android:layout_alignParentRight="true"
+                android:paddingTop="5dp"/>
+        </RelativeLayout>
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"

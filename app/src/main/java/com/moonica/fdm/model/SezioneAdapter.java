@@ -1,6 +1,5 @@
 package com.moonica.fdm.model;
 
-import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -9,6 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.RotateAnimation;
+import android.view.animation.Transformation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -25,12 +28,16 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
     public static class SezioneViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
         TextView titoloSezione;
+        ImageView freccia;
+        RelativeLayout attivatore;
         LinearLayout vistaContenuti;
 
         public SezioneViewHolder (@NonNull final View itemView) {
             super(itemView);
             cv = itemView.findViewById(R.id.card_view_sezioni);
             titoloSezione = itemView.findViewById(R.id.titolo_sezione);
+            freccia = itemView.findViewById(R.id.freccia);
+            attivatore = itemView.findViewById(R.id.attivatore);
             vistaContenuti = itemView.findViewById(R.id.vistaContenuti);
         }
     }
@@ -63,6 +70,7 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
             TextView testo = new TextView(OttieniContesto.getAppContext());
             testo.setText(lista.get(i).getContenuti().get(j).getTesto());
             GradientDrawable border = new GradientDrawable();
+
             border.setColor(0xeeeeeeee);
             border.setStroke(3, 0xFF225599);
             border.setCornerRadius(20.1f);
@@ -72,7 +80,7 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
                 sezioneViewHolder.vistaContenuti.setBackground(border);
             }
             icona.setLayoutParams(new LinearLayout.LayoutParams(70, 70));
-            testo.setTextColor(Color.BLACK);
+            testo.setTextColor(0xFF225599);
             testo.setTextSize(18);
             testo.setPadding(20, 0, 0, 0);
             LinearLayout horizontal = new LinearLayout(OttieniContesto.getAppContext());
@@ -87,13 +95,27 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
             sezioneViewHolder.vistaContenuti.setVisibility(View.GONE);
         }
 
-        sezioneViewHolder.titoloSezione.setOnClickListener(new View.OnClickListener() {
+        sezioneViewHolder.attivatore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (sezioneViewHolder.vistaContenuti.getVisibility() == View.GONE)
-                    sezioneViewHolder.vistaContenuti.setVisibility(View.VISIBLE);
-                else
-                    sezioneViewHolder.vistaContenuti.setVisibility(View.GONE);
+                if (sezioneViewHolder.vistaContenuti.getVisibility() == View.GONE) {
+                    expand(sezioneViewHolder.vistaContenuti);
+                    final RotateAnimation rotateAnimation = new RotateAnimation(0.0f, -180.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                    rotateAnimation.setInterpolator(new DecelerateInterpolator());
+                    rotateAnimation.setRepeatCount(0);
+                    rotateAnimation.setDuration(300);
+                    rotateAnimation.setFillAfter(true);
+                    sezioneViewHolder.freccia.startAnimation(rotateAnimation);
+                }
+                else {
+                    collapse(sezioneViewHolder.vistaContenuti);
+                    final RotateAnimation rotateAnimation = new RotateAnimation(-180.0f, 0.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                    rotateAnimation.setInterpolator(new DecelerateInterpolator());
+                    rotateAnimation.setRepeatCount(0);
+                    rotateAnimation.setDuration(300);
+                    rotateAnimation.setFillAfter(true);
+                    sezioneViewHolder.freccia.startAnimation(rotateAnimation);
+                }
             }
         });
     }
@@ -101,5 +123,56 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
     @Override
     public int getItemCount() {
         return lista.size();
+    }
+
+    public static void expand(final View v) {
+        v.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        final int targetHeight = v.getMeasuredHeight();
+
+        // Older versions of android (pre API 21) cancel animations for views with a height of 0.
+        v.getLayoutParams().height = 1;
+        v.setVisibility(View.VISIBLE);
+        Animation a = new Animation() {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+                v.getLayoutParams().height = interpolatedTime == 1 ? targetHeight : (int)(targetHeight * interpolatedTime);
+                v.requestLayout();
+            }
+
+            @Override
+            public boolean willChangeBounds() {
+                return true;
+            }
+        };
+
+        // 1dp/ms
+        a.setDuration(((int)(targetHeight / v.getContext().getResources().getDisplayMetrics().density)) * 4);
+        v.startAnimation(a);
+    }
+
+    public static void collapse(final View v) {
+        final int initialHeight = v.getMeasuredHeight();
+
+        Animation a = new Animation()
+        {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+                if(interpolatedTime == 1){
+                    v.setVisibility(View.GONE);
+                }else{
+                    v.getLayoutParams().height = initialHeight - (int)(initialHeight * interpolatedTime);
+                    v.requestLayout();
+                }
+            }
+
+            @Override
+            public boolean willChangeBounds() {
+                return true;
+            }
+        };
+
+        // 1dp/ms
+        a.setDuration(((int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density)) * 4);
+        v.startAnimation(a);
     }
 }
