@@ -47,6 +47,7 @@ public class Login extends AppCompatActivity {
                         Intent home = new Intent(Login.this, Home.class);
                         home.putExtra(USER, u);//passo l'utente alla home
                         startActivity(home);
+                        finish();
                     } else
                         //se l'utente non esiste o i dati sono sbagliati viene reso visibile il messaggio di errore
                         loginError.setVisibility(View.VISIBLE);

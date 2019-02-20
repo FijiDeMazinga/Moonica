@@ -27,7 +27,7 @@ public class FactoryCorsoDiStudi {
         scienzePol.setFacolta("Scienze Economiche, Giuridiche e Politiche");
 
         CorsoDiStudi medicina = new CorsoDiStudi();
-        medicina.setNome("Medicina e chirugia");
+        medicina.setNome("Medicina e Chirurgia");
         medicina.setFacolta("Medicina e Chirurgia");
 
         CorsoDiStudi ctf = new CorsoDiStudi();

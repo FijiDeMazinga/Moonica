@@ -3,7 +3,11 @@ package com.moonica.fdm.controller;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,7 +18,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Corso;
@@ -27,6 +33,8 @@ import com.moonica.fdm.model.Utente;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class Forum extends AppCompatActivity {
@@ -41,6 +49,7 @@ public class Forum extends AppCompatActivity {
 
 
     public static final String NEWTHREAD = "com.moonica.fdm";
+    private DrawerLayout drawerLayout;
 
 
     @TargetApi(Build.VERSION_CODES.O)
@@ -91,6 +100,12 @@ public class Forum extends AppCompatActivity {
          * Fine prova paging
          */
 
+        //creazione navbar
+        Intent intent = new Intent(Forum.this, Home.class);
+        setNavBar(intent);
+        //funzione logout
+        Intent intentL = new Intent(Forum.this, Login.class);
+        logOut(intentL);
     }
 
     @Override
@@ -165,6 +180,51 @@ public class Forum extends AppCompatActivity {
 
         PagerSnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(rv);*/
+    }
+    public void setNavBar(final Intent intent){
+        //menu
+        ActionBarDrawerToggle actionBarDrawerToggle;
+        NavigationView navigationView;
+        //navMenu
+        drawerLayout = (DrawerLayout) findViewById(R.id.forumActivity);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        navigationView = (NavigationView) findViewById(R.id.nv);
+        CircleImageView avatar = new CircleImageView(this);
+        TextView nomeUtente = new TextView(this);
+        View header = navigationView.getHeaderView(0);
+        avatar = header.findViewById(R.id.avatar);
+        nomeUtente = header.findViewById(R.id.nomeUtente);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.homeNav:
+                        intent.putExtra("com.moonica.fdm", utente);
+                        startActivity(intent);
+                        overridePendingTransition(0,0);
+                        break;
+                }
+                return true;
+            }
+        });
+        avatar.setImageResource(utente.getAvatar());
+        nomeUtente.setText(utente.getNome() + " " + utente.getCognome());
+
+    }
+
+    public void logOut(final Intent intent){
+        RelativeLayout relativeLayout = findViewById(R.id.buttonLogOut);
+        relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }
 
