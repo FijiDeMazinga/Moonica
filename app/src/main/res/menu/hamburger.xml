@@ -6,7 +6,7 @@
         android:id="@+id/action_openNav"
         android:icon="@drawable/ic_menu_black_24dp"
         android:title="Apri NavBar"
-        
+
         app:showAsAction="ifRoom"/>
 
 </menu>

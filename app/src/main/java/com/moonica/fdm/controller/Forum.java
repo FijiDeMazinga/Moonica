@@ -94,13 +94,6 @@ public class Forum extends AppCompatActivity {
 
         initializeAdapter(utente);
 
-        /*
-         * Prova paging
-         */
-        pagingView();
-        /*
-         * Fine prova paging
-         */
 
         //creazione navbar
         Intent intent = new Intent(Forum.this, Home.class);
@@ -163,32 +156,6 @@ public class Forum extends AppCompatActivity {
         initializeAdapter(utente);
     }
 
-    public void pagingView(){
-        /*rv.setNestedScrollingEnabled(false);
-        ns.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-            @Override
-            public void onScrollChanged() {
-
-                View view = (View) ns.getChildAt(ns.getChildCount()-1);
-                int diff = (view.getBottom() - (ns.getHeight() + ns.getScrollY()));
-
-                if (diff == 0){
-                    PagerSnapHelper snapHelper = new PagerSnapHelper();
-                    snapHelper.attachToRecyclerView(rv);
-                }
-            }
-        });*/
-
-        /*LinearLayoutPagerManager linearLayoutPagerManager = new LinearLayoutPagerManager(this, LinearLayoutManager.VERTICAL, false, itemsperpage);
-
-
-
-        rv.setLayoutManager(linearLayoutPagerManager);
-        rv.setLayoutManager(new LinearLayoutManager(this, LinearLayout.HORIZONTAL, false));
-
-        PagerSnapHelper snapHelper = new PagerSnapHelper();
-        snapHelper.attachToRecyclerView(rv);*/
-    }
     public void setNavBar(final Intent intent){
         //menu
         ActionBarDrawerToggle actionBarDrawerToggle;

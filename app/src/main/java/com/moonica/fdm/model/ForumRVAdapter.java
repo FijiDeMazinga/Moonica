@@ -101,6 +101,8 @@ public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumThr
     private String getElapsedDaysText(Calendar c1, Calendar c2) {
         String elapsedDaysText = null;
 
+        c2.add(Calendar.HOUR_OF_DAY, 1);
+
         long milliSeconds1 = c1.getTimeInMillis();
         long milliSeconds2 = c2.getTimeInMillis();
         long periodSeconds = (milliSeconds2 - milliSeconds1) / 1000;
@@ -108,11 +110,11 @@ public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumThr
         if (elapsedDays < 1 && periodSeconds < 60)
             elapsedDaysText = "meno di un minuto fa";
         else if (elapsedDays < 1 && periodSeconds < 3600)
-            elapsedDaysText = periodSeconds * 60 + " minuti fa";
+            elapsedDaysText = periodSeconds / 60 + " minuti fa";
         else if (elapsedDays < 1 && periodSeconds < 7200)
-            elapsedDaysText = (periodSeconds * 3600) + " ora fa";
+            elapsedDaysText = (periodSeconds / 3600) + " ora fa";
         else if (elapsedDays < 1)
-            elapsedDaysText = (periodSeconds * 3600) + " ore fa";
+            elapsedDaysText = (periodSeconds / 3600) + " ore fa";
         else if (elapsedDays < 2)
             elapsedDaysText = elapsedDays + " giorno fa";
         else if (elapsedDays < 30)

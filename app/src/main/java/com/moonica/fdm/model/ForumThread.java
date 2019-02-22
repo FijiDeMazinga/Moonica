@@ -45,6 +45,8 @@ public class ForumThread implements Serializable {
     }
 
     public void setData(Calendar c){
+        c.add(Calendar.HOUR_OF_DAY, 1);
+
         this.data = c;
     }
 

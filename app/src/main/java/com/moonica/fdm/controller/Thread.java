@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -25,6 +26,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.transition.TransitionManager;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -118,7 +120,7 @@ public class Thread extends AppCompatActivity {
         autore = findViewById(R.id.autore_thread);
         noReply = findViewById(R.id.noReply);
         reply = findViewById(R.id.rispostaThreadCard);
-        fab = findViewById(R.id.fab_thread);
+
 
         titolo.setText(ft.getTitolo());
         testo.setText(ft.getTesto());
@@ -131,16 +133,15 @@ public class Thread extends AppCompatActivity {
                 longReply.putExtra("longReply", "risposta");
                 longReply.putExtra(NEWTHREAD, ft);
                 longReply.putExtra("utente", utente);
-                startActivityForResult(longReply,1 );
+                startActivityForResult(longReply, 1);
             }
         });
 
         rv = (RecyclerView) findViewById(R.id.rv_thread);
 
-        if (ft.getNumRisposte() == 0){
+        if (ft.getNumRisposte() == 0) {
             noReply.setVisibility(View.VISIBLE);
-        }
-        else{
+        } else {
             noReply.setVisibility(View.GONE);
         }
 
@@ -149,12 +150,12 @@ public class Thread extends AppCompatActivity {
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
-        rv.setHasFixedSize(true);
+        rv.setHasFixedSize(false);
 
         initializeAdapter();
 
 
-
+        fab = findViewById(R.id.fab_thread);
         /*
          * Il FAB viene reso cliccabile
          */
@@ -179,12 +180,26 @@ public class Thread extends AppCompatActivity {
                     Rect rectRv = new Rect(rv.getLeft(), rv.getTop(), rv.getRight(), rv.getBottom());
                     Rect rectFab = new Rect(fab.getLeft(), fab.getTop(), fab.getRight(), fab.getBottom());
 
+                    Display display = getWindowManager().getDefaultDisplay();
+                    Point size = new Point();
+                    display.getSize(size);
+                    int height = size.y;
+
+                    int cvHeight = cv.getHeight();
+
                     if (ns.getChildAt(0).getBottom()
+                            <= (ns.getHeight() + ns.getScrollY()) && cvHeight > height){
+                        fab.setAlpha(0.25f);
+                    }
+                    else if (ns.getChildAt(0).getBottom()
                             <= (ns.getHeight() + ns.getScrollY()) && rectFab.intersect(rectRv)) {
                         fab.setAlpha(0.25f);
                     }
-                    if (ns.getChildAt(0).getBottom()
+                    else if (ns.getChildAt(0).getBottom()
                             > (ns.getHeight() + ns.getScrollY()) || !rectFab.intersect(rectRv)) {
+                        fab.setAlpha(0.99f);
+                    }
+                    else{
                         fab.setAlpha(0.99f);
                     }
                 }
@@ -313,7 +328,7 @@ public class Thread extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
-            if(resultCode == RESULT_OK) {
+            if (resultCode == RESULT_OK) {
                 Serializable strEditText = data.getSerializableExtra("nuovo commento");
 
                 ForumThread ft = new ForumThread();
@@ -322,7 +337,7 @@ public class Thread extends AppCompatActivity {
 
                 FactoryCommenti commenti = FactoryCommenti.getInstance();
 
-                Commento nuovoCommento = commenti.cercaListaCommenti(ft.getId()).get(commenti.cercaListaCommenti(ft.getId()).size()-1);
+                Commento nuovoCommento = commenti.cercaListaCommenti(ft.getId()).get(commenti.cercaListaCommenti(ft.getId()).size() - 1);
                 commentsList.add(nuovoCommento);
                 ft.setNumRisposte(commenti);
 
@@ -341,8 +356,7 @@ public class Thread extends AppCompatActivity {
 
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(Gravity.LEFT);
-        }
-        else {
+        } else {
             finish();
             Intent intent = new Intent(Thread.this, Forum.class);
             intent.putExtra("com.moonica.fdm", ft.getCorso());
@@ -354,7 +368,7 @@ public class Thread extends AppCompatActivity {
         return true;
     }
 
-    public void setNavBar(final Intent intent){
+    public void setNavBar(final Intent intent) {
         //menu
         ActionBarDrawerToggle actionBarDrawerToggle;
         NavigationView navigationView;
@@ -380,7 +394,7 @@ public class Thread extends AppCompatActivity {
                     case R.id.homeNav:
                         intent.putExtra("com.moonica.fdm", utente);
                         startActivity(intent);
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         break;
                 }
                 return true;
@@ -391,7 +405,7 @@ public class Thread extends AppCompatActivity {
 
     }
 
-    public void logOut(final Intent intent){
+    public void logOut(final Intent intent) {
         RelativeLayout relativeLayout = findViewById(R.id.buttonLogOut);
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
