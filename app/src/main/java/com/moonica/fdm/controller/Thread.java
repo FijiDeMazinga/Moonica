@@ -4,10 +4,16 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +25,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.transition.TransitionManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -28,6 +35,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.moonica.fdm.R;
@@ -47,6 +55,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class Thread extends AppCompatActivity {
 
@@ -54,7 +64,7 @@ public class Thread extends AppCompatActivity {
     CardView cv;
     ForumThread ft;
     static Utente utente;
-    TextView titolo, testo, data, autore;
+    TextView titolo, testo, data, autore, noReply;
     ImageButton reply;
     FloatingActionButton fab;
 
@@ -65,6 +75,7 @@ public class Thread extends AppCompatActivity {
 
 
     public static final String NEWTHREAD = "com.moonica.fdm";
+    private DrawerLayout drawerLayout;
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -105,6 +116,7 @@ public class Thread extends AppCompatActivity {
         testo = findViewById(R.id.testoThread_main_post);
         data = findViewById(R.id.data_thread);
         autore = findViewById(R.id.autore_thread);
+        noReply = findViewById(R.id.noReply);
         reply = findViewById(R.id.rispostaThreadCard);
         fab = findViewById(R.id.fab_thread);
 
@@ -125,6 +137,13 @@ public class Thread extends AppCompatActivity {
 
         rv = (RecyclerView) findViewById(R.id.rv_thread);
 
+        if (ft.getNumRisposte() == 0){
+            noReply.setVisibility(View.VISIBLE);
+        }
+        else{
+            noReply.setVisibility(View.GONE);
+        }
+
         rv.setFocusable(false);
 
 
@@ -133,6 +152,7 @@ public class Thread extends AppCompatActivity {
         rv.setHasFixedSize(true);
 
         initializeAdapter();
+
 
 
         /*
@@ -155,12 +175,16 @@ public class Thread extends AppCompatActivity {
             ns.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
                 @Override
                 public void onScrollChanged() {
+
+                    Rect rectRv = new Rect(rv.getLeft(), rv.getTop(), rv.getRight(), rv.getBottom());
+                    Rect rectFab = new Rect(fab.getLeft(), fab.getTop(), fab.getRight(), fab.getBottom());
+
                     if (ns.getChildAt(0).getBottom()
-                            <= (ns.getHeight() + ns.getScrollY())) {
+                            <= (ns.getHeight() + ns.getScrollY()) && rectFab.intersect(rectRv)) {
                         fab.setAlpha(0.25f);
                     }
                     if (ns.getChildAt(0).getBottom()
-                            > (ns.getHeight() + ns.getScrollY())) {
+                            > (ns.getHeight() + ns.getScrollY()) || !rectFab.intersect(rectRv)) {
                         fab.setAlpha(0.99f);
                     }
                 }
@@ -168,6 +192,12 @@ public class Thread extends AppCompatActivity {
 
 
         }
+        //creazione navbar
+        Intent intent = new Intent(Thread.this, Home.class);
+        setNavBar(intent);
+        //funzione logout
+        Intent intentL = new Intent(Thread.this, Login.class);
+        logOut(intentL);
 
     }
 
@@ -193,6 +223,10 @@ public class Thread extends AppCompatActivity {
                         String task = String.valueOf(reply.getText());
 
                         Commento newReply = new Commento();
+
+                        if (ft.getNumRisposte() == 0) {
+                            noReply.setVisibility(View.GONE);
+                        }
 
                         FactoryUtente factoryUtente = FactoryUtente.getInstance();
 
@@ -301,19 +335,88 @@ public class Thread extends AppCompatActivity {
     /*
      * L'ovveride chiude l'activity presente in cima allo stack
      */
+    @RequiresApi(api = Build.VERSION_CODES.ECLAIR)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        finish();
-        Intent intent = new Intent(Thread.this, Forum.class);
-        intent.putExtra("com.moonica.fdm", ft.getCorso());
-        intent.putExtra("utente", utente);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(Gravity.LEFT);
+        }
+        else {
+            finish();
+            Intent intent = new Intent(Thread.this, Forum.class);
+            intent.putExtra("com.moonica.fdm", ft.getCorso());
+            intent.putExtra("utente", utente);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        }
         return true;
     }
 
+    public void setNavBar(final Intent intent){
+        //menu
+        ActionBarDrawerToggle actionBarDrawerToggle;
+        NavigationView navigationView;
+        //navMenu
+        drawerLayout = (DrawerLayout) findViewById(R.id.activityThread);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
+        actionBarDrawerToggle.setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
 
+        navigationView = (NavigationView) findViewById(R.id.nv);
+        CircleImageView avatar = new CircleImageView(this);
+        TextView nomeUtente = new TextView(this);
+        View header = navigationView.getHeaderView(0);
+        avatar = header.findViewById(R.id.avatar);
+        nomeUtente = header.findViewById(R.id.nomeUtente);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.homeNav:
+                        intent.putExtra("com.moonica.fdm", utente);
+                        startActivity(intent);
+                        overridePendingTransition(0,0);
+                        break;
+                }
+                return true;
+            }
+        });
+        avatar.setImageResource(utente.getAvatar());
+        nomeUtente.setText(utente.getNome() + " " + utente.getCognome());
+
+    }
+
+    public void logOut(final Intent intent){
+        RelativeLayout relativeLayout = findViewById(R.id.buttonLogOut);
+        relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+    @Override
+    public void onBackPressed(){
+        finish();
+
+        Intent intent = new Intent(Thread.this, Forum.class);
+
+        intent.putExtra("com.moonica.fdm", ft.getCorso());
+
+        intent.putExtra("utente", utente);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
 }
 
 

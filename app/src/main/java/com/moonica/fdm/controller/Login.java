@@ -15,6 +15,8 @@ import com.moonica.fdm.R;
 import com.moonica.fdm.model.FactoryUtente;
 import com.moonica.fdm.model.Utente;
 
+import static com.moonica.fdm.controller.NewThread.hideKeyboard;
+
 public class Login extends AppCompatActivity {
     EditText username, password;
     Button login;
@@ -47,6 +49,7 @@ public class Login extends AppCompatActivity {
                         Intent home = new Intent(Login.this, Home.class);
                         home.putExtra(USER, u);//passo l'utente alla home
                         startActivity(home);
+                        finish();
                     } else
                         //se l'utente non esiste o i dati sono sbagliati viene reso visibile il messaggio di errore
                         loginError.setVisibility(View.VISIBLE);
@@ -86,6 +89,9 @@ public class Login extends AppCompatActivity {
         if(errors == 0) {
             return true;
         }
+
+
+        hideKeyboard(this);
         return false;
     }
 
@@ -100,5 +106,9 @@ public class Login extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+    @Override
+    public void onBackPressed(){
+        moveTaskToBack(true);
     }
 }

@@ -99,19 +99,19 @@ public class FactoryCorsi {
         tuttiCorsi.add(dirPrivato);
 
         Corso fisio = new Corso();
-        fisio.setFacolta("Medicina e chirurgia");
+        fisio.setFacolta("Medicina e Chirurgia");
         fisio.setNome("Fisiologia");
         fisio.setSigla("FIS");
         fisio.setSezioni(null);
 
         Corso anatPat = new Corso();
-        anatPat.setFacolta("Medicina e chirurgia");
+        anatPat.setFacolta("Medicina e Chirurgia");
         anatPat.setNome("Anatomia Patologica");
         anatPat.setSigla("AP");
         anatPat.setSezioni(null);
 
         Corso oncologia = new Corso();
-        oncologia.setFacolta("Medicina e chirurgia");
+        oncologia.setFacolta("Medicina e Chirurgia");
         oncologia.setNome("Oncologia");
         oncologia.setSigla("ONC");
         oncologia.setSezioni(null);
@@ -230,7 +230,7 @@ public class FactoryCorsi {
             case "Chimica e Tecnologie Farmaceutiche":
                 listaCorsi.addAll(ctf);
                 break;
-            case "Medicina e chirurgia":
+            case "Medicina e Chirurgia":
                 listaCorsi.addAll(med);
                 break;
             case "Scienze Politiche":

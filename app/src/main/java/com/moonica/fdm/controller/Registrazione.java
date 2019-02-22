@@ -1,9 +1,14 @@
 package com.moonica.fdm.controller;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Patterns;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -23,11 +28,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import static com.moonica.fdm.controller.NewThread.hideKeyboard;
+
 public class Registrazione extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     EditText nome, cognome, username, password, mail;
     Spinner gender;
     TextInputLayout rNome, rCognome, rUser, rPass, rMail;
+    Dialog dialog;
 
     public static final String USER = "com.moonica.fdm";
 
@@ -40,6 +48,7 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         setTitle("Registrazione");
 
         spinner.setOnItemSelectedListener(this);
+        dialog = new Dialog(this);
 
         //lista di stringhe da aggiungere allo spinner
         List<String> genders = new ArrayList<String>();
@@ -134,16 +143,23 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
             nome.setError("Inserire nome");
             rNome.startAnimation(animation);
             errors++;
+            hideKeyboard(this);
         }
         else  nome.setError(null);
         if(cognome.getText() == null || cognome.getText().length() == 0){
             cognome.setError("Inserire cognome");
             rCognome.startAnimation(animation);
             errors++;
+            hideKeyboard(this);
         }
         else  cognome.setError(null);
         if(mail.getText() == null || mail.getText().length() == 0){
             mail.setError("Inserire mail");
+            rMail.startAnimation(animation);
+            errors++;
+        }
+        else if(!(Patterns.EMAIL_ADDRESS.matcher(mail.getText()).matches())){
+            mail.setError("Inserire mail valida");
             rMail.startAnimation(animation);
             errors++;
         }
@@ -152,6 +168,7 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
             SetError("Inserire sesso", gender, (TextView) findViewById(R.id.invisibleError));
             gender.startAnimation(animation);
             errors++;
+            hideKeyboard(this);
         }
 
         if(errors == 0)
@@ -172,5 +189,13 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
             t.setError(null);
             textView.setError(null);
         }
+    }
+
+    public void Popup(View v){
+        LayoutInflater f = getLayoutInflater();
+        View view = f.inflate(R.layout.activity_scelta_avatar, null);
+        dialog.setContentView(view);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0xffeeeeee));
+        dialog.show();
     }
 }

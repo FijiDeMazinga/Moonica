@@ -80,6 +80,7 @@ public class SceltaFacolta extends AppCompatActivity implements AdapterView.OnIt
                 Intent r = new Intent(SceltaFacolta.this, Home.class);
                 r.putExtra(USER, aggiornaStudente(s));//aggiungo l'extra con lo studente modificato
                 startActivity(r);
+                finish();
             }
             }
         });

@@ -3,9 +3,15 @@ package com.moonica.fdm.controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -15,6 +21,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.moonica.fdm.R;
@@ -29,6 +36,8 @@ import com.moonica.fdm.model.Utente;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NewThread extends AppCompatActivity {
 
@@ -45,6 +54,7 @@ public class NewThread extends AppCompatActivity {
 
 
     public static final String NEWTHREAD = "com.moonica.fdm";
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,17 +80,6 @@ public class NewThread extends AppCompatActivity {
          */
 
         Bundle extras = i.getExtras();
-        /*if (extras != null) {
-            if (extras.getString("newThread") != null) {
-                String codice = extras.getString("newThread");
-            }
-            if (extras.getString("longReply") != null) {
-                String codice = extras.getString("longReply");
-            }
-        }*/
-
-
-
 
         testo = (EditText) findViewById(R.id.testoNewT);
         uploadFile = (ImageButton) findViewById(R.id.caricaAllegato);
@@ -169,6 +168,12 @@ public class NewThread extends AppCompatActivity {
                 }
             });
         }
+        //creazione navbar
+        Intent intent = new Intent(NewThread.this, Home.class);
+        setNavBar(intent);
+        //funzione logout
+        Intent intentL = new Intent(NewThread.this, Login.class);
+        logOut(intentL);
 
     }
 
@@ -227,7 +232,65 @@ public class NewThread extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        finish();
+        int id = item.getItemId();
+
+        switch (id) {
+            default:
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(Gravity.LEFT);
+                }
+                else {
+
+                    finish();
+                }
+        }
         return true;
+    }
+    public void setNavBar(final Intent intent){
+        //menu
+        ActionBarDrawerToggle actionBarDrawerToggle;
+        NavigationView navigationView;
+        //navMenu
+        drawerLayout = (DrawerLayout) findViewById(R.id.activityNewThread);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
+        actionBarDrawerToggle.setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+
+        navigationView = (NavigationView) findViewById(R.id.nv);
+        CircleImageView avatar = new CircleImageView(this);
+        TextView nomeUtente = new TextView(this);
+        View header = navigationView.getHeaderView(0);
+        avatar = header.findViewById(R.id.avatar);
+        nomeUtente = header.findViewById(R.id.nomeUtente);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.homeNav:
+                        intent.putExtra("com.moonica.fdm", utente);
+                        startActivity(intent);
+                        overridePendingTransition(0,0);
+                        break;
+                }
+                return true;
+            }
+        });
+        avatar.setImageResource(utente.getAvatar());
+        nomeUtente.setText(utente.getNome() + " " + utente.getCognome());
+
+    }
+
+    public void logOut(final Intent intent){
+        RelativeLayout relativeLayout = findViewById(R.id.buttonLogOut);
+        relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

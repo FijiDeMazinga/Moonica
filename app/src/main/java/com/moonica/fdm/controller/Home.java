@@ -67,7 +67,6 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
@@ -217,6 +216,10 @@ public class Home extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public void onBackPressed(){
+        moveTaskToBack(true);
+    }
 
     public void setNavBar(final Intent intent){
         //menu
@@ -259,6 +262,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(intent);
+                finish();
             }
         });
     }
