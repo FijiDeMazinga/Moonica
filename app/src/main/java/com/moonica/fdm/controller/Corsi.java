@@ -18,6 +18,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.RelativeLayout;
@@ -31,6 +32,7 @@ import com.moonica.fdm.model.ForumThread;
 import com.moonica.fdm.model.ItemMoveCallback;
 import com.moonica.fdm.model.Sezione;
 import com.moonica.fdm.model.SezioneAdapter;
+import com.moonica.fdm.model.Studente;
 import com.moonica.fdm.model.Utente;
 
 import java.io.Serializable;
@@ -44,14 +46,15 @@ public class Corsi extends AppCompatActivity {
     Corso c;
     Utente utente;
     ScrollView sv;
-    //LinearLayout l;
     RecyclerView rv;
+    ImageButton ib;
     ArrayList<Sezione> listaSezioni = new ArrayList<>();
     FactorySezioni factorySezioni = FactorySezioni.getInstance();
     DrawerLayout drawerLayout;
 
     public static final String FORUM = "com.moonica.fdm";
     static final String UTENTE  = "utente";
+    public static final String NUOVASEZIONE = "nuovaSezione";
 
     @TargetApi(Build.VERSION_CODES.M)
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -79,19 +82,15 @@ public class Corsi extends AppCompatActivity {
         if (c.getProfessore() == null)
             professore.setText("John Doe");
         else
-            professore.setText(c.getProfessore().getNome().concat(c.getProfessore().getCognome()));
+            professore.setText(c.getProfessore().getNome().concat(" ").concat(c.getProfessore().getCognome()));
 
         sv = findViewById(R.id.sv_corsi);
         rv = findViewById(R.id.rvSezione);
+        ib = findViewById(R.id.aggiungiSezione);
         rv.setFocusable(false);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
-
-        //l.addView(buttonForum);
-        //l.addView(spaceForum);
-        //rv.addView(buttonForum);
-        //rv.addView(spaceForum);
 
         cv = findViewById(R.id.forumCardView);
         testoForum = findViewById(R.id.testoForum);
@@ -113,6 +112,19 @@ public class Corsi extends AppCompatActivity {
 
         SezioneAdapter sezioneAdapter = new SezioneAdapter(listaSezioni, utente);
         rv.setAdapter(sezioneAdapter);
+
+        if (utente instanceof Studente)
+            ib.setVisibility(View.GONE);
+
+        ib.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent nuovaSezione = new Intent(Corsi.this, NuovaSezione.class);
+                nuovaSezione.putExtra(NUOVASEZIONE, c);
+                nuovaSezione.putExtra(UTENTE, utente);
+                startActivity(nuovaSezione);
+            }
+        });
 
         //creazione navbar
         Intent intent = new Intent(Corsi.this, Home.class);

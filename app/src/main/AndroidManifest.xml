@@ -3,16 +3,18 @@
     package="com.moonica.fdm">
 
     <application
+        android:name=".model.OttieniContesto"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Moonica"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name="com.moonica.fdm.model.OttieniContesto"
         android:theme="@style/AppTheme">
-        <activity android:name=".controller.NewThread"/>
-        <activity android:name=".controller.Thread"
-            android:parentActivityName=".controller.Forum"/>
+        <activity android:name=".controller.NuovaSezione"></activity>
+        <activity android:name=".controller.NewThread" />
+        <activity
+            android:name=".controller.Thread"
+            android:parentActivityName=".controller.Forum" />
         <activity android:name=".controller.Corsi" />
         <activity android:name=".controller.AggiungiCorso" />
         <activity android:name=".controller.Forum" />

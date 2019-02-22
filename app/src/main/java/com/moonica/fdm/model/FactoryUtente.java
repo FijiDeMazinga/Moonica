@@ -7,10 +7,12 @@ import java.util.ArrayList;
 public class FactoryUtente {
     private static FactoryUtente instance;
     private ArrayList<Utente> listaUtenti = new ArrayList<>();
+    private ArrayList<Studente> listaStudenti = new ArrayList<>();
+    private ArrayList<Professore> listaProfessori  = new ArrayList<>();
     private FactoryCorsoDiStudi factoryCorsoDiStudi = FactoryCorsoDiStudi.getInstance();
+    FactoryCorsi factoryCorsi = FactoryCorsi.getInstance();
 
     private FactoryUtente() {
-        FactoryCorsi factoryCorsi = FactoryCorsi.getInstance();
 
         Studente studente1 = new Studente();
         studente1.setNome("Ines");
@@ -76,6 +78,7 @@ public class FactoryUtente {
         professore1.setFacolta("Studi Umanistici");
         professore1.setCorsoStudi("Lettere"); //storia medievale
         professore1.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Storia Medievale"));
+        factoryCorsi.cercaCorso("Storia Medievale").setProfessore(professore1);
 
         Professore professore2 = new Professore();
         professore2.setNome("Cristina");
@@ -101,12 +104,19 @@ public class FactoryUtente {
         professore3.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Anatomia"));
 
         listaUtenti.add(studente1);
+        listaStudenti.add(studente1);
         listaUtenti.add(studente2);
+        listaStudenti.add(studente2);
         listaUtenti.add(studente3);
+        listaStudenti.add(studente3);
         listaUtenti.add(studente4);
+        listaStudenti.add(studente4);
         listaUtenti.add(professore1);
+        listaProfessori.add(professore1);
         listaUtenti.add(professore2);
+        listaProfessori.add(professore2);
         listaUtenti.add(professore3);
+        listaProfessori.add(professore3);
     }
 
     public static FactoryUtente getInstance() {
@@ -133,6 +143,13 @@ public class FactoryUtente {
             if (username.equals(utente.getUsername()))
                 return utente;
          return null;
+    }
+
+    public Professore cercaProfessore (String cognome)  {
+        for (Professore professore : listaProfessori)
+            if (cognome.equals(professore.getCognome()))
+                return professore;
+        return null;
     }
 
     public ArrayList<Utente> aggiungiUtente (Utente u){

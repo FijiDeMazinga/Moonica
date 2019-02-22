@@ -62,6 +62,14 @@
                 android:orientation="vertical">
 
             </android.support.v7.widget.RecyclerView>
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_add_circle_black_24dp"
+                android:id="@+id/aggiungiSezione"
+                android:background="@drawable/button_border"
+                android:layout_marginTop="15dp"/>
         </LinearLayout>
     </ScrollView>
     <android.support.design.widget.NavigationView
