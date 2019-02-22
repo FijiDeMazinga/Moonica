@@ -41,6 +41,9 @@ public class CaricaFile extends AppCompatActivity {
                 listaFile = fff.restituisciAvatar();
                 break;
         }
+
+
+
         GridLayoutManager glm = new GridLayoutManager(this, 2);
 
         rv = findViewById(R.id.rvGriglia);

@@ -116,7 +116,6 @@ public class Corsi extends AppCompatActivity {
 
         SezioneAdapter sezioneAdapter = new SezioneAdapter(listaSezioni, utente);
         rv.setAdapter(sezioneAdapter);
-
         if (utente instanceof Studente)
             ib.setVisibility(View.GONE);
 

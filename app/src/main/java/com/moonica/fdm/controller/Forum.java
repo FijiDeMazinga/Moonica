@@ -127,6 +127,8 @@ public class Forum extends AppCompatActivity {
 
         switch (id) {
             case R.id.action_newThread:
+
+                //Intent newThread = new Intent("android.media.action.IMAGE_CAPTURE");
                 Intent newThread = new Intent(Forum.this, NewThread.class);
                 newThread.putExtra("newThread", "nuovo thread");
                 newThread.putExtra(NEWTHREAD, c);
