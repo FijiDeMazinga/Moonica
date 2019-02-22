@@ -7,6 +7,8 @@ import java.util.ArrayList;
 public class FactorySezioni {
     private static FactorySezioni instance;
     private ArrayList<Sezione> listaSezioni = new ArrayList<>();
+    private ArrayList<Sezione> sezioniIUM = new ArrayList<>();
+    private ArrayList<Sezione> sezioniSM = new ArrayList<>();
 
     private FactorySezioni() {
         Sezione infoIUM = new Sezione();
@@ -16,6 +18,7 @@ public class FactorySezioni {
         infoIUM.getContenuti().add(new Contenuto(R.drawable.icon_text,"Descrizione del corso"));
         infoIUM.getContenuti().add(new Contenuto(R.drawable.icon_pdf,"Calendario delle lezioni"));
         listaSezioni.add(infoIUM);
+        sezioniIUM.add(infoIUM);
 
         Sezione introIUM = new Sezione();
         introIUM.setTitolo("Introduzione");
@@ -23,6 +26,7 @@ public class FactorySezioni {
         introIUM.setCorso("Interazione Uomo-Macchina");
         introIUM.getContenuti().add(new Contenuto(R.drawable.icon_pdf,"Slides.pdf"));
         listaSezioni.add(introIUM);
+        sezioniIUM.add(introIUM);
 
         Sezione compIUM  = new Sezione();
         compIUM.setTitolo("Il computer");
@@ -30,18 +34,21 @@ public class FactorySezioni {
         compIUM.setCorso("Interazione Uomo-Macchina");
         compIUM.getContenuti().add(new Contenuto(R.drawable.icon_pdf,"Slides.pdf"));
         listaSezioni.add(compIUM);
+        sezioniIUM.add(compIUM);
 
         Sezione introSM = new Sezione();
         introSM.setTitolo("Intro");
         introSM.setCorso("Storia Medievale");
         introSM.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
         listaSezioni.add(introSM);
+        sezioniSM.add(introSM);
 
         Sezione coseSM = new Sezione();
         coseSM.setTitolo("Cose");
         coseSM.setCorso("Storia Medievale");
         coseSM.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
         listaSezioni.add(coseSM);
+        sezioniSM.add(coseSM);
     }
 
     public static FactorySezioni getInstance() {
@@ -56,14 +63,14 @@ public class FactorySezioni {
     }
 
     public ArrayList<Sezione> getSezioniCorso(String corso) {
-        ArrayList<Sezione> sezioniCorso = new ArrayList<>();
-
-        for (Sezione sezione : listaSezioni) {
-            if (sezione.getCorso().equals(corso))
-                sezioniCorso.add(sezione);
+        switch (corso) {
+            case ("Interazione Uomo-Macchina"):
+                return sezioniIUM;
+            case ("Storia Medievale"):
+                return sezioniSM;
         }
 
-        return sezioniCorso;
+        return null;
     }
 
     public Sezione cercaSezione(String nome) {

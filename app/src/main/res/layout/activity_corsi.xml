@@ -70,6 +70,15 @@
                 android:id="@+id/aggiungiSezione"
                 android:background="@drawable/button_border"
                 android:layout_marginTop="15dp"/>
+            
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                style="@style/MyButtonStyle"
+                android:text="INDIETRO"
+                android:id="@+id/indietroDaEliminaSezione"
+                android:layout_marginTop="10dp"/>
         </LinearLayout>
     </ScrollView>
     <android.support.design.widget.NavigationView
