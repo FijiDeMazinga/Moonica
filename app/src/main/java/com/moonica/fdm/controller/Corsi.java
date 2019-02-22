@@ -54,6 +54,7 @@ public class Corsi extends AppCompatActivity {
     ScrollView sv;
     RecyclerView rv;
     ImageButton ib;
+    Button indietro;
     ArrayList<Sezione> listaSezioni = new ArrayList<>();
     FactorySezioni factorySezioni = FactorySezioni.getInstance();
     DrawerLayout drawerLayout;
@@ -68,8 +69,6 @@ public class Corsi extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_corsi);
-
-
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -95,6 +94,8 @@ public class Corsi extends AppCompatActivity {
         sv = findViewById(R.id.sv_corsi);
         rv = findViewById(R.id.rvSezione);
         ib = findViewById(R.id.aggiungiSezione);
+        indietro = findViewById(R.id.indietroDaEliminaSezione);
+        indietro.setVisibility(View.GONE);
         rv.setFocusable(false);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
@@ -153,24 +154,27 @@ public class Corsi extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int id = item.getItemId();
 
         switch (id) {
             case R.id.elimina_sezione:
-                item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                EliminaSezioneAdapter esa = new EliminaSezioneAdapter(listaSezioni, utente);
+                rv.setAdapter(esa);
+                indietro.setVisibility(View.VISIBLE);
+                ib.setVisibility(View.GONE);
+                esa.notifyDataSetChanged();
+                indietro.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        EliminaSezioneAdapter esa = new EliminaSezioneAdapter(listaSezioni, utente);
-                        rv.setAdapter(esa);
-                        ib.setVisibility(View.GONE);
-                        esa.notifyDataSetChanged();
-                        return false;
+                    public void onClick(View v) {
+                        finish();
+                        startActivity(getIntent());
                     }
                 });
-
                 break;
             case R.id.elimina_tutte_le_sezioni:
+                listaSezioni.removeAll(listaSezioni);
+                finish();
+                startActivity(getIntent());
                 break;
             default:
                 if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
