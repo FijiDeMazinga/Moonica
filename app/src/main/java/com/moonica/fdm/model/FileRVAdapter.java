@@ -38,10 +38,12 @@ public class FileRVAdapter extends RecyclerView.Adapter<FileRVAdapter.FileHolder
     public static class FileHolder extends RecyclerView.ViewHolder{
         ImageView iv;
         TextView tv;
+        CardView cv;
         public FileHolder(View itemView){
             super(itemView);
             iv = itemView.findViewById(R.id.ivFile);
             tv = itemView.findViewById(R.id.tvFile);
+            cv = itemView.findViewById(R.id.cvFile);
         }
     }
     public FileRVAdapter(ArrayList<FileFinto> lista){
