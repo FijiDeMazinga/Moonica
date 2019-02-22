@@ -1,9 +1,14 @@
 package com.moonica.fdm.controller;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Patterns;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -30,6 +35,7 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
     EditText nome, cognome, username, password, mail;
     Spinner gender;
     TextInputLayout rNome, rCognome, rUser, rPass, rMail;
+    Dialog dialog;
 
     public static final String USER = "com.moonica.fdm";
 
@@ -42,6 +48,7 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         setTitle("Registrazione");
 
         spinner.setOnItemSelectedListener(this);
+        dialog = new Dialog(this);
 
         //lista di stringhe da aggiungere allo spinner
         List<String> genders = new ArrayList<String>();
@@ -151,6 +158,11 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
             rMail.startAnimation(animation);
             errors++;
         }
+        else if(!(Patterns.EMAIL_ADDRESS.matcher(mail.getText()).matches())){
+            mail.setError("Inserire mail valida");
+            rMail.startAnimation(animation);
+            errors++;
+        }
         else  mail.setError(null);
         if(gender.getSelectedItem().toString().equals("Sesso")) {
             SetError("Inserire sesso", gender, (TextView) findViewById(R.id.invisibleError));
@@ -177,5 +189,13 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
             t.setError(null);
             textView.setError(null);
         }
+    }
+
+    public void Popup(View v){
+        LayoutInflater f = getLayoutInflater();
+        View view = f.inflate(R.layout.activity_scelta_avatar, null);
+        dialog.setContentView(view);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0xffeeeeee));
+        dialog.show();
     }
 }

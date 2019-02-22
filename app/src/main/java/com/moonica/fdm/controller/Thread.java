@@ -335,6 +335,7 @@ public class Thread extends AppCompatActivity {
     /*
      * L'ovveride chiude l'activity presente in cima allo stack
      */
+    @RequiresApi(api = Build.VERSION_CODES.ECLAIR)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -400,7 +401,22 @@ public class Thread extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed(){
+        finish();
 
+        Intent intent = new Intent(Thread.this, Forum.class);
+
+        intent.putExtra("com.moonica.fdm", ft.getCorso());
+
+        intent.putExtra("utente", utente);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        startActivity(intent);
+
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
 }
 
 
