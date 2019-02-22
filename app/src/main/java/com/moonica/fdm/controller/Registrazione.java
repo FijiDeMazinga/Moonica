@@ -38,6 +38,7 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
     Dialog dialog;
 
     public static final String USER = "com.moonica.fdm";
+    public static final String FILE = "com.moonica.fdm";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,11 +192,9 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         }
     }
 
-    public void Popup(View v){
-        LayoutInflater f = getLayoutInflater();
-        View view = f.inflate(R.layout.activity_scelta_avatar, null);
-        dialog.setContentView(view);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0xffeeeeee));
-        dialog.show();
+    public void SceltaAvatar(View v){
+        Intent intent = new Intent(Registrazione.this, CaricaFile.class);
+        intent.putExtra(FILE, "registrazione");
+        startActivityForResult(intent, 0);
     }
 }

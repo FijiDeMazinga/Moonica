@@ -10,16 +10,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SceltaAvatar"></activity>
+        <activity android:name=".controller.CaricaFile"></activity>
         <activity android:name=".controller.NewThread" />
         <activity
             android:name=".controller.Thread"
             android:parentActivityName=".controller.Forum" />
-        <activity android:name=".controller.NuovaSezione"></activity>
-        <activity android:name=".controller.NewThread" />
-        <activity
-            android:name=".controller.Thread"
-            android:parentActivityName=".controller.Forum" />
+        <activity android:name=".controller.NuovaSezione" />
         <activity android:name=".controller.Corsi" />
         <activity android:name=".controller.AggiungiCorso" />
         <activity android:name=".controller.Forum" />

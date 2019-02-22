@@ -117,7 +117,6 @@ public class Home extends AppCompatActivity {
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
 
-
         rv = findViewById(R.id.rvCorso);
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
@@ -181,6 +180,7 @@ public class Home extends AppCompatActivity {
                 }
                 scelta.setContentView(view);//setting della view da visualizzare col pop-up
                 scelta.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                scelta.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
                 scelta.show();//lancio del pop-up
             }
             else{
