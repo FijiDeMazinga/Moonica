@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:title="Più opzioni"
+        android:title="Elimina sezione"
         android:icon="@drawable/ic_more_vert_black_24dp"
-        android:id="@+id/opzioniCorso">
+        android:id="@+id/elimina_sezione">
     </item>
+    <item
+        android:title="Elimina tutte le sezioni"
+        android:id="@+id/elimina_tutte_le_sezioni">
+    </item>
+
 </menu>

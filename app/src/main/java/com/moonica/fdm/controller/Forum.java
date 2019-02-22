@@ -115,8 +115,6 @@ public class Forum extends AppCompatActivity {
         rv.setAdapter(adapter);
     }
 
-
-
     /*
      * L'ovveride chiude l'activity presente in cima allo stack
      */

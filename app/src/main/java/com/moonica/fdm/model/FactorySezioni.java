@@ -30,6 +30,18 @@ public class FactorySezioni {
         compIUM.setCorso("Interazione Uomo-Macchina");
         compIUM.getContenuti().add(new Contenuto(R.drawable.icon_pdf,"Slides.pdf"));
         listaSezioni.add(compIUM);
+
+        Sezione introSM = new Sezione();
+        introSM.setTitolo("Intro");
+        introSM.setCorso("Storia Medievale");
+        introSM.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(introSM);
+
+        Sezione coseSM = new Sezione();
+        coseSM.setTitolo("Cose");
+        coseSM.setCorso("Storia Medievale");
+        coseSM.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(coseSM);
     }
 
     public static FactorySezioni getInstance() {

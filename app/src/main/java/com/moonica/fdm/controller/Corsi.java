@@ -17,11 +17,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.ScrollView;
 import android.widget.RelativeLayout;
 import android.widget.Space;
@@ -29,9 +31,11 @@ import android.widget.TextView;
 
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Corso;
+import com.moonica.fdm.model.EliminaSezioneAdapter;
 import com.moonica.fdm.model.FactorySezioni;
 import com.moonica.fdm.model.ForumThread;
 import com.moonica.fdm.model.ItemMoveCallback;
+import com.moonica.fdm.model.Professore;
 import com.moonica.fdm.model.Sezione;
 import com.moonica.fdm.model.SezioneAdapter;
 import com.moonica.fdm.model.Studente;
@@ -137,6 +141,13 @@ public class Corsi extends AppCompatActivity {
         logOut(intentL);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (utente instanceof Professore)
+            getMenuInflater().inflate(R.menu.opzioni_corso, menu);
+        return true;
+    }
+
     /*
      * L'ovveride chiude l'activity presente in cima allo stack
      */
@@ -146,6 +157,21 @@ public class Corsi extends AppCompatActivity {
         int id = item.getItemId();
 
         switch (id) {
+            case R.id.elimina_sezione:
+                item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        EliminaSezioneAdapter esa = new EliminaSezioneAdapter(listaSezioni, utente);
+                        rv.setAdapter(esa);
+                        ib.setVisibility(View.GONE);
+                        esa.notifyDataSetChanged();
+                        return false;
+                    }
+                });
+
+                break;
+            case R.id.elimina_tutte_le_sezioni:
+                break;
             default:
                 if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                     drawerLayout.closeDrawer(Gravity.LEFT);
