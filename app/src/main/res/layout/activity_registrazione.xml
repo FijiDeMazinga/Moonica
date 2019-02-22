@@ -167,7 +167,7 @@
                     android:src="@drawable/ic_file_upload_black_24dp"
                     android:backgroundTint="#225599"
                     android:layout_gravity="center_vertical"
-                    android:onClick="Popup"/>
+                    android:onClick="SceltaAvatar"/>
             </LinearLayout>
             <Space
                 android:layout_width="match_parent"
