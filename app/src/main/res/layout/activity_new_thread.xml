@@ -88,7 +88,8 @@
                     android:id="@+id/caricaAllegato"
                     android:src="@drawable/ic_file_upload_black_24dp"
                     android:backgroundTint="#225599"
-                    android:layout_gravity="center_vertical"/>
+                    android:layout_gravity="center_vertical"
+                    android:onClick="UploadFile"/>
             </LinearLayout>
 
             <Space

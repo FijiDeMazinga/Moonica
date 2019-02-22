@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
@@ -29,6 +30,8 @@ public class CaricaFile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carica_file);
+
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         GridLayout gl = new GridLayout(this);
@@ -40,6 +43,9 @@ public class CaricaFile extends AppCompatActivity {
             case "registrazione":
                 listaFile = fff.restituisciAvatar();
                 break;
+            case "nuovoThread":
+                listaFile =fff.restituisciFile();
+                break;
         }
 
 
@@ -48,6 +54,7 @@ public class CaricaFile extends AppCompatActivity {
 
         rv = findViewById(R.id.rvGriglia);
         rv.setLayoutManager(glm);
+        rv.setFocusable(false);
         rv.setHasFixedSize(true);
         FileRVAdapter fileRVAdapter = new FileRVAdapter(listaFile);
         rv.setAdapter(fileRVAdapter);
@@ -77,5 +84,15 @@ public class CaricaFile extends AppCompatActivity {
 
         }
         setContentView(gl);*/
+    }
+
+    /*
+     * L'ovveride chiude l'activity presente in cima allo stack
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        finish();
+        return true;
     }
 }

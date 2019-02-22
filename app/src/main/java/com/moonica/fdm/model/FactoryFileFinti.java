@@ -2,7 +2,9 @@ package com.moonica.fdm.model;
 
 import com.moonica.fdm.R;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class FactoryFileFinti {
     private static FactoryFileFinti singleton;
@@ -62,10 +64,25 @@ public class FactoryFileFinti {
         listaAvatar.add(f9);
 
         FileFinto f10 = new FileFinto();
+        f10.setNome("appunti 10 Novembre.pdf");
+        f10.setImmagineId(R.drawable.pdf_preview);
+
         FileFinto f11 = new FileFinto();
+        f11.setNome("file esercizi terza lezione.txt");
+        f11.setImmagineId(R.drawable.txt_preview);
+
         FileFinto f12 = new FileFinto();
+        f12.setNome("Lezione 5 Novembre.pdf");
+        f12.setImmagineId(R.drawable.pdf_preview);
+
         FileFinto f13 = new FileFinto();
+        f13.setNome("Presentazione 13 Novembre");
+        f13.setImmagineId(R.drawable.pdf_preview);
+
         FileFinto f14 = new FileFinto();
+        f14.setNome("appunti.txt");
+        f14.setImmagineId(R.drawable.txt_preview);
+
         FileFinto f15 = new FileFinto();
         FileFinto f16 = new FileFinto();
         FileFinto f17 = new FileFinto();
@@ -77,10 +94,46 @@ public class FactoryFileFinti {
         FileFinto f23 = new FileFinto();
         FileFinto f24 = new FileFinto();
         FileFinto f25 = new FileFinto();
+
+        /*listaFile.add(f1);
+        listaFile.add(f2);
+        listaFile.add(f3);
+        listaFile.add(f4);
+        listaFile.add(f5);
+        listaFile.add(f6);
+        listaFile.add(f7);
+        listaFile.add(f8);
+        listaFile.add(f9);*/
+        listaFile.add(f10);
+        listaFile.add(f11);
+        listaFile.add(f12);
+        listaFile.add(f13);
+        listaFile.add(f14);
+        listaFile.add(f15);
+        listaFile.add(f16);
+        listaFile.add(f17);
+        listaFile.add(f18);
+        listaFile.add(f19);
+        listaFile.add(f20);
+        listaFile.add(f21);
+        listaFile.add(f22);
+        listaFile.add(f23);
+        listaFile.add(f24);
+        listaFile.add(f25);
+
+        Collections.shuffle(listaFile);
+
+
     }
     public ArrayList<FileFinto> restituisciAvatar(){
         ArrayList<FileFinto> fff = new ArrayList<>();
         fff.addAll(listaAvatar);
         return fff;
+    }
+
+    public ArrayList<FileFinto> restituisciFile(){
+        ArrayList<FileFinto> fileRestituiti = new ArrayList<>();
+        fileRestituiti.addAll(listaFile);
+        return fileRestituiti;
     }
 }

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -196,5 +197,16 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         Intent intent = new Intent(Registrazione.this, CaricaFile.class);
         intent.putExtra(FILE, "registrazione");
         startActivityForResult(intent, 0);
+    }
+
+
+    /*
+     * L'ovveride chiude l'activity presente in cima allo stack
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        finish();
+        return true;
     }
 }

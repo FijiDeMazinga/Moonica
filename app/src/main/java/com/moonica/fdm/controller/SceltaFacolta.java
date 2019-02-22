@@ -3,6 +3,7 @@ package com.moonica.fdm.controller;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -177,5 +178,15 @@ public class SceltaFacolta extends AppCompatActivity implements AdapterView.OnIt
             t.setError(null);
             textView.setError(null);
         }
+    }
+
+    /*
+     * L'ovveride chiude l'activity presente in cima allo stack
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        finish();
+        return true;
     }
 }

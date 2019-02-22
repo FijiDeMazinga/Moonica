@@ -53,6 +53,9 @@ public class NewThread extends AppCompatActivity {
     Button invio;
 
 
+    public static final String FILE = "com.moonica.fdm";
+
+
     public static final String NEWTHREAD = "com.moonica.fdm";
     private DrawerLayout drawerLayout;
 
@@ -73,12 +76,6 @@ public class NewThread extends AppCompatActivity {
         utente = (Utente) studObj;
 
 
-
-
-        /*
-         *
-         */
-
         Bundle extras = i.getExtras();
 
         testo = (EditText) findViewById(R.id.testoNewT);
@@ -86,11 +83,13 @@ public class NewThread extends AppCompatActivity {
         invio = (Button) findViewById(R.id.inviaNT);
 
 
-        if (extras.getString("newThread") != null /*&& extras.getString("newThread").equals("nuovo thread")*/){
+
+        if (extras.getString("newThread") != null){
 
             titolo = (EditText) findViewById(R.id.titoloNewT);
 
             c = (Corso) obj;
+
 
             invio.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -125,7 +124,7 @@ public class NewThread extends AppCompatActivity {
             });
 
         }
-        else if (extras.getString("longReply") != null /*&& extras.getString("longReply").equals("risposta")*/){
+        else if (extras.getString("longReply") != null){
 
             titoloReply = (TextView) findViewById(R.id.titoloNewT);
 
@@ -175,6 +174,13 @@ public class NewThread extends AppCompatActivity {
         Intent intentL = new Intent(NewThread.this, Login.class);
         logOut(intentL);
 
+    }
+
+    public void UploadFile(View v) {
+
+        Intent intent = new Intent(NewThread.this, CaricaFile.class);
+        intent.putExtra(FILE, "nuovoThread");
+        startActivityForResult(intent, 1);
     }
 
     //funzione che stampa messaggi di errore se non vengono riempiti i campi
@@ -246,6 +252,7 @@ public class NewThread extends AppCompatActivity {
         }
         return true;
     }
+
     public void setNavBar(final Intent intent){
         //menu
         ActionBarDrawerToggle actionBarDrawerToggle;
