@@ -143,7 +143,7 @@ public class Corsi extends AppCompatActivity {
     }
 
     /*
-     * L'ovveride chiude l'activity presente in cima allo stack
+     * L'ovveride chiude l'activity presente in cima allo stack 
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -26,6 +26,7 @@ import java.util.ArrayList;
 
 public class ModificaSezioneAdapter extends RecyclerView.Adapter<ModificaSezioneAdapter.ModificaSezioneViewHolder> {
     ArrayList<Sezione> lista = new ArrayList<Sezione>();
+    ArrayList<Contenuto> listaContenuti = new ArrayList<>();
 
     public static class ModificaSezioneViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
@@ -73,7 +74,7 @@ public class ModificaSezioneAdapter extends RecyclerView.Adapter<ModificaSezione
             }
         });
         if (lista != null) {
-            final ArrayList<Contenuto> listaContenuti = lista.get(i).getContenuti();
+            listaContenuti = lista.get(i).getContenuti();
             for (final Contenuto contenuto : listaContenuti) {
                 Space space = new Space(OttieniContesto.getAppContext());
                 space.setLayoutParams(new LinearLayout.LayoutParams(0, 0));
@@ -99,7 +100,6 @@ public class ModificaSezioneAdapter extends RecyclerView.Adapter<ModificaSezione
                 testo.setPadding(20, 0, 0, 0);
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 params.addRule(RelativeLayout.ALIGN_PARENT_END);
-                //params.addRule(RelativeLayout.LEFT_OF, );
                 cancella.setLayoutParams(params);
                 cancella.setImageResource(R.drawable.ic_delete_red_24dp);
                 cancella.setPadding(700, 20, 0, 0);
