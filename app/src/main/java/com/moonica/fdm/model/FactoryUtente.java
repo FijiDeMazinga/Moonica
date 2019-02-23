@@ -109,7 +109,7 @@ public class FactoryUtente {
         spano.setSesso("Maschio");
         spano.setUsername("Davide");
         spano.setEmail("davide.spano@unica.it");
-        spano.setPassword("Winterfell");
+        spano.setPassword("1");
         spano.setFacolta("Scienze");
         spano.setCorsoStudi("Informatica");
         spano.setAvatar(R.drawable.avatar_spano);

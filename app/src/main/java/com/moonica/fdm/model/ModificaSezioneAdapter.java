@@ -26,6 +26,7 @@ import java.util.ArrayList;
 
 public class ModificaSezioneAdapter extends RecyclerView.Adapter<ModificaSezioneAdapter.ModificaSezioneViewHolder> {
     ArrayList<Sezione> lista = new ArrayList<Sezione>();
+    int f = 0;
 
     public static class ModificaSezioneViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
@@ -56,7 +57,8 @@ public class ModificaSezioneAdapter extends RecyclerView.Adapter<ModificaSezione
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ModificaSezioneViewHolder sezioneViewHolder, final int i){
+    public void onBindViewHolder(@NonNull final ModificaSezioneViewHolder sezioneViewHolder, int i){
+        f = 0;
         sezioneViewHolder.cv.setMinimumHeight(50);
         sezioneViewHolder.cv.setRadius(20.1f);
         sezioneViewHolder.titoloSezione.setText(lista.get(i).getTitolo());
@@ -68,13 +70,12 @@ public class ModificaSezioneAdapter extends RecyclerView.Adapter<ModificaSezione
         sezioneViewHolder.elimina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lista.remove(i);
+                lista.remove(sezioneViewHolder.getAdapterPosition());
                 notifyDataSetChanged();
             }
         });
         if (lista != null) {
-            final ArrayList<Contenuto> listaContenuti = lista.get(i).getContenuti();
-            for (final Contenuto contenuto : listaContenuti) {
+            for (final Contenuto contenuto : lista.get(sezioneViewHolder.getAdapterPosition()).getContenuti()) {
                 Space space = new Space(OttieniContesto.getAppContext());
                 space.setLayoutParams(new LinearLayout.LayoutParams(0, 0));
                 ImageView icona = new ImageView(OttieniContesto.getAppContext());
@@ -121,10 +122,15 @@ public class ModificaSezioneAdapter extends RecyclerView.Adapter<ModificaSezione
                 cancella.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        listaContenuti.remove(contenuto);
+                        //lista.get(sezioneViewHolder.getAdapterPosition()).getContenuti().remove(lista.get(sezioneViewHolder.getAdapterPosition()).getContenuti().get(f));
+
+                        ArrayList<Contenuto> prova1 = lista.get(sezioneViewHolder.getAdapterPosition()).getContenuti();
+                        prova1.remove(f);
+
                         notifyDataSetChanged();
                     }
                 });
+                f++;
             }
         }
 
