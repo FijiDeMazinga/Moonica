@@ -103,6 +103,19 @@ public class FactoryUtente {
         professore3.setAvatar(R.drawable.avatar_prof3);
         professore3.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Anatomia"));
 
+        Professore spano = new Professore();
+        spano.setNome("Lucio Davide");
+        spano.setCognome("Spano");
+        spano.setSesso("Maschio");
+        spano.setUsername("Davide");
+        spano.setEmail("davide.spano@unica.it");
+        spano.setPassword("Winterfell");
+        spano.setFacolta("Scienze");
+        spano.setCorsoStudi("Informatica");
+        spano.setAvatar(R.drawable.avatar_spano);
+        spano.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Interazione Uomo-Macchina"));
+        spano.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Fondamenti di Programmazione Web"));
+
         listaUtenti.add(studente1);
         listaStudenti.add(studente1);
         listaUtenti.add(studente2);
@@ -117,6 +130,8 @@ public class FactoryUtente {
         listaProfessori.add(professore2);
         listaUtenti.add(professore3);
         listaProfessori.add(professore3);
+        listaProfessori.add(spano);
+        listaUtenti.add(spano);
     }
 
     public static FactoryUtente getInstance() {
