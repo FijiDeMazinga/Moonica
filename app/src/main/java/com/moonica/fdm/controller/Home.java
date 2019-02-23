@@ -180,7 +180,9 @@ public class Home extends AppCompatActivity {
                 }
                 scelta.setContentView(view);//setting della view da visualizzare col pop-up
                 scelta.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                scelta.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+
+                //scelta.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
                 scelta.show();//lancio del pop-up
             }
             else{

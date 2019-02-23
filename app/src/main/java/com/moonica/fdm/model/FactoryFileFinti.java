@@ -145,6 +145,14 @@ public class FactoryFileFinti {
         for (FileFinto fileFinto : listaAvatar)
             if (fileFinto.getNome().equals(nomeFile))
                 return fileFinto.getImmagineId();
-            return -1;
+        return -1;
+    }
+
+    public int cercaFile(String nomeFile) {
+        for (FileFinto f : listaFile)
+            if (f.getNome() != null)
+                if (f.getNome().equals(nomeFile))
+                    return f.getImmagineId();
+        return -1;
     }
 }

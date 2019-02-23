@@ -67,7 +67,18 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="30dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/previewAllegato"
+            android:visibility="gone">
+
+        </LinearLayout>
+
             <LinearLayout
+                android:id="@+id/allegaFile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">

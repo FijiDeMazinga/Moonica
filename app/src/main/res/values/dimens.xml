@@ -3,4 +3,9 @@
     <dimen name="file_height">100dp</dimen>
 
     <dimen name="file_width">100dp</dimen>
+
+    <dimen name="allegato_measures">10dp</dimen>
+    <dimen name="textSizeAllegato">18dp</dimen>
+    <dimen name="buttonDeleteFile">75dp</dimen>
+
 </resources>
