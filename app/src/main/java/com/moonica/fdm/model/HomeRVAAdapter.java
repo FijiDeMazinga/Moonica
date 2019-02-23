@@ -68,11 +68,13 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
         }
     }
     Studente studente = new Studente();
+    Professore professore = new Professore();
     Utente utente = new Utente();
-    public HomeRVAAdapter(ArrayList<Corso> lista, Studente s, Utente u){
+    public HomeRVAAdapter(ArrayList<Corso> lista, Studente s, Utente u, Professore p){
         this.studente = s;
         this.lista = lista;
         this.utente = u;
+        this.professore = p;
     }
 
     @NonNull
@@ -99,14 +101,21 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
             public void onClick(View v) {
                 PopupMenu popupMenu =  new PopupMenu(corsoViewHolder.itemView.getContext(), corsoViewHolder.ib);
                 Menu menu = popupMenu.getMenu();
-                menu.add(0,0,0, "Disiscriviti dal corso");
+                if(utente instanceof Studente)
+                    menu.add(0,0,0, "Disiscriviti dal corso");
+                else if(utente instanceof Professore)
+                    menu.add(0,0,0, "Elimina il corso");
 
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()){
                             case 0:
-                                studente.rimuoviCorso(lista.get(i));
+                                if(utente instanceof Studente)
+                                    studente.rimuoviCorso(lista.get(i));
+                                else if(utente instanceof Professore)
+                                    professore.rimuoviCorsoGestito(lista.get(i));
+
                                 Context context = corsoViewHolder.itemView.getContext();
                                 Intent intent = ((Home)context).getIntent();
                                 ((Home)context).finish();
