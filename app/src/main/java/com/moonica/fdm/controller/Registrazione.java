@@ -28,6 +28,7 @@ import com.moonica.fdm.R;
 import com.moonica.fdm.model.FactoryFileFinti;
 import com.moonica.fdm.model.FactoryUtente;
 import com.moonica.fdm.model.Studente;
+import com.moonica.fdm.model.Utente;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -143,6 +144,11 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
             rUser.startAnimation(animation);
             errors++;
         }
+        else if(cercaUsername(username.getText().toString())){
+            username.setError("Username già presente");
+            rUser.startAnimation(animation);
+            errors++;
+        }
         else  password.setError(null);
         if(password.getText() == null || password.getText().length() == 0){
             password.setError("Inserire password");
@@ -241,5 +247,15 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
 
         finish();
         return true;
+    }
+    public boolean cercaUsername(String user){
+        FactoryUtente fu = FactoryUtente.getInstance();
+        ArrayList<Utente> listaU = new ArrayList<>();
+        listaU = fu.getListaUtenti();
+        for(Utente u : listaU){
+            if(u.getUsername().matches(user))
+                return true;
+        }
+        return false;
     }
 }
