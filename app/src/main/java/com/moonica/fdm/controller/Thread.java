@@ -188,18 +188,15 @@ public class Thread extends AppCompatActivity {
                     int cvHeight = cv.getHeight();
 
                     if (ns.getChildAt(0).getBottom()
-                            <= (ns.getHeight() + ns.getScrollY()) && cvHeight > height){
+                            <= (ns.getHeight() + ns.getScrollY()) && cvHeight > height) {
                         fab.setAlpha(0.25f);
-                    }
-                    else if (ns.getChildAt(0).getBottom()
+                    } else if (ns.getChildAt(0).getBottom()
                             <= (ns.getHeight() + ns.getScrollY()) && rectFab.intersect(rectRv)) {
                         fab.setAlpha(0.25f);
-                    }
-                    else if (ns.getChildAt(0).getBottom()
+                    } else if (ns.getChildAt(0).getBottom()
                             > (ns.getHeight() + ns.getScrollY()) || !rectFab.intersect(rectRv)) {
                         fab.setAlpha(0.99f);
-                    }
-                    else{
+                    } else {
                         fab.setAlpha(0.99f);
                     }
                 }
@@ -415,8 +412,9 @@ public class Thread extends AppCompatActivity {
             }
         });
     }
+
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         finish();
 
         Intent intent = new Intent(Thread.this, Forum.class);

@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,14 +18,18 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.moonica.fdm.R;
+import com.moonica.fdm.model.FactoryFileFinti;
 import com.moonica.fdm.model.FactoryUtente;
 import com.moonica.fdm.model.Studente;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -33,6 +38,7 @@ import static com.moonica.fdm.controller.NewThread.hideKeyboard;
 
 public class Registrazione extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    LinearLayout linearLayoutAvatarPreview, linearLayoutLoadAvatar;
     EditText nome, cognome, username, password, mail;
     Spinner gender;
     TextInputLayout rNome, rCognome, rUser, rPass, rMail;
@@ -65,6 +71,8 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         spinner.setAdapter(dataAdapter);//aggiunta dell'adapter allo spinner
 
         Intent registrazione = getIntent();
+        linearLayoutAvatarPreview  = findViewById(R.id.previewAvatar);
+        linearLayoutLoadAvatar = findViewById(R.id.loadAvatar);
         Button b = findViewById(R.id.continua);
 
         //dichiarazione di cosa accade premendo il pulsante
@@ -123,6 +131,7 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         rUser = findViewById(R.id.rUser);
         rMail = findViewById(R.id.rMail);
         rPass = findViewById(R.id.rPass);
+
     }
 
     //funzione per controllare che i campi non siano vuoti
@@ -196,7 +205,32 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
     public void SceltaAvatar(View v){
         Intent intent = new Intent(Registrazione.this, CaricaFile.class);
         intent.putExtra(FILE, "registrazione");
-        startActivityForResult(intent, 0);
+        startActivityForResult(intent, 1);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode != RESULT_CANCELED) {
+            if (resultCode == RESULT_OK) {
+                if (data != null) {
+                    Serializable fn = data.getSerializableExtra("resultFilename");
+
+                    String fileName = (String) fn;
+
+                    TextView tvfileName = (TextView) findViewById(R.id.registrazioneFilename);
+                    ImageView ivFileImage = (ImageView) findViewById(R.id.registrazioneFileImage);
+
+
+                    FactoryFileFinti factoryFileFinti = FactoryFileFinti.getInstance();
+
+                    linearLayoutAvatarPreview.setVisibility(LinearLayout.VISIBLE);
+                    linearLayoutLoadAvatar.setVisibility(LinearLayout.GONE);
+                    tvfileName.setText(fileName);
+                    ivFileImage.setImageResource(factoryFileFinti.cercaAvatar(fileName));
+
+                }
+            }
+        }
     }
 
 

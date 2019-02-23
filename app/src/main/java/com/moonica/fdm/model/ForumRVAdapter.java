@@ -29,7 +29,7 @@ public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumThr
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ForumThreadHolder forumThreadHolder, final int i) {
+    public void onBindViewHolder(@NonNull final ForumThreadHolder forumThreadHolder, int i) {
 
         if (i % 2 != 0) {
             forumThreadHolder.cv.setCardBackgroundColor(Color.parseColor("#f5f5f5"));
@@ -49,7 +49,7 @@ public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumThr
             public void onClick(View view) {
                 //itemView.getContext().startActivity(new Intent(itemView.getContext(), com.moonica.fdm.controller.Thread.class));
                 Intent thread = new Intent(forumThreadHolder.cv.getContext(), com.moonica.fdm.controller.Thread.class);
-                thread.putExtra(THREAD, ftList.get(i));
+                thread.putExtra(THREAD, ftList.get(forumThreadHolder.getAdapterPosition()));
                 thread.putExtra("utente", utente);
                 forumThreadHolder.cv.getContext().startActivity(thread);
             }

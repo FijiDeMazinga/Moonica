@@ -3,6 +3,7 @@ package com.moonica.fdm.controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TextInputLayout;
@@ -30,6 +31,7 @@ import com.moonica.fdm.model.Corso;
 import com.moonica.fdm.model.FactoryCommenti;
 import com.moonica.fdm.model.FactoryForumThread;
 import com.moonica.fdm.model.FactoryUtente;
+import com.moonica.fdm.model.FileFinto;
 import com.moonica.fdm.model.ForumThread;
 import com.moonica.fdm.model.Utente;
 
@@ -181,6 +183,19 @@ public class NewThread extends AppCompatActivity {
         Intent intent = new Intent(NewThread.this, CaricaFile.class);
         intent.putExtra(FILE, "nuovoThread");
         startActivityForResult(intent, 1);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                Serializable fileRicevuto = data.getSerializableExtra("allegato");
+
+                FileFinto fileFinto = (FileFinto) fileRicevuto;
+
+
+            }
+        }
     }
 
     //funzione che stampa messaggi di errore se non vengono riempiti i campi

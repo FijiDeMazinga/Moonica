@@ -1,5 +1,7 @@
 package com.moonica.fdm.model;
 
+import android.graphics.drawable.Drawable;
+
 import com.moonica.fdm.R;
 
 import java.io.File;
@@ -9,15 +11,16 @@ import java.util.Collections;
 public class FactoryFileFinti {
     private static FactoryFileFinti singleton;
 
-    public static FactoryFileFinti getInstance(){
-        if(singleton == null)
+    public static FactoryFileFinti getInstance() {
+        if (singleton == null)
             singleton = new FactoryFileFinti();
         return singleton;
     }
+
     private ArrayList<FileFinto> listaFile = new ArrayList<FileFinto>();
     private ArrayList<FileFinto> listaAvatar = new ArrayList<FileFinto>();
 
-    private FactoryFileFinti(){
+    private FactoryFileFinti() {
         FileFinto f1 = new FileFinto();
         f1.setNome("mauro.png");
         f1.setImmagineId(R.drawable.mauro);
@@ -125,15 +128,23 @@ public class FactoryFileFinti {
 
 
     }
-    public ArrayList<FileFinto> restituisciAvatar(){
+
+    public ArrayList<FileFinto> restituisciAvatar() {
         ArrayList<FileFinto> fff = new ArrayList<>();
         fff.addAll(listaAvatar);
         return fff;
     }
 
-    public ArrayList<FileFinto> restituisciFile(){
+    public ArrayList<FileFinto> restituisciFile() {
         ArrayList<FileFinto> fileRestituiti = new ArrayList<>();
         fileRestituiti.addAll(listaFile);
         return fileRestituiti;
+    }
+
+    public int cercaAvatar(String nomeFile) {
+        for (FileFinto fileFinto : listaAvatar)
+            if (fileFinto.getNome().equals(nomeFile))
+                return fileFinto.getImmagineId();
+            return -1;
     }
 }
