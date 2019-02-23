@@ -48,8 +48,6 @@ public class CaricaFile extends AppCompatActivity {
                 break;
         }
 
-
-
         GridLayoutManager glm = new GridLayoutManager(this, 2);
 
         rv = findViewById(R.id.rvGriglia);
@@ -58,32 +56,6 @@ public class CaricaFile extends AppCompatActivity {
         rv.setHasFixedSize(true);
         FileRVAdapter fileRVAdapter = new FileRVAdapter(listaFile);
         rv.setAdapter(fileRVAdapter);
-
-        /*gl.findViewById(R.id.grigliaFile);
-        gl.setColumnCount(2);
-        gl.setAlignmentMode(GridLayout.ALIGN_BOUNDS);
-        gl.setRowCount(listaFile.size()/2);
-        for(FileFinto fl : listaFile){
-            LinearLayout ll = new LinearLayout(this);
-            ImageView iv = new ImageView(this);
-            TextView tv = new TextView(this);
-
-            ll.setOrientation(LinearLayout.VERTICAL);
-            ll.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-            iv.setImageResource(fl.getImmagineId());
-            iv.setLayoutParams(new LinearLayout.LayoutParams((int) getResources().getDimension(R.dimen.file_width),
-                    (int) getResources().getDimension(R.dimen.file_height)));
-
-            tv.setText(fl.getNome());
-            tv.setMaxWidth(50);
-
-            ll.addView(iv);
-            ll.addView(tv);
-            gl.addView(ll);
-
-        }
-        setContentView(gl);*/
     }
 
     /*

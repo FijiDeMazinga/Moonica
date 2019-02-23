@@ -43,6 +43,7 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
     Spinner gender;
     TextInputLayout rNome, rCognome, rUser, rPass, rMail;
     Dialog dialog;
+    Studente nuovoS = new Studente();
 
     public static final String USER = "com.moonica.fdm";
     public static final String FILE = "com.moonica.fdm";
@@ -107,7 +108,6 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
 
     //creazione utente coi dati inseriti
     public Studente creaUtente(){
-        Studente nuovoS = new Studente();
         nuovoS.setNome(nome.getText().toString());
         nuovoS.setCognome(cognome.getText().toString());
         nuovoS.setUsername(username.getText().toString());
@@ -220,14 +220,13 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
                     TextView tvfileName = (TextView) findViewById(R.id.registrazioneFilename);
                     ImageView ivFileImage = (ImageView) findViewById(R.id.registrazioneFileImage);
 
-
                     FactoryFileFinti factoryFileFinti = FactoryFileFinti.getInstance();
 
                     linearLayoutAvatarPreview.setVisibility(LinearLayout.VISIBLE);
                     linearLayoutLoadAvatar.setVisibility(LinearLayout.GONE);
                     tvfileName.setText(fileName);
                     ivFileImage.setImageResource(factoryFileFinti.cercaAvatar(fileName));
-
+                    nuovoS.setAvatar(factoryFileFinti.cercaAvatar(fileName));
                 }
             }
         }

@@ -194,6 +194,12 @@ public class FactoryCorsi {
         edi.setNome("Elementi di Economia e Diritto per Informatici");
         edi.setSigla("EDI");
 
+        Corso fpw = new Corso();
+        fpw.setFacolta("Informatica");
+        fpw.setNome("Fondamenti di Programmazione Web");
+        fpw.setSigla("FPW");
+
+        corsiInf.add(fpw);
         corsiInf.add(edi);
         corsiInf.add(alf);
         corsiInf.add(md);
@@ -207,6 +213,7 @@ public class FactoryCorsi {
         corsiInf.add(dm);
 
         tuttiCorsi.add(edi);
+        tuttiCorsi.add(fpw);
         tuttiCorsi.add(alf);
         tuttiCorsi.add(md);
         tuttiCorsi.add(fms);
