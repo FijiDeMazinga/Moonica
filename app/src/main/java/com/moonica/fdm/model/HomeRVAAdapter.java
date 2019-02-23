@@ -30,8 +30,7 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
 
     ArrayList<Corso> lista = new ArrayList<Corso>();
     static String UTENTE = "utente";
-
-
+    FactoryCorsi factoryCorsi = FactoryCorsi.getInstance();
     public void onRowMoved(int fromPosition, int toPosition) {
         if (fromPosition < toPosition) {
             for (int i = fromPosition; i < toPosition; i++) {
@@ -58,13 +57,14 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
     public static class CorsoViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
         TextView nomeCorso;
-        ImageButton ib;
+        ImageButton ib, preferito;
 
         public CorsoViewHolder(@NonNull final View itemView) {
             super(itemView);
             cv = itemView.findViewById(R.id.card_view_corsi);
             nomeCorso = itemView.findViewById(R.id.nomeCorso);
             ib = itemView.findViewById(R.id.ibCorso);
+            preferito = itemView.findViewById(R.id.corsoPreferito);
         }
     }
     Studente studente = new Studente();
@@ -95,6 +95,24 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
             corsoViewHolder.nomeCorso.setText("[" + lista.get(i).getSigla() + "] " + lista.get(i).getNome().substring(0, 20) + "...");
         corsoViewHolder.nomeCorso.setPadding(0, 25,0,0);
         corsoViewHolder.ib.setImageResource(R.drawable.ic_more_vert_black_24dp);
+        corsoViewHolder.preferito.setImageResource(R.drawable.ic_favorite_black_24dp);
+
+        corsoViewHolder.preferito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(factoryCorsi.cercaPreferito(lista.get(i), studente.getCorsiPreferiti())) {
+                    studente.getCorsiPreferiti().remove(lista.get(i));
+                    corsoViewHolder.preferito.setColorFilter(0xffeeeeee);
+                }
+                else{
+                    studente.getCorsiPreferiti().add(lista.get(i));
+                    corsoViewHolder.preferito.setColorFilter(Color.RED);
+                }
+            }
+        });
+        if(utente instanceof Professore)
+            corsoViewHolder.preferito.setVisibility(View.GONE);
+
         corsoViewHolder.ib.setBackgroundColor(0xff225599);
         corsoViewHolder.ib.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,8 +129,9 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()){
                             case 0:
-                                if(utente instanceof Studente)
+                                if(utente instanceof Studente) {
                                     studente.rimuoviCorso(lista.get(i));
+                                }
                                 else if(utente instanceof Professore)
                                     professore.rimuoviCorsoGestito(lista.get(i));
 

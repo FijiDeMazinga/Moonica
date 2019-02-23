@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Studente extends Utente implements Serializable {
     private int annoCorso;
     private ArrayList<Corso> corsi = new ArrayList<Corso>();
+    private ArrayList<Corso> corsiPreferiti = new ArrayList<Corso>();
 
     public Studente() {
         super();
@@ -43,5 +44,13 @@ public class Studente extends Utente implements Serializable {
                 break;
             }
         }
+    }
+
+    public ArrayList<Corso> getCorsiPreferiti() {
+        return corsiPreferiti;
+    }
+
+    public void setCorsiPreferiti(ArrayList<Corso> corsiPreferiti) {
+        this.corsiPreferiti = corsiPreferiti;
     }
 }

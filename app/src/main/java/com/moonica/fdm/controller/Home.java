@@ -225,6 +225,7 @@ public class Home extends AppCompatActivity {
         //menu
         ActionBarDrawerToggle actionBarDrawerToggle;
         NavigationView navigationView;
+        LinearLayout linearLayout;
         //navMenu
         drawerLayout = (DrawerLayout) findViewById(R.id.activityHome);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
@@ -237,6 +238,7 @@ public class Home extends AppCompatActivity {
         View header = navigationView.getHeaderView(0);
         avatar = header.findViewById(R.id.avatar);
         nomeUtente = header.findViewById(R.id.nomeUtente);
+        linearLayout = navigationView.findViewById(R.id.listaPreferiti);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -254,6 +256,13 @@ public class Home extends AppCompatActivity {
         avatar.setImageResource(u.getAvatar());
         nomeUtente.setText(u.getNome() + " " + u.getCognome());
 
+        ArrayList<Corso> preferiti = new ArrayList<>();
+        preferiti.addAll(s.getCorsiPreferiti());
+        for(Corso c : preferiti){
+            TextView textView = new TextView(this);
+            textView.setText(c.getSigla());
+            linearLayout.addView(textView);
+        }
     }
 
     public void logOut(final Intent intent){

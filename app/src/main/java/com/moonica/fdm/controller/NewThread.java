@@ -190,10 +190,7 @@ public class NewThread extends AppCompatActivity {
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 Serializable fileRicevuto = data.getSerializableExtra("allegato");
-
                 FileFinto fileFinto = (FileFinto) fileRicevuto;
-
-
             }
         }
     }

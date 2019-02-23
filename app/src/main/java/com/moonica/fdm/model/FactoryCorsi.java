@@ -282,6 +282,12 @@ public class FactoryCorsi {
             if(nome.equals(c.getNome()) && codice.equals(c.getSigla()))
                 return c;
             return null;
-
+    }
+    public boolean cercaPreferito(Corso c, ArrayList<Corso> preferiti){
+        for(Corso corso : preferiti){
+            if(c.equals(corso))
+                return true;
+        }
+        return false;
     }
 }
