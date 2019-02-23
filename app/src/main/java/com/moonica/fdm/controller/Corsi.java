@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -46,7 +47,8 @@ public class Corsi extends AppCompatActivity {
     Utente utente;
     ScrollView sv;
     RecyclerView rv;
-    ImageButton ib;
+    ImageButton ib, cancella;
+    ImageView freccia;
     Button indietro;
     ArrayList<Sezione> listaSezioni = new ArrayList<>();
     FactorySezioni factorySezioni = FactorySezioni.getInstance();
@@ -87,6 +89,8 @@ public class Corsi extends AppCompatActivity {
         sv = findViewById(R.id.sv_corsi);
         rv = findViewById(R.id.rvSezione);
         ib = findViewById(R.id.aggiungiSezione);
+        cancella = findViewById(R.id.cancellaSezione);
+        freccia = findViewById(R.id.freccia);
         indietro = findViewById(R.id.indietroDaEliminaSezione);
         indietro.setVisibility(View.GONE);
         rv.setFocusable(false);
@@ -151,11 +155,13 @@ public class Corsi extends AppCompatActivity {
 
         switch (id) {
             case R.id.elimina_sezione:
-                ModificaSezioneAdapter esa = new ModificaSezioneAdapter(listaSezioni, utente);
-                rv.setAdapter(esa);
+                /*ModificaSezioneAdapter esa = new ModificaSezioneAdapter(listaSezioni, utente);
+                rv.setAdapter(esa);*/
+                cancella.setVisibility(View.VISIBLE);
+                freccia.setVisibility(View.GONE);
                 indietro.setVisibility(View.VISIBLE);
                 ib.setVisibility(View.GONE);
-                esa.notifyDataSetChanged();
+                //esa.notifyDataSetChanged();
                 indietro.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

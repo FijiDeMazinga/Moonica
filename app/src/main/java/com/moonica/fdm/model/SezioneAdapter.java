@@ -1,6 +1,7 @@
 package com.moonica.fdm.model;
 
 import android.graphics.drawable.GradientDrawable;
+import android.media.Image;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
@@ -12,6 +13,7 @@ import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
 import android.view.animation.Transformation;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -24,6 +26,7 @@ import java.util.ArrayList;
 
 public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneViewHolder> {
     ArrayList<Sezione> lista = new ArrayList<Sezione>();
+    Utente u;
 
     public static class SezioneViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
@@ -31,6 +34,7 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
         ImageView freccia;
         RelativeLayout attivatore;
         LinearLayout vistaContenuti;
+        ImageButton cancella;
 
         public SezioneViewHolder (@NonNull final View itemView) {
             super(itemView);
@@ -39,11 +43,13 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
             freccia = itemView.findViewById(R.id.freccia);
             attivatore = itemView.findViewById(R.id.attivatore);
             vistaContenuti = itemView.findViewById(R.id.vistaContenuti);
+            cancella = itemView.findViewById(R.id.cancellaSezione);
         }
     }
 
     public SezioneAdapter(ArrayList<Sezione> lista, Utente utente){
         this.lista = lista;
+        this.u = utente;
     }
 
     @Override
@@ -53,23 +59,38 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
         return svh;
     }
 
+    int j = 0;
     @Override
     public void onBindViewHolder(@NonNull final SezioneViewHolder sezioneViewHolder, final int i){
+        //settaggio cardview
         sezioneViewHolder.cv.setMinimumHeight(50);
         sezioneViewHolder.cv.setRadius(20.1f);
+        sezioneViewHolder.cv.setCardBackgroundColor(0xff225599);
+        //setting titolo sezione
         sezioneViewHolder.titoloSezione.setText(lista.get(i).getTitolo());
         sezioneViewHolder.titoloSezione.setPadding(0, 25, 0, 25);
-        sezioneViewHolder.cv.setCardBackgroundColor(0xff225599);
         sezioneViewHolder.titoloSezione.setTextColor(0xffffffff);
         sezioneViewHolder.titoloSezione.setTextSize(18);
+        sezioneViewHolder.cancella.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lista.remove(sezioneViewHolder.getAdapterPosition());
+                notifyDataSetChanged();
+
+            }
+        });
+
         if (lista != null) {
-            for (int j=0 ; j<lista.get(i).getContenuti().size(); j++) {
+            for (j = 0; j < lista.get(i).getContenuti().size(); j++) {
                 Space space = new Space(OttieniContesto.getAppContext());
                 space.setLayoutParams(new LinearLayout.LayoutParams(0, 0));
+
                 ImageView icona = new ImageView(OttieniContesto.getAppContext());
                 icona.setImageResource(lista.get(i).getContenuti().get(j).getIdIcona());
+
                 TextView testo = new TextView(OttieniContesto.getAppContext());
                 testo.setText(lista.get(i).getContenuti().get(j).getTesto());
+
                 GradientDrawable border = new GradientDrawable();
 
                 border.setColor(0xeeeeeeee);
@@ -91,6 +112,21 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
                 horizontal.addView(testo);
                 horizontal.addView(space);
                 horizontal.setPadding(80, 20, 0, 10);
+                if(u instanceof Professore) {
+                    ImageButton cancellaContenuto = new ImageButton(OttieniContesto.getAppContext());
+                    cancellaContenuto.setImageResource(R.drawable.ic_delete_red_24dp);
+                    cancellaContenuto.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            lista.get(sezioneViewHolder.getAdapterPosition()).getContenuti().remove(lista.get(sezioneViewHolder.getAdapterPosition()).getContenuti().get(j));
+
+                    /*ArrayList<Contenuto> prova1 = lista.get(sezioneViewHolder.getAdapterPosition()).getContenuti();
+                    prova1.remove(f);*/
+                            notifyDataSetChanged();
+                        }
+                    });
+                    horizontal.addView(cancellaContenuto);
+                }
                 sezioneViewHolder.vistaContenuti.addView(horizontal);
                 sezioneViewHolder.vistaContenuti.setPadding(0, 10, 0, 20);
                 sezioneViewHolder.vistaContenuti.setVisibility(View.GONE);
@@ -108,8 +144,7 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
                     rotateAnimation.setDuration(300);
                     rotateAnimation.setFillAfter(true);
                     sezioneViewHolder.freccia.startAnimation(rotateAnimation);
-                }
-                else {
+                } else {
                     collapse(sezioneViewHolder.vistaContenuti);
                     final RotateAnimation rotateAnimation = new RotateAnimation(-180.0f, 0.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
                     rotateAnimation.setInterpolator(new DecelerateInterpolator());

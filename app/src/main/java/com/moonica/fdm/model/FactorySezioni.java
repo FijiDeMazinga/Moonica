@@ -63,11 +63,14 @@ public class FactorySezioni {
     }
 
     public ArrayList<Sezione> getSezioniCorso(String corso) {
+        ArrayList<Sezione> listaSez = new ArrayList<>();
         switch (corso) {
             case ("Interazione Uomo-Macchina"):
-                return sezioniIUM;
+                listaSez.addAll(sezioniIUM);
+                return listaSez;
             case ("Storia Medievale"):
-                return sezioniSM;
+                listaSez.addAll(sezioniSM);
+                return listaSez;
         }
 
         return null;
