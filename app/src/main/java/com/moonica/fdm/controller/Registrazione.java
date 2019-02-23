@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,7 +40,10 @@ import static com.moonica.fdm.controller.NewThread.hideKeyboard;
 
 public class Registrazione extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    ScrollView sv;
     LinearLayout linearLayoutAvatarPreview, linearLayoutLoadAvatar;
+    TextView tvfileName;
+    ImageView ivFileImage;
     EditText nome, cognome, username, password, mail;
     Spinner gender;
     TextInputLayout rNome, rCognome, rUser, rPass, rMail;
@@ -73,9 +77,13 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         spinner.setAdapter(dataAdapter);//aggiunta dell'adapter allo spinner
 
         Intent registrazione = getIntent();
+        sv = findViewById(R.id.svRegistrazione);
         linearLayoutAvatarPreview  = findViewById(R.id.previewAvatar);
         linearLayoutLoadAvatar = findViewById(R.id.loadAvatar);
         Button b = findViewById(R.id.continua);
+
+        tvfileName = (TextView) findViewById(R.id.registrazioneFilename);
+        ivFileImage = (ImageView) findViewById(R.id.registrazioneFileImage);
 
         //dichiarazione di cosa accade premendo il pulsante
         b.setOnClickListener(new View.OnClickListener() {
@@ -214,6 +222,15 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         startActivityForResult(intent, 1);
     }
 
+    public void EliminaSceltaAvatar(View v){
+        nuovoS.setAvatar(R.drawable.avatar_placeholder);
+        tvfileName.setText(null);
+        ivFileImage.setImageDrawable(null);
+        linearLayoutLoadAvatar.setVisibility(View.VISIBLE);
+        linearLayoutAvatarPreview.setVisibility(View.GONE);
+
+    }
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode != RESULT_CANCELED) {
@@ -223,15 +240,13 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
 
                     String fileName = (String) fn;
 
-                    TextView tvfileName = (TextView) findViewById(R.id.registrazioneFilename);
-                    ImageView ivFileImage = (ImageView) findViewById(R.id.registrazioneFileImage);
-
                     FactoryFileFinti factoryFileFinti = FactoryFileFinti.getInstance();
 
                     linearLayoutAvatarPreview.setVisibility(LinearLayout.VISIBLE);
                     linearLayoutLoadAvatar.setVisibility(LinearLayout.GONE);
                     tvfileName.setText(fileName);
                     ivFileImage.setImageResource(factoryFileFinti.cercaAvatar(fileName));
+                    sv.fullScroll(View.FOCUS_DOWN);
                     nuovoS.setAvatar(factoryFileFinti.cercaAvatar(fileName));
                 }
             }

@@ -7,7 +7,8 @@
     tools:context=".controller.Registrazione">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/svRegistrazione">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -172,12 +173,9 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/registrazioneEliminaFile"
                     android:src="@drawable/ic_delete_red_24dp"
-                    android:layout_gravity="center_vertical"/>
+                    android:layout_gravity="center_vertical"
+                    android:onClick="EliminaSceltaAvatar"/>
             </LinearLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
