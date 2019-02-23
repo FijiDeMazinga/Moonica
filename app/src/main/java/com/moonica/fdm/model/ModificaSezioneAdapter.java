@@ -122,11 +122,10 @@ public class ModificaSezioneAdapter extends RecyclerView.Adapter<ModificaSezione
                 cancella.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //lista.get(sezioneViewHolder.getAdapterPosition()).getContenuti().remove(lista.get(sezioneViewHolder.getAdapterPosition()).getContenuti().get(f));
+                        lista.get(sezioneViewHolder.getAdapterPosition()).getContenuti().remove(lista.get(sezioneViewHolder.getAdapterPosition()).getContenuti().get(f));
 
-                        ArrayList<Contenuto> prova1 = lista.get(sezioneViewHolder.getAdapterPosition()).getContenuti();
-                        prova1.remove(f);
-
+                        /*ArrayList<Contenuto> prova1 = lista.get(sezioneViewHolder.getAdapterPosition()).getContenuti();
+                        prova1.remove(f);*/
                         notifyDataSetChanged();
                     }
                 });
