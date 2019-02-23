@@ -3,6 +3,7 @@ package com.moonica.fdm.controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -12,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,18 +24,24 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Space;
 import android.widget.TextView;
 
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Commento;
 import com.moonica.fdm.model.Corso;
 import com.moonica.fdm.model.FactoryCommenti;
+import com.moonica.fdm.model.FactoryFileFinti;
 import com.moonica.fdm.model.FactoryForumThread;
 import com.moonica.fdm.model.FactoryUtente;
 import com.moonica.fdm.model.FileFinto;
 import com.moonica.fdm.model.ForumThread;
 import com.moonica.fdm.model.Utente;
+
+import org.w3c.dom.Text;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -48,11 +56,16 @@ public class NewThread extends AppCompatActivity {
     Corso c = new Corso();
     ForumThread ft = new ForumThread();
 
+
+    LinearLayout linearLayout, allegaFile;
     TextView titoloReply;
 
     EditText titolo, testo;
     ImageButton uploadFile;
     Button invio;
+
+    static int numAllegati = 0;
+    final static int MAXALLEGATI = 4;
 
 
     public static final String FILE = "com.moonica.fdm";
@@ -80,13 +93,14 @@ public class NewThread extends AppCompatActivity {
 
         Bundle extras = i.getExtras();
 
+        allegaFile = (LinearLayout) findViewById(R.id.allegaFile);
+        linearLayout = (LinearLayout) findViewById(R.id.previewAllegato);
         testo = (EditText) findViewById(R.id.testoNewT);
         uploadFile = (ImageButton) findViewById(R.id.caricaAllegato);
         invio = (Button) findViewById(R.id.inviaNT);
 
 
-
-        if (extras.getString("newThread") != null){
+        if (extras.getString("newThread") != null) {
 
             titolo = (EditText) findViewById(R.id.titoloNewT);
 
@@ -125,8 +139,7 @@ public class NewThread extends AppCompatActivity {
                 }
             });
 
-        }
-        else if (extras.getString("longReply") != null){
+        } else if (extras.getString("longReply") != null) {
 
             titoloReply = (TextView) findViewById(R.id.titoloNewT);
 
@@ -141,7 +154,7 @@ public class NewThread extends AppCompatActivity {
             invio.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (checkTesto()){
+                    if (checkTesto()) {
                         String textString = String.valueOf(testo.getText());
 
                         Commento commento = new Commento();
@@ -160,6 +173,9 @@ public class NewThread extends AppCompatActivity {
 
                         ArrayList<Commento> arrayList = new ArrayList<>();
                         arrayList.addAll(factoryCommenti.cercaListaCommenti(ft.getId()));
+
+
+                        numAllegati = 0;
 
                         Intent intent = new Intent();
                         intent.putExtra("nuovo commento", ft);
@@ -185,50 +201,124 @@ public class NewThread extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
+    public void EliminaSceltaAllegato(View v, LinearLayout contenitore) {
+
+                numAllegati--;
+                allegaFile.setVisibility(View.VISIBLE);
+                if (numAllegati == 0){
+                    linearLayout.setVisibility(View.GONE);
+                }
+
+                contenitore.removeAllViews();
+                linearLayout.removeView(contenitore);
+
+    }
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
-                Serializable fileRicevuto = data.getSerializableExtra("allegato");
-                FileFinto fileFinto = (FileFinto) fileRicevuto;
+                if (numAllegati < MAXALLEGATI) {
+                    Serializable fn = data.getSerializableExtra("resultFilename");
+
+                    numAllegati++;
+
+                    String fileName = (String) fn;
+
+                    FactoryFileFinti factoryFileFinti = FactoryFileFinti.getInstance();
+
+                    final LinearLayout sectionLayout = new LinearLayout(this);
+                    ImageView imageView = new ImageView(this);
+                    TextView textView = new TextView(this);
+                    ImageButton imageButton = new ImageButton(this);
+
+
+                    LinearLayout.LayoutParams llParamas = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    sectionLayout.setLayoutParams(llParamas);
+                    sectionLayout.setOrientation(LinearLayout.HORIZONTAL);
+
+
+                    LinearLayout.LayoutParams paramsImage = new LinearLayout.LayoutParams(100, 100);
+                    paramsImage.gravity = Gravity.CENTER_VERTICAL;
+                    imageView.setImageResource(factoryFileFinti.cercaFile(fileName));
+                    imageView.setLayoutParams(paramsImage);
+
+
+                    LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    /*textParams.weight = 1.0f;*/
+                    textParams.gravity = Gravity.CENTER_VERTICAL;
+
+                    textView.setText(fileName);
+                    textView.setTextColor(Color.parseColor("#225599"));
+                    //textView.setTextSize(getResources().getDimensionPixelSize(R.dimen.textSizeAllegato));
+                    textView.setLayoutParams(textParams);
+                    textView.setPadding(10,0,10,0);
+
+
+                    LinearLayout.LayoutParams paramsb = new LinearLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.buttonDeleteFile),
+                            getResources().getDimensionPixelSize(R.dimen.buttonDeleteFile));
+                    paramsb.weight = 1.0f;
+                    paramsb.gravity = Gravity.CENTER_VERTICAL;
+
+                    imageButton.setImageResource(R.drawable.ic_delete_red_24dp);
+                    imageButton.setLayoutParams(paramsb);
+                    imageButton.setBackgroundColor(Color.parseColor("#eaeaea"));
+                    imageButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            EliminaSceltaAllegato(v, sectionLayout);
+                        }
+                    });
+
+                    sectionLayout.addView(imageView);
+                    sectionLayout.addView(textView);
+                    sectionLayout.addView(imageButton);
+                    sectionLayout.addView(new Space(this));
+
+                    linearLayout.addView(sectionLayout);
+                    linearLayout.setVisibility(View.VISIBLE);
+
+                }
+
+                if (numAllegati == MAXALLEGATI)
+                    allegaFile.setVisibility(View.GONE);
+
             }
         }
     }
 
     //funzione che stampa messaggi di errore se non vengono riempiti i campi
-    public boolean checkTitolo(){
+    public boolean checkTitolo() {
         int errors = 0;
         Animation animation = AnimationUtils.loadAnimation(getBaseContext(), R.anim.shake_error);
 
-        if(titolo.getText() == null || titolo.getText().length() == 0){
+        if (titolo.getText() == null || titolo.getText().length() == 0) {
             titolo.setError("Inserire un titolo");
             TextInputLayout til = findViewById(R.id.vibraTitolo);
             til.startAnimation(animation);
             errors++;
             hideKeyboard(this);
-        }
-        else
+        } else
             titolo.setError(null);
-        if(errors == 0) {
+        if (errors == 0) {
             return true;
         }
         return false;
     }
 
-    public boolean checkTesto(){
+    public boolean checkTesto() {
         int errors = 0;
         Animation animation = AnimationUtils.loadAnimation(getBaseContext(), R.anim.shake_error);
 
-        if(testo.getText() == null || testo.getText().length() == 0){
+        if (testo.getText() == null || testo.getText().length() == 0) {
             testo.setError("Inserire una risposta");
             TextInputLayout til = findViewById(R.id.vibraTitolo);
             til.startAnimation(animation);
             errors++;
             hideKeyboard(this);
-        }
-        else
+        } else
             testo.setError(null);
-        if(errors == 0) {
+        if (errors == 0) {
             return true;
         }
         return false;
@@ -256,16 +346,22 @@ public class NewThread extends AppCompatActivity {
             default:
                 if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                     drawerLayout.closeDrawer(Gravity.LEFT);
-                }
-                else {
+                } else {
 
+                    numAllegati = 0;
                     finish();
                 }
         }
         return true;
     }
 
-    public void setNavBar(final Intent intent){
+    @Override
+    public void onBackPressed() {
+        numAllegati = 0;
+        finish();
+    }
+
+    public void setNavBar(final Intent intent) {
         //menu
         ActionBarDrawerToggle actionBarDrawerToggle;
         NavigationView navigationView;
@@ -291,7 +387,7 @@ public class NewThread extends AppCompatActivity {
                     case R.id.homeNav:
                         intent.putExtra("com.moonica.fdm", utente);
                         startActivity(intent);
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         break;
                 }
                 return true;
@@ -302,7 +398,7 @@ public class NewThread extends AppCompatActivity {
 
     }
 
-    public void logOut(final Intent intent){
+    public void logOut(final Intent intent) {
         RelativeLayout relativeLayout = findViewById(R.id.buttonLogOut);
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -248,6 +248,7 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
                     ivFileImage.setImageResource(factoryFileFinti.cercaAvatar(fileName));
                     sv.fullScroll(View.FOCUS_DOWN);
                     nuovoS.setAvatar(factoryFileFinti.cercaAvatar(fileName));
+
                 }
             }
         }
