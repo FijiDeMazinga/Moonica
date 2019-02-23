@@ -2,7 +2,6 @@ package com.moonica.fdm.controller;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
@@ -15,26 +14,20 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.ScrollView;
 import android.widget.RelativeLayout;
-import android.widget.Space;
 import android.widget.TextView;
 
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Corso;
-import com.moonica.fdm.model.EliminaSezioneAdapter;
+import com.moonica.fdm.model.ModificaSezioneAdapter;
 import com.moonica.fdm.model.FactorySezioni;
-import com.moonica.fdm.model.ForumThread;
-import com.moonica.fdm.model.ItemMoveCallback;
 import com.moonica.fdm.model.Professore;
 import com.moonica.fdm.model.Sezione;
 import com.moonica.fdm.model.SezioneAdapter;
@@ -158,7 +151,7 @@ public class Corsi extends AppCompatActivity {
 
         switch (id) {
             case R.id.elimina_sezione:
-                EliminaSezioneAdapter esa = new EliminaSezioneAdapter(listaSezioni, utente);
+                ModificaSezioneAdapter esa = new ModificaSezioneAdapter(listaSezioni, utente);
                 rv.setAdapter(esa);
                 indietro.setVisibility(View.VISIBLE);
                 ib.setVisibility(View.GONE);
