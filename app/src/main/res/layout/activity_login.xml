@@ -98,7 +98,7 @@
                 android:textStyle="italic"
                 android:textColor="#F03D43"
                 android:id="@+id/registrati"
-                android:textSize=""/>
+                android:textSize="18dp"/>
         </LinearLayout>
     </ScrollView>
 
