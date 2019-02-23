@@ -82,7 +82,7 @@ public class ModificaSezioneAdapter extends RecyclerView.Adapter<ModificaSezione
                 testo.setText(contenuto.getTesto());
                 GradientDrawable border = new GradientDrawable();
                 ImageButton cancella = new ImageButton(OttieniContesto.getAppContext());
-                cancella.setBackgroundColor(Color.TRANSPARENT);
+                //cancella.setBackgroundColor(Color.TRANSPARENT);
 
                 border.setColor(0xeeeeeeee);
                 border.setStroke(3, 0xFF225599);
@@ -98,9 +98,9 @@ public class ModificaSezioneAdapter extends RecyclerView.Adapter<ModificaSezione
                 testo.setPadding(20, 0, 0, 0);
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 params.addRule(RelativeLayout.ALIGN_PARENT_END);
-                cancella.setLayoutParams(params);
+                /*cancella.setLayoutParams(params);
                 cancella.setImageResource(R.drawable.ic_delete_red_24dp);
-                cancella.setPadding(700, 20, 0, 0);
+                cancella.setPadding(700, 20, 0, 0);*/
                 RelativeLayout padre = new RelativeLayout(OttieniContesto.getAppContext());
                 LinearLayout horizontal = new LinearLayout(OttieniContesto.getAppContext());
                 padre.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -116,13 +116,13 @@ public class ModificaSezioneAdapter extends RecyclerView.Adapter<ModificaSezione
                 sezioneViewHolder.vistaContenuti.setPadding(0, 10, 0, 20);
                 sezioneViewHolder.vistaContenuti.setVisibility(View.GONE);
 
-                cancella.setOnClickListener(new View.OnClickListener() {
+                /*cancella.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         listaContenuti.remove(contenuto);
                         notifyDataSetChanged();
                     }
-                });
+                });*/
             }
         }
 

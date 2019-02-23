@@ -47,7 +47,7 @@ public class Corsi extends AppCompatActivity {
     Utente utente;
     ScrollView sv;
     RecyclerView rv;
-    ImageButton ib, cancella;
+    ImageButton ib;
     ImageView freccia;
     Button indietro;
     ArrayList<Sezione> listaSezioni = new ArrayList<>();
@@ -89,7 +89,7 @@ public class Corsi extends AppCompatActivity {
         sv = findViewById(R.id.sv_corsi);
         rv = findViewById(R.id.rvSezione);
         ib = findViewById(R.id.aggiungiSezione);
-        cancella = findViewById(R.id.cancellaSezione);
+        //cancella = findViewById(R.id.cancellaSezione);
         freccia = findViewById(R.id.freccia);
         indietro = findViewById(R.id.indietroDaEliminaSezione);
         indietro.setVisibility(View.GONE);
@@ -155,13 +155,13 @@ public class Corsi extends AppCompatActivity {
 
         switch (id) {
             case R.id.elimina_sezione:
-                /*ModificaSezioneAdapter esa = new ModificaSezioneAdapter(listaSezioni, utente);
-                rv.setAdapter(esa);*/
-                cancella.setVisibility(View.VISIBLE);
-                freccia.setVisibility(View.GONE);
+                ModificaSezioneAdapter esa = new ModificaSezioneAdapter(listaSezioni, utente);
+                rv.setAdapter(esa);
+                /*cancella.setVisibility(View.VISIBLE);
+                freccia.setVisibility(View.GONE);*/
                 indietro.setVisibility(View.VISIBLE);
                 ib.setVisibility(View.GONE);
-                //esa.notifyDataSetChanged();
+                esa.notifyDataSetChanged();
                 indietro.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
