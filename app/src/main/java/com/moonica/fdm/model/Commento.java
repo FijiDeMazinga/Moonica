@@ -1,6 +1,10 @@
 package com.moonica.fdm.model;
 
+import android.graphics.drawable.Drawable;
+
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.TimeZone;
 
 public class Commento {
@@ -9,12 +13,18 @@ public class Commento {
     private String testo;
     private Calendar data = Calendar.getInstance(TimeZone.getDefault());
     private ForumThread ft;
+    private boolean allegatiPresenza;
+    private ArrayList<String> nomeAllegati = new ArrayList<>();
+    private ArrayList<Integer> iconaAllegati = new ArrayList<>();
 
     public Commento(){
         this.setAutore("");
         this.setData(1990, 1,1, 0, 0, 0);
         this.setTesto("");
         this.setFt(-1);
+        this.setAllegatiPresenza(false);
+        this.setNomeAllegati(new ArrayList<String>());
+        this.setIconaAllegati(new ArrayList<Integer>());
     }
 
     public Utente getAutore() {
@@ -59,5 +69,51 @@ public class Commento {
     public void setFt(int id) {
         FactoryForumThread factoryForumThreadt = FactoryForumThread.getInstance();
         this.ft = factoryForumThreadt.cercaThread(id);
+    }
+
+
+
+    public ArrayList<String> getNomeAllegati() {
+        return nomeAllegati;
+    }
+
+    public void setNomeAllegati(ArrayList<String> nomeAllegati) {
+        this.nomeAllegati = nomeAllegati;
+    }
+    public void setNomeAllegati(String nomeAllegati) {
+        this.nomeAllegati.add(nomeAllegati);
+    }
+
+    public void eliminaNomeAllegati(String allegato){
+        for (String s : nomeAllegati){
+            if (s.equals(allegato))
+                nomeAllegati.remove(s);
+        }
+    }
+
+    public ArrayList<Integer> getIconaAllegati() {
+        return iconaAllegati;
+    }
+
+    public void setIconaAllegati(ArrayList<Integer> iconaAllegati) {
+        this.iconaAllegati = iconaAllegati;
+    }
+    public void setIconaAllegati(Integer iconaAllegati) {
+        this.iconaAllegati.add(iconaAllegati);
+    }
+
+    public void eliminaIconaAllegati(Integer icolaAllegati){
+        for (Integer i : iconaAllegati)
+            if (i.equals(icolaAllegati)) {
+                iconaAllegati.remove(i);
+            }
+    }
+
+    public boolean isAllegatiPresenza() {
+        return allegatiPresenza;
+    }
+
+    public void setAllegatiPresenza(boolean allegatiPresenza) {
+        this.allegatiPresenza = allegatiPresenza;
     }
 }

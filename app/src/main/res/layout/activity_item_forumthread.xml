@@ -25,11 +25,19 @@
             android:padding="10dp"
             android:layout_below="@+id/titoloThread_forum" />
 
+        <ImageView
+            android:id="@+id/presenzaAllegati"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/titoloThread_forum"
+            android:layout_toRightOf="@+id/numRisposte"/>
+
         <TextView
             android:id="@+id/data_forum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="15dp"
             android:layout_below="@id/titoloThread_forum"
             android:layout_alignParentRight="true" />
 

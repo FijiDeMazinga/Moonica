@@ -60,12 +60,19 @@ public class FactoryCommenti {
         c6.setTesto("Ciao");
         c6.setFt(3);
 
+        Commento c7 = new Commento();
+        c7.setAutore("Davide");
+        c7.setData(2018, 9, 12, 8, 12, 52);
+        c7.setTesto("Risposta breve");
+        c7.setFt(2);
+
         listaCommenti.add(c1);
         listaCommenti.add(c2);
         listaCommenti.add(c3);
         listaCommenti.add(c4);
         listaCommenti.add(c5);
         listaCommenti.add(c6);
+        listaCommenti.add(c7);
     }
 
     public ArrayList<Commento> cercaListaCommenti(int id) {

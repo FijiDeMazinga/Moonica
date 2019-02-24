@@ -38,6 +38,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Space;
 import android.widget.TextView;
 
 import com.moonica.fdm.R;
@@ -50,12 +51,14 @@ import com.moonica.fdm.model.ThreadRVAdapter;
 import com.moonica.fdm.model.Utente;
 
 import org.w3c.dom.Comment;
+import org.w3c.dom.Text;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -63,6 +66,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Thread extends AppCompatActivity {
 
     NestedScrollView ns;
+
+    LinearLayout allegati;
+
     CardView cv;
     ForumThread ft;
     static Utente utente;
@@ -113,6 +119,7 @@ public class Thread extends AppCompatActivity {
          * I dati del post principale del thread vengono caricati
          */
         ns = findViewById(R.id.scrollView_thread);
+        allegati = findViewById(R.id.allegatiMainPost);
         cv = findViewById(R.id.cardView_main_post);
         titolo = findViewById(R.id.titoloThread_main_post);
         testo = findViewById(R.id.testoThread_main_post);
@@ -136,6 +143,46 @@ public class Thread extends AppCompatActivity {
                 startActivityForResult(longReply, 1);
             }
         });
+
+        if (ft.getAllegatiPresenza()) {
+            allegati.setVisibility(View.VISIBLE);
+
+            for (int j = 0; j < ft.getIconaAllegati().size(); j++) {
+
+
+                LinearLayout sectionLayout = new LinearLayout(this);
+                ImageView imageView = new ImageView(this);
+                TextView textView = new TextView(this);
+
+                LinearLayout.LayoutParams llParamas = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                llParamas.setMargins(0, 25,0,0);
+                sectionLayout.setLayoutParams(llParamas);
+                sectionLayout.setOrientation(LinearLayout.HORIZONTAL);
+
+                LinearLayout.LayoutParams paramsImage = new LinearLayout.LayoutParams(50, 50);
+                paramsImage.gravity = Gravity.CENTER_VERTICAL;
+                imageView.setImageResource(ft.getIconaAllegati().get(j));
+                imageView.setLayoutParams(paramsImage);
+
+
+                LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                /*textParams.weight = 1.0f;*/
+                textParams.gravity = Gravity.CENTER_VERTICAL;
+
+                textView.setText(ft.getNomeAllegati().get(j));
+                textView.setLayoutParams(textParams);
+                textView.setTextSize(12f);
+                textView.setPadding(10,0,10,0);
+
+
+                sectionLayout.addView(new Space(this));
+                sectionLayout.addView(imageView);
+                sectionLayout.addView(textView);
+                sectionLayout.addView(new Space(this));
+
+                allegati.addView(sectionLayout);
+            }
+        }
 
         rv = (RecyclerView) findViewById(R.id.rv_thread);
 
@@ -332,11 +379,15 @@ public class Thread extends AppCompatActivity {
 
                 ft = (ForumThread) strEditText;
 
+                noReply.setVisibility(View.GONE);
+
                 FactoryCommenti commenti = FactoryCommenti.getInstance();
 
                 Commento nuovoCommento = commenti.cercaListaCommenti(ft.getId()).get(commenti.cercaListaCommenti(ft.getId()).size() - 1);
                 commentsList.add(nuovoCommento);
                 ft.setNumRisposte(commenti);
+
+                initializeAdapter();
 
                 ns.fullScroll(View.FOCUS_DOWN);
             }

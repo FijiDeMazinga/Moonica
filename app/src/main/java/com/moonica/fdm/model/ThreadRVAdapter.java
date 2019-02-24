@@ -1,12 +1,18 @@
 package com.moonica.fdm.model;
 
+import android.app.Activity;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Space;
 import android.widget.TextView;
 
 
@@ -56,6 +62,45 @@ public class ThreadRVAdapter extends RecyclerView.Adapter<ThreadRVAdapter.ReplyH
 
             replyHolder.nomeAutoreCommento.setText(piuNomi.toString() + piuCognomi.toString());
         }
+
+        int j;
+        for (j=0; j<cList.get(replyHolder.getAdapterPosition()).getNomeAllegati().size(); j++) {
+
+            LinearLayout sectionLayout = new LinearLayout(replyHolder.allegatiLayout.getContext());
+            ImageView imageView = new ImageView(replyHolder.allegatiLayout.getContext());
+            TextView textView = new TextView(replyHolder.allegatiLayout.getContext());
+
+            LinearLayout.LayoutParams llParamas = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            sectionLayout.setLayoutParams(llParamas);
+            sectionLayout.setOrientation(LinearLayout.HORIZONTAL);
+
+
+            LinearLayout.LayoutParams paramsImage = new LinearLayout.LayoutParams(50, 50);
+            paramsImage.gravity = Gravity.CENTER_VERTICAL;
+            imageView.setImageResource(cList.get(replyHolder.getAdapterPosition()).getIconaAllegati().get(j));
+            imageView.setLayoutParams(paramsImage);
+
+
+            LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            textParams.gravity = Gravity.CENTER_VERTICAL;
+
+            textView.setText(cList.get(replyHolder.getAdapterPosition()).getNomeAllegati().get(j));
+            textView.setTextColor(Color.parseColor("#225599"));
+            textView.setLayoutParams(textParams);
+            textView.setTextSize(12f);
+            textView.setPadding(10, 0, 10, 0);
+
+            sectionLayout.addView(imageView);
+            sectionLayout.addView(textView);
+            sectionLayout.addView(new Space(replyHolder.allegatiLayout.getContext()));
+
+            replyHolder.allegatiLayout.addView(sectionLayout);
+            replyHolder.allegatiLayout.setVisibility(View.VISIBLE);
+        }
+
+
+
+
         replyHolder.testo.setText(cList.get(i).getTesto());
         replyHolder.data.setText(cList.get(i).getData().getTime().toGMTString().substring(0, cList.get(i).getData().getTime().toGMTString().lastIndexOf(" ")));
         replyHolder.avatar.setImageResource(cList.get(i).getAutore().getAvatar());
@@ -76,6 +121,7 @@ public class ThreadRVAdapter extends RecyclerView.Adapter<ThreadRVAdapter.ReplyH
 
         CardView cv;
         TextView nomeAutoreCommento, testo, data;
+        LinearLayout allegatiLayout;
         CircleImageView avatar;
 
         public ReplyHolder(@NonNull View itemView) {
@@ -85,6 +131,9 @@ public class ThreadRVAdapter extends RecyclerView.Adapter<ThreadRVAdapter.ReplyH
             nomeAutoreCommento = (TextView)itemView.findViewById(R.id.nomeAutoreCommento);
             testo = (TextView)itemView.findViewById(R.id.testoRisposta);
             data = (TextView)itemView.findViewById(R.id.dataRisposta);
+
+            allegatiLayout = (LinearLayout)itemView.findViewById(R.id.allegatiCommenti);
+
             avatar = (CircleImageView)itemView.findViewById(R.id.avatarUser_thread);
         }
 

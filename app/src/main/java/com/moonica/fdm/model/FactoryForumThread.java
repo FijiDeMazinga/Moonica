@@ -1,6 +1,8 @@
 package com.moonica.fdm.model;
 
 
+import com.moonica.fdm.R;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -26,6 +28,7 @@ public class FactoryForumThread {
         thread1.setAutore("Spighetto");
         thread1.setNumRisposte(3);
         thread1.setCorso("DP", "Diritto Privato");
+        thread1.setAllegatiPresenza(false);
 
         ForumThread thread2 = new ForumThread();
         thread2.setId(1);
@@ -37,6 +40,9 @@ public class FactoryForumThread {
         thread2.setAutore("Ines");
         thread2.setNumRisposte(4);
         thread2.setCorso("AN", "Anatomia");
+        thread2.setAllegatiPresenza(true);
+        thread2.setNomeAllegati("Lorem ipsum-pdf");
+        thread2.setIconaAllegati(R.drawable.pdf_preview);
 
         ForumThread thread3 = new ForumThread();
         thread3.setId(2);
@@ -46,6 +52,7 @@ public class FactoryForumThread {
         thread3.setAutore("Federica");
         thread3.setNumRisposte(1);
         thread3.setCorso("IUM", "Interazione Uomo-Macchina");
+        thread3.setAllegatiPresenza(false);
 
         ForumThread thread4 = new ForumThread();
         thread4.setId(3);
@@ -55,6 +62,21 @@ public class FactoryForumThread {
         thread4.setAutore("Ines");
         thread4.setNumRisposte(2);
         thread4.setCorso("AN", "Anatomia");
+        thread4.setAllegatiPresenza(true);
+        thread4.setNomeAllegati("Presentazione.pdf");
+        thread4.setNomeAllegati("Presentazione2.pdf");
+        thread4.setIconaAllegati(R.drawable.pdf_preview);
+        thread4.setIconaAllegati(R.drawable.pdf_preview);
+
+        ForumThread thread5 = new ForumThread();
+        thread5.setId(4);
+        thread5.setTitolo("Domanda lezione giovedì");
+        thread5.setTesto("Ciao a tutti sono mancato questo giorno");
+        thread5.setData(2018, 12, 13, 12, 24, 21);
+        thread5.setAutore("Ines");
+        thread5.setNumRisposte(0);
+        thread5.setCorso("AN", "Anatomia");
+        thread5.setAllegatiPresenza(false);
 
         listaForumThread.add(thread1);
         listaForumThread.add(thread2);
@@ -65,6 +87,7 @@ public class FactoryForumThread {
         listaForumThread.add(thread2);
         listaForumThread.add(thread4);
         listaForumThread.add(thread2);
+        listaForumThread.add(thread5);
 
     }
 

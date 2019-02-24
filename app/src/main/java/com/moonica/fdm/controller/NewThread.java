@@ -64,6 +64,12 @@ public class NewThread extends AppCompatActivity {
     ImageButton uploadFile;
     Button invio;
 
+    Bundle extras;
+
+    ForumThread forumThread = new ForumThread();
+    Commento commento = new Commento();
+
+
     static int numAllegati = 0;
     final static int MAXALLEGATI = 4;
 
@@ -91,7 +97,7 @@ public class NewThread extends AppCompatActivity {
         utente = (Utente) studObj;
 
 
-        Bundle extras = i.getExtras();
+        extras = i.getExtras();
 
         allegaFile = (LinearLayout) findViewById(R.id.allegaFile);
         linearLayout = (LinearLayout) findViewById(R.id.previewAllegato);
@@ -117,7 +123,6 @@ public class NewThread extends AppCompatActivity {
 
                         FactoryUtente factoryUtente = FactoryUtente.getInstance();
                         FactoryForumThread factoryForumThread = FactoryForumThread.getInstance();
-                        ForumThread forumThread = new ForumThread();
 
                         forumThread.setId(factoryForumThread.ultimoId());
                         forumThread.setTitolo(titleString);
@@ -126,6 +131,7 @@ public class NewThread extends AppCompatActivity {
                         forumThread.setNumRisposte(0);
                         forumThread.setData(Calendar.getInstance());
                         forumThread.setAutore(factoryUtente.cercaUtente(utente.getUsername()));
+
 
                         factoryForumThread.aggiungiNuovoThread(forumThread);
 
@@ -157,7 +163,6 @@ public class NewThread extends AppCompatActivity {
                     if (checkTesto()) {
                         String textString = String.valueOf(testo.getText());
 
-                        Commento commento = new Commento();
 
                         commento.setFt(ft.getId());
                         commento.setAutore(utente);
@@ -201,16 +206,29 @@ public class NewThread extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
-    public void EliminaSceltaAllegato(View v, LinearLayout contenitore) {
+    public void EliminaSceltaAllegato(View v, LinearLayout contenitore, String filename, int id) {
 
-                numAllegati--;
-                allegaFile.setVisibility(View.VISIBLE);
-                if (numAllegati == 0){
-                    linearLayout.setVisibility(View.GONE);
-                }
+        numAllegati--;
+        allegaFile.setVisibility(View.VISIBLE);
+        if (numAllegati == 0) {
+            linearLayout.setVisibility(View.GONE);
+        }
 
-                contenitore.removeAllViews();
-                linearLayout.removeView(contenitore);
+        if (extras.getString("newThread") != null) {
+            forumThread.eliminaNomeAllegati(filename);
+            forumThread.eliminaIconaAllegati(id);
+
+            if (forumThread.getIconaAllegati().size() == 0)
+                forumThread.setAllegatiPresenza(false);
+        } else if (extras.getString("longReply") != null) {
+            commento.eliminaNomeAllegati(filename);
+            commento.eliminaIconaAllegati(id);
+            if (commento.getIconaAllegati().size() == 0)
+                commento.setAllegatiPresenza(false);
+        }
+
+        contenitore.removeAllViews();
+        linearLayout.removeView(contenitore);
 
     }
 
@@ -223,9 +241,11 @@ public class NewThread extends AppCompatActivity {
 
                     numAllegati++;
 
-                    String fileName = (String) fn;
+                    final int id = numAllegati;
 
-                    FactoryFileFinti factoryFileFinti = FactoryFileFinti.getInstance();
+                    final String fileName = (String) fn;
+
+                    final FactoryFileFinti factoryFileFinti = FactoryFileFinti.getInstance();
 
                     final LinearLayout sectionLayout = new LinearLayout(this);
                     ImageView imageView = new ImageView(this);
@@ -245,18 +265,15 @@ public class NewThread extends AppCompatActivity {
 
 
                     LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    /*textParams.weight = 1.0f;*/
                     textParams.gravity = Gravity.CENTER_VERTICAL;
 
                     textView.setText(fileName);
                     textView.setTextColor(Color.parseColor("#225599"));
-                    //textView.setTextSize(getResources().getDimensionPixelSize(R.dimen.textSizeAllegato));
                     textView.setLayoutParams(textParams);
-                    textView.setPadding(10,0,10,0);
+                    textView.setPadding(10, 0, 10, 0);
 
 
-                    LinearLayout.LayoutParams paramsb = new LinearLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.buttonDeleteFile),
-                            getResources().getDimensionPixelSize(R.dimen.buttonDeleteFile));
+                    LinearLayout.LayoutParams paramsb = new LinearLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.buttonDeleteFile), getResources().getDimensionPixelSize(R.dimen.buttonDeleteFile));
                     paramsb.weight = 1.0f;
                     paramsb.gravity = Gravity.CENTER_VERTICAL;
 
@@ -266,9 +283,19 @@ public class NewThread extends AppCompatActivity {
                     imageButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            EliminaSceltaAllegato(v, sectionLayout);
+                            EliminaSceltaAllegato(v, sectionLayout, fileName, factoryFileFinti.cercaFile(fileName));
                         }
                     });
+
+                    if (extras.getString("newThread") != null) {
+                        forumThread.setAllegatiPresenza(true);
+                        forumThread.setNomeAllegati(fileName);
+                        forumThread.setIconaAllegati(factoryFileFinti.cercaFile(fileName));
+                    } else if (extras.getString("longReply") != null) {
+                        commento.setAllegatiPresenza(true);
+                        commento.setNomeAllegati(fileName);
+                        commento.setIconaAllegati(factoryFileFinti.cercaFile(fileName));
+                    }
 
                     sectionLayout.addView(imageView);
                     sectionLayout.addView(textView);
