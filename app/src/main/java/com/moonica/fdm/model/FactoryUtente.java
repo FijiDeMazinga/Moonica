@@ -114,7 +114,9 @@ public class FactoryUtente {
         spano.setCorsoStudi("Informatica");
         spano.setAvatar(R.drawable.avatar_spano);
         spano.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Interazione Uomo-Macchina"));
+        factoryCorsi.cercaCorso("Interazione Uomo-Macchina").setProfessore(spano);
         spano.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Fondamenti di Programmazione Web"));
+        factoryCorsi.cercaCorso("Fondamenti di Programmazione Web").setProfessore(spano);
 
         listaUtenti.add(studente1);
         listaStudenti.add(studente1);

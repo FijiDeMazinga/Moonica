@@ -1,10 +1,12 @@
 package com.moonica.fdm.controller;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
 import android.net.Uri;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TextInputLayout;
@@ -240,6 +242,19 @@ public class NewThread extends AppCompatActivity {
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 if (numAllegati < MAXALLEGATI) {
+                    final ProgressDialog progress = new ProgressDialog(this);
+                    progress.setMessage("Caricamento file");
+                    progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    progress.setIndeterminate(true);
+                    progress.show();
+                    new CountDownTimer(1500, 100) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {}
+                        @Override
+                        public void onFinish() {
+                            progress.dismiss();
+                        }
+                    }.start();
                     Serializable fn = data.getSerializableExtra("resultFilename");
 
                     numAllegati++;

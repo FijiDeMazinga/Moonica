@@ -1,11 +1,14 @@
 package com.moonica.fdm.controller;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
+import android.os.CountDownTimer;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.widget.CircularProgressDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -236,17 +239,32 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         if (requestCode != RESULT_CANCELED) {
             if (resultCode == RESULT_OK) {
                 if (data != null) {
+                    final ProgressDialog progress = new ProgressDialog(this);
+                    progress.setMessage("Caricamento avatar");
+                    progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    progress.setIndeterminate(true);
+                    progress.show();
+                    new CountDownTimer(1500, 100) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {}
+                        @Override
+                        public void onFinish() {
+                            progress.dismiss();
+                        }
+                    }.start();
                     Serializable fn = data.getSerializableExtra("resultFilename");
 
-                    String fileName = (String) fn;
+                    final String fileName = (String) fn;
 
-                    FactoryFileFinti factoryFileFinti = FactoryFileFinti.getInstance();
+                    final FactoryFileFinti factoryFileFinti = FactoryFileFinti.getInstance();
 
                     linearLayoutAvatarPreview.setVisibility(LinearLayout.VISIBLE);
                     linearLayoutLoadAvatar.setVisibility(LinearLayout.GONE);
                     tvfileName.setText(fileName);
                     ivFileImage.setImageResource(factoryFileFinti.cercaAvatar(fileName));
                     sv.fullScroll(View.FOCUS_DOWN);
+
+
                     nuovoS.setAvatar(factoryFileFinti.cercaAvatar(fileName));
 
                 }
