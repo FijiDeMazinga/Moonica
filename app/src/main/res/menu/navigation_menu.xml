@@ -23,6 +23,7 @@
     <group
         android:id="@+id/prefriti">
         <item
+            android:id="@+id/preferiti"
             android:title="Corsi preferiti"
             android:icon="@drawable/ic_favorite_red_24dp"/>
     </group>

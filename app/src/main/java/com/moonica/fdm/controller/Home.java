@@ -21,6 +21,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -275,7 +276,9 @@ public class Home extends AppCompatActivity {
             aggiungiPreferiti(u);
         }
         if (u instanceof Professore){
-            //navigationView.getMenu().removeItem(2);
+            Menu nav_menu = navigationView.getMenu();
+            nav_menu.findItem(R.id.preferiti).setVisible(false);
+
 
             TextView textView = findViewById(R.id.zeroCorsiPreferiti);
             textView.setVisibility(View.GONE);

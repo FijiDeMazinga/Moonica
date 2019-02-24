@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Space;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.moonica.fdm.R;
 
@@ -88,7 +89,7 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
                 ImageView icona = new ImageView(OttieniContesto.getAppContext());
                 icona.setImageResource(lista.get(i).getContenuti().get(j).getIdIcona());
 
-                TextView testo = new TextView(OttieniContesto.getAppContext());
+                final TextView testo = new TextView(OttieniContesto.getAppContext());
                 testo.setText(lista.get(i).getContenuti().get(j).getTesto());
 
                 GradientDrawable border = new GradientDrawable();
@@ -105,6 +106,15 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
                 testo.setTextColor(0xFF225599);
                 testo.setTextSize(18);
                 testo.setPadding(20, 0, 0, 0);
+                testo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Toast t = Toast.makeText(sezioneViewHolder.vistaContenuti.getContext(), "Hai scaricato " + String.valueOf(testo.getText()), Toast.LENGTH_SHORT);
+                        t.show();
+                    }
+                });
+
                 LinearLayout horizontal = new LinearLayout(OttieniContesto.getAppContext());
                 horizontal.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 horizontal.setOrientation(LinearLayout.HORIZONTAL);
@@ -112,21 +122,7 @@ public class SezioneAdapter extends RecyclerView.Adapter<SezioneAdapter.SezioneV
                 horizontal.addView(testo);
                 horizontal.addView(space);
                 horizontal.setPadding(80, 20, 0, 10);
-                /*if(u instanceof Professore) {
-                    ImageButton cancellaContenuto = new ImageButton(OttieniContesto.getAppContext());
-                    cancellaContenuto.setImageResource(R.drawable.ic_delete_red_24dp);
-                    cancellaContenuto.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            lista.get(sezioneViewHolder.getAdapterPosition()).getContenuti().remove(lista.get(sezioneViewHolder.getAdapterPosition()).getContenuti().get(j));
 
-                    *//*ArrayList<Contenuto> prova1 = lista.get(sezioneViewHolder.getAdapterPosition()).getContenuti();
-                    prova1.remove(f);*//*
-                            notifyDataSetChanged();
-                        }
-                    });
-                    horizontal.addView(cancellaContenuto);
-                }*/
                 sezioneViewHolder.vistaContenuti.addView(horizontal);
                 sezioneViewHolder.vistaContenuti.setPadding(0, 10, 0, 20);
                 sezioneViewHolder.vistaContenuti.setVisibility(View.GONE);

@@ -230,6 +230,14 @@ public class Corsi extends AppCompatActivity {
 
             aggiungiPreferiti(utente);
         }
+        if (utente instanceof Professore){
+            Menu nav_menu = navigationView.getMenu();
+            nav_menu.findItem(R.id.preferiti).setVisible(false);
+
+
+            TextView textView = findViewById(R.id.zeroCorsiPreferiti);
+            textView.setVisibility(View.GONE);
+        }
 
     }
 
