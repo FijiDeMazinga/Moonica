@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.moonica.fdm.R;
@@ -31,6 +33,8 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
     ArrayList<Corso> lista = new ArrayList<Corso>();
     static String UTENTE = "utente";
     FactoryCorsi factoryCorsi = FactoryCorsi.getInstance();
+    NavigationView navigationView;
+    LinearLayout linearLayout;
     public void onRowMoved(int fromPosition, int toPosition) {
         if (fromPosition < toPosition) {
             for (int i = fromPosition; i < toPosition; i++) {
@@ -85,8 +89,10 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
         return fth;
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull final CorsoViewHolder corsoViewHolder, final int i) {
+        final Context context = corsoViewHolder.itemView.getContext();
         corsoViewHolder.cv.setMinimumHeight(50);
         corsoViewHolder.cv.setRadius(20.1f);
         if(lista.get(i).getNome().length() <= 20)
@@ -103,10 +109,12 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
                 if(factoryCorsi.cercaPreferito(lista.get(i), studente.getCorsiPreferiti())) {
                     studente.getCorsiPreferiti().remove(lista.get(i));
                     corsoViewHolder.preferito.setColorFilter(0xffeeeeee);
+                    ((Home) context).rimuoviPreferito(i);
                 }
                 else{
                     studente.getCorsiPreferiti().add(lista.get(i));
                     corsoViewHolder.preferito.setColorFilter(Color.RED);
+                    ((Home) context).aggiungiPreferito(lista.get(i), i);
                 }
             }
         });

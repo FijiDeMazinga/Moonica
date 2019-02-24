@@ -56,6 +56,14 @@ public class Home extends AppCompatActivity {
     Dialog scelta;
     DrawerLayout drawerLayout;
 
+    private static Home singleton;
+
+    public static Home getInstance() {
+        if (singleton == null)
+            singleton = new Home();
+        return singleton;
+    }
+
     public static final String CORSO = "com.moonica.fdm";
 
     @SuppressLint({"ResourceType", "WrongViewCast"})
@@ -227,7 +235,6 @@ public class Home extends AppCompatActivity {
         //menu
         ActionBarDrawerToggle actionBarDrawerToggle;
         NavigationView navigationView;
-        LinearLayout linearLayout;
         //navMenu
         drawerLayout = (DrawerLayout) findViewById(R.id.activityHome);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
@@ -240,7 +247,6 @@ public class Home extends AppCompatActivity {
         View header = navigationView.getHeaderView(0);
         avatar = header.findViewById(R.id.avatar);
         nomeUtente = header.findViewById(R.id.nomeUtente);
-        linearLayout = navigationView.findViewById(R.id.listaPreferiti);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -257,14 +263,6 @@ public class Home extends AppCompatActivity {
         });
         avatar.setImageResource(u.getAvatar());
         nomeUtente.setText(u.getNome() + " " + u.getCognome());
-
-        ArrayList<Corso> preferiti = new ArrayList<>();
-        preferiti.addAll(s.getCorsiPreferiti());
-        for(Corso c : preferiti){
-            TextView textView = new TextView(this);
-            textView.setText(c.getSigla());
-            linearLayout.addView(textView);
-        }
     }
 
     public void logOut(final Intent intent){
@@ -276,6 +274,28 @@ public class Home extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    public void aggiungiPreferito(Corso corso, int i){
+        NavigationView navigationView;
+        navigationView = (NavigationView) findViewById(R.id.nv);
+
+        LinearLayout linearLayout;
+        linearLayout = navigationView.findViewById(R.id.listaPreferiti);
+
+        TextView textView = new TextView(this);
+        textView.setText(corso.getNome());
+        textView.setPadding(50,0,0,0);
+        textView.setId(i+1);
+        linearLayout.addView(textView);
+    }
+    public void rimuoviPreferito(int i){
+        NavigationView navigationView;
+        navigationView = (NavigationView) findViewById(R.id.nv);
+
+        LinearLayout linearLayout;
+        linearLayout = navigationView.findViewById(R.id.listaPreferiti);
+
+        linearLayout.removeView(findViewById(i+1));
     }
 }
 
