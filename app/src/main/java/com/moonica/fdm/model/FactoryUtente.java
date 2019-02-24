@@ -68,6 +68,43 @@ public class FactoryUtente {
         studente4.aggiungiCorso(factoryCorsi.cercaCorso("Sistemi Operativi 1"));
         studente4.aggiungiCorso(factoryCorsi.cercaCorso("Interazione Uomo-Macchina"));
 
+        Studente studente5 = new Studente();
+        studente5.setNome("Umberto");
+        studente5.setCognome("Pinna");
+        studente5.setSesso("Maschio");
+        studente5.setUsername("Umbo");
+        studente5.setEmail("umbertoP@gmail.com");
+        studente5.setPassword("111");
+        studente5.setFacolta("Scienze");
+        studente5.setCorsoStudi("Informatica");
+        studente5.aggiungiCorso(factoryCorsi.cercaCorso("Programmazione 2"));
+        studente5.aggiungiCorso(factoryCorsi.cercaCorso("Sistemi Operativi 1"));
+
+        Studente studente6 = new Studente();
+        studente5.setNome("Martina");
+        studente5.setCognome("Puddu");
+        studente5.setSesso("Femmina");
+        studente5.setUsername("Mpuddu");
+        studente5.setEmail("mpuddu@gmail.com");
+        studente5.setPassword("111");
+        studente5.setFacolta("Scienze");
+        studente5.setCorsoStudi("Informatica");
+        studente5.aggiungiCorso(factoryCorsi.cercaCorso("Programmazione 1"));
+        studente5.aggiungiCorso(factoryCorsi.cercaCorso("Interazione Uomo-Macchina"));
+
+        Studente studente7 = new Studente();
+        studente5.setNome("Marco");
+        studente5.setCognome("Fenu");
+        studente5.setSesso("Maschio");
+        studente5.setUsername("Marco");
+        studente5.setEmail("marcofenu@gmail.com");
+        studente5.setPassword("111");
+        studente5.setFacolta("Scienze");
+        studente5.setCorsoStudi("Informatica");
+        studente5.aggiungiCorso(factoryCorsi.cercaCorso("Programmazione 1"));
+        studente5.aggiungiCorso(factoryCorsi.cercaCorso("Interazione Uomo-Macchina"));
+        studente5.aggiungiCorso(factoryCorsi.cercaCorso("Fondamenti di Programmazione Web"));
+
         Professore professore1 = new Professore();
         professore1.setNome("Carlo");
         professore1.setCognome("Giganti");
@@ -126,6 +163,12 @@ public class FactoryUtente {
         listaStudenti.add(studente3);
         listaUtenti.add(studente4);
         listaStudenti.add(studente4);
+        listaUtenti.add(studente5);
+        listaStudenti.add(studente5);
+        listaUtenti.add(studente6);
+        listaStudenti.add(studente6);
+        listaUtenti.add(studente7);
+        listaStudenti.add(studente7);
         listaUtenti.add(professore1);
         listaProfessori.add(professore1);
         listaUtenti.add(professore2);
