@@ -20,7 +20,7 @@ public class FactoryUtente {
         studente1.setSesso("Femmina");
         studente1.setUsername("Ines");
         studente1.setEmail("ilopez@unica.it");
-        studente1.setPassword("111");
+        studente1.setPassword("adelante");
         studente1.setFacolta("Ingegneria e Architettura");
         studente1.setCorsoStudi("Ingegneria Biomedica");
         studente1.setAvatar(R.drawable.avatar_ines);
@@ -46,7 +46,7 @@ public class FactoryUtente {
         studente3.setSesso("Non specificato");
         studente3.setUsername("Cosino");
         studente3.setEmail("ftraccis@gmail.com");
-        studente3.setPassword("111");
+        studente3.setPassword("spaghettialpesto");
         studente3.setFacolta("Medicina e Chirurgia");
         studente3.setCorsoStudi("Medicina e Chirurgia");
         studente3.setAvatar(R.drawable.avatar_cosino);
@@ -60,7 +60,7 @@ public class FactoryUtente {
         studente4.setSesso("Femmina");
         studente4.setUsername("Federica");
         studente4.setEmail("fzanda@outlook.com");
-        studente4.setPassword("111");
+        studente4.setPassword("commodore64");
         studente4.setFacolta("Scienze");
         studente4.setCorsoStudi("Informatica");
         studente4.aggiungiCorso(factoryCorsi.cercaCorso("Algoritmi e Strutture Dati 1"));
@@ -74,7 +74,7 @@ public class FactoryUtente {
         studente5.setSesso("Maschio");
         studente5.setUsername("Umbo");
         studente5.setEmail("umbertoP@gmail.com");
-        studente5.setPassword("111");
+        studente5.setPassword("gengivesanguinanti");
         studente5.setFacolta("Scienze");
         studente5.setCorsoStudi("Informatica");
         studente5.aggiungiCorso(factoryCorsi.cercaCorso("Programmazione 2"));
@@ -86,7 +86,7 @@ public class FactoryUtente {
         studente5.setSesso("Femmina");
         studente5.setUsername("Mpuddu");
         studente5.setEmail("mpuddu@gmail.com");
-        studente5.setPassword("111");
+        studente5.setPassword("errata");
         studente5.setFacolta("Scienze");
         studente5.setCorsoStudi("Informatica");
         studente5.aggiungiCorso(factoryCorsi.cercaCorso("Programmazione 1"));
@@ -98,7 +98,7 @@ public class FactoryUtente {
         studente5.setSesso("Maschio");
         studente5.setUsername("Marco");
         studente5.setEmail("marcofenu@gmail.com");
-        studente5.setPassword("111");
+        studente5.setPassword("fibraottica");
         studente5.setFacolta("Scienze");
         studente5.setCorsoStudi("Informatica");
         studente5.aggiungiCorso(factoryCorsi.cercaCorso("Programmazione 1"));
@@ -139,6 +139,7 @@ public class FactoryUtente {
         professore3.setCorsoStudi("Ingegneria Biomedica");
         professore3.setAvatar(R.drawable.avatar_prof3);
         professore3.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Anatomia"));
+        factoryCorsi.cercaCorso("Anatomia").setProfessore(professore3);
 
         Professore spano = new Professore();
         spano.setNome("Lucio Davide");
@@ -146,7 +147,7 @@ public class FactoryUtente {
         spano.setSesso("Maschio");
         spano.setUsername("Davide");
         spano.setEmail("davide.spano@unica.it");
-        spano.setPassword("1");
+        spano.setPassword("Winterfell");
         spano.setFacolta("Scienze");
         spano.setCorsoStudi("Informatica");
         spano.setAvatar(R.drawable.avatar_spano);
@@ -154,6 +155,125 @@ public class FactoryUtente {
         factoryCorsi.cercaCorso("Interazione Uomo-Macchina").setProfessore(spano);
         spano.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Fondamenti di Programmazione Web"));
         factoryCorsi.cercaCorso("Fondamenti di Programmazione Web").setProfessore(spano);
+
+        Professore botta = new Professore();
+        botta.setNome("Iunio Fabio");
+        botta.setCognome("Botta");
+        botta.setSesso("Maschio");
+        botta.setUsername("IFB");
+        botta.setEmail("botta@unica.it");
+        botta.setPassword("spread");
+        botta.setFacolta("Scienze");
+        botta.setCorsoStudi("Informatica");
+        botta.setAvatar(R.drawable.avatar_placeholder);
+        botta.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Elementi di Economia e Diritto per Informatici"));
+        factoryCorsi.cercaCorso("Elementi di Economia e Diritto per Informatici").setProfessore(botta);
+
+        Professore bartoletti = new Professore();
+        bartoletti.setNome("Massimo");
+        bartoletti.setCognome("Bartoletti");
+        bartoletti.setSesso("Maschio");
+        bartoletti.setUsername("Bart");
+        bartoletti.setEmail("bart@unica.it");
+        bartoletti.setPassword("statifiniti");
+        bartoletti.setFacolta("Scienze");
+        bartoletti.setCorsoStudi("Informatica");
+        bartoletti.setAvatar(R.drawable.avatar_bart);
+        bartoletti.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Automi e Linguaggi Formali"));
+        factoryCorsi.cercaCorso("Automi e Linguaggi Formali").setProfessore(bartoletti);
+
+        Professore zuddas = new Professore();
+        zuddas.setNome("Fabio");
+        zuddas.setCognome("Zuddas");
+        zuddas.setSesso("Maschio");
+        zuddas.setUsername("Fab");
+        zuddas.setEmail("fabio.zuddas@unica.it");
+        zuddas.setPassword("crittografia");
+        zuddas.setFacolta("Scienze");
+        zuddas.setCorsoStudi("Informatica");
+        zuddas.setAvatar(R.drawable.avatar_placeholder);
+        zuddas.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Matematica Discreta"));
+        factoryCorsi.cercaCorso("Matematica Discreta").setProfessore(zuddas);
+
+        Professore scateni = new Professore();
+        scateni.setNome("Riccardo");
+        scateni.setCognome("Scateni");
+        scateni.setSesso("Maschio");
+        scateni.setUsername("Scat");
+        scateni.setEmail("ricscat@unica.it");
+        scateni.setPassword("fiorentina");
+        scateni.setFacolta("Scienze");
+        scateni.setCorsoStudi("Informatica");
+        scateni.setAvatar(R.drawable.avatar_scateni);
+        scateni.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Programmazione 1"));
+        factoryCorsi.cercaCorso("Programmazione 1").setProfessore(scateni);
+        scateni.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Videogame Design"));
+        factoryCorsi.cercaCorso("Videogame Design").setProfessore(scateni);
+
+        Professore manca = new Professore();
+        manca.setNome("Giulia");
+        manca.setCognome("Manca");
+        manca.setSesso("Femmina");
+        manca.setUsername("Giulia");
+        manca.setEmail("g.manca@unica.it");
+        manca.setPassword("lhadroncollider");
+        manca.setFacolta("Scienze");
+        manca.setCorsoStudi("Informatica");
+        manca.setAvatar(R.drawable.avatar_placeholder);
+        manca.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Fisica e Metodo Scientifico"));
+        factoryCorsi.cercaCorso("Fisica e Metodo Scientifico").setProfessore(manca);
+
+        Professore atzori = new Professore();
+        atzori.setNome("Maurizio");
+        atzori.setCognome("Atzori");
+        atzori.setSesso("Maschio");
+        atzori.setUsername("Mau");
+        atzori.setEmail("m.atzori@unica.it");
+        atzori.setPassword("oggetti");
+        atzori.setFacolta("Scienze");
+        atzori.setCorsoStudi("Informatica");
+        atzori.setAvatar(R.drawable.avatar_placeholder);
+        atzori.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Programmazione 2"));
+        factoryCorsi.cercaCorso("Programmazione 2").setProfessore(atzori);
+
+        Professore carta = new Professore();
+        carta.setNome("Salvatore");
+        carta.setCognome("Carta");
+        carta.setSesso("Maschio");
+        carta.setUsername("Carta");
+        carta.setEmail("salvatore@unica.it");
+        carta.setPassword("oggetti");
+        carta.setFacolta("Scienze");
+        carta.setCorsoStudi("Informatica");
+        carta.setAvatar(R.drawable.avatar_placeholder);
+        carta.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Sistemi Operativi 1"));
+        factoryCorsi.cercaCorso("Sistemi Operativi 1").setProfessore(carta);
+
+        Professore franceschissimo = new Professore();
+        franceschissimo.setNome("Massimo");
+        franceschissimo.setCognome("Di Francesco");
+        franceschissimo.setSesso("Maschio");
+        franceschissimo.setUsername("DiFra");
+        franceschissimo.setEmail("mdf@unica.it");
+        franceschissimo.setPassword("chiquadro");
+        franceschissimo.setFacolta("Scienze");
+        franceschissimo.setCorsoStudi("Informatica");
+        franceschissimo.setAvatar(R.drawable.avatar_placeholder);
+        franceschissimo.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Dati e Modelli"));
+        factoryCorsi.cercaCorso("Dati e Modelli").setProfessore(franceschissimo);
+
+        Professore cecilia = new Professore();
+        cecilia.setNome("Cecilia");
+        cecilia.setCognome("Di Ruberto");
+        cecilia.setSesso("Femmina");
+        cecilia.setUsername("Cecilia");
+        cecilia.setEmail("dirubert@unica.it");
+        cecilia.setPassword("quicksort");
+        cecilia.setFacolta("Scienze");
+        cecilia.setCorsoStudi("Informatica");
+        cecilia.setAvatar(R.drawable.avatar_placeholder);
+        cecilia.aggiungiCorsoGestito(factoryCorsi.cercaCorso("Algoritmi e Strutture Dati 1"));
+        factoryCorsi.cercaCorso("Algoritmi e Strutture Dati 1").setProfessore(cecilia);
 
         listaUtenti.add(studente1);
         listaStudenti.add(studente1);
@@ -177,6 +297,25 @@ public class FactoryUtente {
         listaProfessori.add(professore3);
         listaProfessori.add(spano);
         listaUtenti.add(spano);
+        listaProfessori.add(botta);
+        listaUtenti.add(botta);
+        listaProfessori.add(bartoletti);
+        listaUtenti.add(bartoletti);
+        listaProfessori.add(zuddas);
+        listaUtenti.add(zuddas);
+        listaProfessori.add(scateni);
+        listaUtenti.add(scateni);
+        listaProfessori.add(manca);
+        listaUtenti.add(manca);
+        listaProfessori.add(atzori);
+        listaUtenti.add(atzori);
+        listaProfessori.add(carta);
+        listaUtenti.add(carta);
+        listaProfessori.add(cecilia);
+        listaUtenti.add(cecilia);
+        listaProfessori.add(franceschissimo);
+        listaUtenti.add(franceschissimo);
+
     }
 
     public static FactoryUtente getInstance() {

@@ -296,7 +296,7 @@ public class Corsi extends AppCompatActivity {
     }
 
     private void initializeAdapter() {
-        SezioneAdapter adapter = new SezioneAdapter(c.getSezioni(), utente);
+        SezioneAdapter adapter = new SezioneAdapter(listaSezioni, utente);
         rv.setAdapter(adapter);
     }
 

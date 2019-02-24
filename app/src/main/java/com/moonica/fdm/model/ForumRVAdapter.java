@@ -2,7 +2,6 @@ package com.moonica.fdm.model;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -14,8 +13,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.moonica.fdm.R;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -45,7 +42,7 @@ public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumThr
 
         if (ftList.get(forumThreadHolder.getAdapterPosition()).getAllegatiPresenza()){
             forumThreadHolder.allegato.setVisibility(View.VISIBLE);
-            forumThreadHolder.allegato.setImageResource(R.drawable.icon_pdf);
+            forumThreadHolder.allegato.setImageResource(R.drawable.pdf_preview);
         }
         else
             forumThreadHolder.allegato.setVisibility(View.GONE);
