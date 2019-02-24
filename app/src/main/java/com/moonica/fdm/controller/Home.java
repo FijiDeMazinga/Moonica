@@ -275,7 +275,7 @@ public class Home extends AppCompatActivity {
             aggiungiPreferiti(u);
         }
         if (u instanceof Professore){
-            //navigationView.getMenu().removeItem();
+            //navigationView.getMenu().removeItem(2);
 
             TextView textView = findViewById(R.id.zeroCorsiPreferiti);
             textView.setVisibility(View.GONE);
