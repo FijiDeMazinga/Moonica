@@ -118,11 +118,13 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
                     if (factoryCorsi.cercaPreferito(lista.get(i), studente.getCorsiPreferiti())) {
                         studente.getCorsiPreferiti().remove(lista.get(i));
                         corsoViewHolder.preferito.setColorFilter(0xffeeeeee);
-                        ((Home) context).rimuoviPreferito(i);
+                        //(Home) context).rimuoviPreferito(i);
+                        ((Home)context).aggiungiPreferiti(utente);
                     } else {
                         studente.getCorsiPreferiti().add(lista.get(i));
                         corsoViewHolder.preferito.setColorFilter(Color.RED);
-                        ((Home) context).aggiungiPreferito(lista.get(i), i);
+                        //((Home) context).aggiungiPreferito(lista.get(i), i);
+                        ((Home)context).aggiungiPreferiti(utente);
                     }
                 }
             });
