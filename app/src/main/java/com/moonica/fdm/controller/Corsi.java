@@ -38,6 +38,7 @@ import com.moonica.fdm.model.Studente;
 import com.moonica.fdm.model.Utente;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -190,8 +191,12 @@ public class Corsi extends AppCompatActivity {
                 break;
             case R.id.elimina_tutte_le_sezioni:
                 c.getSezioni().removeAll(c.getSezioni());
+                ArrayList<Sezione> fs = factorySezioni.getSezioniCorso(c.getNome());
+                fs.removeAll(fs);
+                ArrayList<Sezione> fs1 = factorySezioni.getSezioniCorso(c.getNome());
                 finish();
                 startActivity(getIntent());
+                overridePendingTransition(0,0);
                 break;
             default:
                 if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
