@@ -60,13 +60,19 @@
 
                 />
 
+            <Space
+                android:id="@+id/spaceCommento"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@id/testoRisposta"/>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/allegatiCommenti"
-                android:layout_below="@id/testoRisposta"
+                android:layout_below="@id/spaceCommento"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:orientation="vertical"
                 android:visibility="gone">
 
@@ -79,8 +85,8 @@
                 android:layout_below="@id/allegatiCommenti"
                 android:layout_alignParentRight="true"
                 android:paddingRight="10dp"
-                android:paddingTop="50dp"
                 android:paddingBottom="15dp"
+                android:layout_marginTop="10dp"
                 android:textSize="12dp" />
         </RelativeLayout>
 

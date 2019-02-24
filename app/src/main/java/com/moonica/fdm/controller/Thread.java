@@ -40,6 +40,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Space;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Commento;
@@ -152,7 +153,7 @@ public class Thread extends AppCompatActivity {
 
                 LinearLayout sectionLayout = new LinearLayout(this);
                 ImageView imageView = new ImageView(this);
-                TextView textView = new TextView(this);
+                final TextView textView = new TextView(this);
 
                 LinearLayout.LayoutParams llParamas = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 llParamas.setMargins(0, 25,0,0);
@@ -165,7 +166,7 @@ public class Thread extends AppCompatActivity {
                 imageView.setLayoutParams(paramsImage);
 
 
-                LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                final LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 /*textParams.weight = 1.0f;*/
                 textParams.gravity = Gravity.CENTER_VERTICAL;
 
@@ -173,6 +174,15 @@ public class Thread extends AppCompatActivity {
                 textView.setLayoutParams(textParams);
                 textView.setTextSize(12f);
                 textView.setPadding(10,0,10,0);
+
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String messaggio = "Hai scaricato " + String.valueOf(textView.getText());
+                        Toast t = Toast.makeText(v.getContext(), messaggio, Toast.LENGTH_SHORT);
+                        t.show();
+                    }
+                });
 
 
                 sectionLayout.addView(new Space(this));

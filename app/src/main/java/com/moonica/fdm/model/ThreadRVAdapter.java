@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Space;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.moonica.fdm.R;
@@ -37,7 +38,7 @@ public class ThreadRVAdapter extends RecyclerView.Adapter<ThreadRVAdapter.ReplyH
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ReplyHolder replyHolder, int i) {
+    public void onBindViewHolder(@NonNull final ReplyHolder replyHolder, int i) {
 
         String[] nome = cList.get(i).getAutore().getNome().split(" ");
         String[] cognome = cList.get(i).getAutore().getCognome().split(" ");
@@ -68,9 +69,10 @@ public class ThreadRVAdapter extends RecyclerView.Adapter<ThreadRVAdapter.ReplyH
 
             LinearLayout sectionLayout = new LinearLayout(replyHolder.allegatiLayout.getContext());
             ImageView imageView = new ImageView(replyHolder.allegatiLayout.getContext());
-            TextView textView = new TextView(replyHolder.allegatiLayout.getContext());
+            final TextView textView = new TextView(replyHolder.allegatiLayout.getContext());
 
             LinearLayout.LayoutParams llParamas = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            llParamas.setMargins(0,0,0,30);
             sectionLayout.setLayoutParams(llParamas);
             sectionLayout.setOrientation(LinearLayout.HORIZONTAL);
 
@@ -89,6 +91,15 @@ public class ThreadRVAdapter extends RecyclerView.Adapter<ThreadRVAdapter.ReplyH
             textView.setLayoutParams(textParams);
             textView.setTextSize(12f);
             textView.setPadding(10, 0, 10, 0);
+
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast t = Toast.makeText(replyHolder.allegatiLayout.getContext(), "Hai scaricato " + String.valueOf(textView.getText()), Toast.LENGTH_SHORT);
+                    t.show();
+                }
+            });
+
 
             sectionLayout.addView(imageView);
             sectionLayout.addView(textView);
