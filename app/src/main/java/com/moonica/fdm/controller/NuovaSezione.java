@@ -2,10 +2,13 @@ package com.moonica.fdm.controller;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -25,6 +28,8 @@ import com.moonica.fdm.model.Utente;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import static com.moonica.fdm.controller.NewThread.hideKeyboard;
 
 public class NuovaSezione extends AppCompatActivity {
     Utente utente;
@@ -68,10 +73,11 @@ public class NuovaSezione extends AppCompatActivity {
         invio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nuovaSezione.setTitolo(String.valueOf(titoloSezione.getText()));
-                nuovaSezione.setCorso(c.getNome());
-                //c.getSezioni().add(nuovaSezione);
-                factorySezioni.getSezioniCorso(c.getNome()).add(nuovaSezione);
+                if (checkTitolo()) {
+                    nuovaSezione.setTitolo(String.valueOf(titoloSezione.getText()));
+                    nuovaSezione.setCorso(c.getNome());
+                    //c.getSezioni().add(nuovaSezione);
+                    factorySezioni.getSezioniCorso(c.getNome()).add(nuovaSezione);
 
                 /*
                 Intent i = new Intent(NuovaSezione.this, Corsi.class);
@@ -79,10 +85,13 @@ public class NuovaSezione extends AppCompatActivity {
                 i.putExtra("utente", utente);
                 finish();
                 startActivity(i);*/
-                Intent i = new Intent();
-                i.putExtra("nuova sezione", nuovaSezione);
-                setResult(RESULT_OK, i);
-                finish();
+
+
+                    Intent i = new Intent();
+                    i.putExtra("nuova sezione", nuovaSezione);
+                    setResult(RESULT_OK, i);
+                    finish();
+                }
             }
         });
 
@@ -95,6 +104,27 @@ public class NuovaSezione extends AppCompatActivity {
         intent.putExtra(FILE, "nuovoThread");
         startActivityForResult(intent, 1);
     }
+
+
+    //funzione che stampa messaggi di errore se non vengono riempiti i campi
+    public boolean checkTitolo() {
+        int errors = 0;
+        Animation animation = AnimationUtils.loadAnimation(getBaseContext(), R.anim.shake_error);
+
+        if (titoloSezione.getText() == null || titoloSezione.getText().length() == 0) {
+            titoloSezione.setError("Inserire un titolo");
+            TextInputLayout til = findViewById(R.id.vibraTitolo);
+            til.startAnimation(animation);
+            errors++;
+            hideKeyboard(this);
+        } else
+            titoloSezione.setError(null);
+        if (errors == 0) {
+            return true;
+        }
+        return false;
+    }
+
 
     public void EliminaSceltaAllegato(View v, LinearLayout contenitore, String filename, int id) {
         numAllegati--;

@@ -2,6 +2,7 @@ package com.moonica.fdm.model;
 
 
 import com.moonica.fdm.R;
+import com.moonica.fdm.controller.Forum;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -78,6 +79,28 @@ public class FactoryForumThread {
         thread5.setCorso("AN", "Anatomia");
         thread5.setAllegatiPresenza(false);
 
+        ForumThread thread6 = new ForumThread();
+        thread6.setId(5);
+        thread6.setTitolo("Risoluzione esercizio sui banchieri");
+        thread6.setTesto("Salve, non ero presente alla lezione dello scorso martedì, quindi ho perso" +
+                "la risoluzione dell'esercizio, è possibile sapere come si esegue?");
+        thread6.setData(2017, 8, 23, 17, 23, 51);
+        thread6.setAutore("Federica");
+        thread6.setNumRisposte(0);
+        thread6.setCorso("SO1", "Sistemi Operativi 1");
+        thread6.setAllegatiPresenza(false);
+
+
+        /*ForumThread threado = new ForumThread();
+        threado.setId();
+        threado.setTitolo("");
+        threado.setTesto();
+        threado.setData();
+        threado.setAutore();
+        threado.setNumRisposte();
+        threado.setCorso();
+        threado.setAllegatiPresenza(false);
+*/
         listaForumThread.add(thread1);
         listaForumThread.add(thread2);
         listaForumThread.add(thread3);

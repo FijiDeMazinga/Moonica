@@ -23,8 +23,10 @@ import com.moonica.fdm.R;
 import java.util.ArrayList;
 
 public class ModificaSezioneAdapter extends RecyclerView.Adapter<ModificaSezioneAdapter.ModificaSezioneViewHolder> {
+
     ArrayList<Sezione> lista = new ArrayList<Sezione>();
     ArrayList<Contenuto> listaContenuti = new ArrayList<>();
+    Corso corso = new Corso();
 
     public static class ModificaSezioneViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
@@ -43,8 +45,9 @@ public class ModificaSezioneAdapter extends RecyclerView.Adapter<ModificaSezione
         }
     }
 
-    public ModificaSezioneAdapter(ArrayList<Sezione> lista, Utente utente){
+    public ModificaSezioneAdapter(ArrayList<Sezione> lista, Corso corso){
         this.lista = lista;
+        this.corso = corso;
     }
 
     @Override
@@ -56,6 +59,10 @@ public class ModificaSezioneAdapter extends RecyclerView.Adapter<ModificaSezione
 
     @Override
     public void onBindViewHolder(@NonNull final ModificaSezioneViewHolder sezioneViewHolder, final int i){
+
+        FactorySezioni factorySezioni = FactorySezioni.getInstance();
+        final ArrayList<Sezione> lista2 = factorySezioni.getSezioniCorso(corso.getNome());
+
         sezioneViewHolder.cv.setMinimumHeight(50);
         sezioneViewHolder.cv.setRadius(20.1f);
         sezioneViewHolder.titoloSezione.setText(lista.get(i).getTitolo());
@@ -67,8 +74,11 @@ public class ModificaSezioneAdapter extends RecyclerView.Adapter<ModificaSezione
         sezioneViewHolder.elimina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                lista2.remove(i);
                 lista.remove(i);
                 notifyDataSetChanged();
+                notifyItemRemoved(i);
             }
         });
         if (lista != null) {

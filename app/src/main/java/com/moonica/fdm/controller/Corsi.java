@@ -119,7 +119,6 @@ public class Corsi extends AppCompatActivity {
             }
         });
 
-        initializeAdapter();
         if (utente instanceof Studente)
             ib.setVisibility(View.GONE);
 
@@ -129,7 +128,7 @@ public class Corsi extends AppCompatActivity {
                 Intent nuovaSezione = new Intent(Corsi.this, NuovaSezione.class);
                 nuovaSezione.putExtra(NUOVASEZIONE, c);
                 nuovaSezione.putExtra(UTENTE, utente);
-                startActivityForResult(nuovaSezione, RESULT_OK);
+                startActivityForResult(nuovaSezione, 1);
             }
         });
 
@@ -139,6 +138,9 @@ public class Corsi extends AppCompatActivity {
         //funzione logout
         Intent intentL = new Intent(Corsi.this, Login.class);
         logOut(intentL);
+
+
+        initializeAdapter();
     }
 
     @Override
@@ -157,23 +159,37 @@ public class Corsi extends AppCompatActivity {
 
         switch (id) {
             case R.id.elimina_sezione:
-                ModificaSezioneAdapter esa = new ModificaSezioneAdapter(listaSezioni, utente);
+                ModificaSezioneAdapter esa = new ModificaSezioneAdapter(c.getSezioni(), c);
                 rv.setAdapter(esa);
+
+
+
                 /*cancella.setVisibility(View.VISIBLE);
                 freccia.setVisibility(View.GONE);*/
+
+
+
                 indietro.setVisibility(View.VISIBLE);
                 ib.setVisibility(View.GONE);
-                esa.notifyDataSetChanged();
+
+
+
+                //esa.notifyDataSetChanged();
+
+
+
                 indietro.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        initializeAdapter();
                         finish();
                         startActivity(getIntent());
+                        overridePendingTransition(0,0);
                     }
                 });
                 break;
             case R.id.elimina_tutte_le_sezioni:
-                listaSezioni.removeAll(listaSezioni);
+                c.getSezioni().removeAll(c.getSezioni());
                 finish();
                 startActivity(getIntent());
                 break;
@@ -182,12 +198,16 @@ public class Corsi extends AppCompatActivity {
                     drawerLayout.closeDrawer(Gravity.LEFT);
                 }
                 else {
+                    FactorySezioni factorySezioni = FactorySezioni.getInstance();
+
+                    ArrayList<Sezione> prova1 = factorySezioni.getSezioniCorso(c.getNome());
 
                     finish();
                 }
         }
         return true;
     }
+
     public void setNavBar(final Intent intent){
         //menu
         ActionBarDrawerToggle actionBarDrawerToggle;
@@ -259,7 +279,10 @@ public class Corsi extends AppCompatActivity {
                 Sezione nuovaSezione = new Sezione();
                 nuovaSezione = (Sezione) strEditText;
 
-                c.getSezioni().add(nuovaSezione);
+
+                ArrayList<Sezione> prova1 = c.getSezioni();
+                //c.getSezioni().add(nuovaSezione);
+                prova1.add(nuovaSezione);
 
                 initializeAdapter();
             }
