@@ -263,6 +263,21 @@ public class Home extends AppCompatActivity {
         });
         avatar.setImageResource(u.getAvatar());
         nomeUtente.setText(u.getNome() + " " + u.getCognome());
+
+        if (u instanceof Studente) {
+            int i=0;
+            for (Corso c : ((Studente) u).getCorsiPreferiti()) {
+                LinearLayout linearLayout;
+                linearLayout = navigationView.findViewById(R.id.listaPreferiti);
+
+                TextView textView = new TextView(this);
+                textView.setText(c.getNome());
+                textView.setPadding(50, 0, 0, 0);
+                textView.setId(i+1);
+                linearLayout.addView(textView);
+                i++;
+            }
+        }
     }
 
     public void logOut(final Intent intent){
@@ -275,7 +290,7 @@ public class Home extends AppCompatActivity {
             }
         });
     }
-    /*public void aggiungiPreferito(Corso corso, int i){
+    public void aggiungiPreferito(Corso corso, int i){
         NavigationView navigationView;
         navigationView = (NavigationView) findViewById(R.id.nv);
 
@@ -296,7 +311,7 @@ public class Home extends AppCompatActivity {
         linearLayout = navigationView.findViewById(R.id.listaPreferiti);
 
         linearLayout.removeView(findViewById(i+1));
-    }*/
+    }
 }
 
 
