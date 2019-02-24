@@ -56,10 +56,9 @@ public class Corsi extends AppCompatActivity {
     FactorySezioni factorySezioni = FactorySezioni.getInstance();
     DrawerLayout drawerLayout;
 
-
+    public static final String FORUM = "com.moonica.fdm";
     static final String UTENTE  = "utente";
     public static final String CORSO = "com.moonica.fdm";
-    public static final String FORUM = "com.moonica.fdm";
     public static final String NUOVASEZIONE = "nuovaSezione";
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -120,8 +119,7 @@ public class Corsi extends AppCompatActivity {
             }
         });
 
-        SezioneAdapter sezioneAdapter = new SezioneAdapter(listaSezioni, utente);
-        rv.setAdapter(sezioneAdapter);
+        initializeAdapter();
         if (utente instanceof Studente)
             ib.setVisibility(View.GONE);
 
@@ -131,7 +129,7 @@ public class Corsi extends AppCompatActivity {
                 Intent nuovaSezione = new Intent(Corsi.this, NuovaSezione.class);
                 nuovaSezione.putExtra(NUOVASEZIONE, c);
                 nuovaSezione.putExtra(UTENTE, utente);
-                startActivity(nuovaSezione);
+                startActivityForResult(nuovaSezione, RESULT_OK);
             }
         });
 
@@ -250,6 +248,27 @@ public class Corsi extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                Serializable strEditText = data.getSerializableExtra("nuova sezione");
+
+                Sezione nuovaSezione = new Sezione();
+                nuovaSezione = (Sezione) strEditText;
+
+                c.getSezioni().add(nuovaSezione);
+
+                initializeAdapter();
+            }
+        }
+    }
+
+    private void initializeAdapter() {
+        SezioneAdapter adapter = new SezioneAdapter(c.getSezioni(), utente);
+        rv.setAdapter(adapter);
     }
 
     public void aggiungiPreferiti(final Utente u){

@@ -4,7 +4,9 @@ import android.os.Parcelable;
 
 import com.moonica.fdm.R;
 
-public class Contenuto /*extends ExpandableGroup*/ {
+import java.io.Serializable;
+
+public class Contenuto implements Serializable {
     private int idIcona;
     private String testo;
 

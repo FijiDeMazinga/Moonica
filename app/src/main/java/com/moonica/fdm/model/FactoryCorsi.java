@@ -18,6 +18,7 @@ public class FactoryCorsi {
     private ArrayList<Corso> med = new ArrayList<Corso>();
     private ArrayList<Corso> ctf = new ArrayList<Corso>();
     private ArrayList<Corso> corsiInf = new ArrayList<Corso>();
+    private FactorySezioni factorySezioni = FactorySezioni.getInstance();
 
     private FactoryCorsi(){
         Corso storiaRomana = new Corso();
@@ -162,7 +163,7 @@ public class FactoryCorsi {
         ium.setFacolta("Informatica");
         ium.setNome("Interazione Uomo-Macchina");
         ium.setSigla("IUM");
-        ium.setSezioni(null);
+        ium.setSezioni(factorySezioni.getSezioniCorso(ium.getNome()));
 
         Corso dm = new Corso();
         dm.setFacolta("Informatica");

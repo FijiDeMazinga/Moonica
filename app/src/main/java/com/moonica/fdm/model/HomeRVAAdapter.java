@@ -178,11 +178,13 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
                 Intent intent = new Intent(corsoViewHolder.itemView.getContext(), Corsi.class);
 
                 FactoryCorsi fc = FactoryCorsi.getInstance();
+                FactorySezioni fs = FactorySezioni.getInstance();
                 String name = corsoViewHolder.nomeCorso.getText().toString();
 
                 name = name.substring(name.indexOf("[") + 1);
                 name = name.substring(0, name.indexOf("]"));
                 Corso corso = fc.cercaCorsoSigla(name);
+                //corso.setSezioni(fs.getSezioniCorso(corso.getNome()));
                 intent.putExtra(CORSO, corso);
                 intent.putExtra(UTENTE, utente);
                 corsoViewHolder.itemView.getContext().startActivity(intent);

@@ -9,6 +9,7 @@ public class FactorySezioni {
     private ArrayList<Sezione> listaSezioni = new ArrayList<>();
     private ArrayList<Sezione> sezioniIUM = new ArrayList<>();
     private ArrayList<Sezione> sezioniSM = new ArrayList<>();
+    //private FactoryCorsi factoryCorsi = FactoryCorsi.getInstance();
 
     private FactorySezioni() {
         Sezione infoIUM = new Sezione();
@@ -49,6 +50,8 @@ public class FactorySezioni {
         coseSM.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
         listaSezioni.add(coseSM);
         sezioniSM.add(coseSM);
+
+        //factoryCorsi.cercaCorso("Interazione Uomo-Macchina").setSezioni(sezioniIUM);
     }
 
     public static FactorySezioni getInstance() {

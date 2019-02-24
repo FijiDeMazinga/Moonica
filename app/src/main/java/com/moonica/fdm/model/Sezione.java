@@ -3,7 +3,7 @@ package com.moonica.fdm.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Sezione {
+public class Sezione implements Serializable{
     private String titolo;
     //private String sottoTitolo;
     private String corso;
