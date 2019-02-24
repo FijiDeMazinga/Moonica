@@ -44,10 +44,13 @@ import android.widget.Toast;
 
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Commento;
+import com.moonica.fdm.model.Corso;
 import com.moonica.fdm.model.FactoryCommenti;
+import com.moonica.fdm.model.FactoryCorsi;
 import com.moonica.fdm.model.FactoryForumThread;
 import com.moonica.fdm.model.FactoryUtente;
 import com.moonica.fdm.model.ForumThread;
+import com.moonica.fdm.model.Studente;
 import com.moonica.fdm.model.ThreadRVAdapter;
 import com.moonica.fdm.model.Utente;
 
@@ -83,6 +86,8 @@ public class Thread extends AppCompatActivity {
     FactoryCommenti fc = FactoryCommenti.getInstance();
 
 
+    static final String UTENTE  = "utente";
+    public static final String CORSO = "com.moonica.fdm";
     public static final String NEWTHREAD = "com.moonica.fdm";
     private DrawerLayout drawerLayout;
 
@@ -461,6 +466,10 @@ public class Thread extends AppCompatActivity {
         avatar.setImageResource(utente.getAvatar());
         nomeUtente.setText(utente.getNome() + " " + utente.getCognome());
 
+        if (utente instanceof Studente) {
+
+            aggiungiPreferiti(utente);
+        }
     }
 
     public void logOut(final Intent intent) {
@@ -489,6 +498,56 @@ public class Thread extends AppCompatActivity {
         startActivity(intent);
 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+    public void aggiungiPreferiti(final Utente u) {
+        NavigationView navigationView;
+        navigationView = (NavigationView) findViewById(R.id.nv);
+
+        LinearLayout linearLayout;
+        linearLayout = navigationView.findViewById(R.id.listaPreferiti);
+
+        TextView zeroPreferiti = navigationView.findViewById(R.id.zeroCorsiPreferiti);
+
+        linearLayout.removeAllViews();
+
+        if (u instanceof Studente) {
+            int i = 0;
+            if (((Studente) u).getCorsiPreferiti().size() == 0) {
+                zeroPreferiti.setVisibility(View.VISIBLE);
+            } else if (((Studente) u).getCorsiPreferiti().size() > 0)
+                zeroPreferiti.setVisibility(View.GONE);
+
+            for (Corso c : ((Studente) u).getCorsiPreferiti()) {
+
+                final TextView textView = new TextView(this);
+                textView.setText(c.getNome());
+                textView.setPadding(50, 0, 0, 20);
+                textView.setId(i + 1);
+
+
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Thread.this, Corsi.class);
+
+                        FactoryCorsi fc = FactoryCorsi.getInstance();
+                        String name = String.valueOf(textView.getText());
+                        String sigla = fc.cercaCorso(name).getSigla();
+
+                        Corso corso = fc.cercaCorsoSigla(sigla);
+                        intent.putExtra(CORSO, corso);
+                        intent.putExtra(UTENTE, u);
+                        startActivity(intent);
+                    }
+                });
+
+                linearLayout.addView(textView);
+                i++;
+            }
+        }
+
+
     }
 }
 

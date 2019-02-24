@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <group android:id="@+id/principale">
     <item
         android:title="Home"
         android:icon="@drawable/ic_home_black_24dp"
@@ -17,4 +18,12 @@
     <item
         android:title="Impostazioni"
         android:icon="@drawable/ic_settings_black_24dp"/>
+    </group>
+
+    <group
+        android:id="@+id/prefriti">
+        <item
+            android:title="Corsi preferiti"
+            android:icon="@drawable/ic_favorite_red_24dp"/>
+    </group>
 </menu>

@@ -26,10 +26,12 @@ import android.widget.TextView;
 
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Corso;
+import com.moonica.fdm.model.FactoryCorsi;
 import com.moonica.fdm.model.FactoryForumThread;
 import com.moonica.fdm.model.ForumThread;
 import com.moonica.fdm.model.ForumRVAdapter;
 import com.moonica.fdm.model.LinearLayoutPagerManager;
+import com.moonica.fdm.model.Studente;
 import com.moonica.fdm.model.Utente;
 
 
@@ -50,6 +52,8 @@ public class Forum extends AppCompatActivity {
     FactoryForumThread fft = FactoryForumThread.getInstance();
 
 
+    static final String UTENTE = "utente";
+    public static final String CORSO = "com.moonica.fdm";
     public static final String NEWTHREAD = "com.moonica.fdm";
     private DrawerLayout drawerLayout;
 
@@ -79,7 +83,7 @@ public class Forum extends AppCompatActivity {
          */
         listaForum = fft.cercaThreadCorso(c);
 
-        ns = (ScrollView)findViewById(R.id.sv_forum);
+        ns = (ScrollView) findViewById(R.id.sv_forum);
         rv = (RecyclerView) findViewById(R.id.rv_forum);
 
 
@@ -89,7 +93,6 @@ public class Forum extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
-
 
 
         initializeAdapter(utente);
@@ -136,8 +139,7 @@ public class Forum extends AppCompatActivity {
             default:
                 if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                     drawerLayout.closeDrawer(Gravity.LEFT);
-                }
-                else {
+                } else {
 
                     finish();
                 }
@@ -156,7 +158,7 @@ public class Forum extends AppCompatActivity {
         initializeAdapter(utente);
     }
 
-    public void setNavBar(final Intent intent){
+    public void setNavBar(final Intent intent) {
         //menu
         ActionBarDrawerToggle actionBarDrawerToggle;
         NavigationView navigationView;
@@ -182,7 +184,7 @@ public class Forum extends AppCompatActivity {
                     case R.id.homeNav:
                         intent.putExtra("com.moonica.fdm", utente);
                         startActivity(intent);
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         break;
                 }
                 return true;
@@ -191,9 +193,13 @@ public class Forum extends AppCompatActivity {
         avatar.setImageResource(utente.getAvatar());
         nomeUtente.setText(utente.getNome() + " " + utente.getCognome());
 
+        if (utente instanceof Studente) {
+
+            aggiungiPreferiti(utente);
+        }
     }
 
-    public void logOut(final Intent intent){
+    public void logOut(final Intent intent) {
         RelativeLayout relativeLayout = findViewById(R.id.buttonLogOut);
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,6 +208,56 @@ public class Forum extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void aggiungiPreferiti(final Utente u) {
+        NavigationView navigationView;
+        navigationView = (NavigationView) findViewById(R.id.nv);
+
+        LinearLayout linearLayout;
+        linearLayout = navigationView.findViewById(R.id.listaPreferiti);
+
+        TextView zeroPreferiti = navigationView.findViewById(R.id.zeroCorsiPreferiti);
+
+        linearLayout.removeAllViews();
+
+        if (u instanceof Studente) {
+            int i = 0;
+            if (((Studente) u).getCorsiPreferiti().size() == 0) {
+                zeroPreferiti.setVisibility(View.VISIBLE);
+            } else if (((Studente) u).getCorsiPreferiti().size() > 0)
+                zeroPreferiti.setVisibility(View.GONE);
+
+            for (Corso c : ((Studente) u).getCorsiPreferiti()) {
+
+                final TextView textView = new TextView(this);
+                textView.setText(c.getNome());
+                textView.setPadding(50, 0, 0, 20);
+                textView.setId(i + 1);
+
+
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Forum.this, Corsi.class);
+
+                        FactoryCorsi fc = FactoryCorsi.getInstance();
+                        String name = String.valueOf(textView.getText());
+                        String sigla = fc.cercaCorso(name).getSigla();
+
+                        Corso corso = fc.cercaCorsoSigla(sigla);
+                        intent.putExtra(CORSO, corso);
+                        intent.putExtra(UTENTE, u);
+                        startActivity(intent);
+                    }
+                });
+
+                linearLayout.addView(textView);
+                i++;
+            }
+        }
+
+
     }
 }
 

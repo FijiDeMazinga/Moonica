@@ -149,6 +149,7 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
                         switch (item.getItemId()){
                             case 0:
                                 if(utente instanceof Studente) {
+                                    studente.getCorsiPreferiti().remove(lista.get(i));
                                     studente.rimuoviCorso(lista.get(i));
                                 }
                                 else if(utente instanceof Professore)

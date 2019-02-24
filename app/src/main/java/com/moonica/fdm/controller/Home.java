@@ -39,6 +39,8 @@ import com.moonica.fdm.model.Professore;
 import com.moonica.fdm.model.Studente;
 import com.moonica.fdm.model.Utente;
 
+import org.w3c.dom.Text;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -55,6 +57,10 @@ public class Home extends AppCompatActivity {
     FactoryCorsi fc = FactoryCorsi.getInstance();
     Dialog scelta;
     DrawerLayout drawerLayout;
+
+
+
+    static String UTENTE = "utente";
 
     private static Home singleton;
 
@@ -265,19 +271,14 @@ public class Home extends AppCompatActivity {
         nomeUtente.setText(u.getNome() + " " + u.getCognome());
 
         if (u instanceof Studente) {
-           /* int i=0;
-            for (Corso c : ((Studente) u).getCorsiPreferiti()) {
-                LinearLayout linearLayout;
-                linearLayout = navigationView.findViewById(R.id.listaPreferiti);
 
-                TextView textView = new TextView(this);
-                textView.setText(c.getNome());
-                textView.setPadding(50, 0, 0, 20);
-                textView.setId(i+1);
-                linearLayout.addView(textView);
-                i++;
-            }*/
             aggiungiPreferiti(u);
+        }
+        if (u instanceof Professore){
+            //navigationView.getMenu().removeItem();
+
+            TextView textView = findViewById(R.id.zeroCorsiPreferiti);
+            textView.setVisibility(View.GONE);
         }
     }
 
@@ -291,47 +292,50 @@ public class Home extends AppCompatActivity {
             }
         });
     }
-    /*public void aggiungiPreferito(Corso corso, int i){
+
+    public void aggiungiPreferiti(final Utente u){
         NavigationView navigationView;
         navigationView = (NavigationView) findViewById(R.id.nv);
 
         LinearLayout linearLayout;
         linearLayout = navigationView.findViewById(R.id.listaPreferiti);
 
-        TextView textView = new TextView(this);
-        textView.setText(corso.getNome());
-        textView.setPadding(50,0,0,0);
-        textView.setId(i+1);
-        linearLayout.addView(textView);
-    }
-    public void rimuoviPreferito(int i){
-        NavigationView navigationView;
-        navigationView = (NavigationView) findViewById(R.id.nv);
-
-        LinearLayout linearLayout;
-        linearLayout = navigationView.findViewById(R.id.listaPreferiti);
-
-
-        linearLayout.removeView(findViewById(i+1));
-    }*/
-
-    public void aggiungiPreferiti(Utente u){
-        NavigationView navigationView;
-        navigationView = (NavigationView) findViewById(R.id.nv);
-
-        LinearLayout linearLayout;
-        linearLayout = navigationView.findViewById(R.id.listaPreferiti);
+        TextView zeroPreferiti = navigationView.findViewById(R.id.zeroCorsiPreferiti);
 
         linearLayout.removeAllViews();
 
         if (u instanceof Studente) {
             int i=0;
+            if (((Studente) u).getCorsiPreferiti().size() == 0){
+                zeroPreferiti.setVisibility(View.VISIBLE);
+            }
+            else if (((Studente) u).getCorsiPreferiti().size() > 0)
+                zeroPreferiti.setVisibility(View.GONE);
+
             for (Corso c : ((Studente) u).getCorsiPreferiti()) {
 
-                TextView textView = new TextView(this);
+                final TextView textView = new TextView(this);
                 textView.setText(c.getNome());
                 textView.setPadding(50, 0, 0, 20);
                 textView.setId(i+1);
+
+
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Home.this, Corsi.class);
+
+                        FactoryCorsi fc = FactoryCorsi.getInstance();
+                        String name = String.valueOf(textView.getText());
+                        String sigla = fc.cercaCorso(name).getSigla();
+
+                        Corso corso = fc.cercaCorsoSigla(sigla);
+                        intent.putExtra(CORSO, corso);
+                        intent.putExtra(UTENTE, u);
+                        startActivity(intent);
+                    }
+                });
+
                 linearLayout.addView(textView);
                 i++;
             }
