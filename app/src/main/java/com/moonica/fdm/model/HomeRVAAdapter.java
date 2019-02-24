@@ -100,8 +100,12 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
         else
             corsoViewHolder.nomeCorso.setText("[" + lista.get(i).getSigla() + "] " + lista.get(i).getNome().substring(0, 20) + "...");
         corsoViewHolder.nomeCorso.setPadding(0, 25,0,0);
+
         corsoViewHolder.ib.setImageResource(R.drawable.ic_more_vert_black_24dp);
         corsoViewHolder.preferito.setImageResource(R.drawable.ic_favorite_black_24dp);
+
+        if(factoryCorsi.cercaPreferito(lista.get(i), studente.getCorsiPreferiti()))
+            corsoViewHolder.preferito.setColorFilter(Color.RED);
 
         corsoViewHolder.preferito.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,12 +113,12 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
                 if(factoryCorsi.cercaPreferito(lista.get(i), studente.getCorsiPreferiti())) {
                     studente.getCorsiPreferiti().remove(lista.get(i));
                     corsoViewHolder.preferito.setColorFilter(0xffeeeeee);
-                    ((Home) context).rimuoviPreferito(i);
+                    //((Home) context).rimuoviPreferito(i);
                 }
                 else{
                     studente.getCorsiPreferiti().add(lista.get(i));
                     corsoViewHolder.preferito.setColorFilter(Color.RED);
-                    ((Home) context).aggiungiPreferito(lista.get(i), i);
+                    //((Home) context).aggiungiPreferito(lista.get(i), i);
                 }
             }
         });
@@ -159,6 +163,7 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
         corsoViewHolder.cv.setCardBackgroundColor(0xff225599);
         corsoViewHolder.nomeCorso.setTextColor(0xffffffff);
         corsoViewHolder.nomeCorso.setTextSize(18);
+
         corsoViewHolder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

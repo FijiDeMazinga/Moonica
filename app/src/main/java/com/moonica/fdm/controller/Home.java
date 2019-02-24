@@ -275,7 +275,7 @@ public class Home extends AppCompatActivity {
             }
         });
     }
-    public void aggiungiPreferito(Corso corso, int i){
+    /*public void aggiungiPreferito(Corso corso, int i){
         NavigationView navigationView;
         navigationView = (NavigationView) findViewById(R.id.nv);
 
@@ -296,7 +296,7 @@ public class Home extends AppCompatActivity {
         linearLayout = navigationView.findViewById(R.id.listaPreferiti);
 
         linearLayout.removeView(findViewById(i+1));
-    }
+    }*/
 }
 
 
