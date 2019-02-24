@@ -28,6 +28,7 @@ import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -50,6 +51,7 @@ import com.moonica.fdm.model.FactoryCorsi;
 import com.moonica.fdm.model.FactoryForumThread;
 import com.moonica.fdm.model.FactoryUtente;
 import com.moonica.fdm.model.ForumThread;
+import com.moonica.fdm.model.Professore;
 import com.moonica.fdm.model.Studente;
 import com.moonica.fdm.model.ThreadRVAdapter;
 import com.moonica.fdm.model.Utente;
@@ -469,6 +471,14 @@ public class Thread extends AppCompatActivity {
         if (utente instanceof Studente) {
 
             aggiungiPreferiti(utente);
+        }
+        if (utente instanceof Professore){
+            Menu nav_menu = navigationView.getMenu();
+            nav_menu.findItem(R.id.preferiti).setVisible(false);
+
+
+            TextView textView = findViewById(R.id.zeroCorsiPreferiti);
+            textView.setVisibility(View.GONE);
         }
     }
 

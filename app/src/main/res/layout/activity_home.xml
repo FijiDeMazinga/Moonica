@@ -120,51 +120,6 @@
                     android:textSize="16dp" />
             </RelativeLayout>
         </LinearLayout>
-        <!--
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Corsi preferiti" />
-
-                    <LinearLayout
-                        android:id="@+id/listaPreferiti"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="180dp"
-                        android:orientation="vertical">
-
-                    </LinearLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/buttonLogOut"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="right">
-
-                        <ImageView
-                            android:id="@+id/imageLogout"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_subdirectory_arrow_right_black_24dp" />
-
-                        <TextView
-                            android:id="@+id/logout"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_toRightOf="@+id/imageLogout"
-                            android:text="Log out"
-                            android:textSize="16dp" />
-                    </RelativeLayout>
-
-                </LinearLayout>-->
 
     </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>
