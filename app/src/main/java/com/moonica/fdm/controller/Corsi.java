@@ -274,6 +274,7 @@ public class Corsi extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
+
                 Serializable strEditText = data.getSerializableExtra("nuova sezione");
 
                 Sezione nuovaSezione = new Sezione();
