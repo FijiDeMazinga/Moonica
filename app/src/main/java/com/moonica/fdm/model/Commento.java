@@ -86,8 +86,10 @@ public class Commento {
 
     public void eliminaNomeAllegati(String allegato){
         for (String s : nomeAllegati){
-            if (s.equals(allegato))
+            if (s.equals(allegato)) {
                 nomeAllegati.remove(s);
+                break;
+            }
         }
     }
 
@@ -106,6 +108,7 @@ public class Commento {
         for (Integer i : iconaAllegati)
             if (i.equals(icolaAllegati)) {
                 iconaAllegati.remove(i);
+                break;
             }
     }
 
