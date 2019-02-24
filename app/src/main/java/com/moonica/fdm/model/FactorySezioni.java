@@ -8,6 +8,17 @@ public class FactorySezioni {
     private static FactorySezioni instance;
     private ArrayList<Sezione> listaSezioni = new ArrayList<>();
     private ArrayList<Sezione> sezioniIUM = new ArrayList<>();
+    private ArrayList<Sezione> sezioniFPW = new ArrayList<>();
+    private ArrayList<Sezione> sezioniEDI = new ArrayList<>();
+    private ArrayList<Sezione> sezioniALF = new ArrayList<>();
+    private ArrayList<Sezione> sezioniMD = new ArrayList<>();
+    private ArrayList<Sezione> sezioniVGD = new ArrayList<>();
+    private ArrayList<Sezione> sezioniFMS = new ArrayList<>();
+    private ArrayList<Sezione> sezioniPR1 = new ArrayList<>();
+    private ArrayList<Sezione> sezioniPR2 = new ArrayList<>();
+    private ArrayList<Sezione> sezioniDM = new ArrayList<>();
+    private ArrayList<Sezione> sezioniSO1 = new ArrayList<>();
+    private ArrayList<Sezione> sezioniASD = new ArrayList<>();
     private ArrayList<Sezione> sezioniSM = new ArrayList<>();
     //private FactoryCorsi factoryCorsi = FactoryCorsi.getInstance();
 
@@ -37,6 +48,210 @@ public class FactorySezioni {
         listaSezioni.add(compIUM);
         sezioniIUM.add(compIUM);
 
+        Sezione placeholder1 = new Sezione();
+        placeholder1.setTitolo("");
+        placeholder1.setCorso("");
+        placeholder1.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder1);
+        sezioniFPW.add(placeholder1);
+
+        Sezione placeholder2 = new Sezione();
+        placeholder2.setTitolo("");
+        placeholder2.setCorso("");
+        placeholder2.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder2);
+        sezioniFPW.add(placeholder2);
+
+        Sezione placeholder3 = new Sezione();
+        placeholder3.setTitolo("");
+        placeholder3.setCorso("");
+        placeholder3.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder3);
+        sezioniFPW.add(placeholder3);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+        /*
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+        Sezione placeholder = new Sezione();
+        placeholder.setTitolo("");
+        placeholder.setCorso("");
+        placeholder.getContenuti().add(new Contenuto(R.drawable.icon_pdf, "Slides.pdf"));
+        listaSezioni.add(placeholder);
+
+*/
+
+
         Sezione introSM = new Sezione();
         introSM.setTitolo("Intro");
         introSM.setCorso("Storia Medievale");
@@ -51,7 +266,7 @@ public class FactorySezioni {
         listaSezioni.add(coseSM);
         sezioniSM.add(coseSM);
 
-        //factoryCorsi.cercaCorso("Interazione Uomo-Macchina").setSezioni(sezioniIUM);
+
     }
 
     public static FactorySezioni getInstance() {
