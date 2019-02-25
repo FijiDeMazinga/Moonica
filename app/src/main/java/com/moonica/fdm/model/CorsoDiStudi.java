@@ -6,13 +6,12 @@ import java.util.ArrayList;
 public class CorsoDiStudi implements Serializable {
     private String nome;
     private String Facolta;
-    protected ArrayList<Corso> listaCorsi = new ArrayList<Corso>();
+    protected ArrayList<Corso> listaCorsi = new ArrayList<>();
 
     public CorsoDiStudi(){
         this.setNome("");
         this.setFacolta("");
     }
-
 
     public String getNome() {
         return nome;

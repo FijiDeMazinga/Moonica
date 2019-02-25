@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class Studente extends Utente implements Serializable {
     private int annoCorso;
-    private ArrayList<Corso> corsi = new ArrayList<Corso>();
-    private ArrayList<Corso> corsiPreferiti = new ArrayList<Corso>();
+    private ArrayList<Corso> corsi = new ArrayList<>();
+    private ArrayList<Corso> corsiPreferiti = new ArrayList<>();
 
     public Studente() {
         super();

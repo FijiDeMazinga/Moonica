@@ -7,7 +7,7 @@ public class Corso implements Serializable {
     private String nome;
     private String sigla;
     private CorsoDiStudi facolta;
-    private ArrayList<Sezione> sezioni = new ArrayList<Sezione>();
+    private ArrayList<Sezione> sezioni = new ArrayList<>();
     private Professore professore;
 
     public Corso(String nome, String sigla){

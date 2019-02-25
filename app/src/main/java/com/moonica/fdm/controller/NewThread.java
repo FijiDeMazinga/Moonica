@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.Image;
-import android.net.Uri;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -15,12 +13,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
@@ -32,7 +28,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Space;
 import android.widget.TextView;
-
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Commento;
 import com.moonica.fdm.model.Corso;
@@ -41,22 +36,16 @@ import com.moonica.fdm.model.FactoryCorsi;
 import com.moonica.fdm.model.FactoryFileFinti;
 import com.moonica.fdm.model.FactoryForumThread;
 import com.moonica.fdm.model.FactoryUtente;
-import com.moonica.fdm.model.FileFinto;
 import com.moonica.fdm.model.ForumThread;
 import com.moonica.fdm.model.Professore;
 import com.moonica.fdm.model.Studente;
 import com.moonica.fdm.model.Utente;
-
-import org.w3c.dom.Text;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NewThread extends AppCompatActivity {
-
 
     Utente utente;
     Corso c = new Corso();
@@ -91,7 +80,6 @@ public class NewThread extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_thread);
-
         /*
          * Viene impostato il tasto per tornare alla activity precedente
          */
@@ -103,7 +91,6 @@ public class NewThread extends AppCompatActivity {
         Serializable studObj = i.getSerializableExtra("utente");
         utente = (Utente) studObj;
 
-
         extras = i.getExtras();
 
         allegaFile = (LinearLayout) findViewById(R.id.allegaFile);
@@ -112,13 +99,13 @@ public class NewThread extends AppCompatActivity {
         uploadFile = (ImageButton) findViewById(R.id.caricaAllegato);
         invio = (Button) findViewById(R.id.inviaNT);
 
-
         if (extras.getString("newThread") != null) {
 
             titolo = (EditText) findViewById(R.id.titoloNewT);
 
-            c = (Corso) obj;
+            setTitle("Nuovo thread");
 
+            c = (Corso) obj;
 
             invio.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -156,6 +143,8 @@ public class NewThread extends AppCompatActivity {
 
             titoloReply = (TextView) findViewById(R.id.titoloNewT);
 
+            setTitle("Nuovo commento");
+
             ft = (ForumThread) obj;
             titoloReply.setText("Re:" + ft.getTitolo());
             titoloReply.setHintTextColor(Color.GRAY);
@@ -163,13 +152,11 @@ public class NewThread extends AppCompatActivity {
             titoloReply.setClickable(true);
             titoloReply.setTextColor(Color.GRAY);
 
-
             invio.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (checkTesto()) {
                         String textString = String.valueOf(testo.getText());
-
 
                         commento.setFt(ft.getId());
                         commento.setAutore(utente);
@@ -185,7 +172,6 @@ public class NewThread extends AppCompatActivity {
 
                         ArrayList<Commento> arrayList = new ArrayList<>();
                         arrayList.addAll(factoryCommenti.cercaListaCommenti(ft.getId()));
-
 
                         numAllegati = 0;
 
@@ -203,7 +189,6 @@ public class NewThread extends AppCompatActivity {
         //funzione logout
         Intent intentL = new Intent(NewThread.this, Login.class);
         logOut(intentL);
-
     }
 
     public void UploadFile(View v) {
@@ -503,8 +488,6 @@ public class NewThread extends AppCompatActivity {
                 i++;
             }
         }
-
-
     }
 
     public void logOut(final Intent intent) {
@@ -517,6 +500,4 @@ public class NewThread extends AppCompatActivity {
             }
         });
     }
-
-
 }

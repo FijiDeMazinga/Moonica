@@ -11,7 +11,7 @@ public class FactoryCorsoDiStudi {
         return singleton;
     }
 
-    private ArrayList<CorsoDiStudi> listaCorsiStudi = new ArrayList<CorsoDiStudi>();
+    private ArrayList<CorsoDiStudi> listaCorsiStudi = new ArrayList<>();
 
     private FactoryCorsoDiStudi(){
         CorsoDiStudi lettere = new CorsoDiStudi();

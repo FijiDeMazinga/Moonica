@@ -3,16 +3,11 @@ package com.moonica.fdm.controller;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.os.CountDownTimer;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.widget.CircularProgressDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -26,19 +21,14 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.FactoryFileFinti;
 import com.moonica.fdm.model.FactoryUtente;
 import com.moonica.fdm.model.Studente;
 import com.moonica.fdm.model.Utente;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-
 import static com.moonica.fdm.controller.NewThread.hideKeyboard;
 
 public class Registrazione extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -68,14 +58,14 @@ public class Registrazione extends AppCompatActivity implements AdapterView.OnIt
         dialog = new Dialog(this);
 
         //lista di stringhe da aggiungere allo spinner
-        List<String> genders = new ArrayList<String>();
+        List<String> genders = new ArrayList<>();
         genders.add("Sesso");
         genders.add("Maschio");
         genders.add("Femmina");
         genders.add("Altro");
 
         //adattatore dello spinner con la lista passata e lo stile scelto
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_layout, genders);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, R.layout.spinner_layout, genders);
         dataAdapter.setDropDownViewResource(R.layout.spinner_dropdown);//stile dropdown list
         spinner.setAdapter(dataAdapter);//aggiunta dell'adapter allo spinner
 

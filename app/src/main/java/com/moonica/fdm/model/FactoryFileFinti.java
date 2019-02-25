@@ -1,10 +1,7 @@
 package com.moonica.fdm.model;
 
-import android.graphics.drawable.Drawable;
-
 import com.moonica.fdm.R;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -17,8 +14,8 @@ public class FactoryFileFinti {
         return singleton;
     }
 
-    private ArrayList<FileFinto> listaFile = new ArrayList<FileFinto>();
-    private ArrayList<FileFinto> listaAvatar = new ArrayList<FileFinto>();
+    private ArrayList<FileFinto> listaFile = new ArrayList<>();
+    private ArrayList<FileFinto> listaAvatar = new ArrayList<>();
 
     private FactoryFileFinti() {
         FileFinto f1 = new FileFinto();
@@ -87,6 +84,9 @@ public class FactoryFileFinti {
         f14.setImmagineId(R.drawable.txt_preview);
 
         FileFinto f15 = new FileFinto();
+        f15.setNome("Blocco slide");
+        f15.setImmagineId(R.drawable.rar);
+
         FileFinto f16 = new FileFinto();
         FileFinto f17 = new FileFinto();
         FileFinto f18 = new FileFinto();
@@ -97,16 +97,8 @@ public class FactoryFileFinti {
         FileFinto f23 = new FileFinto();
         FileFinto f24 = new FileFinto();
         FileFinto f25 = new FileFinto();
+        FileFinto f26 = new FileFinto();
 
-        /*listaFile.add(f1);
-        listaFile.add(f2);
-        listaFile.add(f3);
-        listaFile.add(f4);
-        listaFile.add(f5);
-        listaFile.add(f6);
-        listaFile.add(f7);
-        listaFile.add(f8);
-        listaFile.add(f9);*/
         listaFile.add(f10);
         listaFile.add(f11);
         listaFile.add(f12);
@@ -123,6 +115,7 @@ public class FactoryFileFinti {
         listaFile.add(f23);
         listaFile.add(f24);
         listaFile.add(f25);
+        listaFile.add(f26);
 
         Collections.shuffle(listaFile);
 

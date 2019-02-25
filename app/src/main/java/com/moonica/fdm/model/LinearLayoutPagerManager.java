@@ -15,7 +15,6 @@ public class LinearLayoutPagerManager extends LinearLayoutManager {
         return mItemsPerPage;
     }
 
-
     public LinearLayoutPagerManager(Context context, int orientation, boolean reverseLayout, int itemsPerPage) {
         super(context, orientation, reverseLayout);
 

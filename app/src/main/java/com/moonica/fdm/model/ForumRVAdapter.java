@@ -11,9 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.moonica.fdm.R;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -82,7 +80,6 @@ public class ForumRVAdapter extends RecyclerView.Adapter<ForumRVAdapter.ForumThr
         TextView data;
         TextView autore;
         RelativeLayout rv;
-
 
         ForumThreadHolder(@NonNull final View itemView) {
             super(itemView);

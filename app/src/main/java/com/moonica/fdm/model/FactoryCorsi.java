@@ -11,13 +11,13 @@ public class FactoryCorsi {
         return singleton;
     }
 
-    private ArrayList<Corso> tuttiCorsi = new ArrayList<Corso>();
-    private ArrayList<Corso> corsiLettere = new ArrayList<Corso>();
-    private ArrayList<Corso> corsiIng = new ArrayList<Corso>();
-    private ArrayList<Corso> scienzePol = new ArrayList<Corso>();
-    private ArrayList<Corso> med = new ArrayList<Corso>();
-    private ArrayList<Corso> ctf = new ArrayList<Corso>();
-    private ArrayList<Corso> corsiInf = new ArrayList<Corso>();
+    private ArrayList<Corso> tuttiCorsi = new ArrayList<>();
+    private ArrayList<Corso> corsiLettere = new ArrayList<>();
+    private ArrayList<Corso> corsiIng = new ArrayList<>();
+    private ArrayList<Corso> scienzePol = new ArrayList<>();
+    private ArrayList<Corso> med = new ArrayList<>();
+    private ArrayList<Corso> ctf = new ArrayList<>();
+    private ArrayList<Corso> corsiInf = new ArrayList<>();
     private FactorySezioni factorySezioni = FactorySezioni.getInstance();
 
     private FactoryCorsi(){
@@ -229,7 +229,7 @@ public class FactoryCorsi {
 
     //restituisce tutti i corsi di una specifica facoltà
     public ArrayList<Corso> listaCorsiFacolta(String nomeFacolta){
-        ArrayList<Corso> listaCorsi = new ArrayList<Corso>();
+        ArrayList<Corso> listaCorsi = new ArrayList<>();
 
         switch (nomeFacolta){
             case "Informatica":

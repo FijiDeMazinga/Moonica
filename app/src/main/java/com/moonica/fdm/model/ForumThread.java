@@ -1,11 +1,9 @@
 package com.moonica.fdm.model;
 
-import android.graphics.drawable.Drawable;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.TimeZone;
 
 public class ForumThread implements Serializable {
@@ -56,7 +54,6 @@ public class ForumThread implements Serializable {
 
     public void setData(Calendar c){
         c.add(Calendar.HOUR_OF_DAY, 1);
-
         this.data = c;
     }
 

@@ -1,10 +1,9 @@
 package com.moonica.fdm.model;
 
-import android.graphics.drawable.Drawable;
+
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.TimeZone;
 
 public class Commento {
@@ -70,8 +69,6 @@ public class Commento {
         FactoryForumThread factoryForumThreadt = FactoryForumThread.getInstance();
         this.ft = factoryForumThreadt.cercaThread(id);
     }
-
-
 
     public ArrayList<String> getNomeAllegati() {
         return nomeAllegati;

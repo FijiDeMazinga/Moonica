@@ -57,7 +57,6 @@ public class Login extends AppCompatActivity {
             }
         });
 
-
         //listener per il pulsante di registrazione
         registrati.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -2,7 +2,6 @@ package com.moonica.fdm.model;
 
 
 import com.moonica.fdm.R;
-import com.moonica.fdm.controller.Forum;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -111,7 +110,6 @@ public class FactoryForumThread {
         listaForumThread.add(thread4);
         listaForumThread.add(thread2);
         listaForumThread.add(thread5);
-
     }
 
     public ArrayList<ForumThread> cercaThreadCorso (Corso crs){

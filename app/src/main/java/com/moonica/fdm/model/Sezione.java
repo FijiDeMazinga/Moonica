@@ -7,7 +7,7 @@ public class Sezione implements Serializable{
     private String titolo;
     //private String sottoTitolo;
     private String corso;
-    private ArrayList<Contenuto> listaContenuti = new ArrayList<Contenuto>();
+    private ArrayList<Contenuto> listaContenuti = new ArrayList<>();
 
     public Sezione(){
         this.titolo = ("");
@@ -22,13 +22,6 @@ public class Sezione implements Serializable{
         this.titolo = nome;
     }
 
-    /*public String getSottoTitolo() {
-        return sottoTitolo;
-    }*/
-
-   /* public void setSottoTitolo(String sottoTitolo) {
-        this.sottoTitolo = sottoTitolo;
-    }*/
 
     public String getCorso() {
         return corso;

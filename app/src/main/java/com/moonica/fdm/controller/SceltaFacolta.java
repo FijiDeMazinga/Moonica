@@ -56,7 +56,7 @@ public class SceltaFacolta extends AppCompatActivity implements AdapterView.OnIt
             }
         });
         //aggiunta delle stringhe allo spinner facolta
-        List<String> listaFacolta = new ArrayList<String>();
+        List<String> listaFacolta = new ArrayList<>();
         listaFacolta.add("Facoltà");
         listaFacolta.add("Studi Umanistici");
         listaFacolta.add("Ingegneria e Architettura");
@@ -66,7 +66,7 @@ public class SceltaFacolta extends AppCompatActivity implements AdapterView.OnIt
         listaFacolta.add("Scienze");
 
         //adattatore dello spinner con la lista passata e lo stile scelto
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_layout, listaFacolta);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, R.layout.spinner_layout, listaFacolta);
         dataAdapter.setDropDownViewResource(R.layout.spinner_dropdown);
         facolta.setAdapter(dataAdapter);//aggiunta dell'adapter allo spinner
 
@@ -99,7 +99,7 @@ public class SceltaFacolta extends AppCompatActivity implements AdapterView.OnIt
     }
     //funzione che popola lo spinner dei corsi
     public void populateCorso(String facoltaScelta){
-        List<String> listaCorsi = new ArrayList<String>();
+        List<String> listaCorsi = new ArrayList<>();
         listaCorsi.add("Corso");
         //a seconda della stringa passata aggiungo corsi diversi alla lista
         switch (facoltaScelta){
@@ -135,7 +135,7 @@ public class SceltaFacolta extends AppCompatActivity implements AdapterView.OnIt
                 break;
         }
         //adapter per lo spinner
-        ArrayAdapter<String> dataAdapterCorsi = new ArrayAdapter<String>(this, R.layout.spinner_layout, listaCorsi);
+        ArrayAdapter<String> dataAdapterCorsi = new ArrayAdapter<>(this, R.layout.spinner_layout, listaCorsi);
         dataAdapterCorsi.setDropDownViewResource(R.layout.spinner_dropdown);
         corsoDiStudi.setAdapter(dataAdapterCorsi);
     }

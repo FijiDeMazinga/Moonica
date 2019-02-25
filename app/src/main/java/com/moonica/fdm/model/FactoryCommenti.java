@@ -1,8 +1,5 @@
 package com.moonica.fdm.model;
 
-import org.w3c.dom.Comment;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -110,7 +107,4 @@ public class FactoryCommenti {
                 numRisposte++;
         return numRisposte;
     }
-
-
-
 }

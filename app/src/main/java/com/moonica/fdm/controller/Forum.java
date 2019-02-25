@@ -12,38 +12,29 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Corso;
 import com.moonica.fdm.model.FactoryCorsi;
 import com.moonica.fdm.model.FactoryForumThread;
 import com.moonica.fdm.model.ForumThread;
 import com.moonica.fdm.model.ForumRVAdapter;
-import com.moonica.fdm.model.LinearLayoutPagerManager;
 import com.moonica.fdm.model.Professore;
 import com.moonica.fdm.model.Studente;
 import com.moonica.fdm.model.Utente;
-
-
 import java.io.Serializable;
 import java.util.ArrayList;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
-
 public class Forum extends AppCompatActivity {
-
 
     ScrollView ns;
     Corso c;
@@ -52,12 +43,10 @@ public class Forum extends AppCompatActivity {
     ArrayList<ForumThread> listaForum = new ArrayList<>();
     FactoryForumThread fft = FactoryForumThread.getInstance();
 
-
     static final String UTENTE = "utente";
     public static final String CORSO = "com.moonica.fdm";
     public static final String NEWTHREAD = "com.moonica.fdm";
     private DrawerLayout drawerLayout;
-
 
     @TargetApi(Build.VERSION_CODES.O)
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -87,7 +76,6 @@ public class Forum extends AppCompatActivity {
         ns = (ScrollView) findViewById(R.id.sv_forum);
         rv = (RecyclerView) findViewById(R.id.rv_forum);
 
-
         /*
          * Inizializzazione dell'adapter
          */
@@ -95,9 +83,7 @@ public class Forum extends AppCompatActivity {
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
 
-
         initializeAdapter(utente);
-
 
         //creazione navbar
         Intent intent = new Intent(Forum.this, Home.class);
@@ -243,7 +229,6 @@ public class Forum extends AppCompatActivity {
                 textView.setText(c.getNome());
                 textView.setPadding(50, 0, 0, 20);
                 textView.setId(i + 1);
-
 
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override

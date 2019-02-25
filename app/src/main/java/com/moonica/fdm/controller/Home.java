@@ -2,7 +2,6 @@ package com.moonica.fdm.controller;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -39,12 +38,8 @@ import com.moonica.fdm.model.ItemMoveCallback;
 import com.moonica.fdm.model.Professore;
 import com.moonica.fdm.model.Studente;
 import com.moonica.fdm.model.Utente;
-
-import org.w3c.dom.Text;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Home extends AppCompatActivity {
@@ -58,8 +53,6 @@ public class Home extends AppCompatActivity {
     FactoryCorsi fc = FactoryCorsi.getInstance();
     Dialog scelta;
     DrawerLayout drawerLayout;
-
-
 
     static String UTENTE = "utente";
 
@@ -81,9 +74,7 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         setTitle("I tuoi corsi");//titolo che comparirà nell'actionbar
         Intent i = getIntent();
@@ -159,7 +150,7 @@ public class Home extends AppCompatActivity {
         if(s.getCorsoStudi() != null) {
             //prendo i corsi della facoltà a cui è iscritto l'utente
 
-            ArrayList<Corso> listaNuovi = new ArrayList<Corso>();
+            ArrayList<Corso> listaNuovi = new ArrayList<>();
             listaNuovi = fc.listaCorsiFacolta(s.getCorsoStudi().getNome());
             //rimuovo quelli a cui è già iscritto
             listaNuovi.removeAll(s.getCorsi());
@@ -211,7 +202,6 @@ public class Home extends AppCompatActivity {
             t.show();
         }
     }
-
 
     /*
      * L'ovveride chiude l'activity presente in cima allo stack
@@ -343,9 +333,6 @@ public class Home extends AppCompatActivity {
                 i++;
             }
         }
-
-
-
     }
 }
 

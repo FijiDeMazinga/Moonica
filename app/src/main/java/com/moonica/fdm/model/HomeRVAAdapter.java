@@ -3,7 +3,6 @@ package com.moonica.fdm.model;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v7.widget.CardView;
@@ -20,7 +19,6 @@ import android.widget.TextView;
 
 import com.moonica.fdm.R;
 import com.moonica.fdm.controller.Corsi;
-import com.moonica.fdm.controller.Forum;
 import com.moonica.fdm.controller.Home;
 
 import java.util.ArrayList;
@@ -30,7 +28,7 @@ import static com.moonica.fdm.controller.Home.CORSO;
 
 public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoViewHolder> implements ItemMoveCallback.ItemTouchHelperContract{
 
-    ArrayList<Corso> lista = new ArrayList<Corso>();
+    ArrayList<Corso> lista = new ArrayList<>();
     static String UTENTE = "utente";
     FactoryCorsi factoryCorsi = FactoryCorsi.getInstance();
     NavigationView navigationView;
@@ -89,7 +87,6 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
         return fth;
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull final CorsoViewHolder corsoViewHolder, final int i) {
         final Context context = corsoViewHolder.itemView.getContext();
@@ -106,7 +103,6 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
         if (utente instanceof Studente) {
             ArrayList<Corso> preferiti = studente.getCorsiPreferiti();
 
-
             corsoViewHolder.preferito.setImageResource(R.drawable.ic_favorite_black_24dp);
 
             if (factoryCorsi.cercaPreferito(lista.get(i), studente.getCorsiPreferiti()))
@@ -115,15 +111,22 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
             corsoViewHolder.preferito.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (factoryCorsi.cercaPreferito(lista.get(i), studente.getCorsiPreferiti())) {
-                        studente.getCorsiPreferiti().remove(lista.get(i));
+                    FactoryCorsi fc = FactoryCorsi.getInstance();
+                    FactorySezioni fs = FactorySezioni.getInstance();
+                    String name = corsoViewHolder.nomeCorso.getText().toString();
+
+                    name = name.substring(name.indexOf("[") + 1);
+                    name = name.substring(0, name.indexOf("]"));
+                    Corso corso = fc.cercaCorsoSigla(name);
+
+                    if (factoryCorsi.cercaPreferito(corso, studente.getCorsiPreferiti())) {
+                        studente.getCorsiPreferiti().remove(corso);
                         corsoViewHolder.preferito.setColorFilter(0xffeeeeee);
-                        //(Home) context).rimuoviPreferito(i);
                         ((Home)context).aggiungiPreferiti(utente);
                     } else {
-                        studente.getCorsiPreferiti().add(lista.get(i));
+
+                        studente.getCorsiPreferiti().add(corso);
                         corsoViewHolder.preferito.setColorFilter(Color.RED);
-                        //((Home) context).aggiungiPreferito(lista.get(i), i);
                         ((Home)context).aggiungiPreferiti(utente);
                     }
                 }
@@ -184,7 +187,6 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
                 name = name.substring(name.indexOf("[") + 1);
                 name = name.substring(0, name.indexOf("]"));
                 Corso corso = fc.cercaCorsoSigla(name);
-                //corso.setSezioni(fs.getSezioniCorso(corso.getNome()));
                 intent.putExtra(CORSO, corso);
                 intent.putExtra(UTENTE, utente);
                 corsoViewHolder.itemView.getContext().startActivity(intent);

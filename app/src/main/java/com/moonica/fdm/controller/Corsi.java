@@ -25,7 +25,6 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Corso;
 import com.moonica.fdm.model.FactoryCorsi;
@@ -36,11 +35,8 @@ import com.moonica.fdm.model.Sezione;
 import com.moonica.fdm.model.SezioneAdapter;
 import com.moonica.fdm.model.Studente;
 import com.moonica.fdm.model.Utente;
-
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Corsi extends AppCompatActivity {
@@ -93,7 +89,7 @@ public class Corsi extends AppCompatActivity {
         sv = findViewById(R.id.sv_corsi);
         rv = findViewById(R.id.rvSezione);
         ib = findViewById(R.id.aggiungiSezione);
-        //cancella = findViewById(R.id.cancellaSezione);
+
         freccia = findViewById(R.id.freccia);
         indietro = findViewById(R.id.indietroDaEliminaSezione);
         indietro.setVisibility(View.GONE);
@@ -162,22 +158,8 @@ public class Corsi extends AppCompatActivity {
             case R.id.elimina_sezione:
                 ModificaSezioneAdapter esa = new ModificaSezioneAdapter(c.getSezioni(), c);
                 rv.setAdapter(esa);
-
-
-
-                /*cancella.setVisibility(View.VISIBLE);
-                freccia.setVisibility(View.GONE);*/
-
-
-
                 indietro.setVisibility(View.VISIBLE);
                 ib.setVisibility(View.GONE);
-
-
-
-                //esa.notifyDataSetChanged();
-
-
 
                 indietro.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -347,8 +329,5 @@ public class Corsi extends AppCompatActivity {
                 i++;
             }
         }
-
-
-
     }
 }

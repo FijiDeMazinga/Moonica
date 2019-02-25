@@ -1,6 +1,5 @@
 package com.moonica.fdm.model;
 
-import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -17,14 +16,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Space;
 import android.widget.TextView;
-
 import com.moonica.fdm.R;
-
 import java.util.ArrayList;
 
 public class ModificaSezioneAdapter extends RecyclerView.Adapter<ModificaSezioneAdapter.ModificaSezioneViewHolder> {
 
-    ArrayList<Sezione> lista = new ArrayList<Sezione>();
+    ArrayList<Sezione> lista = new ArrayList<>();
     ArrayList<Contenuto> listaContenuti = new ArrayList<>();
     Corso corso = new Corso();
 
@@ -92,7 +89,6 @@ public class ModificaSezioneAdapter extends RecyclerView.Adapter<ModificaSezione
                 testo.setText(contenuto.getTesto());
                 GradientDrawable border = new GradientDrawable();
                 ImageButton cancella = new ImageButton(OttieniContesto.getAppContext());
-                //cancella.setBackgroundColor(Color.TRANSPARENT);
 
                 border.setColor(0xeeeeeeee);
                 border.setStroke(3, 0xFF225599);
@@ -108,9 +104,7 @@ public class ModificaSezioneAdapter extends RecyclerView.Adapter<ModificaSezione
                 testo.setPadding(20, 0, 0, 0);
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 params.addRule(RelativeLayout.ALIGN_PARENT_END);
-                /*cancella.setLayoutParams(params);
-                cancella.setImageResource(R.drawable.ic_delete_red_24dp);
-                cancella.setPadding(700, 20, 0, 0);*/
+
                 RelativeLayout padre = new RelativeLayout(OttieniContesto.getAppContext());
                 LinearLayout horizontal = new LinearLayout(OttieniContesto.getAppContext());
                 padre.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -125,14 +119,6 @@ public class ModificaSezioneAdapter extends RecyclerView.Adapter<ModificaSezione
                 padre.addView(cancella);
                 sezioneViewHolder.vistaContenuti.setPadding(0, 10, 0, 20);
                 sezioneViewHolder.vistaContenuti.setVisibility(View.GONE);
-
-                /*cancella.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        listaContenuti.remove(contenuto);
-                        notifyDataSetChanged();
-                    }
-                });*/
             }
         }
 

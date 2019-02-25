@@ -1,8 +1,5 @@
 package com.moonica.fdm.model;
 
-import android.os.Parcelable;
-
-import com.moonica.fdm.R;
 
 import java.io.Serializable;
 

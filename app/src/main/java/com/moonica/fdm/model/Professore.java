@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Professore extends Utente  implements Serializable {
     private ArrayList<CorsoDiStudi> cdsDiInsegnamento;
-    private ArrayList<Corso> corsiGestiti = new ArrayList<Corso>();
+    private ArrayList<Corso> corsiGestiti = new ArrayList<>();
 
     public Professore() {
         super();

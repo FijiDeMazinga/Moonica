@@ -24,8 +24,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.transition.TransitionManager;
-import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.Menu;
@@ -42,7 +40,6 @@ import android.widget.RelativeLayout;
 import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Commento;
 import com.moonica.fdm.model.Corso;
@@ -55,19 +52,10 @@ import com.moonica.fdm.model.Professore;
 import com.moonica.fdm.model.Studente;
 import com.moonica.fdm.model.ThreadRVAdapter;
 import com.moonica.fdm.model.Utente;
-
-import org.w3c.dom.Comment;
-import org.w3c.dom.Text;
-
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.HashMap;
-
 import de.hdodenhof.circleimageview.CircleImageView;
-
 
 public class Thread extends AppCompatActivity {
 
@@ -87,12 +75,10 @@ public class Thread extends AppCompatActivity {
     ArrayList<Commento> commentsList = new ArrayList<>();
     FactoryCommenti fc = FactoryCommenti.getInstance();
 
-
     static final String UTENTE  = "utente";
     public static final String CORSO = "com.moonica.fdm";
     public static final String NEWTHREAD = "com.moonica.fdm";
     private DrawerLayout drawerLayout;
-
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -288,7 +274,6 @@ public class Thread extends AppCompatActivity {
         final EditText reply = new EditText(c);
         final Button buttonPick = new Button(c);
 
-
         final AlertDialog dialog = new AlertDialog.Builder(c)
                 .setTitle("Risposta")
                 .setMessage("Aggiungi una risposta")
@@ -379,10 +364,8 @@ public class Thread extends AppCompatActivity {
                             AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.colorPrimary));
 
                 }
-
             }
         });
-
         dialog.show();
     }
 
@@ -410,7 +393,6 @@ public class Thread extends AppCompatActivity {
             }
         }
     }
-
 
     /*
      * L'ovveride chiude l'activity presente in cima allo stack
@@ -556,8 +538,6 @@ public class Thread extends AppCompatActivity {
                 i++;
             }
         }
-
-
     }
 }
 

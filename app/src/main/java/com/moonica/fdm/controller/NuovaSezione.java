@@ -18,19 +18,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
-
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.Contenuto;
 import com.moonica.fdm.model.Corso;
-import com.moonica.fdm.model.FactoryCorsi;
 import com.moonica.fdm.model.FactoryFileFinti;
 import com.moonica.fdm.model.FactorySezioni;
 import com.moonica.fdm.model.Sezione;
 import com.moonica.fdm.model.Utente;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-
 import static com.moonica.fdm.controller.NewThread.hideKeyboard;
 
 public class NuovaSezione extends AppCompatActivity {
@@ -81,14 +77,6 @@ public class NuovaSezione extends AppCompatActivity {
                     //c.getSezioni().add(nuovaSezione);
                     factorySezioni.getSezioniCorso(c.getNome()).add(nuovaSezione);
 
-                /*
-                Intent i = new Intent(NuovaSezione.this, Corsi.class);
-                i.putExtra("com.moonica.fdm", c);
-                i.putExtra("utente", utente);
-                finish();
-                startActivity(i);*/
-
-
                     Intent i = new Intent();
                     i.putExtra("nuova sezione", nuovaSezione);
                     setResult(RESULT_OK, i);
@@ -96,8 +84,6 @@ public class NuovaSezione extends AppCompatActivity {
                 }
             }
         });
-
-        //aggiungere la navbar
     }
 
     public void UploadFile(View v) {
@@ -126,7 +112,6 @@ public class NuovaSezione extends AppCompatActivity {
         }
         return false;
     }
-
 
     public void EliminaSceltaAllegato(View v, LinearLayout contenitore, String filename, int id) {
         numAllegati--;
@@ -228,9 +213,7 @@ public class NuovaSezione extends AppCompatActivity {
 
                 if (numAllegati == MAXALLEGATI)
                     allegaFile.setVisibility(View.GONE);
-
             }
         }
     }
-
 }

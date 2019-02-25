@@ -11,11 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.moonica.fdm.R;
-
-import java.io.File;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class FileRVAdapter extends RecyclerView.Adapter<FileRVAdapter.FileHolder> {
@@ -47,18 +43,8 @@ public class FileRVAdapter extends RecyclerView.Adapter<FileRVAdapter.FileHolder
             @Override
             public void onClick(View v) {
 
-
-                /**
-                 * Dobbiamo decidere come renderlo
-                 */
-                /*notifyItemChanged(selectedPos);
-                selectedPos=fileHolder.getAdapterPosition();
-                //notifyDataSetChanged();
-                notifyItemChanged(selectedPos);*/
-
                 int img = lista.get(fileHolder.getAdapterPosition()).getImmagineId();
                 int id = fileHolder.iv.getId();
-
 
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("resultFilename", fileHolder.tv.getText().toString());
@@ -90,12 +76,8 @@ public class FileRVAdapter extends RecyclerView.Adapter<FileRVAdapter.FileHolder
 
         }
     }
-
-
     public FileRVAdapter(ArrayList<FileFinto> lista) {
-
         this.lista = lista;
-
     }
 
 }

@@ -6,17 +6,11 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.widget.GridLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
 import com.moonica.fdm.R;
 import com.moonica.fdm.model.FactoryFileFinti;
 import com.moonica.fdm.model.FileFinto;
 import com.moonica.fdm.model.FileRVAdapter;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -30,7 +24,6 @@ public class CaricaFile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carica_file);
-
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
