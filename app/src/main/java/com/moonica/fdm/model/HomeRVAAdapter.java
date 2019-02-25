@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.moonica.fdm.R;
 import com.moonica.fdm.controller.Corsi;
@@ -123,7 +124,12 @@ public class HomeRVAAdapter extends RecyclerView.Adapter<HomeRVAAdapter.CorsoVie
                         studente.getCorsiPreferiti().remove(corso);
                         corsoViewHolder.preferito.setColorFilter(0xffeeeeee);
                         ((Home)context).aggiungiPreferiti(utente);
-                    } else {
+                    } else if (studente.getCorsiPreferiti().size() == 4){
+                        String maxPreferiti = "Massimo numero di esami preferiti raggiunto";
+                        Toast toast = Toast.makeText(v.getContext(), maxPreferiti, Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                    else {
 
                         studente.getCorsiPreferiti().add(corso);
                         corsoViewHolder.preferito.setColorFilter(Color.RED);
