@@ -8,6 +8,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -91,6 +92,17 @@ public class NuovaSezione extends AppCompatActivity {
         Intent intent = new Intent(NuovaSezione.this, CaricaFile.class);
         intent.putExtra(FILE, "nuovoThread");
         startActivityForResult(intent, 1);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            default:
+                finish();
+        }
+        return true;
     }
 
 

@@ -139,25 +139,25 @@ public class FactoryCorsi {
         pr1.setFacolta("Informatica");
         pr1.setNome("Programmazione 1");
         pr1.setSigla("PR1");
-        pr1.setSezioni(null);
+        pr1.setSezioni(factorySezioni.getSezioniCorso(pr1.getNome()));
 
         Corso asd1 = new Corso();
         asd1.setFacolta("Informatica");
         asd1.setNome("Algoritmi e Strutture Dati 1");
         asd1.setSigla("ASD1");
-        asd1.setSezioni(null);
+        asd1.setSezioni(factorySezioni.getSezioniCorso(asd1.getNome()));
 
         Corso so1 = new Corso();
         so1.setFacolta("Informatica");
         so1.setNome("Sistemi Operativi 1");
         so1.setSigla("SO1");
-        so1.setSezioni(null);
+        so1.setSezioni(factorySezioni.getSezioniCorso(so1.getNome()));
 
         Corso pr2 = new Corso();
         pr2.setFacolta("Informatica");
         pr2.setNome("Programmazione 2");
         pr2.setSigla("PR2");
-        pr2.setSezioni(null);
+        pr2.setSezioni(factorySezioni.getSezioniCorso(pr2.getNome()));
 
         Corso ium = new Corso();
         ium.setFacolta("Informatica");
@@ -169,36 +169,43 @@ public class FactoryCorsi {
         dm.setFacolta("Informatica");
         dm.setNome("Dati e Modelli");
         dm.setSigla("DM");
+        dm.setSezioni(factorySezioni.getSezioniCorso(dm.getNome()));
 
         Corso vgd = new Corso();
         vgd.setFacolta("Informatica");
         vgd.setNome("Videogame Design");
         vgd.setSigla("VGD");
+        vgd.setSezioni(factorySezioni.getSezioniCorso(vgd.getNome()));
 
         Corso fms = new Corso();
         fms.setFacolta("Informatica");
         fms.setNome("Fisica e Metodo Scientifico");
         fms.setSigla("FMS");
+        fms.setSezioni(factorySezioni.getSezioniCorso(fms.getNome()));
 
         Corso md = new Corso();
         md.setFacolta("Informatica");
         md.setNome("Matematica Discreta");
         md.setSigla("MD");
+        md.setSezioni(factorySezioni.getSezioniCorso(md.getNome()));
 
         Corso alf = new Corso();
         alf.setFacolta("Informatica");
         alf.setNome("Automi e Linguaggi Formali");
         alf.setSigla("ALF");
+        alf.setSezioni(factorySezioni.getSezioniCorso(alf.getNome()));
 
         Corso edi = new Corso();
         edi.setFacolta("Informatica");
         edi.setNome("Elementi di Economia e Diritto per Informatici");
         edi.setSigla("EDI");
+        edi.setSezioni(factorySezioni.getSezioniCorso(edi.getNome()));
 
         Corso fpw = new Corso();
         fpw.setFacolta("Informatica");
         fpw.setNome("Fondamenti di Programmazione Web");
         fpw.setSigla("FPW");
+        fpw.setSezioni(factorySezioni.getSezioniCorso(fpw.getNome()));
 
         corsiInf.add(fpw);
         corsiInf.add(edi);
