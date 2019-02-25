@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.moonica.fdm.R;
+import com.moonica.fdm.model.FactoryUtente;
 import com.moonica.fdm.model.Studente;
 
 import java.io.Serializable;
@@ -186,7 +187,17 @@ public class SceltaFacolta extends AppCompatActivity implements AdapterView.OnIt
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+
+        FactoryUtente factoryUtente = FactoryUtente.getInstance();
+        factoryUtente.getListaUtenti().remove(factoryUtente.getListaUtenti().size()-1);
         finish();
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        FactoryUtente factoryUtente = FactoryUtente.getInstance();
+        factoryUtente.getListaUtenti().remove(factoryUtente.getListaUtenti().size()-1);
+        finish();
     }
 }
