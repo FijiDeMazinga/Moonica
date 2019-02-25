@@ -64,7 +64,7 @@ public class FactoryFileFinti {
         listaAvatar.add(f9);
 
         FileFinto f10 = new FileFinto();
-        f10.setNome("appunti 10 Novembre.pdf");
+        f10.setNome("appunti maggio.pdf");
         f10.setImmagineId(R.drawable.pdf_preview);
 
         FileFinto f11 = new FileFinto();
@@ -76,7 +76,7 @@ public class FactoryFileFinti {
         f12.setImmagineId(R.drawable.pdf_preview);
 
         FileFinto f13 = new FileFinto();
-        f13.setNome("Presentazione 13 Novembre");
+        f13.setNome("Presentazione 13 Novembre.pdf");
         f13.setImmagineId(R.drawable.pdf_preview);
 
         FileFinto f14 = new FileFinto();
@@ -84,20 +84,20 @@ public class FactoryFileFinti {
         f14.setImmagineId(R.drawable.txt_preview);
 
         FileFinto f15 = new FileFinto();
-        f15.setNome("Blocco slide");
+        f15.setNome("Blocco slide.rar");
         f15.setImmagineId(R.drawable.rar);
 
         FileFinto f16 = new FileFinto();
+        f16.setNome("Blocco slide.rar");
+        f16.setImmagineId(R.drawable.rar);
+
         FileFinto f17 = new FileFinto();
+        f17.setNome("esercizi.rar");
+        f17.setImmagineId(R.drawable.rar);
+
         FileFinto f18 = new FileFinto();
-        FileFinto f19 = new FileFinto();
-        FileFinto f20 = new FileFinto();
-        FileFinto f21 = new FileFinto();
-        FileFinto f22 = new FileFinto();
-        FileFinto f23 = new FileFinto();
-        FileFinto f24 = new FileFinto();
-        FileFinto f25 = new FileFinto();
-        FileFinto f26 = new FileFinto();
+        f18.setNome("eserciziBash.txt");
+        f18.setImmagineId(R.drawable.txt_preview);
 
         listaFile.add(f10);
         listaFile.add(f11);
@@ -108,14 +108,6 @@ public class FactoryFileFinti {
         listaFile.add(f16);
         listaFile.add(f17);
         listaFile.add(f18);
-        listaFile.add(f19);
-        listaFile.add(f20);
-        listaFile.add(f21);
-        listaFile.add(f22);
-        listaFile.add(f23);
-        listaFile.add(f24);
-        listaFile.add(f25);
-        listaFile.add(f26);
 
         Collections.shuffle(listaFile);
 

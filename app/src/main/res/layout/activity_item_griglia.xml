@@ -9,16 +9,18 @@
     <RelativeLayout
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
+        android:gravity="center_vertical"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/ivFile"
             android:layout_width="match_parent"
-            android:layout_height="180dp"/>
+            android:layout_height="160dp"/>
 
         <TextView
             android:id="@+id/tvFile"
             android:gravity="center"
+            android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:paddingVertical="5dp"
