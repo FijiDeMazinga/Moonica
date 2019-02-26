@@ -1,5 +1,7 @@
 package com.moonica.fdm.model;
 
+import com.moonica.fdm.R;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -25,26 +27,26 @@ public class FactoryCommenti {
         c1.setFt(1);
 
         Commento c2 = new Commento();
-        c2.setAutore("Ines");
+        c2.setAutore("Mpuddu");
         c2.setData(2017, 7, 28, 14, 43, 2);
         c2.setTesto("Grazie mille per la tua gentilezza, questo commento è stato tradotto con google translate" +
                 "perché non sono ancora brava nella vostra lingua");
         c2.setFt(1);
 
         Commento c3 = new Commento();
-        c3.setAutore("SriLankas");
+        c3.setAutore("Umbo");
         c3.setData(2017, 7, 30, 21, 12, 32);
-        c3.setTesto("Oh oh oh, felice di avervi aiutati ragazzi!");
+        c3.setTesto("Io posso aggiungere questa spiegazione");
         c3.setFt(1);
 
         Commento c4 = new Commento();
-        c4.setAutore("Ines");
+        c4.setAutore("Mpuddu");
         c4.setData(2017, 7, 30, 22, 10, 22);
-        c4.setTesto("Gracias a ti professor");
+        c4.setTesto("Gracias a ti");
         c4.setFt(1);
 
         Commento c5 = new Commento();
-        c5.setAutore("Cosino");
+        c5.setAutore("Umbo");
         c5.setData(2018, 1, 18, 17, 33, 18);
         c5.setTesto("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in ipsum augue. Morbi quis dui sed libero viverra porttitor. Vivamus tempus est quam, vel laoreet erat elementum id. Vivamus ante sem, feugiat molestie libero ut, blandit luctus eros. Proin laoreet justo ut orci ornare, id ornare magna egestas. Etiam gravida mi id mattis ornare. Quisque elit urna, consequat ac dapibus et, euismod eget ante. Praesent porttitor maximus volutpat. Nunc facilisis diam ac purus tincidunt, ut feugiat libero porta. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut interdum diam urna. Integer pretium bibendum accumsan. Morbi vulputate pharetra metus, a malesuada orci laoreet nec. Pellentesque eleifend mattis sollicitudin.\n" +
                 "\n" +
@@ -52,7 +54,7 @@ public class FactoryCommenti {
         c5.setFt(3);
 
         Commento c6 = new Commento();
-        c6.setAutore("Cosino");
+        c6.setAutore("Umbo");
         c6.setData(2018, 8, 21, 22, 18, 27);
         c6.setTesto("Ciao");
         c6.setFt(3);
@@ -61,6 +63,9 @@ public class FactoryCommenti {
         c7.setAutore("Davide");
         c7.setData(2018, 9, 12, 8, 12, 52);
         c7.setTesto("Risposta breve");
+        c7.setAllegatiPresenza(true);
+        c7.setNomeAllegati("Euristiche.pdf");
+        c7.setIconaAllegati(R.drawable.pdf_preview);
         c7.setFt(2);
 
         listaCommenti.add(c1);

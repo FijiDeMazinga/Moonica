@@ -70,40 +70,41 @@ public class FactoryUtente {
 
         Studente studente5 = new Studente();
         studente5.setNome("Umberto");
-        studente5.setCognome("Pinna");
+        studente5.setCognome("Usai");
         studente5.setSesso("Maschio");
         studente5.setUsername("Umbo");
         studente5.setEmail("umbertoP@gmail.com");
         studente5.setPassword("gengivesanguinanti");
+        studente5.setAvatar(R.drawable.umbo);
         studente5.setFacolta("Scienze");
         studente5.setCorsoStudi("Informatica");
         studente5.aggiungiCorso(factoryCorsi.cercaCorso("Programmazione 2"));
         studente5.aggiungiCorso(factoryCorsi.cercaCorso("Sistemi Operativi 1"));
 
         Studente studente6 = new Studente();
-        studente5.setNome("Martina");
-        studente5.setCognome("Puddu");
-        studente5.setSesso("Femmina");
-        studente5.setUsername("Mpuddu");
-        studente5.setEmail("mpuddu@gmail.com");
-        studente5.setPassword("errata");
-        studente5.setFacolta("Scienze");
-        studente5.setCorsoStudi("Informatica");
-        studente5.aggiungiCorso(factoryCorsi.cercaCorso("Programmazione 1"));
-        studente5.aggiungiCorso(factoryCorsi.cercaCorso("Interazione Uomo-Macchina"));
+        studente6.setNome("Martina");
+        studente6.setCognome("Puddu");
+        studente6.setSesso("Femmina");
+        studente6.setUsername("Mpuddu");
+        studente6.setEmail("mpuddu@gmail.com");
+        studente6.setPassword("errata");
+        studente6.setFacolta("Scienze");
+        studente6.setCorsoStudi("Informatica");
+        studente6.aggiungiCorso(factoryCorsi.cercaCorso("Programmazione 1"));
+        studente6.aggiungiCorso(factoryCorsi.cercaCorso("Interazione Uomo-Macchina"));
 
         Studente studente7 = new Studente();
-        studente5.setNome("Marco");
-        studente5.setCognome("Fenu");
-        studente5.setSesso("Maschio");
-        studente5.setUsername("Marco");
-        studente5.setEmail("marcofenu@gmail.com");
-        studente5.setPassword("fibraottica");
-        studente5.setFacolta("Scienze");
-        studente5.setCorsoStudi("Informatica");
-        studente5.aggiungiCorso(factoryCorsi.cercaCorso("Programmazione 1"));
-        studente5.aggiungiCorso(factoryCorsi.cercaCorso("Interazione Uomo-Macchina"));
-        studente5.aggiungiCorso(factoryCorsi.cercaCorso("Fondamenti di Programmazione Web"));
+        studente7.setNome("Marco");
+        studente7.setCognome("Fenu");
+        studente7.setSesso("Maschio");
+        studente7.setUsername("Marco");
+        studente7.setEmail("marcofenu@gmail.com");
+        studente7.setPassword("fibraottica");
+        studente7.setFacolta("Scienze");
+        studente7.setCorsoStudi("Informatica");
+        studente7.aggiungiCorso(factoryCorsi.cercaCorso("Programmazione 1"));
+        studente7.aggiungiCorso(factoryCorsi.cercaCorso("Interazione Uomo-Macchina"));
+        studente7.aggiungiCorso(factoryCorsi.cercaCorso("Fondamenti di Programmazione Web"));
 
         Professore professore1 = new Professore();
         professore1.setNome("Carlo");
@@ -186,7 +187,7 @@ public class FactoryUtente {
         zuddas.setNome("Fabio");
         zuddas.setCognome("Zuddas");
         zuddas.setSesso("Maschio");
-        zuddas.setUsername("Fab");
+        zuddas.setUsername("Fabio");
         zuddas.setEmail("fabio.zuddas@unica.it");
         zuddas.setPassword("crittografia");
         zuddas.setFacolta("Scienze");
@@ -199,7 +200,7 @@ public class FactoryUtente {
         scateni.setNome("Riccardo");
         scateni.setCognome("Scateni");
         scateni.setSesso("Maschio");
-        scateni.setUsername("Scat");
+        scateni.setUsername("Riccardo");
         scateni.setEmail("ricscat@unica.it");
         scateni.setPassword("fiorentina");
         scateni.setFacolta("Scienze");
@@ -227,7 +228,7 @@ public class FactoryUtente {
         atzori.setNome("Maurizio");
         atzori.setCognome("Atzori");
         atzori.setSesso("Maschio");
-        atzori.setUsername("Mau");
+        atzori.setUsername("Maurizio");
         atzori.setEmail("m.atzori@unica.it");
         atzori.setPassword("oggetti");
         atzori.setFacolta("Scienze");
@@ -240,7 +241,7 @@ public class FactoryUtente {
         carta.setNome("Salvatore");
         carta.setCognome("Carta");
         carta.setSesso("Maschio");
-        carta.setUsername("Carta");
+        carta.setUsername("Salvatore");
         carta.setEmail("salvatore@unica.it");
         carta.setPassword("oggetti");
         carta.setFacolta("Scienze");
@@ -253,7 +254,7 @@ public class FactoryUtente {
         franceschissimo.setNome("Massimo");
         franceschissimo.setCognome("Di Francesco");
         franceschissimo.setSesso("Maschio");
-        franceschissimo.setUsername("DiFra");
+        franceschissimo.setUsername("Massimo");
         franceschissimo.setEmail("mdf@unica.it");
         franceschissimo.setPassword("chiquadro");
         franceschissimo.setFacolta("Scienze");
