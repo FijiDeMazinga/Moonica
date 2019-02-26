@@ -42,6 +42,7 @@ public class Forum extends AppCompatActivity {
     RecyclerView rv;
     ArrayList<ForumThread> listaForum = new ArrayList<>();
     FactoryForumThread fft = FactoryForumThread.getInstance();
+    TextView noReplyForum;
 
     static final String UTENTE = "utente";
     public static final String CORSO = "com.moonica.fdm";
@@ -75,7 +76,14 @@ public class Forum extends AppCompatActivity {
 
         ns = (ScrollView) findViewById(R.id.sv_forum);
         rv = (RecyclerView) findViewById(R.id.rv_forum);
+        noReplyForum = (TextView) findViewById(R.id.noReplyForum);
 
+        if (listaForum.size() == 0){
+            noReplyForum.setVisibility(View.VISIBLE);
+        }
+        else{
+            noReplyForum.setVisibility(View.GONE);
+        }
         /*
          * Inizializzazione dell'adapter
          */
